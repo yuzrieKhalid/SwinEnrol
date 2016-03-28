@@ -26,6 +26,8 @@ For the installation, you can choose to do it in Virtual Machine or Dual Boot wi
 
 Firstly, install ssh as in [this tutorial](https://help.github.com/enterprise/11.10.340/user/articles/generating-ssh-keys/). Then proceed to clone this repository. Then, make a .env file by using the following command: `cp .env.example .env`. Edit the .env through `gedit .env` and update the DB_DATABASE, DB_USERNAME, DB_PASSWORD (don't worry, .env would not be added when you commit your work, so your credential is safe unless accessed from your own PC).
 
+If you need help for Laravel, refer to [Laracast Fundamentals](https://laracasts.com/series/laravel-5-fundamentals).
+
 ## For those new to Ubuntu tips
 
 - `Ctrl + Alt + T` to open Terminal (CMD)

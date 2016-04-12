@@ -17,5 +17,10 @@ Route::group(['middleware' => ['web']], function () {
         return view('login');
     });
 
+    Route::get('student/student', function () {
+        return view('student/student');
+    });
+    // to-do: create page routes
+
     Route::get('/student', 'StudentController@index');
 });

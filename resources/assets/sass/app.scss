@@ -1,2 +1,6 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// import google font Lato and override Bootstrap existing font-family
+@import url(https://fonts.googleapis.com/css?family=Lato);
+$font-family-sans-serif: 'Lato', sans-serif;
 
+// import bootstrap sass from node
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";

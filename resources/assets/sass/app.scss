@@ -4,3 +4,7 @@ $font-family-sans-serif: 'Lato', sans-serif;
 
 // import bootstrap sass from node
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.container {
+    background-color: #fff;
+}

@@ -11,13 +11,18 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    var fontAwesomePath = 'node_modules/font-awesome';
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
     var jQueryPath = 'node_modules/jquery/dist';
 
-    mix.sass('app.scss')
-        .copy(bootstrapPath + '/fonts', 'public/fonts')
-        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');
+    mix.sass('app.scss', 'public/css/app.css');
+    mix.scripts('app.js', 'public/js/app.js')
 
-    mix.scripts('app.js')
-        .copy(jQueryPath + '/jquery.min.js', 'public/js');
+    mix.copy(bootstrapPath + '/fonts', 'public/fonts')
+    mix.copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
+    mix.copy(fontAwesomePath + '/css/font-awesome.min.css', 'public/fonts/fontawesome');
+    mix.copy(fontAwesomePath + '/fonts', 'public/fonts/fontawesome')
+
+
+    mix.copy(jQueryPath + '/jquery.min.js', 'public/js');
 });

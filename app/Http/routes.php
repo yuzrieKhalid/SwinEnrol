@@ -11,12 +11,17 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group([
+    'middleware' => 'web'
+], function () {
+    Route::auth();
 
-    Route::get('/', function () {
-        return view('login');
-    });
+    Route::get('/', 'HomeController@index');
+});
 
+Route::group([
+    'middleware' => ['web', 'auth'],
+], function(){
     // Student Administrator Views
     Route::get('/admin', 'StudentAdminController@index');
     Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
@@ -37,4 +42,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/student/viewstudyplanner', 'StudentController@view_viewstudyplanner');
     Route::get('/student/viewunitlistings', 'StudentController@view_viewunitlistings');
 
+
 });
+
+/*
+
+*/

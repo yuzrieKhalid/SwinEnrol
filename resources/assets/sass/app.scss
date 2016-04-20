@@ -5,6 +5,12 @@ $font-family-sans-serif: 'Lato', sans-serif;
 // import bootstrap sass from node
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-.container {
-    background-color: #fff;
+@import "node_modules/font-awesome/scss/font-awesome";
+
+.icon-user {
+  @extend .fa;
+  @extend .fa-user;
+}
+.fa-btn {
+    margin-right: 6px;
 }

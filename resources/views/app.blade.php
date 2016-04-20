@@ -15,7 +15,7 @@
 
     @yield('head_extra')
 </head>
-<body>
+<body id="app-layout">
     <div class="wrapper">
         <div style="padding-bottom:40px;">
             @yield('content')

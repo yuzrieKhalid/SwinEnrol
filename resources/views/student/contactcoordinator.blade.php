@@ -27,7 +27,7 @@
                           <label class="control-label col-sm-2" for="name">Name:</label>
                             <div class="col-sm-10">
                             <input type="text" class="form-control" id="pwd" placeholder="Your Name">
-                          </div>
+                        </div>
 
                         </div>
                         <div class="form-group">
@@ -39,13 +39,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Content: </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control custom-control" rows="3" style="resize:none">
-                                </textarea>
+                                <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Course Coordinator: </label>
                             <div class="dropdown col-sm-10">
+                                <!-- populate this from database -->
                                 <select class="form-control">
                                     <option value="one">Jason..............</option>
                                     <option value="two">Yuzrie.............</option>

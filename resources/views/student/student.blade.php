@@ -21,7 +21,9 @@
                     <h1>Enrolment Status</h1>
                 </div>
                 <div class="panel-body">
+                    <h2>Mohamad Yuzrie Bin Khalid <small>4318595</small></h2>
                     <table class="table">
+                        <caption><h3>Enrolled Unit</h3></caption>
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>

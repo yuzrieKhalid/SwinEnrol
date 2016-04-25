@@ -121,7 +121,7 @@
                             <!-- Modal End 3 -->
                         </div> <!-- end .form-group -->
                     </form>
-                </div>
+                </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
 
         </div>

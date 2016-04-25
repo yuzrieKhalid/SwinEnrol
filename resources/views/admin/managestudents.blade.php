@@ -20,11 +20,17 @@
                 <div class="panel-body">
                     <h3>
                         <span class="pull-right">
-                        <a class="btn btn-default" href="#" role="button">Import File</a>
-                        <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                            <!-- the modal is at the bottom of the page-->
+                            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                                Add Student
+                            </a>
+                            <a class="btn btn-default" href="#" role="button">Import File</a>
+                            <a class="btn btn-default" href="#" role="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </a>
                         </span>
                         <label for="search">Search Students:</label>
-                        <input type="search" name="search" id="search">
+                        <input type="search" name="search" id="search"></input>
                     </h3>
                     <table class="table">
                         <thead>
@@ -60,6 +66,59 @@
                         </tr>
                     </table>
                 </div>
+
+                <!-- Modal: Add Student -->
+                <div class="modal fade" id="adminAddStudent" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Add a Student</h2>
+                            </div>
+
+                            <form>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="studentID">Student ID</label>
+                                        <input type="text" class="form-control" id="studentID" placeholder="Student ID">
+                                        <!-- for now, assuming ID is stored as text -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="John">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">Course Level</label>
+                                        <!-- select to be populated from database -->
+                                        <select class="form-control">
+                                            <option value="1">Foundation</option>
+                                            <option value="2">Diploma</option>
+                                            <option value="3">Degree</option>
+                                            <option value="4">Masters (by Coursework)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName">Course</label>
+                                        <!-- select to be populated from database -->
+                                        <select class="form-control">
+                                            <option value="1">Course 1</option>
+                                            <option value="2">Course 2</option>
+                                            <option value="3">Course 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                                </div>
+                            </form>
+                        </div> <!-- end. modal-content-->
+                    </div> <!-- end .modal-dialog -->
+                </div> <!-- end .modal fade -->
+
             </div> <!-- end .panel -->
         </div>
     </div>

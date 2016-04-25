@@ -21,7 +21,8 @@
                     <h1>Enrolment Status</h1>
                 </div>
                 <div class="panel-body">
-                    <h2>Mohamad Yuzrie Bin Khalid <small>4318595</small></h2>
+                    <!-- by right, should get $student->get(loginID)->stdName  -->
+                    <h2>{{ $students->get(0)->stdName }} <small>{{ $students->get(0)->stdID }}</small></h2>
                     <table class="table">
                         <caption><h3>Enrolled Unit</h3></caption>
                         <thead>
@@ -30,8 +31,8 @@
                             <th>Status</th>
                         </thead>
                         <tr>
-                            <td>Code 1</td>
-                            <td>Unit Title 1</td>
+                            <td>{{ $units->get(0)->unitCode }}</td>
+                            <td>{{ $units->get(0)->unitName }}</td>
                             <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                         </tr>
                         <tr>

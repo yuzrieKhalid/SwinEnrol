@@ -11,7 +11,7 @@ class Student extends Model
 
 
     protected $fillable = [
-        'id', 'stdID', 'stdName', 'course'
+        'id', 'stdID', 'stdName', 'courseLevel', 'course'
     ];
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 class StudentAdminController extends Controller
 {
     public function index() {
@@ -21,6 +22,11 @@ class StudentAdminController extends Controller
     public function view_setenrolmentdates() {
         $data = [];
         return view ('admin.setenrolmentdates', $data);
+    }
+
+    public function add_student() {
+        $data = [];
+
     }
 
 }

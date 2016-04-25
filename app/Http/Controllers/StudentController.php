@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Student;
+use App\Unit;
 
 class StudentController extends Controller
 {
     public function index() {
         $data = [];
-        $data['skill'] = "Crash car into the wall";
-        $data['asd'] = "\"Arslan is noob\" - Yuzrie 2016";
+        $students = Student::all();
+        $units = Unit::all();
+
+        $data['students'] = $students;
+        $data['units'] = $units;
+
         return view ('student.student', $data);
     }
 

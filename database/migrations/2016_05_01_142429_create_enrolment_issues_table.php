@@ -18,7 +18,6 @@ class CreateEnrolmentIssuesTable extends Migration
             $table->string('status');
             $table->string('details');
             $table->timestamps();
-            $table->primary('studentID');
             $table->foreign('studentID')->references('studentID')->on('student');
         });
     }

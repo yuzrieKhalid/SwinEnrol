@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTable extends Migration
+class CreateLoginTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateUnitTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('unitCode');
-            $table->string('unitName');
+        Schema::create('login', function (Blueprint $table) {
+            $table->increments('username');
+            $table->string('password');
+            $table->integer('permissionLevel')->unsigned();
             $table->timestamps();
+            $table->primary('username');
         });
     }
 
@@ -27,6 +28,6 @@ class CreateUnitTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unit');
+        Schema::drop('login');
     }
 }

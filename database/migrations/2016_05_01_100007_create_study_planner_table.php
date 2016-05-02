@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnrolmentUnits extends Migration
+class CreateStudyPlannerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,14 @@ class CreateEnrolmentUnits extends Migration
      */
     public function up()
     {
-        Schema::create('enrolment_units', function (Blueprint $table) {
-            $table->integer('studentID')->unsigned();
+        Schema::create('study_planner', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('courseCode');
             $table->string('unitCode');
             $table->integer('year')->unsigned();
-            $table->('term');
-            $table->('status');
+            $table->string('term');
             $table->timestamps();
-            $table->primary('studentID');
-            $table->primary('unitCode');
-            $table->primary('year');
-            $table->primary('term');
-            $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('courseCode')->references('courseCode')->on('course');
             $table->foreign('unitCode')->references('unitCode')->on('unit');
         });
     }
@@ -35,6 +31,6 @@ class CreateEnrolmentUnits extends Migration
      */
     public function down()
     {
-        Schema::drop('enrolment_units');
+        Schema::drop('study_planner');
     }
 }

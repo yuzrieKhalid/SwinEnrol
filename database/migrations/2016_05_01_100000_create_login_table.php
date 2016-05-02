@@ -13,7 +13,7 @@ class CreateLoginTable extends Migration
     public function up()
     {
         Schema::create('login', function (Blueprint $table) {
-            $table->increments('username');
+            $table->string('username');
             $table->string('password');
             $table->integer('permissionLevel')->unsigned();
             $table->timestamps();

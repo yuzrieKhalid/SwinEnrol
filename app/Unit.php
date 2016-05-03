@@ -6,9 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    protected $table = 'unit';
+    // primary key
+    protected $primaryKey = 'unitCode';
+    public $incrementing = false;
 
-    protected $fillable = [
-        'unitCode', 'unitName'
-    ];
+    // unit relation
+    public function unit_listing()
+    {
+        return $this->hasMany('App\UnitListing', 'unitCode');
+    }
+
+    public function enrolment_units()
+    {
+        return $this->hasMany('App\EnrolmentUnits', 'unitCode');
+    }
+
+    public function study_planner()
+    {
+        return $this->hasMany('App\StudyPlanner', 'unitCode');
+    }
+
+    // inverse relation
+    public function course()
+    {
+        return $this->belongsTo('App\Course', 'courseCode');
+    }
 }

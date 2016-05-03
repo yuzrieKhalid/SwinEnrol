@@ -6,13 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    // primary key
+    protected $primaryKey = 'studentID';
 
-    protected $table = 'student';
+    // student relation
+    public function enrolment_units()
+    {
+        return $this->hasMany('App\EnrolmentUnits', 'studentID');
+    }
 
+    public function internal_course_transfer()
+    {
+        return $this->hasMany('App\InternalCourseTransfer', 'studentID');
+    }
 
-    protected $fillable = [
-        'id', 'stdID', 'stdName', 'courseLevel', 'course'
-    ];
-
-
+    public function enrolment_issues()
+    {
+        return $this->hasMany('App\EnrolmentIssues', 'studentID');
+    }
 }

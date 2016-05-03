@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UnitListing extends Model
+class StudyPlanner extends Model
 {
     // inverse relation
     public function unit()

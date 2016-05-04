@@ -14,15 +14,17 @@ elixir(function(mix) {
     var fontAwesomePath = 'node_modules/font-awesome';
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
     var jQueryPath = 'node_modules/jquery/dist';
+    var datepickerPath = 'node_modules/bootstrap-datepicker/dist';
 
     mix.sass('app.scss', 'public/css/app.css');
-    mix.scripts('app.js', 'public/js/app.js')
+    mix.scripts('app.js', 'public/js/app.js');
 
-    mix.copy(bootstrapPath + '/fonts', 'public/fonts')
-    mix.copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
+    mix.copy(bootstrapPath + '/fonts', 'public/fonts');
+    mix.copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');
     mix.copy(fontAwesomePath + '/css/font-awesome.min.css', 'public/fonts/fontawesome');
-    mix.copy(fontAwesomePath + '/fonts', 'public/fonts/fontawesome')
-
+    mix.copy(fontAwesomePath + '/fonts', 'public/fonts/fontawesome');
 
     mix.copy(jQueryPath + '/jquery.min.js', 'public/js');
+    mix.copy(datepickerPath + '/js/bootstrap-datepicker.min.js', 'public/js');
+    mix.copy(datepickerPath + '/css/bootstrap-datepicker3.min.css', 'public/css');
 });

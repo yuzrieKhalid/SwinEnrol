@@ -76,7 +76,7 @@
                                 <h2 class="modal-title">Add a Student</h2>
                             </div>
 
-                            <form>
+                            <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="studentID">Student ID</label>

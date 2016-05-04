@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
+    public $table = 'unit';
     // primary key
     protected $primaryKey = 'unitCode';
     public $incrementing = false;

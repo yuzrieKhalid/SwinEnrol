@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -20,11 +24,19 @@
                 <div class="panel-body">
                     <form>
                         <h2>Set Enrolment Dates</h2>
-
+                        <!-- TODO: Add an option to open enrolment for which course -->
                         <h3>Semester 1</h3>
-                        <input type="text" class="Semester1" id="start1" placeholder="Start Date"></input>
+                        <div id="semester1">
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input type="text" class="input-sm form-control" name="start" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="input-sm form-control" name="end" />
+                            </div>
+                        </div>
+
+                        <!-- <input type="text" class="Semester1" id="start1" placeholder="Start Date"></input>
                         <span>to</span>
-                        <input type="text" class="Semester1" id="end1" placeholder="End Date"></input>
+                        <input type="text" class="Semester1" id="end1" placeholder="End Date"></input> -->
 
                         <h3>Winter Semester</h3>
                         <input type="text" class="Semester2" id="start2" placeholder="Start Date"></input>
@@ -49,4 +61,14 @@
         </div>
     </div>
 </div>
+@stop
+
+
+@section('extra_js')
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script>
+$('#semester1 .input-daterange').datepicker({
+    format: 'dd MM yyyy'
+});
+</script>
 @stop

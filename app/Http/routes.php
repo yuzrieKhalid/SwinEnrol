@@ -27,6 +27,7 @@ Route::get('/coordinator/resolveenrolmentissues', 'CoordinatorController@view_re
 Route::get('/student', 'StudentController@index');
 Route::get('/student/contactcoordinator', 'StudentController@view_contactcoordinator');
 Route::get('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
+Route::post('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
 Route::get('/student/manageunits', 'StudentController@view_manageunits');
 Route::get('/student/viewstudyplanner', 'StudentController@view_viewstudyplanner');
 Route::get('/student/viewunitlistings', 'StudentController@view_viewunitlistings');

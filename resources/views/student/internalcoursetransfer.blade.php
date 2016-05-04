@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" >
+                    <form class="form-horizontal" role="form" name="cForm" method="POST" action="{{ url('/student/internalcoursetransfer') }}" onsubmit="return validateForm()">
                         <h3>Personal Information</h3>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Title: </label>
@@ -36,9 +36,9 @@
                                 </select>
                             </div>
 
-                            <label class="control-label col-sm-2" for="name">Name:</label>
+                            <label class="control-label col-sm-2" for="name">Full Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="pwd" placeholder="Your Name (In Block)">
+                                <input type="text" class="form-control" id="pwd" placeholder="JOHN DOE (IN BLOCK)">
                             </div>
 
                             <label class="control-label col-sm-2" for="stID">Student Id:</label>
@@ -112,7 +112,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <input type="submit" value="Submit" class="btn btn-default">
                             </div>
                         </div>
                     </form>
@@ -121,4 +121,64 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('extra_js')
+<script>
+function validateForm() {
+
+    var a = document.forms["cForm"]["sName"].value;
+    var b = document.forms["cForm"]["sID"].value;
+    var c = document.forms["cForm"]["sDoB"].value;
+    var d = document.forms["cForm"]["sEm"].value;
+    var e = document.forms["cForm"]["sMB"].value;
+    var f = document.forms["cForm"]["sPr"].value;
+    var g = document.forms["cForm"]["sPc"].value;
+    var h = document.forms["cForm"]["sPPn"].value;
+    var i = document.forms["cForm"]["sPPc"].value;
+    var j = document.forms["cForm"]["sReason"].value;
+
+
+    if (a == null || a == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (b == null || b == "") {
+        alert("Please enter your student Id");
+        return false;
+    }
+    if (c == null || c == "") {
+        alert("Please enter your Date Of Birth");
+        return false;
+    }
+    if (d == null || d == "") {
+        alert("Please enter your student email address");
+        return false;
+    }
+    if (e == null || e == "") {
+        alert("Please enter your Mobile Number");
+        return false;
+    }
+    if (f == null || f == "") {
+        alert("Enter your Current Program Name");
+        return false;
+    }
+    if (g == null || g == "") {
+        alert("Enter your Program Code");
+        return false;
+    }
+    if (h == null || h == "") {
+        alert("Enter new Program Name");
+        return false;
+    }
+    if (i == null || i == "") {
+        alert("Enter your Program Code");
+        return false;
+    }
+    if (j == null || j == "") {
+        alert("Please enter a reason");
+        return false;
+    }
+}
+</script>
 @stop

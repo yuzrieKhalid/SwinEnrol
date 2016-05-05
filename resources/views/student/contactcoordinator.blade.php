@@ -22,24 +22,24 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" name="cForm" role="form" action="{{ url('/student/contactcoordinator') }}" onsubmit="return validateForm()" method="POST">
                         <div class="form-group">
                           <label class="control-label col-sm-2" for="name">Name:</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pwd" placeholder="Your Name">
+                            <input type="text" name="sName" class="form-control" id="pwd" placeholder="Your Name">
                         </div>
 
                         </div>
                         <div class="form-group">
                           <label class="control-label col-sm-2" for="pwd">Title:</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pwd" placeholder="...">
+                            <input type="text" name="tName" class="form-control" id="pwd" placeholder="...">
                           </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Content: </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>
+                                <textarea class="form-control custom-control" name="cName" rows="3" style="resize:none"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -67,4 +67,27 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('extra_js')
+<script>
+function validateForm() {
+    var x = document.forms["cForm"]["sName"].value;
+    var y = document.forms["cForm"]["tName"].value;
+    var z = document.forms["cForm"]["cName"].value;
+
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (y == null || y == "") {
+        alert("Title must be filled out");
+        return false;
+    }
+    if (z == null || z == "") {
+        alert("Please type your message");
+        return false;
+    }
+}
+</script>
 @stop

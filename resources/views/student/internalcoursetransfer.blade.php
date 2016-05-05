@@ -38,27 +38,27 @@
 
                             <label class="control-label col-sm-2" for="name">Full Name:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="pwd" placeholder="JOHN DOE (IN BLOCK)">
+                                <input type="text" name="sName" class="form-control" id="pwd" placeholder="JOHN DOE (IN BLOCK)">
                             </div>
 
                             <label class="control-label col-sm-2" for="stID">Student Id:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="studentID" placeholder="Student Id">
+                                <input type="text" name="sID" class="form-control" id="studentID" placeholder="Student Id">
                             </div>
 
                             <label class="control-label col-sm-2" for="dob">Date OF Birth</label>
                             <div class="col-sm-10">
-                               <input type="text" class="form-control" id="dob" placeholder="Date OF Birth (MM/DD/YYYY)">
+                               <input type="text" name="sDoB" class="form-control" id="dob" placeholder="Date OF Birth (MM/DD/YYYY)">
                             </div>
 
                             <label class="control-label col-sm-2" for="email">Email:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="dob" placeholder="example@example.com">
+                                <input type="text" name="sEm" class="form-control" id="dob" placeholder="example@example.com">
                             </div>
 
                             <label class="control-label col-sm-2" for="mn">Mobile Number:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="mn" placeholder="+6.......">
+                                <input type="text" name="sMB" class="form-control" id="mn" placeholder="+6.......">
                             </div>
                         </div>
 
@@ -66,13 +66,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prname">Program Title:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="prname" placeholder="...">
+                                <input type="text" name="sPr" class="form-control" id="prname" placeholder="...">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prcode">Program code:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="prcode" placeholder="...">
+                                <input type="text" name="sPc" class="form-control" id="prcode" placeholder="...">
                             </div>
                         </div>
                         <div class="form-group">
@@ -86,13 +86,13 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prname">Program Title:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="prname" placeholder="...">
+                                <input type="text" name="sPPn" class="form-control" id="prname" placeholder="...">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prcode">Program code:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="prcode" placeholder="...">
+                                <input type="text" name="sPPc" class="form-control" id="prcode" placeholder="...">
                             </div>
                         </div>
                         <div class="form-group">
@@ -105,7 +105,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pwd">Reasons for Requesting Transfer </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>
+                                <textarea class="form-control custom-control" name="sReason" rows="3" style="resize:none"></textarea>
                             </div>
                         </div>
 

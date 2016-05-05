@@ -20,7 +20,7 @@
 
                 <div class="panel-body">
                     <!-- Shows which enrolment is already opened -->
-                    Student Admin Homepage
+                    Student Admin Homepage. This page will display which enrolment are opened and show the time remaining until the enrolment is closed. We will use a time counter for this.
                 </div>
             </div>
         </div>

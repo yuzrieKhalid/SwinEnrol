@@ -6,6 +6,7 @@
         <!-- Reserve 3 space for navigation column -->
         <div class="col-md-3">
             <div class="list-group">
+                <a href="{{ url('/admin') }}" class="list-group-item">Home</a>
                 <a href="{{ url('/admin/managestudents') }}" class="list-group-item active">Manage Students</a>
                 <a href="{{ url('/admin/setenrolmentdates') }}" class="list-group-item">Set Enrolment Dates</a>
             </div>

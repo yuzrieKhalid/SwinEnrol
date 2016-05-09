@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Student;
+
 class ManageStudentController extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class ManageStudentController extends Controller
      */
     public function index()
     {
-        //
+        // TODO: Return all data to the view
+        // return response()->json(Student::all());     // when ready, use this
+        return view ('admin.managestudents');           // temporary, use this
     }
 
     /**
@@ -26,7 +30,7 @@ class ManageStudentController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin.managestudents');
     }
 
     /**
@@ -37,7 +41,87 @@ class ManageStudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Gets input from form and create new instance in the database
+        $input = $request->only([
+            'title',
+            'gender',
+            'dateOfBirth',
+            'surname',
+            'givenName',
+            'email',
+            'overseasAddress',
+            'overseasCountry',
+            'malaysianAddress',
+            'malaysianCountry',     // maybe extra here, confirm later
+            'malaysianPostcode',
+            'overseasTelephone',
+            'malaysianTelephone',
+            'fax',
+            'mobile',
+            'countryOfCitizenship',
+            'birthCountry',
+            'identityCardOrPassportNumber',
+            'passportExpiry',
+            'visaValidity',
+            'visaType',
+            'visaExpiry',
+            'visaCollectionLoaction', // some typo, need to confirm later
+            'courseAccepted1',
+            'courseAccepted2',
+            'courseAccepted3',
+            'emergencyContactName',
+            'emergencyContactAddress',
+            'emergencyContactTelephone',
+            'emergencyContactFax',
+            'emergencyContactMobile',
+            'emergencyContactRelationship',
+            'emergencyContactSpokenLanaguage',
+            'acceptanceDate'
+        ]);
+
+        // create new student
+        $student = new Student;
+        $student->title = $input['title'];
+        $student->gender = $input['gender'];
+        $student->dateOfBirth = $input['dateOfBirth'];
+        $student->surname = $input['surname'];
+        $student->givenName = $input['givenName'];
+        $student->email = $input['email'];
+        $student->overseasAddress = $input['overseasAddress'];
+        $student->overseasCountry = $input['overseasCountry'];
+        $student->overseasPostcode = $input['overseasPostcode'];
+        $student->malaysianAddress = $input['malaysianAddress'];
+        $student->malaysianCountry = $input['malaysianCountry'];
+        $student->malaysianPostcode = $input['malaysianPostcode'];
+        $student->overseasTelephone = $input['overseasTelephone'];
+        $student->malaysianTelephone = $input['malaysianTelephone'];
+        $student->fax = $input['fax'];
+        $student->mobile = $input['mobile'];
+        $student->countryOfCitizenship = $input['countryOfCitizenship'];
+        $student->birthCountry = $input['birthCountry'];
+        $student->identityCardOrPassportNumber = $input['identityCardOrPassportNumber'];
+        $student->passportExpiry = $input['passportExpiry'];
+        $student->visaValidity = $input['visaValidity'];
+        $student->visaType = $input['visaType'];
+        $student->visaExpiry = $input['visaExpiry'];
+        $student->visaCollectionLoaction = $input['visaCollectionLoaction'];
+        $student->courseAccepted1 = $input['courseAccepted1'];
+        $student->courseAccepted2 = $input['courseAccepted2'];
+        $student->courseAccepted3 = $input['courseAccepted3'];
+        $student->courseCommencement = $input['courseCommencement'];
+        $student->emergencyContactName = $input['emergencyContactName'];
+        $student->emergencyContactAddress = $input['emergencyContactAddress'];
+        $student->emergencyContactTelephone = $input['emergencyContactTelephone'];
+        $student->emergencyContactFax = $input['emergencyContactFax'];
+        $student->emergencyContactMobile = $input['emergencyContactMobile'];
+        $student->emergencyContactEmail = $input['emergencyContactEmail'];
+        $student->emergencyContactRelationship = $input['emergencyContactRelationship'];
+        $student->EmergencyContactSpokenLanaguage = $input['EmergencyContactSpokenLanaguage'];
+        $student->acceptanceDate = $input['acceptanceDate'];
+
+        // save into database
+        $student->save();
+        return response()->json($student);
     }
 
     /**
@@ -48,7 +132,7 @@ class ManageStudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Student::findOrFail($id));
     }
 
     /**
@@ -59,7 +143,7 @@ class ManageStudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('admin.managestudents', ['admin.managestudents' => Student::findOrFail($id)]);
     }
 
     /**
@@ -71,7 +155,85 @@ class ManageStudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'title',
+            'gender',
+            'dateOfBirth',
+            'surname',
+            'givenName',
+            'email',
+            'overseasAddress',
+            'overseasCountry',
+            'malaysianAddress',
+            'malaysianCountry',     // maybe extra here, confirm later
+            'malaysianPostcode',
+            'overseasTelephone',
+            'malaysianTelephone',
+            'fax',
+            'mobile',
+            'countryOfCitizenship',
+            'birthCountry',
+            'identityCardOrPassportNumber',
+            'passportExpiry',
+            'visaValidity',
+            'visaType',
+            'visaExpiry',
+            'visaCollectionLoaction',// some typo, need to confirm later
+            'courseAccepted1',
+            'courseAccepted2',
+            'courseAccepted3',
+            'emergencyContactName',
+            'emergencyContactAddress',
+            'emergencyContactTelephone',
+            'emergencyContactFax',
+            'emergencyContactMobile',
+            'emergencyContactRelationship',
+            'emergencyContactSpokenLanaguage',
+            'acceptanceDate'
+        ]);
+
+        // create new student
+        $student = Student::findOrFail($id);
+        $student->title = $input['title'];
+        $student->gender = $input['gender'];
+        $student->dateOfBirth = $input['dateOfBirth'];
+        $student->surname = $input['surname'];
+        $student->givenName = $input['givenName'];
+        $student->email = $input['email'];
+        $student->overseasAddress = $input['overseasAddress'];
+        $student->overseasCountry = $input['overseasCountry'];
+        $student->overseasPostcode = $input['overseasPostcode'];
+        $student->malaysianAddress = $input['malaysianAddress'];
+        $student->malaysianCountry = $input['malaysianCountry'];
+        $student->malaysianPostcode = $input['malaysianPostcode'];
+        $student->overseasTelephone = $input['overseasTelephone'];
+        $student->malaysianTelephone = $input['malaysianTelephone'];
+        $student->fax = $input['fax'];
+        $student->mobile = $input['mobile'];
+        $student->countryOfCitizenship = $input['countryOfCitizenship'];
+        $student->birthCountry = $input['birthCountry'];
+        $student->identityCardOrPassportNumber = $input['identityCardOrPassportNumber'];
+        $student->passportExpiry = $input['passportExpiry'];
+        $student->visaValidity = $input['visaValidity'];
+        $student->visaType = $input['visaType'];
+        $student->visaExpiry = $input['visaExpiry'];
+        $student->visaCollectionLoaction = $input['visaCollectionLoaction'];
+        $student->courseAccepted1 = $input['courseAccepted1'];
+        $student->courseAccepted2 = $input['courseAccepted2'];
+        $student->courseAccepted3 = $input['courseAccepted3'];
+        $student->courseCommencement = $input['courseCommencement'];
+        $student->emergencyContactName = $input['emergencyContactName'];
+        $student->emergencyContactAddress = $input['emergencyContactAddress'];
+        $student->emergencyContactTelephone = $input['emergencyContactTelephone'];
+        $student->emergencyContactFax = $input['emergencyContactFax'];
+        $student->emergencyContactMobile = $input['emergencyContactMobile'];
+        $student->emergencyContactEmail = $input['emergencyContactEmail'];
+        $student->emergencyContactRelationship = $input['emergencyContactRelationship'];
+        $student->EmergencyContactSpokenLanaguage = $input['EmergencyContactSpokenLanaguage'];
+        $student->acceptanceDate = $input['acceptanceDate'];
+
+        $student->save();
+        return response()->json($student);
     }
 
     /**
@@ -82,6 +244,8 @@ class ManageStudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return response()->json($student);
     }
 }

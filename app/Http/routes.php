@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', 'StudentAdminController@index');
-Route::get('/admin', 'StudentAdminController@index');
-Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
-Route::get('/admin/setenrolmentdates', 'StudentAdminController@view_setenrolmentdates');
+// Route::get('/', 'StudentAdminController@index');
+// Route::get('/admin', 'StudentAdminController@index');
+// Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
+// Route::get('/admin/setenrolmentdates', 'StudentAdminController@view_setenrolmentdates');
+
+Route::get('/', 'Admin\HomeController@index');
+Route::get('/admin', 'Admin\HomeController@index');
+Route::resource('/admin/managestudents', 'Admin\ManageStudentController');
+Route::resource('/admin/setenrolmentdates', 'Admin\ManageStudentController');
 
 // Coordinator Views
 Route::get('/coordinator', 'CoordinatorController@index');

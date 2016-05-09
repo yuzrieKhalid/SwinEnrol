@@ -60,11 +60,6 @@
                 </div>
             </div>
 
-            <!--
-            $table->string('unitCode');
-            $table->string('unitName');
-            $table->string('courseCode');
-            -->
             <!-- Modal 1-->
             <div class="modal fade" id="addUnit" role="dialog">
                 <div class="modal-dialog">

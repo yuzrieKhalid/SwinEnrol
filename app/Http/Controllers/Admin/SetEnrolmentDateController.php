@@ -16,7 +16,7 @@ class SetEnrolmentDateController extends Controller
      */
     public function index()
     {
-        //
+        return view ('admin.setenrolmentdates');
     }
 
     /**
@@ -26,7 +26,7 @@ class SetEnrolmentDateController extends Controller
      */
     public function create()
     {
-        return view ('admin.setenrolmentdates');
+        // return view ('admin.setenrolmentdates');
     }
 
     /**

@@ -30,6 +30,9 @@ class ManageStudentController extends Controller
      */
     public function create()
     {
+        // maybe its better to create a new view to add student?
+        // otherwise, it feels weird to have both landing page and create page
+        // on the same view. As a User, I fell in love
         return view ('admin.managestudents');
     }
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Unit;
+
 class ManageUnitController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class ManageUnitController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Unit::all());
+        //return view ('coordinator.manageunits');
     }
 
     /**
@@ -26,7 +29,7 @@ class ManageUnitController extends Controller
      */
     public function create()
     {
-        //
+        return view ('coordinator.manageunits');
     }
 
     /**
@@ -37,7 +40,19 @@ class ManageUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'unitCode',
+            'unitName',
+            'courseCode'
+        ]);
+
+        $unit = new Unit;
+        $unit->unitCode = $input['unitCode'];
+        $unit->unitName = $input['unitName'];
+        $unit->courseCode = $input['courseCode'];
+        $unit->save();
+
+        return response()->json($unit);
     }
 
     /**
@@ -48,7 +63,7 @@ class ManageUnitController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -59,7 +74,7 @@ class ManageUnitController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('coordinator.manageunits');
     }
 
     /**
@@ -71,7 +86,19 @@ class ManageUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'unitCode',
+            'unitName',
+            'courseCode'
+        ]);
+
+        $unit = Unit::findOrFail($id);
+        $unit->unitCode = $input['unitCode'];
+        $unit->unitName = $input['unitName'];
+        $unit->courseCode = $input['courseCode'];
+        $unit->save();
+
+        return response()->json($unit);
     }
 
     /**
@@ -82,6 +109,9 @@ class ManageUnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $unit = Unit::findOrFail($id);
+        $unit->delete();
+
+        return response()->json($unit);
     }
 }

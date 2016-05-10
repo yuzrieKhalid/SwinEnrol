@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\StudyPlanner;
+
 class ManagePlannerController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class ManagePlannerController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(StudyPlanner::all());
+        //return view ('coordinator.managestudyplanner');
     }
 
     /**
@@ -26,7 +29,7 @@ class ManagePlannerController extends Controller
      */
     public function create()
     {
-        //
+        return view ('coordinator.managestudyplanner');
     }
 
     /**
@@ -37,7 +40,21 @@ class ManagePlannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'courseCode',
+            'unitCode',
+            'year',
+            'term',
+        ]);
+
+        $planner = new StudyPlanner;
+        $planner->courseCode = $input['courseCode'];
+        $planner->unitCode = $input['unitCode'];
+        $planner->year = $input['year'];
+        $planner->term = $input['term'];
+        $planner->save();
+
+        return response()->json($planner);
     }
 
     /**
@@ -48,7 +65,7 @@ class ManagePlannerController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -59,7 +76,7 @@ class ManagePlannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('coordinator.managestudyplanner');
     }
 
     /**
@@ -71,7 +88,21 @@ class ManagePlannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'courseCode',
+            'unitCode',
+            'year',
+            'term',
+        ]);
+
+        $planner = StudyPlanner::findOrFail($id);
+        $planner->courseCode = $input['courseCode'];
+        $planner->unitCode = $input['unitCode'];
+        $planner->year = $input['year'];
+        $planner->term = $input['term'];
+        $planner->save();
+
+        return response()->json($planner);
     }
 
     /**
@@ -82,6 +113,9 @@ class ManagePlannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $planner = StudyPlanner::findOrFail($id);
+        $planner->delete();
+
+        return response()->json($planner);
     }
 }

@@ -50,6 +50,9 @@ class ManageListingController extends Controller
         $unitlisting->year = $input['year'];
         $unitlisting->term = $input['term'];
         $unitlisting->unitCode = $input['unitCode'];
+
+        $unitlisting->save();
+        return response()->json($unitlisting);
     }
 
     /**
@@ -60,7 +63,7 @@ class ManageListingController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -71,7 +74,7 @@ class ManageListingController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('coordinator.manageunitlisting', ['coordinator.manageunitlisting' => UnitListing::findOrFail($id)]);
     }
 
     /**
@@ -83,7 +86,19 @@ class ManageListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'year',
+            'term',
+            'unitCode'
+        ]);
+
+        $unitlisting = UnitListing::findOrFail($id);
+        $unitlisting->year = $input['year'];
+        $unitlisting->term = $input['term'];
+        $unitlisting->unitCode = $input['unitCode'];
+
+        $unitlisting->save();
+        return response()->json($unitlisting);
     }
 
     /**
@@ -94,6 +109,9 @@ class ManageListingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $unitlisting = UnitListing::findOrFail($id);
+        $unitlisting->delete();
+
+        return response()->json($unitlisting);
     }
 }

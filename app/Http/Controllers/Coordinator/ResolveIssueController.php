@@ -16,7 +16,7 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
-        //
+        return view ('coordinator.resolveenrolmentissues');
     }
 
     /**
@@ -26,7 +26,7 @@ class ResolveIssueController extends Controller
      */
     public function create()
     {
-        //
+        return view ('coordinator.resolveenrolmentissues');
     }
 
     /**

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+// student's unit operation is different. it should only add units to student's info
+
 class ManageUnitController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class ManageUnitController extends Controller
      */
     public function index()
     {
-        //
+        // return response()->json();
+        return view ('student.manageunits');
     }
 
     /**

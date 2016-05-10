@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ContactCoordinator extends Controller
+class ContactCoordinatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ContactCoordinator extends Controller
      */
     public function index()
     {
-        //
+        return view ('student.contactcoordinator');
     }
 
     /**

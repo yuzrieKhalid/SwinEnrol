@@ -18,8 +18,8 @@ class ManagePlannerController extends Controller
      */
     public function index()
     {
-        return response()->json(StudyPlanner::all());
-        //return view ('coordinator.managestudyplanner');
+        // return response()->json(StudyPlanner::all());
+        return view ('coordinator.managestudyplanner');
     }
 
     /**

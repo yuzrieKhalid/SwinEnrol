@@ -8,6 +8,7 @@ class InternalCourseTransfer extends Model
 {
     // primary key
     protected $primaryKey = 'formID';
+    protected $table = 'internal_course_transfer';
 
     // inverse relation
     public function student()

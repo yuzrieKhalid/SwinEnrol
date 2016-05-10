@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\InternalCourseTransfer;
+
 class CourseTransferController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class CourseTransferController extends Controller
      */
     public function index()
     {
-        //
+        // return response()->json(InternalCourseTransfer::all());
+        return view ('student.internalcoursetransfer');
     }
 
     /**
@@ -26,7 +29,7 @@ class CourseTransferController extends Controller
      */
     public function create()
     {
-        //
+        return view ('student.internalcoursetransfer');
     }
 
     /**
@@ -37,7 +40,19 @@ class CourseTransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'studentID',
+            'comment',
+            'courseCode',
+        ]);
+
+        $transfer = new InternalCourseTransfer;
+        $transfer->studentID = $input['studentID'];
+        $transfer->comment = $input['comment'];
+        $transfer->courseCode = $input['courseCode'];
+
+        $transfer->save();
+        return response()->json($transfer);
     }
 
     /**
@@ -48,7 +63,7 @@ class CourseTransferController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -59,7 +74,7 @@ class CourseTransferController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view ('student.internalcoursetransfer');
     }
 
     /**
@@ -71,7 +86,19 @@ class CourseTransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'studentID',
+            'comment',
+            'courseCode',
+        ]);
+
+        $transfer = InternalCourseTransfer::findOrFail($id);
+        $transfer->studentID = $input['studentID'];
+        $transfer->comment = $input['comment'];
+        $transfer->courseCode = $input['courseCode'];
+
+        $transfer->save();
+        return response()->json($transfer);
     }
 
     /**
@@ -82,6 +109,9 @@ class CourseTransferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transfer = InternalCourseTransfer::findOrFail($id);
+        $transfer->delete();
+
+        return response()->json($transfer);
     }
 }

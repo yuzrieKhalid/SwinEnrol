@@ -18,8 +18,8 @@ class ManageUnitController extends Controller
      */
     public function index()
     {
-        return response()->json(Unit::all());
-        //return view ('coordinator.manageunits');
+        // return response()->json(Unit::all());
+        return view ('coordinator.manageunits');
     }
 
     /**

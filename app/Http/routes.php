@@ -11,31 +11,26 @@
 |
 */
 
-// Route::get('/', 'StudentAdminController@index');
-// Route::get('/admin', 'StudentAdminController@index');
-// Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
-// Route::get('/admin/setenrolmentdates', 'StudentAdminController@view_setenrolmentdates');
-
+// Student Admin
 Route::get('/', 'Admin\HomeController@index');
 Route::get('/admin', 'Admin\HomeController@index');
 Route::resource('/admin/managestudents', 'Admin\ManageStudentController');
 Route::resource('/admin/setenrolmentdates', 'Admin\ManageStudentController');
 
 // Coordinator Views
-Route::get('/coordinator', 'CoordinatorController@index');
-Route::get('/coordinator/managestudyplanner', 'CoordinatorController@view_managestudyplanner');
-Route::get('/coordinator/manageunitlisting', 'CoordinatorController@view_manageunitlisting');
-Route::get('/coordinator/manageunits', 'CoordinatorController@view_manageunits');
-Route::get('/coordinator/resolveenrolmentissues', 'CoordinatorController@view_resolveenrolmentissues');
+Route::get('/coordinator', 'Coordinator\HomeController@index');
+Route::resource('/coordinator/managestudyplanner', 'Coordinator\ManagePlannerController');
+Route::resource('/coordinator/manageunitlisting', 'Coordinator\ManageListingController');
+Route::resource('/coordinator/manageunits', 'Coordinator\ManageUnitController');
+Route::resource('/coordinator/resolveenrolmentissues', 'Coordinator\ResolveIssueController');
 
 // Student
-Route::get('/student', 'StudentController@index');
-Route::get('/student/contactcoordinator', 'StudentController@view_contactcoordinator');
-Route::get('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
-Route::post('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
-Route::get('/student/manageunits', 'StudentController@view_manageunits');
-Route::get('/student/viewstudyplanner', 'StudentController@view_viewstudyplanner');
-Route::get('/student/viewunitlistings', 'StudentController@view_viewunitlistings');
+Route::get('/student', 'Student\HomeController@index');
+Route::get('/student/viewstudyplanner', 'Student\ViewPlannerController@index');
+Route::get('/student/viewunitlistings', 'Student\ViewListingController@index');
+Route::resource('/student/contactcoordinator', 'Student\ContactCoordinatorController');
+Route::resource('/student/internalcoursetransfer', 'Student\CourseTransferController');
+Route::resource('/student/manageunits', 'Student\ManageUnitController');
 
 /*
 Route::group([

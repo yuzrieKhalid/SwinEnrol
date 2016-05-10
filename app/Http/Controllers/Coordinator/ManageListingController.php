@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\UnitListing;
+
 class ManageListingController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class ManageListingController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(UnitListing::all());
+        // return view ('coordinator.manageunitlisting');
     }
 
     /**
@@ -26,7 +29,7 @@ class ManageListingController extends Controller
      */
     public function create()
     {
-        //
+        return view ('coordinator.manageunitlisting');
     }
 
     /**
@@ -37,7 +40,16 @@ class ManageListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'year',
+            'term',
+            'unitCode'
+        ]);
+
+        $unitlisting = new UnitListing;
+        $unitlisting->year = $input['year'];
+        $unitlisting->term = $input['term'];
+        $unitlisting->unitCode = $input['unitCode'];
     }
 
     /**

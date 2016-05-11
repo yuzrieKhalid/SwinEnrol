@@ -15,13 +15,12 @@
         </div>
 
         <div class="col-md-9">
+            <!--  this panel shows the created units -->
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Units</h1>
                 </div>
-
                 <div class="panel-body">
-
                     <table class="table">
                         <thead>
                             <th>Unit ID</th>
@@ -37,28 +36,10 @@
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Unit Name 2</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                                </span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Unit Name 3</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                                </span></a>
-                            </td>
-                        </tr>
                     </table>
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                 </div>
-            </div>
+            </div> <!-- end .panel -->
 
             <!-- Modal 1-->
             <div class="modal fade" id="addUnit" role="dialog">
@@ -71,18 +52,20 @@
                         </div>
 
                         <div class="modal-body">
-                            <label class="control-label" for="unitCode">Unit Code:</label>
-                            <input type="text" name="unitCode" class="form-control" id="unitCode">
+                            <div class="form-group">
+                                <label class="control-label" for="unitCode">Unit Code:</label>
+                                <input type="text" name="unitCode" class="form-control" id="unitCode">
 
-                            <label class="control-label" for="unitName">Unit Name:</label>
-                            <input type="text" name="unitName" class="form-control" id="unitName">
+                                <label class="control-label" for="unitName">Unit Name:</label>
+                                <input type="text" name="unitName" class="form-control" id="unitName">
 
-                            <label class="control-label" for="courseCode">Course Code:</label>
-                            <input type="text" name="courseCode" class="form-control" id="courseCode">
+                                <label class="control-label" for="courseCode">Course Code:</label>
+                                <input type="text" name="courseCode" class="form-control" id="courseCode">
+                            </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+                            <button type="submit" class="btn btn-default" id="submit" data-method="POST" data-url="#">Create</button>
                         </div>
                     </div>
                 </div>

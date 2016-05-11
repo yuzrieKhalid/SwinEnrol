@@ -22,6 +22,7 @@ Route::group([
     Route::resource('setenrolmentdates', 'Admin\ManageStudentController');
 });
 
+Route::resource('manageunits', 'Coordinator\ManageUnitController');
 // Coordinator Views
 Route::group([
     'as' => 'coordinator::',
@@ -30,7 +31,7 @@ Route::group([
     Route::get('/', 'Coordinator\HomeController@index');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
-    Route::resource('manageunits', 'Coordinator\ManageUnitController');
+    // Route::resource('manageunits', 'Coordinator\ManageUnitController');
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
 });
 

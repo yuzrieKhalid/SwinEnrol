@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+    <meta name="_token" content="{{ csrf_token() }}"/>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -36,6 +40,20 @@
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                             </td>
                         </tr>
+
+                        {{-- this is a laravel style comment, more powerful than <!-- -->; use this to comment laravel-specific codes--}}
+                        {{-- I fetch all data for Unit in the controller and add each one here --}}
+                        @foreach ($units as $unit)
+                        <tr>
+                            <td>{{ $unit->unitCode }}</td>
+                            <td>{{ $unit->unitName }}</td>
+                            <td>
+                                <a class="pull-right" href="#" role="button"><span class="pull-right">
+                                <a class="btn btn-default" href="#" role="button">Edit</a>
+                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </table>
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                 </div>
@@ -75,4 +93,40 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('extra_js')
+<script>
+
+// NOTE: I haven't tested the codes yet... so most probably not working
+
+(function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    $('.submit').click(function(){
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            _token: getToken(),
+            unitCode: $('#unitCode').val(),
+            unitName: $('#unitName').val(),
+            courseCode: $('#courseCode').val()
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            if (method == "POST") {
+                addTask(data)
+            }
+        })
+
+    })
+})()
+</script>
 @stop

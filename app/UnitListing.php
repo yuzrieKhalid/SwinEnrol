@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UnitListing extends Model
 {
     protected $table = 'unit_listing';
-    
+
     // inverse relation
     public function unit()
     {

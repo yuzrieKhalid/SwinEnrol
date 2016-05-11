@@ -19,6 +19,8 @@ class CreateEnrolmentUnitsTable extends Migration
             $table->integer('year')->unsigned();
             $table->string('term');
             $table->string('status');
+            $table->string('result');
+            $table->decimal('grade', 5, 2);
             $table->timestamps();
             $table->foreign('studentID')->references('studentID')->on('student');
             $table->foreign('unitCode')->references('unitCode')->on('unit');

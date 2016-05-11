@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class EnrolmentUnits extends Model
 {
+    protected $table = 'enrolment_units';
+    
     // inverse relation
     public function unit()
     {

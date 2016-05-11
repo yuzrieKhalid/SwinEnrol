@@ -22,16 +22,16 @@ Route::group([
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
 });
 
-Route::resource('manageunits', 'Coordinator\ManageUnitController');
+// Route::resource('manageunits', 'Coordinator\ManageUnitController');
 // Coordinator Views
 Route::group([
-    'as' => 'coordinator::',
     'prefix' => 'coordinator',
+    'middleware' => 'web',
 ], function() {
     Route::get('/', 'Coordinator\HomeController@index');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
-    // Route::resource('manageunits', 'Coordinator\ManageUnitController');
+    Route::resource('manageunits', 'Coordinator\ManageUnitController');
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
 });
 

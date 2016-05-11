@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('extra_head')
+    <!-- remember csrf token needs middleware -->
     <meta name="_token" content="{{ csrf_token() }}"/>
 @stop
 
@@ -58,6 +59,21 @@
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                 </div>
             </div> <!-- end .panel -->
+            <div class="row">
+                <div class="page-header">
+                    <h1>Units<a id="create" href="{{ route('coordinator.manageunits.create') }}" class="btn btn-primary pull-right">Create</a></h1>
+                </div>
+                <div id="unit_well" class="well" data-url="{{ route('coordinator.manageunits.index') }}">
+                    <div id="unit_template" class="panel panel-primary hidden">
+                        <div class="panel-heading">
+                            <a href="{{ route('coordinator.manageunits.edit', 'id') }}" class="btn btn-warning pull-right">Update</a>
+                        </div>
+                        <div class="panel-body">
+                            Data
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Modal 1-->
             <div class="modal fade" id="addUnit" role="dialog">
@@ -83,7 +99,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default" id="submit" data-method="POST" data-url="#">Create</button>
+                            <button type="submit" class="submit btn btn-default" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunits.store') }}">Create</button>
                         </div>
                     </div>
                 </div>
@@ -106,6 +122,29 @@
         return $('meta[name=_token]').attr('content')
     }
 
+    // Adds a task to the task well
+    let addUnit = function(unit) {
+        // TODO: for now follow using well and panel
+        let unit_panel = $('#unit_template').clone()
+        unit_panel.removeClass('hidden')
+        // Gets update button HTML
+        let update_button = unit_panel.children('.panel-heading').html()
+        update_button = update_button.replace("id", unit.id) // Change URL to new ID
+        unit_panel.children('.panel-heading').html(`${update_button} <h4>${unit.unitCode}</h4>`)
+        unit_panel.children('.panel-body').html(unit.unitName)
+        $('#unit_well').append(unit_panel)
+    }
+
+    // Get all tasks as a list
+    let getUnits = function() {
+        let url = $('#unit_well').data('url')
+        $.get(url, function(data) {
+            data.forEach(function(unit) {
+                addUnit(unit);
+            })
+        })
+    }
+
     $('.submit').click(function(){
         let method = $(this).data('method')
         let url = $(this).data('url')
@@ -122,11 +161,14 @@
             'data': data
         }).done(function(data) {
             if (method == "POST") {
-                addTask(data)
+                addUnit(data)
+            } else {
+                window.location = $('#create').attr('href')
             }
         })
-
     })
+    // data.forEach is not a function
+    getUnits()
 })()
 </script>
 @stop

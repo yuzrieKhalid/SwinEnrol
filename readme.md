@@ -45,7 +45,6 @@ For those of you who (at the 3rd last week of the semester still haven't get a g
 
 ```
 ~Happy Coding~
-
 ```
 * p.s : Should you see error at any point of the steps, please contact me asap
 * p.s.s : This does *NOT* require you to put your `SwinEnrol` folder into `/var/www`

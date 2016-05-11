@@ -10,27 +10,42 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', 'Admin\HomeController@index');
 
 // Student Admin
-Route::get('/', 'Admin\HomeController@index');
-Route::get('/admin', 'Admin\HomeController@index');
-Route::resource('/admin/managestudents', 'Admin\ManageStudentController');
-Route::resource('/admin/setenrolmentdates', 'Admin\ManageStudentController');
+Route::group([
+    'as' => 'admin::',
+    'prefix' => 'admin',
+], function() {
+    Route::get('/', 'Admin\HomeController@index');
+    Route::resource('managestudents', 'Admin\ManageStudentController');
+    Route::resource('setenrolmentdates', 'Admin\ManageStudentController');
+});
 
 // Coordinator Views
-Route::get('/coordinator', 'Coordinator\HomeController@index');
-Route::resource('/coordinator/managestudyplanner', 'Coordinator\ManagePlannerController');
-Route::resource('/coordinator/manageunitlisting', 'Coordinator\ManageListingController');
-Route::resource('/coordinator/manageunits', 'Coordinator\ManageUnitController');
-Route::resource('/coordinator/resolveenrolmentissues', 'Coordinator\ResolveIssueController');
+Route::group([
+    'as' => 'coordinator::',
+    'prefix' => 'coordinator',
+], function() {
+    Route::get('/', 'Coordinator\HomeController@index');
+    Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
+    Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
+    Route::resource('manageunits', 'Coordinator\ManageUnitController');
+    Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
+});
 
 // Student
-Route::get('/student', 'Student\HomeController@index');
-Route::get('/student/viewstudyplanner', 'Student\ViewPlannerController@index');
-Route::get('/student/viewunitlistings', 'Student\ViewListingController@index');
-Route::resource('/student/contactcoordinator', 'Student\ContactCoordinatorController');
-Route::resource('/student/internalcoursetransfer', 'Student\CourseTransferController');
-Route::resource('/student/manageunits', 'Student\ManageUnitController');
+Route::group([
+    'as' => 'student::',
+    'prefix' => 'student',
+], function() {
+    Route::get('/', 'Student\HomeController@index');
+    Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
+    Route::get('viewunitlistings', 'Student\ViewListingController@index');
+    Route::resource('contactcoordinator', 'Student\ContactCoordinatorController');
+    Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
+    Route::resource('manageunits', 'Student\ManageUnitController');
+});
 
 /*
 Route::group([

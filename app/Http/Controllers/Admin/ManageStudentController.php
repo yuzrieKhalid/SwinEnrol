@@ -22,7 +22,7 @@ class ManageStudentController extends Controller
         $data = [];
 
         // get today
-        $now = Carbon::now();
+        $now = Carbon::now()->format('d/m/Y');
         $data['now'] = $now;
         // TODO: Return all data to the view
         // return response()->json(Student::all());     // when ready, use this

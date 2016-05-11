@@ -21,6 +21,7 @@ class ManageUnitController extends Controller
         // return response()->json(Unit::all());
         $data = [];
         $units = Unit::all();
+
         $data['units'] = $units;
 
         return view ('coordinator.manageunits', $data);

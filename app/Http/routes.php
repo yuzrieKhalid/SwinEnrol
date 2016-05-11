@@ -19,7 +19,7 @@ Route::group([
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::resource('managestudents', 'Admin\ManageStudentController');
-    Route::resource('setenrolmentdates', 'Admin\ManageStudentController');
+    Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
 });
 
 Route::resource('manageunits', 'Coordinator\ManageUnitController');

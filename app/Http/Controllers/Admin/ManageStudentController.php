@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Carbon\Carbon;
 use App\Student;
 
 class ManageStudentController extends Controller
@@ -18,9 +19,14 @@ class ManageStudentController extends Controller
      */
     public function index()
     {
+        $data = [];
+
+        // get today
+        $now = Carbon::now();
+        $data['now'] = $now;
         // TODO: Return all data to the view
         // return response()->json(Student::all());     // when ready, use this
-        return view ('admin.managestudents');           // temporary, use this
+        return view ('admin.managestudents', $data);           // temporary, use this
     }
 
     /**
@@ -32,7 +38,7 @@ class ManageStudentController extends Controller
     {
         // maybe its better to create a new view to add student?
         // otherwise, it feels weird to have both landing page and create page
-        // on the same view. As a User, I fell in love
+        // on the same view. As a User, I feel weird
         return view ('admin.managestudents');
     }
 
@@ -78,7 +84,7 @@ class ManageStudentController extends Controller
             'emergencyContactFax',
             'emergencyContactMobile',
             'emergencyContactRelationship',
-            'emergencyContactSpokenLanaguage',
+            'emergencyContactSpokenLanaguage',  // another typo
             'acceptanceDate'
         ]);
 

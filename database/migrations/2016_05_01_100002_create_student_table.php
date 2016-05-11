@@ -24,7 +24,7 @@ class CreateStudentTable extends Migration
             $table->string('overseasCountry');
             $table->string('overseasPostcode');
             $table->string('malaysianAddress');
-            $table->string('malaysianCountry');
+            $table->string('malaysianState');
             $table->string('malaysianPostcode');
             $table->string('overseasTelephone');
             $table->string('malaysianTelephone');
@@ -37,11 +37,11 @@ class CreateStudentTable extends Migration
             $table->string('visaValidity');
             $table->string('visaType');
             $table->date('visaExpiry');
-            $table->string('visaCollectionLoaction');
+            $table->string('visaCollectionLocation');
             $table->string('courseAccepted1');
             $table->string('courseAccepted2');
             $table->string('courseAccepted3');
-            $table->string('courseCommencement');
+            $table->date('courseCommencement');
             $table->string('emergencyContactName');
             $table->string('emergencyContactAddress');
             $table->string('emergencyContactTelephone');
@@ -49,7 +49,7 @@ class CreateStudentTable extends Migration
             $table->string('emergencyContactMobile');
             $table->string('emergencyContactEmail');
             $table->string('emergencyContactRelationship');
-            $table->string('EmergencyContactSpokenLanaguage');
+            $table->string('emergencyContactSpokenLanguage');
             $table->date('acceptanceDate');
             $table->timestamps();
         });

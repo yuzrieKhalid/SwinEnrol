@@ -31,12 +31,14 @@
                                         <th>Date</th>
                                         <th></th>
                                     </thead>
+                                    @foreach ($issues as $issue)
                                     <tr>
-                                        <td>ID 1</td>
-                                        <td>Name 1</td>
-                                        <td>Date </td>
+                                        <td>{{ $issue->studentID }}</td>
+                                        <td>{{ $issue->givenName }} {{ $issue->surname }}</td>
+                                        <td>{{ $issue->created_at }}</td>
                                         <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1"> + </button> </td>
                                     </tr>
+                                    @endforeach
                                     <tr>
                                         <td>ID 2</td>
                                         <td>Name 2</td>

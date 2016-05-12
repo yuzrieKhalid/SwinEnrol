@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\UnitListing;
+use DB;
 
 class ManageListingController extends Controller
 {
@@ -19,7 +20,14 @@ class ManageListingController extends Controller
     public function index()
     {
         // return response()->json(UnitListing::all());
-        return view ('coordinator.manageunitlisting');
+        $data = [];
+        $units = DB::table('unit_listing')
+            ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
+            ->select('unit_listing.*', 'unit.unitName')
+            ->get();
+        $data['units'] = $units;
+
+        return view ('coordinator.manageunitlisting', $data);
     }
 
     /**

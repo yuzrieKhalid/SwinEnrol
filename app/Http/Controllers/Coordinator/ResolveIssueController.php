@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
 class ResolveIssueController extends Controller
 {
     /**
@@ -16,7 +18,15 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
-        return view ('coordinator.resolveenrolmentissues');
+        $data = [];
+        $issues = DB::table('enrolment_issues')
+            ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
+            ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
+            ->get();
+
+        $data['issues'] = $issues;
+
+        return view ('coordinator.resolveenrolmentissues', $data);
     }
 
     /**

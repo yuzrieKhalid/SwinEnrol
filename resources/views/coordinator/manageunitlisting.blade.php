@@ -70,48 +70,14 @@
                             <th>Unit Code</th>
                             <th colspan="2">Unit Title</th>
                         </thead>
+                        {{-- Fetch data for study planner --}}
+                        @foreach ($units as $unit)
                         <tr>
-                            <td>1</td>
-                            <td>Unit Title 1</td>
+                            <td>{{ $unit->unitCode }}</td>
+                            <td>{{ $unit->unitName }}</td>
                             <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Unit Title 2</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Unit Title 3</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                        </tr>
-                    </table>
-
-                    <!-- Sample Content 2 -->
-                    <h2>
-                        <small>Year 1 Winter Sem</small>
-                        <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
-                    </h2>
-                    <table class="table">
-                        <thead>
-                            <th>Unit Code</th>
-                            <th colspan="2">Unit Title</th>
-                        </thead>
-                        <tr>
-                            <td>1</td>
-                            <td>Unit Title 1</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Unit Title 2</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Unit Title 3</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

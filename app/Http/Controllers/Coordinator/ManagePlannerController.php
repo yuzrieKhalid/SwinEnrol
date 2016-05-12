@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\StudyPlanner;
+use DB;
 
 class ManagePlannerController extends Controller
 {
@@ -19,7 +20,14 @@ class ManagePlannerController extends Controller
     public function index()
     {
         // return response()->json(StudyPlanner::all());
-        return view ('coordinator.managestudyplanner');
+        $data = [];
+        $units = DB::table('study_planner')
+            ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
+            ->select('study_planner.*', 'unit.unitName')
+            ->get();
+        $data['units'] = $units;
+
+        return view ('coordinator.managestudyplanner', $data);
     }
 
     /**

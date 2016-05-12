@@ -14,8 +14,8 @@ Route::get('/', 'Admin\HomeController@index');
 
 // Student Admin
 Route::group([
-    'as' => 'admin::',
     'prefix' => 'admin',
+    'middleware' => 'web',
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::resource('managestudents', 'Admin\ManageStudentController');
@@ -37,8 +37,8 @@ Route::group([
 
 // Student
 Route::group([
-    'as' => 'student::',
     'prefix' => 'student',
+    'middleware' => 'web',
 ], function() {
     Route::get('/', 'Student\HomeController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');

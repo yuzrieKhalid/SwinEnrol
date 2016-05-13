@@ -21,6 +21,9 @@ class ManageStudentController extends Controller
     {
         $data = [];
 
+        $students = Student::all();
+        $data['students'] = $students;
+
         // get today
         $now = Carbon::now()->format('d/m/Y');
         $data['now'] = $now;

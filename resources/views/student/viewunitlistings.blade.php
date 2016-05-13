@@ -67,18 +67,13 @@
                             <th>Unit Code</th>
                             <th>Unit Title</th>
                         </thead>
+                        @foreach ($units as $unit)
                         <tr>
-                            <td>1</td>
-                            <td>Unit Title 1</td>
+                            <td>{{ $unit->unitCode }}</td>
+                            <td>{{ $unit->unitName }}</td>
                         </tr>
+                        @endforeach
                         <tr>
-                            <td>2</td>
-                            <td>Unit Title 2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Unit Title 3</td>
-                        </tr>
                     </table>
                 </div>
             </div>

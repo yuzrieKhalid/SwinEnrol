@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Unit;
+use DB;
+
 // student's unit operation is different. it should only add units to student's info
 
 class ManageUnitController extends Controller
@@ -19,7 +22,18 @@ class ManageUnitController extends Controller
     public function index()
     {
         // return response()->json();
-        return view ('student.manageunits');
+        $data = [];
+
+        // get units for student
+        $units = DB::table('enrolment_units')
+            ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+            ->select('enrolment_units.*', 'unit.unitName')
+            // ->where('studentID', '=', $studentID) // need to check for current term too
+            ->get();
+
+        $data['units'] = $units;
+
+        return view ('student.manageunits', $data);
     }
 
     /**

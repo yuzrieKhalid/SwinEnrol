@@ -21,7 +21,9 @@
                     <h1>Enrolment Status</h1>
                 </div>
                 <div class="panel-body">
-                    <h2>Mohamad Yuzrie Bin Khalid <small>4318595</small></h2>
+                    @foreach( $students as $student)
+                    <h2>{{ $student->givenName }} {{ $student->surname }} <small>{{ $student->studentID }}</small></h2>
+                    @endforeach
                     <table class="table">
                         <caption><h3>Enrolled Unit</h3></caption>
                         <thead>
@@ -29,21 +31,19 @@
                             <th>Unit Title</th>
                             <th>Status</th>
                         </thead>
+                        @foreach ($units as $unit)
                         <tr>
-                            <td>Code 1</td>
-                            <td>Unit Title 1</td>
-                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                            <td>{{ $unit->unitCode }}</td>
+                            <td>{{ $unit->unitName }}</td>
+                            @if($unit->status == 'confirmed')
+                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>'; ?>
+                            @elseif($unit->status == 'pending')
+                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>'; ?>
+                            @else
+                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>'; ?>
+                            @endif
                         </tr>
-                        <tr>
-                            <td>Code 2</td>
-                            <td>Unit Title 2</td>
-                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                        </tr>
-                        <tr>
-                            <td>Code 3</td>
-                            <td>Unit Title 3</td>
-                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
             </div> <!-- end .panel -->

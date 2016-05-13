@@ -44,32 +44,16 @@
                             <th colspan="2">Student Name</th>
                             <td>
                         </thead>
+                        @foreach ($students as $student)
                         <tr>
-                            <td>1</td>
-                            <td>Student Name 1</td>
+                            <td>{{ $student->studentID }}</td>
+                            <td>{{ $student->givenName }} {{ $student->surname }}</td>
                             <td><a class="pull-right" href="#" role="button"><span class="pull-right">
                                 <a class="btn btn-default" href="#" role="button">Edit</a>
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Student Name 2</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                                </span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Student Name 3</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                                </span></a>
-                            </td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
 

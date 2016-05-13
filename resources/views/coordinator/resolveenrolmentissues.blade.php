@@ -36,26 +36,15 @@
                                         <td>{{ $issue->studentID }}</td>
                                         <td>{{ $issue->givenName }} {{ $issue->surname }}</td>
                                         <td>{{ $issue->created_at }}</td>
-                                        <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal1"> + </button> </td>
+                                        <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{ $issue->studentID }}"> + </button> </td>
                                     </tr>
                                     @endforeach
-                                    <tr>
-                                        <td>ID 2</td>
-                                        <td>Name 2</td>
-                                        <td> Date</td>
-                                        <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2"> + </button> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID 3</td>
-                                        <td>Name 3</td>
-                                        <td>Date</td>
-                                        <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal3"> + </button> </td>
-                                    </tr>
                                 </table>
                             </div>
 
                             <!-- Modal 1-->
-                            <div class="modal fade" id="myModal1" role="dialog">
+                            @foreach ($issues as $issue)
+                            <div class="modal fade" id="myModal{{ $issue->studentID }}" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
                                     <div class="modal-content">
@@ -64,10 +53,10 @@
                                                 <h2 class="modal-title">Student Enrolment Information</h2>
                                         </div>
                                         <div class="modal-body">
-                                            <p>ID 1</p>
+                                            <p>{{ $issue->givenName }} {{ $issue->surname }}, ({{ $issue->studentID }})</p>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Name 1</p>
+                                            <p>{{ $issue->details }}</p>
                                             </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
@@ -75,51 +64,8 @@
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             <!-- Modal 1End -->
-                            <!-- Modal 2 -->
-                            <div class="modal fade" id="myModal2" role="dialog">
-                                <div class="modal-dialog">
-                                      <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h2 class="modal-title">Student Enrolment Information</h2>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>ID 2</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Name 2</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal End 2 -->
-                            <!-- Modal 3 -->
-                            <div class="modal fade" id="myModal3" role="dialog">
-                                <div class="modal-dialog">
-                                  <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h2 class="modal-title">Student Enrolment Information</h2>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>ID 3</p>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Name 3</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal End 3 -->
                         </div> <!-- end .form-group -->
                     </form>
                 </div>

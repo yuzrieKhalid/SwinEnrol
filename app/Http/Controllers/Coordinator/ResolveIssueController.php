@@ -22,6 +22,7 @@ class ResolveIssueController extends Controller
         $issues = DB::table('enrolment_issues')
             ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
             ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $data['issues'] = $issues;

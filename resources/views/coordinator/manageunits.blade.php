@@ -96,7 +96,7 @@
 
                                 <label class="control-label" for="courseCode">Course Code:</label>
                                 <!-- <input type="text" name="courseCode" class="form-control" id="courseCode"> -->
-                                <select class="form-control">
+                                <select class="form-control" name="courseCode">
                                     <option value="0">None</option>
 
                                     @foreach($courses as $course)
@@ -107,10 +107,10 @@
                                 <div class="form-group">
                                     <label for="prerequisite">Prerequisite</label>
                                     <!-- <input type="text" name="prerequisite" class="form-control" id="prerequisite"> -->
-                                    <select class="form-control">
+                                    <select class="form-control" name="prerequisite">
                                         <option value="None">None</option>
                                         @foreach($units as $unit)
-                                        <option value="{{ $unit->courseCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -118,10 +118,10 @@
                                 <div class="form-group">
                                     <label for="corequisite">Corequisite</label>
                                     <!-- <input type="text" name="corequisite" class="form-control" id="corequisite"> -->
-                                    <select class="form-control">
+                                    <select class="form-control" name="corequisite">
                                         <option value="None">None</option>
                                         @foreach($units as $unit)
-                                        <option value="{{ $unit->courseCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -129,10 +129,10 @@
                                 <div class="form-group">
                                     <label for="antirequisite">Antirequisite</label>
                                     <!-- <input type="text" name="antirequisite" class="form-control" id="antirequisite"> -->
-                                    <select class="form-control">
+                                    <select class="form-control" name="antirequisite">
                                         <option value="None">None</option>
                                         @foreach($units as $unit)
-                                        <option value="{{ $unit->courseCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -163,7 +163,7 @@
 <script src="{{ asset('js/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script>
 $("input[name='minimumCompletedUnits']").TouchSpin({
-  verticalbuttons: true
+    verticalbuttons: true
 });
 </script>
 
@@ -204,12 +204,12 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             _token: getToken(),
             unitCode: $('#unitCode').val(),
             unitName: $('#unitName').val(),
-            courseCode: $('#courseCode').val(),
-            prerequisite: $('#prerequisite').val(),
-            corequisite: $('#corequisite').val(),
-            antirequisite: $('#antirequisite').val(),
+            courseCode: $('select[name=courseCode]').val(),
+            prerequisite: $('select[name=prerequisite]').val(),
+            corequisite: $('select[name=corequisite]').val(),
+            antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            core: $('#core').val()
+            core: $('input:checkbox:checked').val()
         }
 
 
@@ -221,6 +221,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
+                window.location = $('#create').attr('href')
             } else {
                 window.location = $('#create').attr('href')
             }

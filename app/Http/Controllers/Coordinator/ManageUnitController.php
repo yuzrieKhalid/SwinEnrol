@@ -58,22 +58,22 @@ class ManageUnitController extends Controller
             'unitCode',
             'unitName',
             'courseCode',
-            // 'core',
-            // 'prerequisite',
-            // 'corequisite',
-            // 'antirequisite',
-            // 'minimumCompletedUnits'
+            'core',
+            'prerequisite',
+            'corequisite',
+            'antirequisite',
+            'minimumCompletedUnits'
         ]);
 
         $unit = new Unit;
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
         $unit->courseCode = $input['courseCode'];
-        // $unit->prerequisite = $input['prerequisite'];
-        // $unit->antirequisite = $input['antirequisite'];
-        // $unit->corequisite = $input['corequisite'];
-        // $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
-        // $unit->core = $input['core'];
+        $unit->prerequisite = $input['prerequisite'];
+        $unit->antirequisite = $input['antirequisite'];
+        $unit->corequisite = $input['corequisite'];
+        $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
+        $unit->core = $input['core'];
         $unit->save();
 
         return response()->json($unit);
@@ -114,22 +114,22 @@ class ManageUnitController extends Controller
             'unitCode',
             'unitName',
             'courseCode',
-            // 'core',
-            // 'prerequisite',
-            // 'corequisite',
-            // 'antirequisite',
-            // 'minimumCompletedUnits'
+            'core',
+            'prerequisite',
+            'corequisite',
+            'antirequisite',
+            'minimumCompletedUnits'
         ]);
 
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
         $unit->courseCode = $input['courseCode'];
-        // $unit->prerequisite = $input['prerequisite'];
-        // $unit->antirequisite = $input['antirequisite'];
-        // $unit->corequisite = $input['corequisite'];
-        // $unit->minimumCompletedUnits = $input['minimumCompletedUnits'];
-        // $unit->core = $input['core'];
+        $unit->prerequisite = $input['prerequisite'];
+        $unit->antirequisite = $input['antirequisite'];
+        $unit->corequisite = $input['corequisite'];
+        $unit->minimumCompletedUnits = $input['minimumCompletedUnits'];
+        $unit->core = $input['core'];
         $unit->save();
 
         return response()->json($unit);

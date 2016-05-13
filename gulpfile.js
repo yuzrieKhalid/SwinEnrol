@@ -15,6 +15,7 @@ elixir(function(mix) {
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
     var jQueryPath = 'node_modules/jquery/dist';
     var datepickerPath = 'node_modules/bootstrap-datepicker/dist';
+    var touchspinPath = 'node_modules/bootstrap-touchspin/dist';
 
     mix.sass('app.scss', 'public/css/app.css');
     mix.scripts('app.js', 'public/js/app.js');
@@ -27,4 +28,7 @@ elixir(function(mix) {
     mix.copy(jQueryPath + '/jquery.min.js', 'public/js');
     mix.copy(datepickerPath + '/js/bootstrap-datepicker.min.js', 'public/js');
     mix.copy(datepickerPath + '/css/bootstrap-datepicker3.min.css', 'public/css');
+
+    mix.copy(touchspinPath + '/jquery.bootstrap-touchspin.min.js', 'public/js');
+    mix.copy(touchspinPath + '/jquery.bootstrap-touchspin.min.css', 'public/css');
 });

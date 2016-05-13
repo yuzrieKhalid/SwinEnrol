@@ -29,10 +29,6 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="..." style="margin-bottom:10px;"><!-- Style to add space below buttons -->
-                        <a class="btn btn-default" href="#" role="button">Core</a>
-                        <a class="btn btn-default" href="#" role="button">Elective</a>
-                    </div>
                     <table class="table">
                         <thead>
                             <th>Unit Code</th>
@@ -61,6 +57,10 @@
                 </div>
 
                 <div class="panel-body">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="..." style="margin-bottom:10px;"><!-- Style to add space below buttons -->
+                        <a class="btn btn-default" href="#" role="button">Core</a>
+                        <a class="btn btn-default" href="#" role="button">Elective</a>
+                    </div>
                     <table class="table">
                         <thead>
                             <th>Unit Code</th>

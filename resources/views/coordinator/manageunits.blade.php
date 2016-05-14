@@ -13,10 +13,10 @@
         <div class="col-md-3">
             <div class="list-group">
                 <a href="{{ url('/coordinator') }}" class="list-group-item">Home</a>
-                <a href="{{ url('/coordinator/managestudyplanner') }}" class="list-group-item">Manage Study Planner</a>
-                <a href="{{ url('/coordinator/manageunitlisting') }}" class="list-group-item">Manage Unit Listings</a>
+                <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item">Manage Study Planner</a>
+                <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item">Manage Unit Listings</a>
                 <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item active">Manage Units</a>
-                <a href="{{ url('/coordinator/resolveenrolmentissues') }}" class="list-group-item">Resolve Enrolment Issues</a>
+                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item">Resolve Enrolment Issues</a>
             </div>
         </div>
 
@@ -33,18 +33,6 @@
                             <th>Unit Name</th>
                             <th></th>
                         </thead>
-                        <tr>
-                            <td>1</td>
-                            <td>Unit Name 1</td>
-                            <td>
-                                <a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                            </td>
-                        </tr>
-
-                        {{-- this is a laravel style comment, more powerful than <!-- -->; use this to comment laravel-specific codes--}}
-                        {{-- I fetch all data for Unit in the controller and add each one here --}}
                         @foreach ($units as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
@@ -60,21 +48,6 @@
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                 </div>
             </div> <!-- end .panel -->
-            <div class="row">
-                <div class="page-header">
-                    <h1>Units<a id="create" href="{{ route('coordinator.manageunits.create') }}" class="btn btn-primary pull-right">Create</a></h1>
-                </div>
-                <div id="unit_well" class="well" data-url="{{ route('coordinator.manageunits.index') }}">
-                    <div id="unit_template" class="panel panel-primary hidden">
-                        <div class="panel-heading">
-                            <a href="{{ route('coordinator.manageunits.edit', 'id') }}" class="btn btn-warning pull-right">Update</a>
-                        </div>
-                        <div class="panel-body">
-                            Data
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Modal 1-->
             <div class="modal fade" id="addUnit" role="dialog">

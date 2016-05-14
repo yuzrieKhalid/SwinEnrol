@@ -19,15 +19,7 @@ class ManageListingController extends Controller
      */
     public function index()
     {
-        // return response()->json(UnitListing::all());
-        $data = [];
-        $units = DB::table('unit_listing')
-            ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
-            ->select('unit_listing.*', 'unit.unitName')
-            ->get();
-        $data['units'] = $units;
-
-        return view ('coordinator.manageunitlisting', $data);
+        return response()->json(UnitListing::all());
     }
 
     /**
@@ -37,7 +29,14 @@ class ManageListingController extends Controller
      */
     public function create()
     {
-        return view ('coordinator.manageunitlisting');
+        $data = [];
+        $units = DB::table('unit_listing')
+            ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
+            ->select('unit_listing.*', 'unit.unitName')
+            ->get();
+        $data['units'] = $units;
+
+        return view ('coordinator.manageunitlisting', $data);
     }
 
     /**

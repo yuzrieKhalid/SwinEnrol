@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\EnrolmentIssues;
 use DB;
 
 class ResolveIssueController extends Controller
@@ -18,6 +19,16 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
+        return response()->json(EnrolmentIssues::all());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $data = [];
         $issues = DB::table('enrolment_issues')
             ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
@@ -28,16 +39,6 @@ class ResolveIssueController extends Controller
         $data['issues'] = $issues;
 
         return view ('coordinator.resolveenrolmentissues', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view ('coordinator.resolveenrolmentissues');
     }
 
     /**

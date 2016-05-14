@@ -19,15 +19,7 @@ class ManagePlannerController extends Controller
      */
     public function index()
     {
-        // return response()->json(StudyPlanner::all());
-        $data = [];
-        $units = DB::table('study_planner')
-            ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
-            ->select('study_planner.*', 'unit.unitName')
-            ->get();
-        $data['units'] = $units;
-
-        return view ('coordinator.managestudyplanner', $data);
+        return response()->json(StudyPlanner::all());
     }
 
     /**
@@ -37,7 +29,14 @@ class ManagePlannerController extends Controller
      */
     public function create()
     {
-        return view ('coordinator.managestudyplanner');
+        $data = [];
+        $units = DB::table('study_planner')
+            ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
+            ->select('study_planner.*', 'unit.unitName')
+            ->get();
+        $data['units'] = $units;
+
+        return view ('coordinator.managestudyplanner', $data);
     }
 
     /**

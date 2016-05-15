@@ -41,7 +41,8 @@ class CreateStudentTable extends Migration
             $table->string('courseAccepted1');
             $table->string('courseAccepted2');
             $table->string('courseAccepted3');
-            $table->date('courseCommencement');
+            $table->string('courseCommencementYear');
+            $table->string('courseCommencementSemester');
             $table->string('emergencyContactName');
             $table->string('emergencyContactAddress');
             $table->string('emergencyContactTelephone');

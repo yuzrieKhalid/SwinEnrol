@@ -149,7 +149,8 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
 
     // Adds a task to the task well
     let addUnit = function(unit) {
-        // TODO: for now follow using well and panel
+        // data.forEach is not a function
+        // because this HTML section was removed last week
         let unit_panel = $('#unit_template').clone()
         unit_panel.removeClass('hidden')
         // Gets update button HTML
@@ -182,7 +183,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            core: $('input:checkbox:checked').val()
+            core: $('#core').val()
         }
 
 

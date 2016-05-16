@@ -10,6 +10,20 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
+                        <div class="form-group{{ $errors->has('permissionLevel') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Permission Level</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="permissionLevel" value="{{ old('permissionLevel') }}">
+
+                                @if ($errors->has('permissionLevel'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('permissionLevel') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Name</label>
 
@@ -24,11 +38,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input type="text" class="form-control" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

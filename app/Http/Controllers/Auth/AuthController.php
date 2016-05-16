@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'loginID' => 'required|max:255',
+            'username' => 'required|max:25|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -66,9 +66,22 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'loginID' => $data['loginID'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+   * Handle an authentication attempt.
+   *
+   * @return Response
+   */
+  public function authenticate()
+  {
+      if (Auth::attempt(['username' => $username, 'password' => $password])) {
+          // Authentication passed...
+          return redirect()->intended('home');
+      }
+  }
 }

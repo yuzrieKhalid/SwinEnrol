@@ -10,7 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', 'Admin\HomeController@index');
+Route::group([
+    'middleware' => 'web',
+], function () {
+    Route::auth();
+
+    Route::get('/', 'HomeController@index');
+});
 
 // Student Admin
 Route::group([
@@ -38,7 +44,7 @@ Route::group([
 // Student
 Route::group([
     'prefix' => 'student',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Student\HomeController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');

@@ -98,7 +98,15 @@ class ManageUnitController extends Controller
      */
     public function edit($id)
     {
-        return view ('coordinator.manageunits');
+        $data = [];
+        $unit = Unit::findOrFail($id);
+        $units = Unit::all();
+        $courses = Course::all();
+
+        $data['unit'] = $unit;
+        $data['units'] = $units;
+        $data['courses'] = $courses;
+        return view ('coordinator.manageunits', $data);
     }
 
     /**

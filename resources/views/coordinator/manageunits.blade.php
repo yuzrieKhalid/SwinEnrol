@@ -37,16 +37,15 @@
                         </thead>
                         @if(isset($unit))
                         <tr>
-                            <td class="td_unitCode">{{ $unit->unitCode }}<a href="#"></a></td>
-                            <td class="td_unitName">{{ $unit->unitName }}<a href="#"></a></td>
-                            <td class="td_unitEdit">
-                                <!-- <button type="button" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#editUnit">Update Unit </button> -->
+                            <td class="td_unitCode">{{ $unit->unitCode }}</td>
+                            <td class="td_unitName">{{ $unit->unitName }}</td>
+                            <td>
                                 <a class="btn btn-default pull-right" href="#" data-toggle="modal" data-target="#editUnit" role="button">
                                     Edit
                                 </a>
                             </td>
                             <td class="td_unitDelete">
-                                <a class="btn btn-default pull-left" href="{{ route('coordinator.manageunits.destroy', 'id') }}" role="button">
+                                <a class="btn btn-default pull-left" href="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}" role="button">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </a>
                             </td>
@@ -68,9 +67,7 @@
                         </tr>
                         @endif
                     </table>
-                    @if(isset($unit))
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editUnit">Update Unit </button>
-                    @else
+                    @if(!isset($unit))
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                     @endif
                 </div>
@@ -101,7 +98,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">Update Unit</h2>
+                                <h2 class="modal-title">Update Unit [ {{ $unit->unitCode }} ]</h2>
                         </div>
 
                         <div class="modal-body">
@@ -284,21 +281,23 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
         // unit_panel.children('.panel-body').html(unit.unitName)
         // $('#unit_well').append(unit_panel)
 
-        let tr_template = $('#units_table').find('.tr_template').clone()
-        tr_template.removeClass('hidden')
-        tr_template.removeClass('tr_template')
+        if ($('#units_table').find('.tr_template') == true) {
+            let tr_template = $('#units_table').find('.tr_template').clone()
+            tr_template.removeClass('hidden')
+            tr_template.removeClass('tr_template')
 
-        let unitEdit = tr_template.children('.td_unitEdit').html()
-        unitEdit = unitEdit.replace("id", unit.unitCode)
-        let unitDelete = tr_template.children('.td_unitDelete').html()
-        unitDelete = unitDelete.replace("id", unit.unitCode)
+            let unitEdit = tr_template.children('.td_unitEdit').html()
+            unitEdit = unitEdit.replace("id", unit.unitCode)
+            let unitDelete = tr_template.children('.td_unitDelete').html()
+            unitDelete = unitDelete.replace("id", unit.unitCode)
 
-        tr_template.children('.td_unitCode').html(unit.unitCode)
-        tr_template.children('.td_unitName').html(unit.unitName)
-        tr_template.children('.td_unitEdit').html(`${unitEdit}`)
-        tr_template.children('.td_unitDelete').html(`${unitDelete}`)
+            tr_template.children('.td_unitCode').html(unit.unitCode)
+            tr_template.children('.td_unitName').html(unit.unitName)
+            tr_template.children('.td_unitEdit').html(`${unitEdit}`)
+            tr_template.children('.td_unitDelete').html(`${unitDelete}`)
 
-        $('#units_table').append(tr_template)
+            $('#units_table').append(tr_template)
+        }
     }
 
     // Get all tasks as a list

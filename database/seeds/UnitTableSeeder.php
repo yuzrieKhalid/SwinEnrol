@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class UnitTableSeeder extends Seeder
 {
@@ -21,7 +22,9 @@ class UnitTableSeeder extends Seeder
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
                 'antirequisite' => 'None',
-                'minimumCompletedUnits' => '0'
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'unitCode' => 'HIT3158',
@@ -31,7 +34,33 @@ class UnitTableSeeder extends Seeder
                 'prerequisite' => 'HIT3315',
                 'corequisite' => 'None',
                 'antirequisite' => 'None',
-                'minimumCompletedUnits' => '0'
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HIT3310',
+                'unitName' => 'Software Architecture and Design',
+                'courseCode' => 'I047',
+                'core' => 'true',
+                'prerequisite' => 'None',
+                'corequisite' => 'None',
+                'antirequisite' => 'None',
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MGT10001',
+                'unitName' => 'Introduction to Management',
+                'courseCode' => 'B123',
+                'core' => 'false',
+                'prerequisite' => 'None',
+                'corequisite' => 'None',
+                'antirequisite' => 'None',
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'unitCode' => 'ACC10007',
@@ -41,7 +70,9 @@ class UnitTableSeeder extends Seeder
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
                 'antirequisite' => 'None',
-                'minimumCompletedUnits' => '0'
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

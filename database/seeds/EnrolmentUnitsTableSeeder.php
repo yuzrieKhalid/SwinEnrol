@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class EnrolmentUnitsTableSeeder extends Seeder
 {
@@ -20,7 +21,20 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'term' => '2',
                 'status' => 'confirmed',
                 'result' => 65.00,
-                'grade' => 'C'
+                'grade' => 'C',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'HIT3310',
+                'year' => 2016,
+                'term' => '2',
+                'status' => 'dropped',
+                'result' => 0.00,
+                'grade' => 'NA',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'studentID' => '5555555',
@@ -29,7 +43,20 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'term' => '2',
                 'status' => 'confirmed',
                 'result' => 95.50,
-                'grade' => 'HD'
+                'grade' => 'HD',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'MGT10001',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'studentID' => '5555555',
@@ -38,7 +65,9 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'term' => '4',
                 'status' => 'pending',
                 'result' => 0.00,
-                'grade' => 'ungraded'
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

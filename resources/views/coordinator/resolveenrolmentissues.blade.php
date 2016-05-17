@@ -56,7 +56,14 @@
                                             <p>{{ $issue->givenName }} {{ $issue->surname }}, ({{ $issue->studentID }})</p>
                                         </div>
                                         <div class="modal-body">
-                                            <p>{{ $issue->details }}</p>
+                                            {{-- add issues here --}}
+                                            @if($issue->issueType == 'single_unit')
+                                                <?php echo '<p>Single Unit of Study</p>'; ?>
+                                            @elseif($issue->issueType == 'timestable_clash')
+                                                <?php echo '<p>Timestable Clash</p>'; ?>
+                                            @else
+                                                <?php echo '<p>-</p>'; ?>
+                                            @endif
                                             </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>

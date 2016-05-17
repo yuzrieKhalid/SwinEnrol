@@ -16,8 +16,11 @@ class CreateEnrolmentDatesTable extends Migration
             $table->increments('id');
             $table->integer('year')->unsigned();
             $table->string('term');
-            $table->date('openDate');
-            $table->date('closeDate');
+            $table->date('reenrolmentOpenDate');
+            $table->date('reenrolmentCloseDate');
+            $table->date('adjustmentOpenDate');
+            $table->date('adjustmentCloseDate');
+            $table->date('examResultsRelease');
             $table->timestamps();
         });
     }

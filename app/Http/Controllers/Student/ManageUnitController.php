@@ -33,7 +33,7 @@ class ManageUnitController extends Controller
 
         $data['units'] = $units;
 
-        return view ('student.manageunits', $data);
+        return response()->json($data);
     }
 
     /**
@@ -43,7 +43,18 @@ class ManageUnitController extends Controller
      */
     public function create()
     {
-        //
+        $data = [];
+
+        // get units for student
+        $units = DB::table('enrolment_units')
+            ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+            ->select('enrolment_units.*', 'unit.unitName')
+            // ->where('studentID', '=', $studentID) // need to check for current term too
+            ->get();
+
+        $data['units'] = $units;
+
+        return view ('student.manageunits', $data);
     }
 
     /**
@@ -65,7 +76,19 @@ class ManageUnitController extends Controller
      */
     public function show($id)
     {
-        //
+        // return response()->json();
+        $data = [];
+
+        // get units for student
+        $units = DB::table('enrolment_units')
+            ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+            ->select('enrolment_units.*', 'unit.unitName')
+            // ->where('studentID', '=', $studentID) // need to check for current term too
+            ->findOrFail($id);
+
+        $data['units'] = $units;
+
+        return view ('student.manageunits', $data);
     }
 
     /**

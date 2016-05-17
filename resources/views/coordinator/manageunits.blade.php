@@ -27,27 +27,48 @@
                     <h1>Manage Units</h1>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
                         <thead>
                             <th>Unit ID</th>
                             <th>Unit Name</th>
                             <th></th>
+                            <th></th>
                         </thead>
-                        @foreach ($units as $unit)
-                        <tr>
-                            <td>{{ $unit->unitCode }}</td>
-                            <td>{{ $unit->unitName }}</td>
-                            <td>
-                                <a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                        <tr class="hidden tr_template">
+                            <td class="td_unitCode"><a href="#"></a></td>
+                            <td class="td_unitName"><a href="#"></a></td>
+                            <td class="td_unitEdit">
+                                <a class="btn btn-default  pull-right" href="{{ route('coordinator.manageunits.edit', 'id') }}" role="button">
+                                    Edit
+                                </a>
+                            </td>
+                            <td class="td_unitDelete">
+                                <a class="btn btn-default pull-left" href="{{ route('coordinator.manageunits.destroy', 'id') }}" role="button">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
                             </td>
                         </tr>
-                        @endforeach
                     </table>
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
                 </div>
             </div> <!-- end .panel -->
+
+            <!-- from RESTful API Tutorial -->
+            <!-- <div class="row">
+                <div class="page-header">
+                    <h1>Units<a id="create" href="{{ route('coordinator.manageunits.create') }}" class="btn btn-primary pull-right">Create</a></h1>
+                </div>
+                <div id="unit_well" class="well" data-url="{{ route('coordinator.manageunits.index') }}">
+                    <div id="unit_template" class="panel panel-primary hidden">
+                        <div class="panel-heading">
+                            <a href="{{ route('coordinator.manageunits.edit', 'id') }}" class="btn btn-warning pull-right">Update</a>
+                        </div>
+                        <div class="panel-body">
+                            Data
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
             <!-- Modal 1-->
             <div class="modal fade" id="addUnit" role="dialog">
@@ -149,20 +170,37 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
 
     // Adds a task to the task well
     let addUnit = function(unit) {
-        // TODO: for now follow using well and panel
-        let unit_panel = $('#unit_template').clone()
-        unit_panel.removeClass('hidden')
+        // -- from RESTful API tutorial
+        // let unit_panel = $('#unit_template').clone()
+        // unit_panel.removeClass('hidden')
         // Gets update button HTML
-        let update_button = unit_panel.children('.panel-heading').html()
-        update_button = update_button.replace("id", unit.id) // Change URL to new ID
-        unit_panel.children('.panel-heading').html(`${update_button} <h4>${unit.unitCode}</h4>`)
-        unit_panel.children('.panel-body').html(unit.unitName)
-        $('#unit_well').append(unit_panel)
+        // let update_button = unit_panel.children('.panel-heading').html()
+        // console.log(update_button)
+        // update_button = update_button.replace("id", unit.unitCode) // Change URL to new ID
+        // unit_panel.children('.panel-heading').html(`${update_button} <h4>${unit.unitCode}</h4>`)
+        // unit_panel.children('.panel-body').html(unit.unitName)
+        // $('#unit_well').append(unit_panel)
+
+        let tr_template = $('#units_table').find('.tr_template').clone()
+        tr_template.removeClass('hidden')
+        tr_template.removeClass('tr_template')
+
+        let unitEdit = tr_template.children('.td_unitEdit').html()
+        unitEdit = unitEdit.replace("id", unit.unitCode)
+        let unitDelete = tr_template.children('.td_unitDelete').html()
+        unitDelete = unitDelete.replace("id", unit.unitCode)
+
+        tr_template.children('.td_unitCode').html(unit.unitCode)
+        tr_template.children('.td_unitName').html(unit.unitName)
+        tr_template.children('.td_unitEdit').html(`${unitEdit}`)
+        tr_template.children('.td_unitDelete').html(`${unitDelete}`)
+
+        $('#units_table').append(tr_template)
     }
 
     // Get all tasks as a list
     let getUnits = function() {
-        let url = $('#unit_well').data('url')
+        let url = $('#units_table').data('url')
         $.get(url, function(data) {
             data.forEach(function(unit) {
                 addUnit(unit);
@@ -182,7 +220,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            core: $('input:checkbox:checked').val()
+            core: $('#core').val()
         }
 
 
@@ -194,7 +232,6 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
-                window.location = $('#create').attr('href')
             } else {
                 window.location = $('#create').attr('href')
             }

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+use App\Student;
 use App\Unit;
+use App\EnrolmentUnits;
 use DB;
 
 // student's unit operation is different. it should only add units to student's info
@@ -24,13 +27,18 @@ class ManageUnitController extends Controller
         // return response()->json();
         $data = [];
 
+        $user = Auth::user();
+        $student = Student::where('studentID', '=', '$user->username')->get();
+        $data['student'] = $student;
         // get units for student
-        $units = DB::table('enrolment_units')
-            ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-            ->select('enrolment_units.*', 'unit.unitName')
-            // ->where('studentID', '=', $studentID) // need to check for current term too
-            ->get();
+        // $units = DB::table('enrolment_units')
+        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+        //     ->select('enrolment_units.*', 'unit.unitName')
+        //     // ->where('studentID', '=', $studentID) // need to check for current term too
+        //     ->get();
 
+        // need to rename it later to not confused
+        $units = EnrolmentUnits::where('studentID', '=', '4318595')->get();
         $data['units'] = $units;
 
         return response()->json($data);
@@ -45,13 +53,20 @@ class ManageUnitController extends Controller
     {
         $data = [];
 
+        $user = Auth::user();
+        $student = Student::where('studentID', '=', '$user->username')->get();
+        $data['student'] = $student;
         // get units for student
-        $units = DB::table('enrolment_units')
-            ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-            ->select('enrolment_units.*', 'unit.unitName')
-            // ->where('studentID', '=', $studentID) // need to check for current term too
-            ->get();
+        // $units = DB::table('enrolment_units')
+        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+        //     ->select('enrolment_units.*', 'unit.unitName')
+        //     // ->where('studentID', '=', $studentID) // need to check for current term too
+        //     ->get();
 
+        $enrolled = EnrolmentUnits::where('studentID', '=', '4318595')->get();
+        $data['enrolled'] = $enrolled;
+
+        $units = Unit::all();
         $data['units'] = $units;
 
         return view ('student.manageunits', $data);

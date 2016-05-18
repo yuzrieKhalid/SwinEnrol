@@ -21,9 +21,14 @@
                     <h1>Enrolment Status</h1>
                 </div>
                 <div class="panel-body">
-                    @foreach( $students as $student)
-                    <h2>{{ $student->givenName }} {{ $student->surname }} <small>{{ $student->studentID }}</small></h2>
-                    @endforeach
+                    <h3>{{ Auth::user()->name }} <small>{{ Auth::user()->username }}</small></h3>
+
+                    {{--
+                        @foreach( $students as $student)
+                        <h2>{{ $student->givenName }} {{ $student->surname }} <small>{{ $student->studentID }}</small></h2>
+                        @endforeach
+                    --}}
+
                     <table class="table">
                         <caption><h3>Enrolled Unit</h3></caption>
                         <thead>
@@ -31,19 +36,29 @@
                             <th>Unit Title</th>
                             <th>Status</th>
                         </thead>
-                        @foreach ($units as $unit)
+                        @if(empty($enrolled))
+                        <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                        @else
+
+                        @foreach ($enrolled as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
-                            <td>{{ $unit->unitName }}</td>
+                            <td>{{ $unit->studentID }}</td>
                             @if($unit->status == 'confirmed')
-                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>'; ?>
+                            <!-- Has already passed -->
+                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                             @elseif($unit->status == 'pending')
-                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>'; ?>
+                            <!-- Waiting to be approved (Phase 2) -->
+                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
                             @else
-                            <?php echo '<td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>'; ?>
+                            <!-- Is currently taken -->
+                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
                             @endif
                         </tr>
                         @endforeach
+
+                        @endif
+
                     </table>
                 </div>
             </div> <!-- end .panel -->

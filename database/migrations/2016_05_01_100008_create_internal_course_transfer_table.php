@@ -18,7 +18,7 @@ class CreateInternalCourseTransferTable extends Migration
             $table->string('comment');
             $table->string('courseCode');
             $table->timestamps();
-            $table->foreign('studentID')->references('studentID')->on('student');
+            // $table->foreign('studentID')->references('studentID')->on('student');
         });
     }
 

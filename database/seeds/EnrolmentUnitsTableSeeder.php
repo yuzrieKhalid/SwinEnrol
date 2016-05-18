@@ -68,6 +68,17 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'grade' => 'ungraded',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4318595',
+                'unitCode' => 'HIT3158',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

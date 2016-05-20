@@ -23,67 +23,6 @@
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" name="cForm" method="POST" action="{{ url('/student/internalcoursetransfer') }}" onsubmit="return validateForm()">
-                        <!--
-                        <h3>Personal Information</h3>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Title: </label>
-                            <div class="dropdown col-sm-10">
-                                <select class="form-control">
-                                    <option value="one">Select One</option>
-                                    <option value="two">Mr</option>
-                                    <option value="three">Mrs</option>
-                                    <option value="four">Ms</option>
-                                    <option value="five">Dr</option>
-                                </select>
-                            </div>
-
-                            <label class="control-label col-sm-2" for="name">Full Name:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sName" class="form-control" id="pwd" placeholder="JOHN DOE">
-                            </div>
-
-                            <label class="control-label col-sm-2" for="stID">Student Id:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sID" class="form-control" id="studentID" placeholder="Student ID">
-                            </div>
-
-                            <label class="control-label col-sm-2" for="dob">Date OF Birth</label>
-                            <div class="col-sm-10">
-                               <input type="text" name="sDoB" class="form-control" id="dob" placeholder="12 December 2012">
-                            </div>
-
-                            <label class="control-label col-sm-2" for="email">Email:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sEm" class="form-control" id="dob" placeholder="example@example.com">
-                            </div>
-
-                            <label class="control-label col-sm-2" for="mn">Mobile Number:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sMB" class="form-control" id="mn" placeholder="+60123456789">
-                            </div>
-                        </div>
-                         -->
-                        <!--
-                        <h3 for="personalnfo">Current Program</h3>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="prname">Program Title:</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="sPr" class="form-control" id="prname" placeholder="...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="prcode">Program code:</label>
-                            <div class="col-sm-2">
-                                <input type="text" name="sPc" class="form-control" id="prcode" placeholder="...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pryear">Program Year:</label>
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control" id="pryear" placeholder="...">
-                            </div>
-                        </div>
-                         -->
 
                         <h3>Proposed Program</h3>
                         <div class="form-group">

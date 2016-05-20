@@ -13,17 +13,17 @@ class CreateEnrolmentUnitsTable extends Migration
     public function up()
     {
         Schema::create('enrolment_units', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('studentID');
             $table->string('unitCode');
-            $table->integer('year')->unsigned();
+            $table->integer('year')->unsigned();    // future update may change type to datetime
             $table->string('term');
             $table->string('status');
             $table->string('result');
             $table->decimal('grade', 5, 2);
+
+            $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('unitCode')->references('unitCode')->on('unit');
             $table->timestamps();
-            // $table->foreign('studentID')->references('studentID')->on('student');
-            // $table->foreign('unitCode')->references('unitCode')->on('unit');
         });
     }
 

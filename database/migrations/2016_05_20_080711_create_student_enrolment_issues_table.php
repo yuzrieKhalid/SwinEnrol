@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCourseTable extends Migration
+class CreateStudentEnrolmentIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreateCourseTable extends Migration
      */
     public function up()
     {
-        Schema::create('course', function (Blueprint $table) {
-            $table->string('courseCode')->unique();
-            $table->string('courseName');
-            $table->string('graduationRequirements');
+        Schema::create('student_enrolment_issues', function(Blueprint $table)
+        {
+            $table->increments('issueID');
+            $table->string('issueType');
+            $table->string('status');
 
+            $table->primary('issueID');
             $table->timestamps();
-            $table->primary('courseCode');
         });
     }
 
@@ -29,6 +30,6 @@ class CreateCourseTable extends Migration
      */
     public function down()
     {
-        Schema::drop('course');
+        Schema::drop('student_enrolment_issues');
     }
 }

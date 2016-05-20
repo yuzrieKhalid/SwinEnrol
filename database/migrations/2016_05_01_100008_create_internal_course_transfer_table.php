@@ -14,11 +14,14 @@ class CreateInternalCourseTransferTable extends Migration
     {
         Schema::create('internal_course_transfer', function (Blueprint $table) {
             $table->increments('formID');
-            $table->integer('studentID')->unsigned();
+            $table->string('studentID');
             $table->string('comment');
             $table->string('courseCode');
+
+            $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('courseCode')->references('courseCode')->on('course');
             $table->timestamps();
-            // $table->foreign('studentID')->references('studentID')->on('student');
+
         });
     }
 

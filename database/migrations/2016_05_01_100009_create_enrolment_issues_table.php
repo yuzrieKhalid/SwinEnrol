@@ -12,13 +12,15 @@ class CreateEnrolmentIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('enrolment_issues', function (Blueprint $table) {
-            $table->increments('issueID');
-            $table->integer('studentID')->unsigned();
-            $table->string('issueType');
+        Schema::create('enrolment_issues', function (Blueprint $table)
+        {
+            $table->string('studentID');
+            $table->integer('issueID')->unique();
             $table->string('status');
+
+            $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('issueID')->references('issueID')->on('enrolment_issues');
             $table->timestamps();
-            // $table->foreign('studentID')->references('studentID')->on('student');
         });
     }
 

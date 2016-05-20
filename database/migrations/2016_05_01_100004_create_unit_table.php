@@ -21,9 +21,10 @@ class CreateUnitTable extends Migration
             $table->string('corequisite');
             $table->string('antirequisite');
             $table->integer('minimumCompletedUnits')->unsigned();
-            $table->timestamps();
+            
             $table->primary('unitCode');
             $table->foreign('courseCode')->references('courseCode')->on('course');
+            $table->timestamps();
         });
     }
 

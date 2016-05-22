@@ -12,14 +12,14 @@ class Course extends Model
     protected $primaryKey = 'courseCode';
     public $incrementing = false;
 
-    // course relation
+    // relation
     public function unit()
-    {
-        return $this->hasMany('App\Unit', 'courseCode');
-    }
+	{
+		return $this->hasMany('App\Unit', 'courseCode');
+	}
 
-    public function internal_course_transfer()
-    {
-        return $this->hasMany('App\InternalCourseTransfer', 'courseCode');
-    }
+	public function internal_course_transfer()
+	{
+		return $this->hasMany('App\InternalCourseTransfer', 'courseCode');
+	}
 }

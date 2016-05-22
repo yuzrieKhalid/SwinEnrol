@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 namespace App;
 
@@ -10,20 +10,21 @@ class Student extends Model
 
     // primary key
     protected $primaryKey = 'studentID';
+    public $increments = false;
 
-    // student relation
-    public function enrolment_units()
-    {
-        return $this->hasMany('App\EnrolmentUnits', 'studentID');
-    }
-
+    // relation
     public function internal_course_transfer()
-    {
-        return $this->hasMany('App\InternalCourseTransfer', 'studentID');
-    }
+	{
+		return $this->hasMany('App\InternalCourseTransfer', 'studentID');
+	}
 
-    public function enrolment_issues()
-    {
-        return $this->hasMany('App\EnrolmentIssues', 'studentID');
-    }
+	public function student_enrolment_issues()
+	{
+		return $this->hasMany('App\StudentEnrolmentIssues', 'studentID');
+	}
+
+	public function enrolment_units()
+	{
+		return $this->hasMany('App\EnrolmentUnits', 'studentID');
+	}
 }

@@ -10,12 +10,12 @@ class InternalCourseTransfer extends Model
 
     // inverse relation
     public function student()
-    {
-        return $this->belongsTo('App\Student', 'studentID');
-    }
+	{
+		return $this->belongsTo('App\Student', 'studentID', 'studentID');
+	}
 
-    public function course()
-    {
-        return $this->belongsTo('App\Course', 'courseCode');
-    }
+	public function course()
+	{
+		return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
+	}
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class LoginTableSeeder extends Seeder
 {
@@ -16,22 +17,30 @@ class LoginTableSeeder extends Seeder
             [
                 'username' => '4304373',
                 'password' => '940927',
-                'permissionLevel' => 1
+                'permissionLevel' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'username' => '5555555',
                 'password' => '940927',
-                'permissionLevel' => 1
+                'permissionLevel' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'coordinator',
                 'password' => 'secret',
-                'permissionLevel' => 2
+                'permissionLevel' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'admin',
                 'password' => 'secret',
-                'permissionLevel' => 3
+                'permissionLevel' => 3,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

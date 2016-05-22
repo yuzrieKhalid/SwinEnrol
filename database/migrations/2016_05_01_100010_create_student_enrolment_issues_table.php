@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInternalCourseTransferTable extends Migration
+class CreateStudentEnrolmentIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,16 @@ class CreateInternalCourseTransferTable extends Migration
      */
     public function up()
     {
-        Schema::create('internal_course_transfer', function (Blueprint $table) {
-            $table->increments('formID');
-            $table->integer('studentID')->unsigned();
-            $table->string('comment');
-            $table->string('courseCode');
+        Schema::create('student_enrolment_issues', function(Blueprint $table)
+        {
+            $table->string('studentID');
+            $table->integer('issueID')->unsigned();
+            $table->string('status');
+
             $table->timestamps();
+
             $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('issueID')->references('id')->on('enrolment_issues');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateInternalCourseTransferTable extends Migration
      */
     public function down()
     {
-        Schema::drop('internal_course_transfer');
+        Schema::drop('student_enrolment_issues');
     }
 }

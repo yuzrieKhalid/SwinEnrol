@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class StudentTableSeeder extends Seeder
 {
@@ -42,14 +43,17 @@ class StudentTableSeeder extends Seeder
                 'courseAccepted1' => 'Sleeping',
                 'courseAccepted2' => 'DotA2',
                 'courseAccepted3' => 'Graduation',
-                'courseCommencement' => '2016-01-01',
+                'courseCommencementYear' => '2016',
+                'courseCommencementSemester' => '1',
                 'emergencyContactName' => 'Name',
                 'emergencyContactAddress' => 'Antartica',
                 'emergencyContactTelephone' => '0123456789',
                 'emergencyContactEmail' => 'email@mail.com',
                 'emergencyContactRelationship' => 'spouse',
                 'emergencyContactSpokenLanguage' => 'Russian',
-                'acceptanceDate' => '2016-01-01'
+                'acceptanceDate' => '2016-01-01',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'studentID' => '5555555',
@@ -80,14 +84,58 @@ class StudentTableSeeder extends Seeder
                 'courseAccepted1' => 'Hosting',
                 'courseAccepted2' => 'DotA2',
                 'courseAccepted3' => 'Event',
-                'courseCommencement' => '2018-01-01',
+                'courseCommencementYear' => '2016',
+                'courseCommencementSemester' => '1',
                 'emergencyContactName' => 'Name2',
                 'emergencyContactAddress' => 'Germany',
                 'emergencyContactTelephone' => '0123456788',
                 'emergencyContactEmail' => 'email2@mail.com',
                 'emergencyContactRelationship' => 'mother',
                 'emergencyContactSpokenLanguage' => 'Korean',
-                'acceptanceDate' => '2017-01-01'
+                'acceptanceDate' => '2017-01-01',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4318595',
+                'title' => 'Mr',
+                'gender' => 'M',
+                'dateOfBirth' => '1995-07-08',
+                'surname' => 'Bin Khalid',
+                'givenName' => 'Mohamad Yuzrie',
+                'email' => '4318595@students.swinburne.edu.my',
+                'overseasAddress' => '-',
+                'overseasCountry' => '-',
+                'overseasPostcode' => '-',
+                'malaysianAddress' => 'Petrajaya',
+                'malaysianState' => 'Sarawak',
+                'malaysianPostcode' => '93050',
+                'overseasTelephone' => '-',
+                'malaysianTelephone' => '082123456',
+                'fax' => '-',
+                'mobile' => '011123456',
+                'countryOfCitizenship' => 'Malaysia',
+                'birthCountry' => 'Malaysia',
+                'identityCardOrPassportNumber' => '950807-13-5463',
+                'passportExpiry' => '-',
+                'visaValidity' => '-',
+                'visaType' => '-',
+                'visaExpiry' => '-',
+                'visaCollectionLocaiton' => '-',
+                'courseAccepted1' => 'Foundation in IT',
+                'courseAccepted2' => 'Foundation in Engineering',
+                'courseAccepted3' => '-',
+                'courseCommencementYear' => '2013',
+                'courseCommencementSemester' => '1',
+                'emergencyContactName' => 'Khalid Bin Eli',
+                'emergencyContactAddress' => 'Malaysia',
+                'emergencyContactTelephone' => '011123654',
+                'emergencyContactEmail' => 'khalideli@hmail.com',
+                'emergencyContactRelationship' => 'father',
+                'emergencyContactSpokenLanguage' => 'Malay',
+                'acceptanceDate' => '2017-01-01',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

@@ -12,8 +12,9 @@ class CreateStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('student', function(Blueprint $table) {
-            $table->increments('studentID');
+        Schema::create('student', function(Blueprint $table)
+        {
+            $table->string('studentID');
             $table->string('title');
             $table->string('gender', 1);
             $table->date('dateOfBirth');
@@ -41,7 +42,8 @@ class CreateStudentTable extends Migration
             $table->string('courseAccepted1');
             $table->string('courseAccepted2');
             $table->string('courseAccepted3');
-            $table->date('courseCommencement');
+            $table->string('courseCommencementYear');
+            $table->string('courseCommencementSemester');
             $table->string('emergencyContactName');
             $table->string('emergencyContactAddress');
             $table->string('emergencyContactTelephone');
@@ -51,7 +53,10 @@ class CreateStudentTable extends Migration
             $table->string('emergencyContactRelationship');
             $table->string('emergencyContactSpokenLanguage');
             $table->date('acceptanceDate');
+
             $table->timestamps();
+
+            $table->primary('studentID');
         });
     }
 

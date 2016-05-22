@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class UnitListingTableSeeder extends Seeder
 {
@@ -16,22 +17,37 @@ class UnitListingTableSeeder extends Seeder
             [
                 'year' => 2016,
                 'term' => '2',
-                'unitCode' => 'HIT3315'
+                'unitCode' => 'HIT3315',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'year' => 2016,
                 'term' => '2',
-                'unitCode' => 'HIT3158'
+                'unitCode' => 'HIT3158',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'year' => 2016,
+                'term' => '2',
+                'unitCode' => 'MGT10001',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'year' => 2016,
                 'term' => '4',
-                'unitCode' => 'HIT3158'
+                'unitCode' => 'HIT3158',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'year' => 2016,
                 'term' => '4',
-                'unitCode' => 'ACC10007'
+                'unitCode' => 'ACC10007',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

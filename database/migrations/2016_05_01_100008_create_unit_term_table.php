@@ -17,10 +17,11 @@ class CreateUnitTermTable extends Migration
             $table->string('unitCode')->unique();
             $table->integer('year')->unsigned();
             $table->string('term');
-            $table->string('enrolment_term');
+            $table->string('enrolmentTerm');
 
             $table->foreign('unitType')->references('unitType')->on('unit_type');
             $table->foreign('unitCode')->references('unitCode')->on('unit');
+
             $table->timestamps();
         });
     }

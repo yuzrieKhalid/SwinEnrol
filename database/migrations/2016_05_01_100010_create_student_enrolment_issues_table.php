@@ -14,12 +14,14 @@ class CreateStudentEnrolmentIssuesTable extends Migration
     {
         Schema::create('student_enrolment_issues', function(Blueprint $table)
         {
-            $table->increments('issueID');
-            $table->string('issueType');
+            $table->string('studentID');
+            $table->integer('issueID')->unsigned();
             $table->string('status');
 
-            $table->primary('issueID');
             $table->timestamps();
+
+            $table->foreign('studentID')->references('studentID')->on('student');
+            $table->foreign('issueID')->references('id')->on('enrolment_issues');
         });
     }
 

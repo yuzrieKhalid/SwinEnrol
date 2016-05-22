@@ -12,7 +12,8 @@ class CreateUnitTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit', function(Blueprint $table) {
+        Schema::create('unit', function(Blueprint $table)
+        {
             $table->string('unitCode');
             $table->string('unitName');
             $table->string('courseCode');
@@ -21,9 +22,10 @@ class CreateUnitTable extends Migration
             $table->string('corequisite');
             $table->string('antirequisite');
             $table->integer('minimumCompletedUnits')->unsigned();
-            
+
             $table->primary('unitCode');
             $table->foreign('courseCode')->references('courseCode')->on('course');
+
             $table->timestamps();
         });
     }

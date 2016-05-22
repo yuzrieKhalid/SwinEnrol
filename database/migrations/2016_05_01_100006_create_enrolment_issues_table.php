@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitListingTable extends Migration
+class CreateEnrolmentIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,15 @@ class CreateUnitListingTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_listing', function (Blueprint $table) {
+        Schema::create('enrolment_issues', function (Blueprint $table)
+        {
             $table->increments('id');
-            $table->integer('year')->unsigned();
-            $table->string('term');
-            $table->string('unitCode');
+            $table->string('issueType');
+            $table->string('issueMessage');
+
+            // increment id
             $table->timestamps();
-            $table->foreign('unitCode')->references('unitCode')->on('unit');
+
         });
     }
 
@@ -29,6 +31,6 @@ class CreateUnitListingTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unit_listing');
+        Schema::drop('enrolment_issues');
     }
 }

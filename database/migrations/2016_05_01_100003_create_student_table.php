@@ -12,7 +12,8 @@ class CreateStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('student', function(Blueprint $table) {
+        Schema::create('student', function(Blueprint $table)
+        {
             $table->string('studentID');
             $table->string('title');
             $table->string('gender', 1);
@@ -52,7 +53,10 @@ class CreateStudentTable extends Migration
             $table->string('emergencyContactRelationship');
             $table->string('emergencyContactSpokenLanguage');
             $table->date('acceptanceDate');
+
             $table->timestamps();
+
+            $table->primary('studentID');
         });
     }
 

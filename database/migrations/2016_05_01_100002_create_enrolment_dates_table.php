@@ -12,7 +12,8 @@ class CreateEnrolmentDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('enrolment_dates', function (Blueprint $table) {
+        Schema::create('enrolment_dates', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->integer('year')->unsigned();
             $table->string('term');
@@ -21,6 +22,7 @@ class CreateEnrolmentDatesTable extends Migration
             $table->date('adjustmentOpenDate');
             $table->date('adjustmentCloseDate');
             $table->date('examResultsRelease');
+
             $table->timestamps();
         });
     }

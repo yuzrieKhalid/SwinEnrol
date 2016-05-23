@@ -14,7 +14,7 @@ class CreateUnitTermTable extends Migration
     {
         Schema::create('unit_term', function (Blueprint $table) {
             $table->string('unitType');
-            $table->string('unitCode')->unique();
+            $table->string('unitCode');
             $table->integer('year')->unsigned();
             $table->string('term');
             $table->string('enrolmentTerm');

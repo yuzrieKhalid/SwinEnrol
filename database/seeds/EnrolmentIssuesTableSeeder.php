@@ -15,16 +15,23 @@ class EnrolmentIssuesTableSeeder extends Seeder
         //
         DB::table('enrolment_issues')->insert([
             [
-                'studentID' => '5555555',
+                'id' => 1,
                 'issueType' => 'single_unit',
-                'status' => 'pending',
+                'issueMessage' => 'Single Unit of Study',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'studentID' => '4304373',
+                'id' => 2,
+                'issueType' => 'prerequisite',
+                'issueMessage' => 'Prerequisite not Fulfilled',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 3,
                 'issueType' => 'timestable_clash',
-                'status' => 'pending',
+                'issueMessage' => 'Timestable Clash',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

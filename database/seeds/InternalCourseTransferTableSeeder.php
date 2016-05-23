@@ -14,9 +14,10 @@ class InternalCourseTransferTableSeeder extends Seeder
     {
         //
         DB::table('internal_course_transfer')->insert([
-            'studentID' => '4304373',
+            'studentID' => '4318595',
             'courseCode' => 'B123',
-            'comment' => 'You Only Live Once',
+            'comment' => 'Interested in Business',
+            'status' => 'pending',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

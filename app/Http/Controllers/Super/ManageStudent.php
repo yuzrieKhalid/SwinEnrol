@@ -17,6 +17,7 @@ class ManageStudent extends Controller
     public function index()
     {
         //
+        return view ('super.managestudent');
     }
 
     /**

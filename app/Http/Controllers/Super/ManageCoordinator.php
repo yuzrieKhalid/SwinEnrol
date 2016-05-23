@@ -17,6 +17,7 @@ class ManageCoordinator extends Controller
     public function index()
     {
         //
+        return view ('super.managecoordinator');
     }
 
     /**

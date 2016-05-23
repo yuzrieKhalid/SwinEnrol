@@ -17,6 +17,7 @@ class ManageStudentAdmin extends Controller
     public function index()
     {
         //
+        return view ('super.managestudentadmin');
     }
 
     /**

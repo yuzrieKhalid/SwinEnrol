@@ -60,6 +60,9 @@ Route::group([
 ], function() {
     // TODO: add the routes like this:
     // Route::get('/', 'Super\HomeController@index');
+    Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');
+    Route::get('managecoordinator', 'Super\ManageCoordinator@index');
+    Route::get('managestudent', 'Super\ManageStudent@index');
 });
 /*
 Route::group([

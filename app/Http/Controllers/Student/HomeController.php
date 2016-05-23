@@ -34,7 +34,7 @@ class HomeController extends Controller
         // $data['units'] = $units;
 
         // $enrolled = EnrolmentUnits::all();
-        $enrolled = EnrolmentUnits::where('studentID', '=', '4318595')->get();
+        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', '4318595')->get();
         $data['enrolled'] = $enrolled;
 
         // get units for student

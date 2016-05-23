@@ -38,7 +38,7 @@ class ManageUnitController extends Controller
         //     ->get();
 
         // need to rename it later to not confused
-        $units = EnrolmentUnits::where('studentID', '=', '4318595')->get();
+        $units = EnrolmentUnits::with('unit')->where('studentID', '=', '4318595')->get();
         $data['units'] = $units;
 
         return response()->json($data);
@@ -63,7 +63,7 @@ class ManageUnitController extends Controller
         //     // ->where('studentID', '=', $studentID) // need to check for current term too
         //     ->get();
 
-        $enrolled = EnrolmentUnits::where('studentID', '=', '4318595')->get();
+        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', '4318595')->get();
         $data['enrolled'] = $enrolled;
 
         $units = Unit::all();

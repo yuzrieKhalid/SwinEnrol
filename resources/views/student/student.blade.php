@@ -43,7 +43,7 @@
                         @foreach ($enrolled as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
-                            <td>{{ $unit->studentID }}</td>
+                            <td>{{ $unit->unit->unitName }}</td>
                             @if($unit->status == 'confirmed')
                             <!-- Has already passed -->
                             <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>

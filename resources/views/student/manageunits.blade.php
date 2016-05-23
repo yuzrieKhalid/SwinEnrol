@@ -37,7 +37,7 @@
                             @foreach ($enrolled as $unit)
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
-                                <td>{{-- $unit->unitName --}}</td>
+                                <td>{{ $unit->unit->unitName }}</td>
                                 <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                             </tr>
                             @endforeach

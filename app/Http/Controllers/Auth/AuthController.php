@@ -20,6 +20,7 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
+    protected $username = 'username';
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
@@ -50,7 +51,6 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'username' => 'required|max:25|unique:users',
-            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'permissionLevel' => 'required|max:25',
         ]);
@@ -66,7 +66,6 @@ class AuthController extends Controller
     {
         return User::create([
             'username' => $data['username'],
-            'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'permissionLevel' => $data['permissionLevel'],
         ]);

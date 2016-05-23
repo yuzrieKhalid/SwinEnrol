@@ -16,7 +16,7 @@ class UnitTableSeeder extends Seeder
         DB::table('unit')->insert([
             [
                 'unitCode' => 'HIT3315',
-                'unitName' => 'LSD',
+                'unitName' => 'Languages in Software Development',
                 'courseCode' => 'I047',
                 'core' => 'true',
                 'prerequisite' => 'None',
@@ -28,7 +28,7 @@ class UnitTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'HIT3158',
-                'unitName' => 'FYP',
+                'unitName' => 'Software Engineering Project A',
                 'courseCode' => 'I047',
                 'core' => 'true',
                 'prerequisite' => 'HIT3315',

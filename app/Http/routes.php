@@ -54,6 +54,13 @@ Route::group([
     Route::resource('manageunits', 'Student\ManageUnitController');
 });
 
+Route::group([
+    'prefix' => 'super',
+    'middleware' => 'web',
+], function() {
+    // TODO: add the routes like this:
+    // Route::get('/', 'Super\HomeController@index');
+});
 /*
 Route::group([
     'middleware' => 'web'

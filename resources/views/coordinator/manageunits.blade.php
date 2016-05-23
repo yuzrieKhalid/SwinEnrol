@@ -35,6 +35,7 @@
                             <th></th>
                             <th></th>
                         </thead>
+                        @foreach( $units as $unit)
                         @if(isset($unit))
                         <tr>
                             <td class="td_unitCode">{{ $unit->unitCode }}</td>
@@ -66,6 +67,7 @@
                             </td>
                         </tr>
                         @endif
+                        @endforeach
                     </table>
                     @if(!isset($unit))
                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>

@@ -36,7 +36,7 @@ class ManageUnitController extends Controller
     public function create()
     {
         $data = [];
-        $units = Unit::all();
+        $units = Unit::with('course')->get();
         $courses = Course::all();
 
         $data['units'] = $units;

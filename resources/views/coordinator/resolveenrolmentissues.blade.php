@@ -33,8 +33,8 @@
                                     </thead>
                                     @foreach ($issues as $issue)
                                     <tr>
-                                        <td>{{ $issue->studentID }}</td>
-                                        <td>{{ $issue->givenName }} {{ $issue->surname }}</td>
+                                        <td>{{ $issue->student->studentID }}</td>
+                                        <td>{{ $issue->student->givenName }} {{ $issue->student->surname }}</td>
                                         <td>{{ $issue->created_at }}</td>
                                         <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{ $issue->studentID }}"> + </button> </td>
                                     </tr>
@@ -53,18 +53,11 @@
                                                 <h2 class="modal-title">Student Enrolment Information</h2>
                                         </div>
                                         <div class="modal-body">
-                                            <p>{{ $issue->givenName }} {{ $issue->surname }}, ({{ $issue->studentID }})</p>
+                                            <p>{{ $issue->student->givenName }} {{ $issue->student->surname }}, ({{ $issue->student->studentID }})</p>
                                         </div>
                                         <div class="modal-body">
-                                            {{-- add issues here --}}
-                                            @if($issue->issueType == 'single_unit')
-                                                <?php echo '<p>Single Unit of Study</p>'; ?>
-                                            @elseif($issue->issueType == 'timestable_clash')
-                                                <?php echo '<p>Timestable Clash</p>'; ?>
-                                            @else
-                                                <?php echo '<p>-</p>'; ?>
-                                            @endif
-                                            </div>
+                                            <p>{{ $issue->enrolment_issues->issueMessage }}</p>
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
                                         </div>

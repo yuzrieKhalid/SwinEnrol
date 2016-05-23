@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\UnitListing;
+use App\UnitTerm;
 use DB;
 
 class ManageListingController extends Controller
@@ -30,10 +31,13 @@ class ManageListingController extends Controller
     public function create()
     {
         $data = [];
-        $units = DB::table('unit_listing')
-            ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
-            ->select('unit_listing.*', 'unit.unitName')
+        $units = UnitTerm::with('unit', 'unit_type')
+            ->where('unitType', '=', 'Study Planner')
             ->get();
+        // $units = DB::table('unit_listing')
+        //     ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
+        //     ->select('unit_listing.*', 'unit.unitName')
+        //     ->get();
         $data['units'] = $units;
 
         return view ('coordinator.manageunitlisting', $data);

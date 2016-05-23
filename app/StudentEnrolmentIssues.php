@@ -14,8 +14,8 @@ class StudentEnrolmentIssues extends Model
 		return $this->belongsTo('App\Student', 'studentID', 'studentID');
 	}
 
-	public function course()
+	public function enrolment_issues()
 	{
-		return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
+		return $this->belongsTo('App\EnrolmentIssues', 'issueID', 'id');
 	}
 }

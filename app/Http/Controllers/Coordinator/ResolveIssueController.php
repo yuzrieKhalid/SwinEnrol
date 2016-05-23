@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\EnrolmentIssues;
+use App\StudentEnrolmentIssues;
 use DB;
 
 class ResolveIssueController extends Controller
@@ -19,7 +19,7 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
-        return response()->json(EnrolmentIssues::all());
+        return response()->json(StudentEnrolmentIssues::with('student', 'enrolment_issues')->get());
     }
 
     /**
@@ -30,11 +30,12 @@ class ResolveIssueController extends Controller
     public function create()
     {
         $data = [];
-        $issues = DB::table('enrolment_issues')
-            ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
-            ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')->get();
+        // $issues = DB::table('enrolment_issues')
+        //     ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
+        //     ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
+        //     ->orderBy('created_at', 'desc')
+        //     ->get();
 
         $data['issues'] = $issues;
 

@@ -25,7 +25,7 @@ class CreateEnrolmentUnitsTable extends Migration
             $table->timestamps();
 
             $table->foreign('studentID')->references('studentID')->on('student');
-            $table->foreign('unitCode')->references('unitCode')->on('unit');
+            $table->foreign('unitCode')->references('unitCode')->on('unit')->onDelete('cascade');
         });
     }
 

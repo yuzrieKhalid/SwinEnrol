@@ -46,9 +46,9 @@
                                 </a>
                             </td>
                             <td class="td_unitDelete">
-                                <a class="btn btn-default pull-left" href="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}" role="button">
+                                <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         @else
@@ -61,9 +61,9 @@
                                 </a>
                             </td>
                             <td class="td_unitDelete">
-                                <a class="btn btn-default pull-left" href="{{ route('coordinator.manageunits.destroy', 'id') }}" role="button">
+                                <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         @endif
@@ -267,7 +267,6 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
 
     // Adds a task to the task well
     let addUnit = function(unit) {
-
         if ($('#units_table').find('.tr_template') == true) {
             let tr_template = $('#units_table').find('.tr_template').clone()
             tr_template.removeClass('hidden')
@@ -297,7 +296,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
         })
     }
 
-    $('.create').click(function(){
+    $('.submit').click(function(){
         let method = $(this).data('method')
         let url = $(this).data('url')
         data = {
@@ -322,7 +321,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             if (method == "POST") {
                 addUnit(data)
             } else {
-                window.location = $('#create').attr('href')
+                window.location = $('#submit').attr('href')
             }
         })
     })

@@ -267,23 +267,6 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
 
     // Adds a task to the task well
     let addUnit = function(unit) {
-<<<<<<< HEAD
-        // data.forEach is not a function
-        // because this HTML section was removed last week
-        let unit_panel = $('#unit_template').clone()
-        unit_panel.removeClass('hidden')
-=======
-        // -- from RESTful API tutorial
-        // let unit_panel = $('#unit_template').clone()
-        // unit_panel.removeClass('hidden')
->>>>>>> yuzrie
-        // Gets update button HTML
-        // let update_button = unit_panel.children('.panel-heading').html()
-        // console.log(update_button)
-        // update_button = update_button.replace("id", unit.unitCode) // Change URL to new ID
-        // unit_panel.children('.panel-heading').html(`${update_button} <h4>${unit.unitCode}</h4>`)
-        // unit_panel.children('.panel-body').html(unit.unitName)
-        // $('#unit_well').append(unit_panel)
 
         if ($('#units_table').find('.tr_template') == true) {
             let tr_template = $('#units_table').find('.tr_template').clone()

@@ -33,7 +33,7 @@
                             <th>Unit ID</th>
                             <th>Unit Name</th>
                             <th></th>
-                            <th></th>
+                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                         </thead>
                         @foreach( $units as $unit)
                         @if(isset($unit))
@@ -69,9 +69,6 @@
                         @endif
                         @endforeach
                     </table>
-                    @if(!isset($unit))
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addUnit">Create New Unit </button>
-                    @endif
                 </div>
             </div> <!-- end .panel -->
 
@@ -93,7 +90,6 @@
             </div> -->
 
             <!-- Edit/Delete Unit Modal -->
-            @if(isset($unit))
             <div class="modal fade" id="editUnit" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -171,7 +167,7 @@
                 </div>
             </div>
             <!-- end Edit Unit Modal -->
-            @else
+
             <!-- Add Unit Modal-->
             <div class="modal fade" id="addUnit" role="dialog">
                 <div class="modal-dialog">
@@ -249,7 +245,6 @@
                 </div>
             </div>
             <!-- end Add Unit Modal -->
-            @endif
         </div>
     </div>
 </div>

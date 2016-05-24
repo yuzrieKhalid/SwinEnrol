@@ -28,6 +28,7 @@ class ManageCoordinator extends Controller
     public function create()
     {
         //
+        return view ('super.managecoordinator_create');
     }
 
     /**

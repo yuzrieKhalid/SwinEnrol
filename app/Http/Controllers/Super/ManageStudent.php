@@ -28,6 +28,7 @@ class ManageStudent extends Controller
     public function create()
     {
         //
+        return view ('super.managestudent_create');
     }
 
     /**

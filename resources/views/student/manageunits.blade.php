@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+    <meta name="_token" content="{{ csrf_token() }}"/>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -28,11 +32,20 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
                             <th colspan="2">Unit Title</th>
                         </thead>
+
+                        <tr class="hidden tr_template">
+                            <td class="td_unitCode"></td>
+                            <td class="td_unitName"></td>
+                            <td class="td_unitDelete"><a class="pull-right" href="{{ route('student.manageunits.destroy', 'id') }}" role="button">
+                                <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a>
+                            </td>
+                        </tr>
+
                         @if (!empty($enrolled))
                             @foreach ($enrolled as $unit)
                             <tr>
@@ -72,23 +85,22 @@
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
                             </thead>
-                            @foreach ($units as $unit)
 
                             <!-- Check if already enrolled, don't add to this list -->
-                            @foreach ($enrolled as $enrol)
-                            @if ($enrol->unitCode != $unit->unitCode)
+                            @foreach ($units as $unit)
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unitName }}</td>
                                 <td>
-                                    <a class="submit pull-right" href="#" role="button">
+                                    <button type="submit" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
-                                    </a>
+                                    </button>
+
+                                    <!-- <a class="submit pull-right" href="{{ $unit->unitCode }}" role="button">
+                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+                                    </a> -->
                                 </td>
                             </tr>
-                            @endif
-                            @endforeach
-
                             @endforeach
                         </table>
                     </div>
@@ -98,24 +110,6 @@
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
                             </thead>
-                            @foreach ($units as $unit)
-
-                            <!-- Check if already enrolled, don't add to this list -->
-                            @foreach ($enrolled as $enrol)
-                            @if ($enrol->unitCode != $unit->unitCode)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unitName }}</td>
-                                <td>
-                                    <a class="submit pull-right" href="#" role="button">
-                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endif
-                            @endforeach
-
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -128,5 +122,65 @@
 @section ('extra_js')
 <script>
 // TODO: implement the '+' button
+
+(function() {
+    // csrf token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    // add another row in the enrolled unit panel
+    let addUnit = function(unit) {
+        if ($('#enrolled_table').find('.tr_template') == true) {
+            let tr_template = $('#enrolled_table').find('.tr_template').clone()
+            tr_template.removeClass('hidden')
+            tr_template.removeClass('tr_template')
+
+            let unitDelete = tr_template.children('.td_unitDelete').html()
+            unitDelete = unitDelete.replace("id", unit.unitCode)
+            tr_template.children('.td_unitCode').html(unit.unitCode)
+            tr_template.children('.td_unitName').html(unit.unitName)
+            tr_template.children('.td_unitDelete').html(`${unitDelete}`)
+
+            $('#enrolled_table').append(tr_template)
+        }
+    }
+
+    // fetch data from database through data-url
+    let getUnits = function() {
+        let url = $('#enrolled_table').data('url')
+        $.get(url, function(data) {
+            data.forEach(function(unit) {
+                // add the unit to the data
+                addUnit(unit)
+            })
+        })
+    }
+
+    // when clicking the '+' button
+    $('.submit').click(function() {
+        console.log('Adding')
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            _token: getToken(),
+            // Dunno what to store~~~ (this reflects the one in controller)
+            // LALALALALALALA
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            if (method == "POST") {
+                addUnit()
+            } else {
+                // if button method not as preset
+                console.log('Something wrong, its not adding the data')
+            }
+        })
+    })
+}) ()
 </script>
 @stop

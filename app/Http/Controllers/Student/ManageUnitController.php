@@ -38,7 +38,10 @@ class ManageUnitController extends Controller
         //     ->get();
 
         // need to rename it later to not confused
-        $units = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        $data['enrolled'] = $enrolled;
+
+        $units = Unit::all();
         $data['units'] = $units;
 
         return response()->json($data);
@@ -80,7 +83,11 @@ class ManageUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            // enrolment data
+            'studentID',
+            'unitCode'
+        ]);
     }
 
     /**

@@ -92,7 +92,7 @@
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unitName }}</td>
                                 <td>
-                                    <button type="submit" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
+                                    <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                     </button>
 
@@ -124,6 +124,7 @@
 // TODO: implement the '+' button
 
 (function() {
+
     // csrf token
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
@@ -159,13 +160,11 @@
 
     // when clicking the '+' button
     $('.submit').click(function() {
-        console.log('Adding')
         let method = $(this).data('method')
         let url = $(this).data('url')
         data = {
             _token: getToken(),
-            // Dunno what to store~~~ (this reflects the one in controller)
-            // LALALALALALALA
+            unitCode: $(this).attr('id')
         }
 
         $.ajax({
@@ -174,10 +173,10 @@
             'data': data
         }).done(function(data) {
             if (method == "POST") {
-                addUnit()
+                addUnit(data)
             } else {
                 // if button method not as preset
-                console.log('Something wrong, its not adding the data')
+                console.log('It is of unknown method')
             }
         })
     })

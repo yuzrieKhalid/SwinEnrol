@@ -85,9 +85,20 @@ class ManageUnitController extends Controller
     {
         $input = $request->only([
             // enrolment data
-            'studentID',
-            'unitCode'
+            'unitCode',
         ]);
+
+        $new_unit_enrolment = new EnrolmentUnits;
+        $new_unit_enrolment->studentID = Auth::user()->username;
+        $new_unit_enrolment->unitCode = $input['unitCode'];
+        $new_unit_enrolment->year = 2016;
+        $new_unit_enrolment->term = '2';
+        $new_unit_enrolment->status = 'pending';
+        $new_unit_enrolment->result = '0.00';
+        $new_unit_enrolment->grade = '0.00';
+        $new_unit_enrolment->save();
+
+        return response()->json($new_unit_enrolment);
     }
 
     /**

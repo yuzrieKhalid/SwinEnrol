@@ -28,19 +28,35 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prname">Program Title:</label>
                             <div class="col-sm-10">
-                                <input type="text" name="sPPn" class="form-control" id="prname" placeholder="...">
+                                <!-- <input type="text" name="sPPn" class="form-control" id="prname" placeholder="..."> -->
+                                <select class="form-control" name="sPPn" id="prname">
+                                    <option value="none"></option>
+                                    <option value="one">I047 Bachelor in Computer Science</option>
+                                    <option value="two">I046 Bachelor of Software Engineering</option>
+                                </select>
                             </div>
                         </div>
+                        <!--
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prcode">Program code:</label>
                             <div class="col-sm-2">
                                 <input type="text" name="sPPc" class="form-control" id="prcode" placeholder="...">
                             </div>
                         </div>
+                         -->
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pryear">Program Year:</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="pryear" placeholder="...">
+                                <!-- <input type="text" class="form-control" id="pryear" placeholder="..."> -->
+                                <select class="form-control" name="sPPc" id="prcode">
+                                    <option value="none"></option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                </select>
                             </div>
                         </div>
 
@@ -68,47 +84,11 @@
 @section('extra_js')
 <script>
 function validateForm() {
-
-    var a = document.forms["cForm"]["sName"].value;
-    var b = document.forms["cForm"]["sID"].value;
-    var c = document.forms["cForm"]["sDoB"].value;
-    var d = document.forms["cForm"]["sEm"].value;
-    var e = document.forms["cForm"]["sMB"].value;
-    var f = document.forms["cForm"]["sPr"].value;
-    var g = document.forms["cForm"]["sPc"].value;
     var h = document.forms["cForm"]["sPPn"].value;
     var i = document.forms["cForm"]["sPPc"].value;
     var j = document.forms["cForm"]["sReason"].value;
 
-
-    if (a == null || a == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    if (b == null || b == "") {
-        alert("Please enter your student Id");
-        return false;
-    }
-    if (c == null || c == "") {
-        alert("Please enter your Date Of Birth");
-        return false;
-    }
-    if (d == null || d == "") {
-        alert("Please enter your student email address");
-        return false;
-    }
-    if (e == null || e == "") {
-        alert("Please enter your Mobile Number");
-        return false;
-    }
-    if (f == null || f == "") {
-        alert("Enter your Current Program Name");
-        return false;
-    }
-    if (g == null || g == "") {
-        alert("Enter your Program Code");
-        return false;
-    }
+    // need to be updated to get "select option" data
     if (h == null || h == "") {
         alert("Enter new Program Name");
         return false;

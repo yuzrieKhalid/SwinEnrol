@@ -178,9 +178,11 @@
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
+                window.location.reload()
             } else {
                 // if button method not as preset
                 console.log('It is of unknown method')
+                window.location.reload()
             }
         })
     })

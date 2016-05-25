@@ -8,62 +8,105 @@
 
 @section('content')
 <div class="container">
-    <div class="form-group">
-        <label class="control-label" for="unitCode">Unit Code:</label>
-        <input type="text" name="unitCode" class="form-control" id="unitCode" placeholder="{{ $unit->unitCode }}">
-
-        <label class="control-label" for="unitName">Unit Name:</label>
-        <input type="text" name="unitName" class="form-control" id="unitName">
-
-        <label class="control-label" for="courseCode">Course Code:</label>
-        <!-- <input type="text" name="courseCode" class="form-control" id="courseCode"> -->
-        <select class="form-control" name="courseCode">
-            <option value="0">None</option>
-
-            @foreach($courses as $course)
-            <option value="{{ $course->courseCode }}">{{ $course->courseCode }}</option>
-            @endforeach
-        </select>
-
-        <div class="form-group">
-            <label for="prerequisite">Prerequisite</label>
-            <!-- <input type="text" name="prerequisite" class="form-control" id="prerequisite"> -->
-            <select class="form-control" name="prerequisite">
-                <option value="None">None</option>
-                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-            </select>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>Update Unit Information <br>
+                <small>[ {{ $unit->unitCode }} {{ $unit->unitName }} ]</small>
+            </h2>
         </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="unitCode">Unit Code:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="unitCode" class="form-control" id="unitCode" placeholder="{{ $unit->unitCode }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="unitName">Unit Name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="unitName" class="form-control" id="unitName" placeholder="{{ $unit->unitName }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="courseCode">Course Code:</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="courseCode">
+                            <option value="{{ $unit->courseCode }}">{{ $unit->courseCode }} </option>
 
-        <div class="form-group">
-            <label for="corequisite">Corequisite</label>
-            <!-- <input type="text" name="corequisite" class="form-control" id="corequisite"> -->
-            <select class="form-control" name="corequisite">
-                <option value="None">None</option>
-                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-            <select>
+                            @foreach($courses as $course)
+
+                            @if($unit->courseCode !== $course->courseCode)
+                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} </option>
+                            @endif
+
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="prerequisite">Prerequisite:</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="prerequisite">
+                            <option value="{{ $unit->prerequisite }}">{{ $unit->prerequisite }}</option>
+
+                            @foreach($units as $aUnit)
+                            @if($aUnit->unitCode !== $unit->prerequisite)
+                                <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="corequisite">Corequisite:</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="corequisite">
+                            <option value="{{ $unit->corequisite }}">{{ $unit->corequisite }}</option>
+
+                            @foreach($units as $aUnit)
+                            @if($aUnit->unitCode !== $unit->corequisite)
+                                <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>
+                            @endif
+                            @endforeach
+                        <select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="antirequisite">Antirequisite:</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="antirequisite">
+                            <option value="{{ $unit->antirequisite }}">{{ $unit->antirequisite }}</option>
+
+                            @foreach($units as $aUnit)
+                            @if($aUnit->unitCode !== $unit->antirequisite)
+                                <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="core">This is a Core:</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" autocomplete="off" name="core" id="core">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="minimumCompletedUnits">Minimum Completed Units:</label>
+                    <div class="col-sm-1">
+                        <input id="minimumCompletedUnits" type="text" name="minimumCompletedUnits" value="0">
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="antirequisite">Antirequisite</label>
-            <!-- <input type="text" name="antirequisite" class="form-control" id="antirequisite"> -->
-            <select class="form-control" name="antirequisite">
-                <option value="None">None</option>
-                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-            </select>
+        <div class="panel-footer">
+            <button type="submit" class="submit btn btn-warning" id="submit" data-method="PUT" data-url="{{ route('coordinator.manageunits.update', $unit->unitCode) }}">Edit</button>
+            <button type="submit" class="submit btn btn-danger" id="submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">Delete</button>
         </div>
-
-        <label class="control-label" for="minimumCompletedUnits">Minimum Completed Units:</label>
-        <input id="minimumCompletedUnits" type="text" name="minimumCompletedUnits" value="0">
-
-        <label class="control-label" for="core">This is a Core:
-            <input type="checkbox" autocomplete="off" name="core" id="core">
-        </label>
-
-        {{--
-        <button type="submit" class="submit btn btn-warning" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunits.update') }}">Edit</button>
-        <button type="submit" class="submit btn btn-danger" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunits.destroy') }}">Delete</button>
-        --}}
     </div>
+
+
 </div>
 @stop
 
@@ -73,5 +116,11 @@
 $("input[name='minimumCompletedUnits']").TouchSpin({
     verticalbuttons: true
 });
+</script>
+
+<script>
+(function() {
+    console.log("need to implement the update method")
+})()
 </script>
 @stop

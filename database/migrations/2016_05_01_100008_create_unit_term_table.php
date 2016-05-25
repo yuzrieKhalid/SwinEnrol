@@ -20,7 +20,8 @@ class CreateUnitTermTable extends Migration
             $table->string('enrolmentTerm');
 
             $table->foreign('unitType')->references('unitType')->on('unit_type');
-            $table->foreign('unitCode')->references('unitCode')->on('unit')->onDelete('cascade');
+            $table->foreign('unitCode')->references('unitCode')->on('unit')
+            ->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

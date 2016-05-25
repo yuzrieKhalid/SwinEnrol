@@ -19,13 +19,13 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="unitCode">Unit Code:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="unitCode" class="form-control" id="unitCode" placeholder="{{ $unit->unitCode }}">
+                        <input type="text" name="unitCode" class="form-control" id="unitCode" value="{{ $unit->unitCode }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="unitName">Unit Name:</label>
                     <div class="col-sm-6">
-                        <input type="text" name="unitName" class="form-control" id="unitName" placeholder="{{ $unit->unitName }}">
+                        <input type="text" name="unitName" class="form-control" id="unitName" value="{{ $unit->unitName }}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -102,11 +102,9 @@
         </div>
         <div class="panel-footer">
             <button type="submit" class="submit btn btn-warning" id="submit" data-method="PUT" data-url="{{ route('coordinator.manageunits.update', $unit->unitCode) }}">Edit</button>
-            <button type="submit" class="submit btn btn-danger" id="submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">Delete</button>
+            <a id="backToCreate" class="btn btn-info" href="{{ route('coordinator.manageunits.create') }}" role="button">Back To Previous Page</a>
         </div>
     </div>
-
-
 </div>
 @stop
 
@@ -120,7 +118,40 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
 
 <script>
 (function() {
-    console.log("need to implement the update method")
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    $('.submit').click(function(){
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            _token: getToken(),
+            unitCode: $('#unitCode').val(),
+            unitName: $('#unitName').val(),
+            courseCode: $('select[name=courseCode]').val(),
+            prerequisite: $('select[name=prerequisite]').val(),
+            corequisite: $('select[name=corequisite]').val(),
+            antirequisite: $('select[name=antirequisite]').val(),
+            minimumCompletedUnits: $('#minimumCompletedUnits').val(),
+            core: $('#core').val()
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            if (method == "PUT") {
+                console.log("Updated")
+                window.location = $('#backToCreate').attr('href')
+            } else {
+                // if another button is pressed
+                window.location = $('#backToCreate').attr('href')
+            }
+        })
+    })
 })()
 </script>
 @stop

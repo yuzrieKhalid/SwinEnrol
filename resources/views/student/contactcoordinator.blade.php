@@ -26,14 +26,14 @@
                         <div class="form-group">
                           <label class="control-label col-sm-2" for="name">Name:</label>
                             <div class="col-sm-10">
-                            <input type="text" name="sName" class="form-control" id="pwd" placeholder="Your Name">
+                            <input type="text" name="sName" class="form-control" id="pwd" placeholder="John Doe">
                         </div>
 
                         </div>
                         <div class="form-group">
                           <label class="control-label col-sm-2" for="pwd">Title:</label>
                           <div class="col-sm-10">
-                            <input type="text" name="tName" class="form-control" id="pwd" placeholder="...">
+                            <input type="text" name="tName" class="form-control" id="pwd">
                           </div>
                         </div>
                         <div class="form-group">
@@ -47,11 +47,8 @@
                             <div class="dropdown col-sm-10">
                                 <!-- populate this from database -->
                                 <select class="form-control">
-                                    <option value="one">Jason..............</option>
-                                    <option value="two">Yuzrie.............</option>
-                                    <option value="three">.........................</option>
-                                    <option value="four">CC4</option>
-                                    <option value="five">CC5</option>
+                                    <option value="one">Sim Kwan Hua</option>
+                                    <option value="two">Choo Ai Ling</option>
                                 </select>
                             </div>
                         </div>

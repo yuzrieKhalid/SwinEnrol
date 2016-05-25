@@ -246,7 +246,7 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             if (method == "POST") {
                 addUnit(data)
             } else {
-                window.location = $('#submit').attr('href')
+                window.location.reload()
             }
         })
     })

@@ -19,46 +19,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Unit Listings</h1>
-                    <!-- Year Dropdown -->
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" id="dropdown-year" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Year
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown-year">
-                                <li><a href="#">Year 1</a></li>
-                                <li><a href="#">Year 2</a></li>
-                                <li><a href="#">Year 3</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Semester Dropdown -->
-                        <div class="btn-group" role="group">
-                            <button type="button" id="dropdown-semester" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Semester
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown-semester">
-                                <li><a href="#">Semester 1</a></li>
-                                <li><a href="#">Semester 2</a></li>
-                                <li><a href="#">Semester 3</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Course Dropdown -->
-                        <div class="btn-group" role="group">
-                            <button type="button" id="dropdown-course" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Course
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown-course">
-                                <li><a href="#">Course 1</a></li>
-                                <li><a href="#">Course 2</a></li>
-                                <li><a href="#">Course 3</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="panel-body">

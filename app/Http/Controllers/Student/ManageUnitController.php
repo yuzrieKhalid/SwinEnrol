@@ -155,6 +155,9 @@ class ManageUnitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $enrolled = EnrolmentUnits::where('unitCode', '=', $id);
+        $enrolled->delete();
+
+        return response()->json($enrolled);
     }
 }

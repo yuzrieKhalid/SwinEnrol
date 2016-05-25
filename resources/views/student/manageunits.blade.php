@@ -41,8 +41,8 @@
                         <tr class="hidden tr_template">
                             <td class="td_unitCode"></td>
                             <td class="td_unitName"></td>
-                            <td class="td_unitDelete"><a class="pull-right" href="{{ route('student.manageunits.destroy', 'id') }}" role="button">
-                                <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a>
+                            <td class="td_unitDelete">
+
                             </td>
                         </tr>
 
@@ -51,7 +51,11 @@
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
-                                <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                <td>
+                                    <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
+                                        <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         @else

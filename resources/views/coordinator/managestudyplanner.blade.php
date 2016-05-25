@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1>Study Planner</h1>
-                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        {{--<div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <!-- Year Dropdown -->
                             <div class="btn-group" role="group">
                                 <button type="button" id="dropdown-year" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
                                     <li><a href="#">Course 3</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
 
                     {{-- todo: dynamically generate year and sem for each table, condition checking to add each unit to their specific sem --}}

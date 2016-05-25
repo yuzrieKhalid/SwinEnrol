@@ -13,6 +13,7 @@
 </head>
 
 <body id="app-layout">
+    @if(!Auth::guest())
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -58,6 +59,7 @@
             </div>
         </div>
     </nav>
+    @endif
 
     @yield('content')
 

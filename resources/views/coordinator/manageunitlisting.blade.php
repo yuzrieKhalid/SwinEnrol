@@ -19,7 +19,7 @@
                 <div class="panel-heading">
                     <h1>Manage Unit Listings</h1>
                     <!-- Year Dropdown -->
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    {{--<div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
                             <button type="button" id="dropdown-year" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Year
@@ -56,7 +56,7 @@
                                 <li><a href="#">Course 3</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
 
                 <div class="panel-body">

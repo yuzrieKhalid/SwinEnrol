@@ -65,7 +65,7 @@ Route::group([
     Route::get('managestudent', 'Super\ManageStudent@index');
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
-    Route::resource('manageadmin', 'Super\ManageStudent');
+    Route::resource('managestudent', 'Super\ManageStudent');
 });
 /*
 Route::group([

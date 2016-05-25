@@ -6,8 +6,8 @@
             <!-- Reserve 3 space for navigation column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="{{ url('/super/managestudentadmin') }}" class="list-group-item active">Manage Student Administrators</a>
-                    <a href="{{ url('/super/managecoordinator') }}" class="list-group-item">Manage Course Coordinators</a>
+                    <a href="{{ url('/super/managestudentadmin') }}" class="list-group-item">Manage Student Administrators</a>
+                    <a href="{{ url('/super/managecoordinator') }}" class="list-group-item active">Manage Course Coordinators</a>
                     <a href="{{ url('/super/managestudent') }}" class="list-group-item">Manage Students</a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                         <table class="table" id="user_table">
                             <thead>
                                 <th>Username</th>
-                                <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managestudentadmin/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                                <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managecoordinator/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
                             <tr>
                                 <td class="td_username">coordinator</td>

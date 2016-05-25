@@ -106,7 +106,7 @@ class ManageUnitController extends Controller
         $data['unit'] = $unit;
         $data['units'] = $units;
         $data['courses'] = $courses;
-        return view ('coordinator.manageunits', $data);
+        return view ('coordinator.manageunits_edit', $data);
     }
 
     /**

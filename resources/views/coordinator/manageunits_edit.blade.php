@@ -10,7 +10,7 @@
 <div class="container">
     <div class="form-group">
         <label class="control-label" for="unitCode">Unit Code:</label>
-        <input type="text" name="unitCode" class="form-control" id="unitCode">
+        <input type="text" name="unitCode" class="form-control" id="unitCode" placeholder="{{ $unit->unitCode }}">
 
         <label class="control-label" for="unitName">Unit Name:</label>
         <input type="text" name="unitName" class="form-control" id="unitName">
@@ -59,8 +59,10 @@
             <input type="checkbox" autocomplete="off" name="core" id="core">
         </label>
 
+        {{--
         <button type="submit" class="submit btn btn-warning" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunits.update') }}">Edit</button>
         <button type="submit" class="submit btn btn-danger" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunits.destroy') }}">Delete</button>
+        --}}
     </div>
 </div>
 @stop

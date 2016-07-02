@@ -245,8 +245,11 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
+                // hide and reload the page (it looks proper)
+                $('#addUnit').modal().hide()
+                window.location.reload()
             } else {
-                window.location = $('#submit').attr('href')
+                window.location.reload()
             }
         })
     })

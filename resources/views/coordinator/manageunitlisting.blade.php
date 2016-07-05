@@ -60,18 +60,14 @@
                 </div>
 
                 <div class="panel-body">
-                    <!-- Sample Content 1 -->
-                    <h2>
-                        <small>Year 1 Sem 1</small>
-                        <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
-                    </h2>
                     <table class="table">
                         <thead>
                             <th>Unit Code</th>
-                            <th colspan="2">Unit Title</th>
+                            <th>Unit Title</th>
+                            <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for study planner --}}
-                        @foreach ($units as $unit)
+                        @foreach ($termUnits as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
@@ -81,6 +77,89 @@
                     </table>
                 </div>
             </div>
+            <!-- Add Unit Modal-->
+            <div class="modal fade" id="addUnit" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Create New Unit</h2>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+
+                                <label class="control-label" for="unit">Unit:</label>
+                                <select class="form-control" name="unit">
+                                    @foreach($units as $unit)
+                                    <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} - {{ $unit->unitName }}</option>
+                                    @endforeach
+                                </select>
+                                {{--
+                                <label class="control-label" for="unitName">Unit Name:</label>
+                                <input type="text" name="unitName" class="form-control" id="unitName">
+
+                                <label class="control-label" for="courseCode">Course Code:</label>
+                                <!-- <input type="text" name="courseCode" class="form-control" id="courseCode"> -->
+                                <select class="form-control" name="courseCode">
+                                    <option value="0">None</option>
+
+                                    @foreach($courses as $course)
+                                    <option value="{{ $course->courseCode }}">{{ $course->courseCode }}</option>
+                                    @endforeach
+                                </select>
+
+                                <div class="form-group">
+                                    <label for="prerequisite">Prerequisite</label>
+                                    <!-- <input type="text" name="prerequisite" class="form-control" id="prerequisite"> -->
+                                    <select class="form-control" name="prerequisite">
+                                        <option value="None">None</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="corequisite">Corequisite</label>
+                                    <!-- <input type="text" name="corequisite" class="form-control" id="corequisite"> -->
+                                    <select class="form-control" name="corequisite">
+                                        <option value="None">None</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="antirequisite">Antirequisite</label>
+                                    <!-- <input type="text" name="antirequisite" class="form-control" id="antirequisite"> -->
+                                    <select class="form-control" name="antirequisite">
+                                        <option value="None">None</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <label class="control-label" for="minimumCompletedUnits">Minimum Completed Units:</label>
+                                <input id="minimumCompletedUnits" type="text" name="minimumCompletedUnits" value="0">
+
+                                <label class="control-label" for="core">This is a Core:
+                                    <input type="checkbox" autocomplete="off" name="core" id="core">
+                                </label>
+                                --}}
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="submit btn btn-default" id="submit" data-method="POST" data-url="{{-- route('coordinator.manageunits.store') --}}">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Add Unit Modal -->
         </div>
     </div>
 </div>

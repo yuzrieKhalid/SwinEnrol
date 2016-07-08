@@ -82,6 +82,7 @@
                         </table>
 
                         <!-- Sample Content 2 -->
+                        {{--
                         <h2>
                             <small>Year 1 Winter Sem</small>
                             <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
@@ -107,6 +108,7 @@
                                 <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                             </tr>
                         </table>
+                        --}}
                     </div>
                 </div> <!-- end .panel -->
             </div>

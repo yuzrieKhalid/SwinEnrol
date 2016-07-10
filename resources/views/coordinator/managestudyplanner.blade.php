@@ -62,53 +62,31 @@
 
                     {{-- todo: dynamically generate year and sem for each table, condition checking to add each unit to their specific sem --}}
                     <div class="panel-body">
-                        <h2>
-                            <small>Year 1 Sem 1</small>
-                            <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
-                        </h2>
-                        <table class="table">
-                            <thead>
-                                <th>Unit Code</th>
-                                <th colspan="2">Unit Title</th>
-                            </thead>
-                            {{-- Fetch data for study planner --}}
-                            @foreach ($units as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unit->unitName }}</td>
-                                <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                            </tr>
-                            @endforeach
-                        </table>
-
-                        <!-- Sample Content 2 -->
-                        {{--
-                        <h2>
-                            <small>Year 1 Winter Sem</small>
-                            <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
-                        </h2>
-                        <table class="table">
-                            <thead>
-                                <th>Unit Code</th>
-                                <th colspan="2">Unit Title</th>
-                            </thead>
-                            <tr>
-                                <td>1</td>
-                                <td>Unit Title 1</td>
-                                <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Unit Title 2</td>
-                                <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Unit Title 3</td>
-                                <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                            </tr>
-                        </table>
-                        --}}
+                        @for($n = 0; $n < $size + 1; $n++)
+                            @if($count[$n] > 0)
+                                <h2>
+                                    <small>{{ $term[$n] }}</small>
+                                    <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
+                                </h2>
+                                <table class="table">
+                                    <col width="125">
+                                    <thead>
+                                        <th>Unit Code</th>
+                                        <th colspan="2">Unit Title</th>
+                                    </thead>
+                                    {{-- Fetch data for study planner --}}
+                                    @foreach ($units as $unit)
+                                    <tr>
+                                        @if($n == $unit->enrolmentTerm)
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            @endif
+                        @endfor
                     </div>
                 </div> <!-- end .panel -->
             </div>

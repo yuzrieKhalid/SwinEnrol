@@ -41,6 +41,30 @@ class ManagePlannerController extends Controller
         //     ->get();
         $data['units'] = $units;
 
+        // get semester size
+        $data['size'] = DB::table('unit_term')
+            ->where([
+                ['year', '=', '2016'], // todo: get from user
+                ['term', '=', 'Semester 1'] // todo: get from user
+            ])->max('enrolmentTerm');
+
+        // get semester unit count
+        for($n = 0; $n < $data['size'] + 1; $n++)
+        {
+            $count[$n] = DB::table('unit_term')
+                ->where([
+                    ['year', '=', '2016'], // todo: get from user
+                    ['term', '=', 'Semester 1'], // todo: get from user
+                    ['enrolmentTerm', '=', $n]
+                ])->count();
+        }
+        $data['count'] = $count;
+
+        // generate year/semester strings
+        for($n = 0; $n < $data['size'] + 1; $n++)
+            $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
+        $data['term'] = $term;
+
         return view ('coordinator.managestudyplanner', $data);
     }
 

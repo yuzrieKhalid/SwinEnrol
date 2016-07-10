@@ -19,13 +19,22 @@ class UnitTermTableSeeder extends Seeder
 				'unitCode' => 'ACC10007',
 				'year' => 2016,
 				'term' => 'Semester 1',
-				'enrolmentTerm' => '1',
+				'enrolmentTerm' => '0',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
             [
 				'unitType' => 'Study Planner',
 				'unitCode' => 'HIT3158',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => '1',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitType' => 'Study Planner',
+				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '2',
@@ -34,7 +43,7 @@ class UnitTermTableSeeder extends Seeder
 			],
             [
 				'unitType' => 'Study Planner',
-				'unitCode' => 'HIT3310',
+				'unitCode' => 'HIT3315',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '3',
@@ -43,7 +52,7 @@ class UnitTermTableSeeder extends Seeder
 			],
             [
 				'unitType' => 'Study Planner',
-				'unitCode' => 'HIT3315',
+				'unitCode' => 'MGT10001',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '4',
@@ -52,25 +61,16 @@ class UnitTermTableSeeder extends Seeder
 			],
             [
 				'unitType' => 'Study Planner',
-				'unitCode' => 'MGT10001',
-				'year' => 2016,
-				'term' => 'Semester 1',
-				'enrolmentTerm' => '5',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			],
-            [
-				'unitType' => 'Study Planner',
-				'unitCode' => 'MGT10001',
-				'year' => 2016,
-				'term' => 'Semester 1',
-				'enrolmentTerm' => '5',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			],
-            [
-				'unitType' => 'Study Planner',
 				'unitCode' => 'HIT3158',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => '4',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitType' => 'Study Planner',
+				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '5',
@@ -82,7 +82,7 @@ class UnitTermTableSeeder extends Seeder
 				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
-				'enrolmentTerm' => '6',
+				'enrolmentTerm' => '8',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -91,7 +91,7 @@ class UnitTermTableSeeder extends Seeder
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 2',
-				'enrolmentTerm' => '1',
+				'enrolmentTerm' => '0',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -100,7 +100,7 @@ class UnitTermTableSeeder extends Seeder
 				'unitCode' => 'MGT10001',
 				'year' => 2016,
 				'term' => 'Semester 2',
-				'enrolmentTerm' => '1',
+				'enrolmentTerm' => '0',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -109,7 +109,7 @@ class UnitTermTableSeeder extends Seeder
 				'unitCode' => 'HIT3315',
 				'year' => 2016,
 				'term' => 'Semester 2',
-				'enrolmentTerm' => '1',
+				'enrolmentTerm' => '0',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],

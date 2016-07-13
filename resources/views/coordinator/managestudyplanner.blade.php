@@ -18,7 +18,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1>Study Planner</h1>
-                        {{--<div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    </div>
+
+                    {{-- todo: fetch dropdown data from database --}}
+                    <div class="panel-body">
+                        <a class="pull-right btn btn-default" data-toggle="modal" data-target="#addUnit" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                        <div class="btn-group btn-group" role="group" aria-label="...">
                             <!-- Year Dropdown -->
                             <div class="btn-group" role="group">
                                 <button type="button" id="dropdown-year" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,16 +62,12 @@
                                     <li><a href="#">Course 3</a></li>
                                 </ul>
                             </div>
-                        </div>--}}
-                    </div>
+                        </div>
 
-                    {{-- todo: dynamically generate year and sem for each table, condition checking to add each unit to their specific sem --}}
-                    <div class="panel-body">
-                        @for($n = 0; $n < $size + 1; $n++)
+                        @for($n = 0; $n < $size; $n++)
                             @if($count[$n] > 0)
                                 <h2>
                                     <small>{{ $term[$n] }}</small>
-                                    <span class="pull-right"><a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span>
                                 </h2>
                                 <table class="table">
                                     <col width="125">
@@ -75,12 +76,12 @@
                                         <th colspan="2">Unit Title</th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
-                                    @foreach ($units as $unit)
+                                    @foreach ($termUnits as $unit)
                                     <tr>
                                         @if($n == $unit->enrolmentTerm)
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
-                                        <td><a class="pull-right" href="#" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                        <td><a class="pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                                         @endif
                                     </tr>
                                     @endforeach
@@ -90,6 +91,69 @@
                     </div>
                 </div> <!-- end .panel -->
             </div>
+
+            <!-- Add Unit Modal-->
+            <div class="modal fade" id="addUnit" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Create New Unit</h2>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form -->
+                            <form method="POST" action="{{ route('coordinator.managestudyplanner.store') }}" class="form-horizontal">
+                                <!-- Unit selection -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="unitCode">Unit:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="unitCode" id="unit">
+                                            @foreach($units as $unit)
+                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} - {{ $unit->unitName }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Semester selection -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="enrolmentTerm">Semester:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="enrolmentTerm" id="enrolmentTerm">
+                                            @for($n = 0; $n < $size; $n++)
+                                                <option value="{{ $n }}">{{ $term[$n] }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- required by form -->
+                                <div class="form-group hidden">
+                                    <label class="control-label col-sm-2" for="term">Term:</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">{{ $semester }}</p>
+                                    </div>
+                                    <input type="hidden" name="term" id="term" value="{{ $semester }}">
+                                </div>
+                                <div class="form-group hidden">
+                                    <label class="control-label col-sm-2" for="year">Year:</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">{{ $year }}</p>
+                                    </div>
+                                    <input type="hidden" name="year" id="year" value="{{ $year }}">
+                                </div>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <hr>
+                                <div class="clearfix">
+                                    <button type="submit" class="submit btn btn-default pull-right">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Add Unit Modal -->
         </div>
     </div>
 @stop

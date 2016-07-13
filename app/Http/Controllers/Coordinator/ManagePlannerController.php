@@ -12,6 +12,8 @@ use App\UnitTerm;
 use App\Unit;
 use DB;
 
+use Carbon\Carbon;
+
 class ManagePlannerController extends Controller
 {
     /**
@@ -39,17 +41,18 @@ class ManagePlannerController extends Controller
         //     ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
         //     ->select('study_planner.*', 'unit.unitName')
         //     ->get();
-        $data['units'] = $units;
+        $data['termUnits'] = $units;
 
         // get semester size
-        $data['size'] = DB::table('unit_term')
-            ->where([
-                ['year', '=', '2016'], // todo: get from user
-                ['term', '=', 'Semester 1'] // todo: get from user
-            ])->max('enrolmentTerm');
+        $data['size'] = 9;  // todo: change size to server configuration
+        // $data['size'] = DB::table('unit_term')
+        //     ->where([
+        //         ['year', '=', '2016'], // todo: get from user
+        //         ['term', '=', 'Semester 1'] // todo: get from user
+        //     ])->max('enrolmentTerm');
 
         // get semester unit count
-        for($n = 0; $n < $data['size'] + 1; $n++)
+        for($n = 0; $n < $data['size']; $n++)
         {
             $count[$n] = DB::table('unit_term')
                 ->where([
@@ -61,9 +64,19 @@ class ManagePlannerController extends Controller
         $data['count'] = $count;
 
         // generate year/semester strings
-        for($n = 0; $n < $data['size'] + 1; $n++)
+        for($n = 0; $n < $data['size']; $n++)
             $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
         $data['term'] = $term;
+
+        // get all units
+        $units = Unit::all();
+        $data['units'] = $units;
+
+        // get year
+        $data['year'] = 2016; // todo: get from user request
+
+        // get semester
+        $data['semester'] = 'Semester 1'; // todo: get from user request
 
         return view ('coordinator.managestudyplanner', $data);
     }
@@ -77,20 +90,24 @@ class ManagePlannerController extends Controller
     public function store(Request $request)
     {
         $input = $request->only([
-            'courseCode',
             'unitCode',
             'year',
             'term',
+            'enrolmentTerm'
         ]);
 
-        $planner = new StudyPlanner;
-        $planner->courseCode = $input['courseCode'];
-        $planner->unitCode = $input['unitCode'];
-        $planner->year = $input['year'];
-        $planner->term = $input['term'];
-        $planner->save();
+        $unit = new UnitTerm;
+        $unit->unitType = 'Study Planner';
+        $unit->unitCode = $input['unitCode'];
+        $unit->year = (int) $input['year'];
+        $unit->term = $input['term'];
+        $unit->enrolmentTerm = (int) $input['enrolmentTerm'];
+        $unit->created_at = Carbon::now();
+        $unit->updated_at = Carbon::now();
+        $unit->save();
 
-        return response()->json($planner);
+        // return response()->json($unit);
+        return back();
     }
 
     /**

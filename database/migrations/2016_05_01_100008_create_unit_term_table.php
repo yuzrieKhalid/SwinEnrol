@@ -23,7 +23,8 @@ class CreateUnitTermTable extends Migration
             $table->foreign('unitType')->references('unitType')->on('unit_type');
             $table->foreign('unitCode')->references('unitCode')->on('unit')
             ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('courseCode')->references('courseCode')->on('course');
+            $table->foreign('courseCode')->references('courseCode')->on('course')
+            ->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

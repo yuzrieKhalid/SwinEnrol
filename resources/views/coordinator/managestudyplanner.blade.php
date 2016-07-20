@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('extra_head')
+    <!-- remember csrf token needs middleware -->
+    <meta name="_token" content="{{ csrf_token() }}"/>
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -77,13 +82,13 @@
                                     </thead>
                                     {{-- Fetch data for study planner --}}
                                     @foreach ($termUnits as $unit)
-                                    <tr>
                                         @if($n == $unit->enrolmentTerm)
-                                        <td>{{ $unit->unitCode }}</td>
-                                        <td>{{ $unit->unit->unitName }}</td>
-                                        <td><a class="pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                            <tr>
+                                                <td>{{ $unit->unitCode }}</td>
+                                                <td>{{ $unit->unit->unitName }}</td>
+                                                <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                            </tr>
                                         @endif
-                                    </tr>
                                     @endforeach
                                 </table>
                             @endif
@@ -103,12 +108,12 @@
                         </div>
                         <div class="modal-body">
                             <!-- Form -->
-                            <form method="POST" action="{{ route('coordinator.managestudyplanner.store') }}" class="form-horizontal">
+                            <form class="form-horizontal">
                                 <!-- Unit selection -->
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="unitCode">Unit:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" name="unitCode" id="unit">
+                                        <select class="form-control" name="unitCode" id="unitCode">
                                             @foreach($units as $unit)
                                             <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} - {{ $unit->unitName }}</option>
                                             @endforeach
@@ -143,12 +148,10 @@
                                     </div>
                                     <input type="hidden" name="year" id="year" value="{{ $year }}">
                                 </div>
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <hr>
-                                <div class="clearfix">
-                                    <button type="submit" class="submit btn btn-default pull-right">Create</button>
-                                </div>
                             </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="submit btn btn-default" id="submit" data-method="POST" data-url="{{ route('coordinator.managestudyplanner.store') }}">Create</button>
                         </div>
                     </div>
                 </div>
@@ -156,4 +159,50 @@
             <!-- end Add Unit Modal -->
         </div>
     </div>
+@stop
+
+@section('extra_js')
+<script>
+(function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    $('.submit').click(function(){
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        if(method == "POST")
+        {
+            data = {
+                _token: getToken(),
+                unitCode: $('select[name=unitCode]').val(),
+                enrolmentTerm: $('select[name=enrolmentTerm]').val(),
+                year: $('#year').val(),
+                term: $('#term').val()
+            }
+        }
+        if(method == "DELETE")
+        {
+            data = {
+                _token: getToken(),
+                unitCode: $(this).data('unitCode'),
+                enrolmentTerm: $(this).data('enrolmentTerm'),
+                year: $('#year').val(),
+                term: $('#term').val()
+            }
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            window.location.reload()
+        })
+    })
+    // data.forEach is not a function
+    // getUnits()
+})()
+</script>
 @stop

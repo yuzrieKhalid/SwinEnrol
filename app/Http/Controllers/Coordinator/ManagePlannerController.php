@@ -12,6 +12,8 @@ use App\UnitTerm;
 use App\Unit;
 use DB;
 
+use Log;
+
 use Carbon\Carbon;
 
 class ManagePlannerController extends Controller
@@ -107,7 +109,7 @@ class ManagePlannerController extends Controller
         $unit->save();
 
         // return response()->json($unit);
-        return back();
+        return response()->json($unit);
     }
 
     /**
@@ -148,7 +150,7 @@ class ManagePlannerController extends Controller
             'term',
         ]);
 
-        $planner = StudyPlanner::findOrFail($id);
+        $planner = UnitTerm::findOrFail($id);
         $planner->courseCode = $input['courseCode'];
         $planner->unitCode = $input['unitCode'];
         $planner->year = $input['year'];
@@ -164,10 +166,22 @@ class ManagePlannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $planner = StudyPlanner::findOrFail($id);
-        $planner->delete();
+        $input = $request->only([
+            'unitCode',
+            'courseCode',
+            'year',
+            'term',
+            'enrolmentTerm'
+        ]);
+
+        $planner = UnitTerm::where('unitCode', '=', $input['unitCode'])
+            // ->where('courseCode', '=', $input['courseCode']) // todo: get course code from request
+            ->where('year', '=', $input['year'])
+            ->where('term', '=', $input['term'])
+            ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->delete();
 
         return response()->json($planner);
     }

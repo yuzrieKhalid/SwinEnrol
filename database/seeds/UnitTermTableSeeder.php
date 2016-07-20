@@ -131,6 +131,7 @@ class UnitTermTableSeeder extends Seeder
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
+                'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -140,6 +141,7 @@ class UnitTermTableSeeder extends Seeder
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
+                'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -149,6 +151,7 @@ class UnitTermTableSeeder extends Seeder
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
+                'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -158,6 +161,7 @@ class UnitTermTableSeeder extends Seeder
 				'year' => 2016,
 				'term' => 'Semester 2',
 				'enrolmentTerm' => '0',
+                'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -167,6 +171,7 @@ class UnitTermTableSeeder extends Seeder
 				'year' => 2016,
 				'term' => 'Semester 2',
 				'enrolmentTerm' => '0',
+                'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

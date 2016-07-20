@@ -18,4 +18,9 @@ class UnitTerm extends Model
 	{
 		return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
 	}
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
+    }
 }

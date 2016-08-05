@@ -6,8 +6,8 @@
         <!-- Reserve 3 space for navigation column -->
         <div class="col-md-3">
             <div class="list-group">
-                <a href="{{ url('/student') }}" class="list-group-item active">Enrolment Status</a>
-                <a href="{{ url('/student/enrolmenthistory') }}" class="list-group-item">Enrolment History</a>
+                <a href="{{ url('/student') }}" class="list-group-item">Enrolment Status</a>
+                <a href="{{ url('/student/history') }}" class="list-group-item active">Enrolment History</a>
                 <a href="{{ url('/student/manageunits/create') }}" class="list-group-item">Manage Units</a>
                 <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
                 <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
@@ -19,16 +19,9 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Enrolment Status</h1>
+                    <h1>Enrolment History</h1>
                 </div>
                 <div class="panel-body">
-                    <h3>{{ Auth::user()->name }} <small>{{ Auth::user()->username }}</small></h3>
-
-                    {{--
-                        @foreach( $students as $student)
-                        <h2>{{ $student->givenName }} {{ $student->surname }} <small>{{ $student->studentID }}</small></h2>
-                        @endforeach
-                    --}}
 
                     <table class="table">
                         <caption><h3>Enrolled Unit</h3></caption>

@@ -47,6 +47,7 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Student\HomeController@index');
+    Route::get('/enrolmenthistory', 'Student\EnrolmentHistoryController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
     Route::resource('contactcoordinator', 'Student\ContactCoordinatorController');

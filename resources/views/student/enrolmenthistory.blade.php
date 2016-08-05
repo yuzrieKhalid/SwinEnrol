@@ -23,37 +23,93 @@
                 </div>
                 <div class="panel-body">
 
-                    <table class="table">
-                        <caption><h3>Enrolled Unit</h3></caption>
-                        <thead>
-                            <th>Unit Code</th>
-                            <th>Unit Title</th>
-                            <th>Status</th>
-                        </thead>
-                        @if(empty($enrolled))
-                        <tr><td colspan="3">No Units Enrolled Yet</td></tr>
-                        @else
+                    <!-- Completed Units Table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <caption><h3>Completed Units</h3></caption>
+                            <thead>
+                                <th>Unit Code</th>
+                                <th>Unit Title</th>
+                                <th>Status</th>
+                            </thead>
 
-                        @foreach ($enrolled as $unit)
-                        <tr>
-                            <td>{{ $unit->unitCode }}</td>
-                            <td>{{ $unit->unit->unitName }}</td>
-                            @if($unit->status == 'confirmed')
-                            <!-- Has already passed -->
-                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                            @elseif($unit->status == 'pending')
-                            <!-- Waiting to be approved (Phase 2) -->
-                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                            @if(empty($enrolled))
+                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
                             @else
-                            <!-- Is currently taken -->
-                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                @foreach ($enrolled as $unit)
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        @if($unit->status == 'confirmed')
+                                            <!-- Has already passed -->
+                                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                        @elseif($unit->status == 'pending')
+                                            <!-- Waiting to be approved (Phase 2) -->
+                                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                                        @else
+                                            <!-- Is currently taken -->
+                                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
                             @endif
-                        </tr>
-                        @endforeach
+                        </table>
+                    </div>
 
-                        @endif
+                    <!-- Ongoing Units Table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <caption><h3>Current Semester Units</h3></caption>
+                            <thead>
+                                <th>Unit Code</th>
+                                <th>Unit Title</th>
+                                <th>Status</th>
+                            </thead>
 
-                    </table>
+                            @if(empty($enrolled))
+                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                            @else
+                                @foreach ($enrolled as $unit)
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        @if($unit->status == 'confirmed')
+                                            <!-- Waiting to be approved (Phase 2) -->
+                                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </table>
+                    </div>
+
+                    <!-- Units Not Yet Taken / Failed Table -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <caption><h3>Not Completed Units</h3></caption>
+                            <thead>
+                                <th>Unit Code</th>
+                                <th>Unit Title</th>
+                                <th>Status</th>
+                            </thead>
+
+                            @if(empty($enrolled))
+                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                            @else
+                                @foreach ($enrolled as $unit)
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        @if($unit->status == 'confirmed')
+                                            <!-- Is currently taken -->
+                                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </table>
+                    </div>
+
                 </div>
             </div> <!-- end .panel -->
         </div>

@@ -12,7 +12,7 @@
                 <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item active">View Study Planner</a>
                 <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
                 <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a>
-                <a href="{{ url('/student/contactcoordinator') }}" class="list-group-item">Contact Coordinator</a>
+                <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item">Other Enrolment Issues</a>
             </div>
         </div>
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ContactCoordinatorController extends Controller
+class EnrolmentIssuesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ContactCoordinatorController extends Controller
      */
     public function index()
     {
-        return view ('student.contactcoordinator');
+        return view ('student.enrolmentissues');
     }
 
     /**

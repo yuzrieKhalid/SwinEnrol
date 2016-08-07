@@ -25,7 +25,29 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" name="cForm" method="POST" action="{{ url('/student/internalcoursetransfer') }}" onsubmit="return validateForm()">
 
-                        <h3>Proposed Program</h3>
+                        <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
+                        <input type="text" name="yearOfRequestedTransfer" class="form-control">
+
+                        <h4>CURRENT PROGRAM</h4>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Program Code:</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="currentProgramCode" class="form-control" placeholder="fetch from db" disabled>
+                            </div>
+                            <label class="control-label col-sm-2">Program Title:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="currentProgramTitle" class="form-control" placeholder="fetch from db" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-5">Year of first enrolment in current program:</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="currentProgramIntakeYear" class="form-control">
+                            </div>
+                        </div>
+
+                        <h4>PROPOSED PROGRAM</h4>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="prname">Program Title:</label>
                             <div class="col-sm-10">

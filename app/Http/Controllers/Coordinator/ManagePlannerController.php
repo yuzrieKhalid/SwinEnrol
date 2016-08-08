@@ -12,6 +12,10 @@ use App\UnitTerm;
 use App\Unit;
 use DB;
 
+use Log;
+
+use Carbon\Carbon;
+
 class ManagePlannerController extends Controller
 {
     /**
@@ -39,7 +43,42 @@ class ManagePlannerController extends Controller
         //     ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
         //     ->select('study_planner.*', 'unit.unitName')
         //     ->get();
+        $data['termUnits'] = $units;
+
+        // get semester size
+        $data['size'] = 9;  // todo: change size to server configuration
+        // $data['size'] = DB::table('unit_term')
+        //     ->where([
+        //         ['year', '=', '2016'], // todo: get from user
+        //         ['term', '=', 'Semester 1'] // todo: get from user
+        //     ])->max('enrolmentTerm');
+
+        // get semester unit count
+        for($n = 0; $n < $data['size']; $n++)
+        {
+            $count[$n] = DB::table('unit_term')
+                ->where([
+                    ['year', '=', '2016'], // todo: get from user
+                    ['term', '=', 'Semester 1'], // todo: get from user
+                    ['enrolmentTerm', '=', $n]
+                ])->count();
+        }
+        $data['count'] = $count;
+
+        // generate year/semester strings
+        for($n = 0; $n < $data['size']; $n++)
+            $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
+        $data['term'] = $term;
+
+        // get all units
+        $units = Unit::all();
         $data['units'] = $units;
+
+        // get year
+        $data['year'] = 2016; // todo: get from user request
+
+        // get semester
+        $data['semester'] = 'Semester 1'; // todo: get from user request
 
         return view ('coordinator.managestudyplanner', $data);
     }
@@ -53,20 +92,24 @@ class ManagePlannerController extends Controller
     public function store(Request $request)
     {
         $input = $request->only([
-            'courseCode',
             'unitCode',
             'year',
             'term',
+            'enrolmentTerm'
         ]);
 
-        $planner = new StudyPlanner;
-        $planner->courseCode = $input['courseCode'];
-        $planner->unitCode = $input['unitCode'];
-        $planner->year = $input['year'];
-        $planner->term = $input['term'];
-        $planner->save();
+        $unit = new UnitTerm;
+        $unit->unitType = 'Study Planner';
+        $unit->unitCode = $input['unitCode'];
+        $unit->year = (int) $input['year'];
+        $unit->term = $input['term'];
+        $unit->enrolmentTerm = (int) $input['enrolmentTerm'];
+        $unit->created_at = Carbon::now();
+        $unit->updated_at = Carbon::now();
+        $unit->save();
 
-        return response()->json($planner);
+        // return response()->json($unit);
+        return response()->json($unit);
     }
 
     /**
@@ -107,7 +150,7 @@ class ManagePlannerController extends Controller
             'term',
         ]);
 
-        $planner = StudyPlanner::findOrFail($id);
+        $planner = UnitTerm::findOrFail($id);
         $planner->courseCode = $input['courseCode'];
         $planner->unitCode = $input['unitCode'];
         $planner->year = $input['year'];
@@ -123,10 +166,22 @@ class ManagePlannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $planner = StudyPlanner::findOrFail($id);
-        $planner->delete();
+        $input = $request->only([
+            'unitCode',
+            'courseCode',
+            'year',
+            'term',
+            'enrolmentTerm'
+        ]);
+
+        $planner = UnitTerm::where('unitCode', '=', $input['unitCode'])
+            // ->where('courseCode', '=', $input['courseCode']) // todo: get course code from request
+            ->where('year', '=', $input['year'])
+            ->where('term', '=', $input['term'])
+            ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->delete();
 
         return response()->json($planner);
     }

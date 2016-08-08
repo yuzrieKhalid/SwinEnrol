@@ -13,6 +13,7 @@
 </head>
 
 <body id="app-layout">
+    @if(!Auth::guest())
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -50,7 +51,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     @endif
@@ -58,6 +59,7 @@
             </div>
         </div>
     </nav>
+    @endif
 
     @yield('content')
 

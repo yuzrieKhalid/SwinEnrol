@@ -24,19 +24,17 @@
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="panel-body">
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <th>Student ID</th>
                                         <th>Student Name</th>
                                         <th>Date</th>
-                                        <th></th>
                                     </thead>
                                     @foreach ($issues as $issue)
-                                    <tr>
+                                    <tr class="clickable-row" data-toggle="modal" data-target="#{{ $issue->studentID }}">
                                         <td>{{ $issue->student->studentID }}</td>
                                         <td>{{ $issue->student->givenName }} {{ $issue->student->surname }}</td>
                                         <td>{{ $issue->created_at }}</td>
-                                        <td> <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{ $issue->studentID }}"> + </button> </td>
                                     </tr>
                                     @endforeach
                                 </table>
@@ -44,7 +42,7 @@
 
                             <!-- Modal 1-->
                             @foreach ($issues as $issue)
-                            <div class="modal fade" id="myModal{{ $issue->studentID }}" role="dialog">
+                            <div class="modal fade" id="{{ $issue->studentID }}" role="dialog">
                                 <div class="modal-dialog">
                                     <!-- Modal content-->
                                     <div class="modal-content">
@@ -59,7 +57,8 @@
                                             <p>{{ $issue->enrolment_issues->issueMessage }}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Disapprove</button>
                                         </div>
                                     </div>
                                 </div>

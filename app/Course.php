@@ -22,4 +22,9 @@ class Course extends Model
 	{
 		return $this->hasMany('App\InternalCourseTransfer', 'courseCode');
 	}
+
+    public function unit_term()
+    {
+        return $this->hasMany('App\UnitTerm', 'courseCode');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\UnitListing;
 use App\UnitTerm;
+use App\Unit;
 use DB;
 
 class ManageListingController extends Controller
@@ -38,6 +39,9 @@ class ManageListingController extends Controller
         //     ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
         //     ->select('unit_listing.*', 'unit.unitName')
         //     ->get();
+        $data['termUnits'] = $units;
+
+        $units = Unit::all();
         $data['units'] = $units;
 
         return view ('coordinator.manageunitlisting', $data);

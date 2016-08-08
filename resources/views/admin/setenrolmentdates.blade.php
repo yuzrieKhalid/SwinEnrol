@@ -28,27 +28,52 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Foundation</div>
                             <div class="panel-body">
-                                <p>Semester 1</p>
-                                <div id="foundation_semester1">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" class="input-sm form-control" name="end" />
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p>Semester 1</p>
+                                        <div id="foundation_semester1">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" />
+                                                <span class="input-group-addon">to</span>
+                                                <input type="text" class="input-sm form-control" name="end" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-md-4">
+                                        <p>Adjustment Date Due</p>
+                                        <div id="foundation_semester1_due">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="adjust" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
 
-                                <p>Semester 2</p>
-                                <div id="foundation_semester2">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" class="input-sm form-control" name="end" />
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p>Semester 2</p>
+                                        <div id="foundation_semester2">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" />
+                                                <span class="input-group-addon">to</span>
+                                                <input type="text" class="input-sm form-control" name="end" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="col-md-4">
+                                        <p>Adjustment Date Due</p>
+                                        <div id="foundation_semester2_due">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="adjust" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
+                            </div> <!-- end panel-body -->
+
                             <div class="panel-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Update Enrolment Dates</button>
-                                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close Enrolment for Foundation</button>
+                                <button type="button" class="btn btn-default" disabled>Update</button>
+                                <button type="button" class="btn btn-danger pull-right">Close Enrolment</button>
                             </div>
                         </div>
 
@@ -56,27 +81,55 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Degree</div>
                             <div class="panel-body">
-                                <p>Semester 1</p>
-                                <div id="degree_semester2">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" class="input-sm form-control" name="end" />
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p>Semester 1</p>
+                                        <div id="degree_semester1">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" />
+                                                <span class="input-group-addon">to</span>
+                                                <input type="text" class="input-sm form-control" name="end" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-md-4">
+                                        <p>Adjustment Date Due</p>
+                                        <div id="degree_semester1_due">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="adjust" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
 
-                                <p>Semester 2</p>
-                                <div id="degree_winter_semester">
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" class="input-sm form-control" name="end" />
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p>Semester 2</p>
+                                        <div id="degree_semester2">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" />
+                                                <span class="input-group-addon">to</span>
+                                                <input type="text" class="input-sm form-control" name="end" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="col-md-4">
+                                        <p>Adjustment Date Due</p>
+                                        <div id="degree_semester2_due">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="adjust" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
+                            </div> <!-- end panel-body -->
+
                             <div class="panel-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Update Enrolment Dates</button>
-                                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close Enrolment for Foundation</button>
+                                <!-- if the dates are updated, activated the asterisk, otherwise, remove it and let the button disabled -->
+                                <button type="button" class="btn btn-default">Update</button>
+                                <span class="label label-warning"><span class="glyphicon glyphicon-asterisk"></span></span>
+
+                                <button type="button" class="btn btn-danger pull-right">Close Enrolment</button>
                             </div>
                         </div>
 
@@ -99,9 +152,9 @@
                         <div class="modal-body">
                             <label class="control-label" for="studyLevel">Level:</label>
                             <select class="form-control" name="studyLevel" id="studyLevel">
-                                <!-- <option>Foundation</option> -->
+                                <option>Foundation</option>
                                 <option>Diploma</option>
-                                <!-- <option>Degree</option> -->
+                                <option>Degree</option>
                                 <option>MA (TESOL)</option>
                                 <option>MBA</option>
                                 <option>Intensive English</option>
@@ -135,6 +188,7 @@
 @section('extra_js')
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 <script>
+// semester datepicker
 $('#foundation_semester1 .input-daterange').datepicker({
     format: 'dd MM yyyy'
 });
@@ -146,6 +200,21 @@ $('#degree_semester2 .input-daterange').datepicker({
     format: 'dd MM yyyy'
 });
 $('#degree_winter_semester .input-daterange').datepicker({
+    format: 'dd MM yyyy'
+});
+
+// due dates datepicker
+$('#foundation_semester1_due .input-daterange').datepicker({
+    format: 'dd MM yyyy'
+});
+$('#foundation_semester2_due .input-daterange').datepicker({
+    format: 'dd MM yyyy'
+});
+
+$('#degree_semester1_due .input-daterange').datepicker({
+    format: 'dd MM yyyy'
+});
+$('#degree_semester2_due .input-daterange').datepicker({
     format: 'dd MM yyyy'
 });
 </script>

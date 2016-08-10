@@ -17,21 +17,21 @@ class EnrolmentIssuesTableSeeder extends Seeder
             [
                 'id' => 1,
                 'issueType' => 'single_unit',
-                'issueMessage' => 'Single Unit of Study',
+                'formData' => 'Single Unit of Study',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => 2,
                 'issueType' => 'prerequisite',
-                'issueMessage' => 'Prerequisite not Fulfilled',
+                'formData' => 'Prerequisite not Fulfilled',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => 3,
                 'issueType' => 'timestable_clash',
-                'issueMessage' => 'Timestable Clash',
+                'formData' => 'Timestable Clash',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EnrolmentIssuesTableSeeder::class);
         $this->call(UnitTableSeeder::class);
         $this->call(UnitTermTableSeeder::class);
-        $this->call(InternalCourseTransferTableSeeder::class);
         $this->call(StudentEnrolmentIssuesTableSeeder::class);
         $this->call(EnrolmentUnitsTableSeeder::class);
     }

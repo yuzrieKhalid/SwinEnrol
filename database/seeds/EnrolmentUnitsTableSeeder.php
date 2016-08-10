@@ -37,17 +37,6 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'studentID' => '5555555',
-                'unitCode' => 'HIT3315',
-                'year' => 2016,
-                'term' => '2',
-                'status' => 'confirmed',
-                'result' => 95.50,
-                'grade' => 'HD',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
                 'studentID' => '4304373',
                 'unitCode' => 'MGT10001',
                 'year' => 2016,
@@ -59,17 +48,6 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'studentID' => '5555555',
-                'unitCode' => 'HIT3158',
-                'year' => 2016,
-                'term' => '4',
-                'status' => 'pending',
-                'result' => 0.00,
-                'grade' => 'ungraded',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
                 'studentID' => '4318595',
                 'unitCode' => 'HIT3158',
                 'year' => 2016,
@@ -93,6 +71,50 @@ class EnrolmentUnitsTableSeeder extends Seeder
             ],
             [
                 'studentID' => '4318595',
+                'unitCode' => 'ACC10007',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'confirmed',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4315405',
+                'unitCode' => 'MGT10001',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4315405',
+                'unitCode' => 'HIT3158',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4315405',
+                'unitCode' => 'MGT10001',
+                'year' => 2016,
+                'term' => '4',
+                'status' => 'confirmed',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4315405',
                 'unitCode' => 'ACC10007',
                 'year' => 2016,
                 'term' => '4',

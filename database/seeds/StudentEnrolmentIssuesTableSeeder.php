@@ -18,6 +18,7 @@ class StudentEnrolmentIssuesTableSeeder extends Seeder
 				'studentID' => '4318595',
 				'issueID' => 1,
 				'status' => 'pending',
+                'submissionData' => 'supposed to receive/store a json array',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -25,6 +26,7 @@ class StudentEnrolmentIssuesTableSeeder extends Seeder
 				'studentID' => '4318595',
 				'issueID' => 3,
 				'status' => 'pending',
+                'submissionData' => 'supposed to receive/store a json array',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

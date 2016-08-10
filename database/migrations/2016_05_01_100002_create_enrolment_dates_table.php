@@ -19,7 +19,6 @@ class CreateEnrolmentDatesTable extends Migration
             $table->string('term');
             $table->date('reenrolmentOpenDate');
             $table->date('reenrolmentCloseDate');
-            $table->date('adjustmentOpenDate');
             $table->date('adjustmentCloseDate');
             $table->date('examResultsRelease');
 

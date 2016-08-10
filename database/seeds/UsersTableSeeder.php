@@ -22,6 +22,20 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
+                'username' => '4318595',
+                'password' => bcrypt('950807'),
+                'permissionLevel' => 'student',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => '4315405',
+                'password' => bcrypt('901226'),
+                'permissionLevel' => 'student',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
                 'username' => 'student',
                 'password' => bcrypt('student'),
                 'permissionLevel' => 'student',

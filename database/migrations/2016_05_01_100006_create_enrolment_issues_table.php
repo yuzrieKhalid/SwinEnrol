@@ -16,7 +16,7 @@ class CreateEnrolmentIssuesTable extends Migration
         {
             $table->increments('id');
             $table->string('issueType');
-            $table->string('issueMessage');
+            $table->string('formData');
 
             // increment id
             $table->timestamps();

@@ -11,7 +11,7 @@
                 <a href="{{ url('/student/manageunits/create') }}" class="list-group-item">Manage Units</a>
                 <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
                 <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
-                <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a>
+                <!-- <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a> -->
                 <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item">Other Enrolment Issues</a>
             </div>
         </div>

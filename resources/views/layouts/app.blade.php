@@ -7,7 +7,6 @@
     <title>Student Enrolment System</title>
 
     <!-- Styles -->
-    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('extra_head')
 </head>
@@ -64,8 +63,6 @@
     @yield('content')
 
     <!-- JavaScripts -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('extra_js')
 </body>

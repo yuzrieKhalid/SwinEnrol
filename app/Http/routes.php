@@ -35,6 +35,7 @@ Route::group([
     'middleware' => 'web',
 ], function() {
     Route::get('/', 'Coordinator\HomeController@index');
+    Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');

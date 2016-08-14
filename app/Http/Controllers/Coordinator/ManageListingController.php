@@ -33,7 +33,7 @@ class ManageListingController extends Controller
     {
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'Study Planner')
+            ->where('unitType', '=', 'Unit Listing')
             ->get();
         // $units = DB::table('unit_listing')
         //     ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')

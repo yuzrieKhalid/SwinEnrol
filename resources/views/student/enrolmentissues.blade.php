@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Contact Course Coordinator <small>for Enrolment Issues</small></h1>
                 </div>

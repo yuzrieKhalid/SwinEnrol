@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\EnrolmentDates;
+
 class SetEnrolmentDateController extends Controller
 {
     /**
@@ -16,7 +18,12 @@ class SetEnrolmentDateController extends Controller
      */
     public function index()
     {
-        return view ('admin.setenrolmentdates');
+        $data = [];
+        $dates  = EnrolmentDates::all();
+
+        $data['dates'] = $dates;
+        
+        return view ('admin.setenrolmentdates', $data);
     }
 
     /**

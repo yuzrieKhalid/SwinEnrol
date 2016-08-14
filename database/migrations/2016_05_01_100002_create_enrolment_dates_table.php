@@ -16,6 +16,7 @@ class CreateEnrolmentDatesTable extends Migration
         {
             $table->increments('id');
             $table->integer('year')->unsigned();
+            $table->string('level');
             $table->string('term');
             $table->date('reenrolmentOpenDate');
             $table->date('reenrolmentCloseDate');

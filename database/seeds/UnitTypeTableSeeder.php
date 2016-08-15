@@ -15,14 +15,20 @@ class UnitTypeTableSeeder extends Seeder
         //
         DB::table('unit_type')->insert([
 			[
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'typeName' => 'Study Planner',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
 			[
-				'unitType' => 'Unit Listing',
-				'typeName' => 'Unit Listing',
+				'unitType' => 'unit_listing',
+				'typeName' => 'Unit Listing (Full Semester)',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+			[
+				'unitType' => 'unit_listing_short',
+				'typeName' => 'Unit Listing (Short Semester)',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

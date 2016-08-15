@@ -176,11 +176,11 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'unit_listing_short',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'ACC10007',
 				'year' => 2016,
 				'term' => 'Semester 2',
-				'enrolmentTerm' => '0',
+				'enrolmentTerm' => '1',
                 'courseCode' => NULL,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()

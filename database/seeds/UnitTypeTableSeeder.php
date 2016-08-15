@@ -22,13 +22,7 @@ class UnitTypeTableSeeder extends Seeder
 			],
 			[
 				'unitType' => 'unit_listing',
-				'typeName' => 'Unit Listing (Full Semester)',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			],
-			[
-				'unitType' => 'unit_listing_short',
-				'typeName' => 'Unit Listing (Short Semester)',
+				'typeName' => 'Unit Listing',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

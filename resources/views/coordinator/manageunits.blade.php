@@ -22,7 +22,7 @@
 
         <div class="col-md-9">
             <!--  this panel shows the created units -->
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Units</h1>
                 </div>

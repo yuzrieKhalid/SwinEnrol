@@ -22,7 +22,7 @@
 
         <div class="col-md-9">
             <!-- Enrolled units -->
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Current Enrolment
                         <span class="pull-right">
@@ -67,7 +67,7 @@
             </div> <!-- end .panel -->
 
             <!-- Available units -->
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Add Units
                         <span class="pull-right">

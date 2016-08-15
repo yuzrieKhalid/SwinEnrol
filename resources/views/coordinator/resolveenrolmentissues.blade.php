@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Resolve Enrolment Issues</h1>
                 </div>

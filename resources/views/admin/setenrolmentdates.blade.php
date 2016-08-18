@@ -23,41 +23,37 @@
                     <h3>Enrolment Dates</h3>
                 </div>
 
-                <div class="panel-body" id="enrolmentData" data-url="{{ route('admin.setenrolmentdates.index') }}">
+                <div class="panel-body" id="panelData" data-url="{{ route('admin.setenrolmentdates.index') }}">
                     @foreach($dates as $enrolment)
-                    <div class="panel panel-default" id="template">
-                        <div class="panel-heading" id="template_heading">
+                    <div class="panel panel-default" id="enrolmentPanel_{{ $enrolment->id }}" data-id="{{ $enrolment->id }}">
+                        <div class="panel-heading">
                             <h4>[<small>{{ $enrolment->year }}</small>] {{ $enrolment->level }} {{ $enrolment->term }} </h4>
                         </div>
 
-                        <div class="panel-body" id="template_body">
+                        <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-8">
                                     <label>Enrolment Period</label>
-                                    <div id="open_close_dates">
+                                    <div>
                                         <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="start" placeholder="{{ $enrolment->reenrolmentOpenDate }}" />
+                                            <input type="text" class="input-sm form-control" id="open_dates_{{ $enrolment->id }}" value="{{ $enrolment->reenrolmentOpenDate }}" />
                                             <span class="input-group-addon">to</span>
-                                            <input type="text" class="input-sm form-control" name="end" placeholder="{{ $enrolment->reenrolmentCloseDate }}" />
+                                            <input type="text" class="input-sm form-control" id="close_dates_{{ $enrolment->id }}" value="{{ $enrolment->reenrolmentCloseDate }}" />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label>Adjustment Date Due</label>
-                                    <div id="adjustment_date">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="adjust" placeholder="{{ $enrolment->adjustmentCloseDate }}" />
-                                        </div>
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" id="adjustment_date_{{ $enrolment->id }}" value="{{ $enrolment->adjustmentCloseDate }}" />
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Current Term Final Exams Result Release</label>
-                                    <div id="results_release_date">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="adjust" placeholder="{{ $enrolment->examResultsRelease }}" />
-                                        </div>
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" id="results_release_date_{{ $enrolment->id }}" value="{{ $enrolment->examResultsRelease }}" />
                                     </div>
                                 </div>
                             </div> <!-- end row -->
@@ -65,13 +61,14 @@
                         </div> <!-- end panel-body -->
 
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-default submit" id="update"
-                                data-method="POST" data-url="{{ route('admin.setenrolmentdates.update', 'enrolment->id') }}">
+                            <button disabled type="button" class="btn btn-default update" id="update" data-id="{{ $enrolment->id }}"
+                                data-year="{{ $enrolment->year }}" data-term="{{ $enrolment->term }}" data-level="{{ $enrolment->level }}"
+                                data-method="PUT" data-url="{{ route('admin.setenrolmentdates.update', '$enrolment->id') }}">
                                 Update
                             </button>
 
-                            <button type="button" class="btn btn-danger pull-right submit" id="delete"
-                                data-method="POST" data-url="{{ route('admin.setenrolmentdates.destroy', $enrolment->id) }}">
+                            <button type="button" class="btn btn-danger pull-right delete" id="delete" data-id="{{ $enrolment->id }}"
+                                data-method="DELETE" data-url="{{ route('admin.setenrolmentdates.destroy', $enrolment->id) }}">
                                 Close Enrolment
                             </button>
                         </div>
@@ -134,7 +131,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default submit" id="openEnrolment"
+                            <button type="button" class="btn btn-default create" id="openEnrolment"
                                  data-method="POST" data-url="{{ route('admin.setenrolmentdates.store') }}">
                                  Open
                              </button>
@@ -163,7 +160,8 @@
         return $('meta[name=_token]').attr('content')
     }
 
-    $('.submit').click(function() {
+    // only for opening new enrolment
+    $('.create').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
         data = {
@@ -181,12 +179,79 @@
             'url': url,
             'method': method,
             'data': data
-        }).done(function(data) {
-            if (method == "POST") {
-                window.location.reload()
-            }
-        })
+        }).done(function(data) { window.location.reload() })
     })
+
+    // delete only
+    $('.delete').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = { _token: getToken() }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) { window.location.reload() })
+    })
+
+    // update only
+    let checkEnrolmentPanel = function() {
+        let url = $('#panelData').data('url')
+        $.get(url, function(obj) {
+            obj.forEach(function(data) {
+                // check the reenrolmentCloseDate field
+                $('#close_dates_' + data.id).change(function() {
+                    $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
+                })
+
+                // check the reenrolmentOpenDate field
+                $('#open_dates_' + data.id).change(function() {
+                    $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
+                })
+
+                // check the adjustmentCloseDate field
+                $('#adjustment_date_' + data.id).change(function() {
+                    $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
+                })
+
+                // check the examResultsRelease field
+                $('#results_release_date_' + data.id).change(function() {
+                    $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
+                })
+            })
+        })
+    }
+    checkEnrolmentPanel()
+
+    $('.update').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+
+        // need all fields to update
+        let id = $(this).data('id')
+        let theYear = $(this).data('year')
+        let theTerm = $(this).data('term')
+        let theLevel = $(this).data('level')
+
+        data = {
+            _token: getToken(),
+            year: theYear,
+            term: theTerm,
+            level: theLevel,
+            reenrolmentCloseDate: $('#close_dates_' + id).val(),
+            reenrolmentOpenDate: $('#open_dates_' + id).val(),
+            adjustmentCloseDate: $('#adjustment_date_' + id).val(),
+            examResultsRelease: $('#results_release_date_' + id).val()
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) { window.location.reload() })
+    })
+
 }) ()
 </script>
 @stop

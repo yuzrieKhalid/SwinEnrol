@@ -22,8 +22,10 @@ class SetEnrolmentDateController extends Controller
         $dates  = EnrolmentDates::all();
 
         $data['dates'] = $dates;
-        
+
         return view ('admin.setenrolmentdates', $data);
+
+        // return response()->json(EnrolmentDates::all());
     }
 
     /**
@@ -34,6 +36,12 @@ class SetEnrolmentDateController extends Controller
     public function create()
     {
         // return view ('admin.setenrolmentdates');
+        $data = [];
+        $dates  = EnrolmentDates::all();
+
+        $data['dates'] = $dates;
+
+        return view ('admin.setenrolmentdates', $data);
     }
 
     /**
@@ -44,7 +52,27 @@ class SetEnrolmentDateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'year',
+            'level',
+            'term',
+            'reenrolmentOpenDate',
+            'reenrolmentCloseDate',
+            'adjustmentCloseDate',
+            'examResultsRelease'
+        ]);
+
+        $enrolment = new EnrolmentDates;
+        $enrolment->year = $input['year'];
+        $enrolment->level = $input['level'];
+        $enrolment->term = $input['term'];
+        $enrolment->reenrolmentOpenDate = $input['reenrolmentOpenDate'];
+        $enrolment->reenrolmentCloseDate = $input['reenrolmentCloseDate'];
+        $enrolment->adjustmentCloseDate = $input['adjustmentCloseDate'];
+        $enrolment->examResultsRelease = $input['examResultsRelease'];
+        $enrolment->save();
+
+        return response()->json($enrolment);
     }
 
     /**
@@ -55,7 +83,8 @@ class SetEnrolmentDateController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
+        // return response()->json(EnrolmentDates::findOrFail($id)->id);
     }
 
     /**
@@ -66,7 +95,8 @@ class SetEnrolmentDateController extends Controller
      */
     public function edit($id)
     {
-        //
+        // there's no need for a specific page
+        // we use the main set enrolment page to directly edit
     }
 
     /**
@@ -78,7 +108,27 @@ class SetEnrolmentDateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'year',
+            'level',
+            'term',
+            'reenrolmentOpenDate',
+            'reenrolmentCloseDate',
+            'adjustmentCloseDate',
+            'examResultsRelease'
+        ]);
+
+        $enrolment = EnrolmentDates::findOrFail($id);
+        $enrolment->year = $input['year'];
+        $enrolment->level = $input['level'];
+        $enrolment->term = $input['term'];
+        $enrolment->reenrolmentOpenDate = $input['reenrolmentOpenDate'];
+        $enrolment->reenrolmentCloseDate = $input['reenrolmentCloseDate'];
+        $enrolment->adjustmentCloseDate = $input['adjustmentCloseDate'];
+        $enrolment->examResultsRelease = $input['examResultsRelease'];
+        $enrolment->save();
+
+        return response()->json($enrolment);
     }
 
     /**
@@ -89,6 +139,9 @@ class SetEnrolmentDateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $enrolment = EnrolmentDates::findOrFail($id);
+        $enrolment->delete();
+
+        return response()->json($enrolment);
     }
 }

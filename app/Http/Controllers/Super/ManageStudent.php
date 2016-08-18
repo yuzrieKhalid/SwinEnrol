@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 class ManageStudent extends Controller
 {
     /**
@@ -16,8 +18,9 @@ class ManageStudent extends Controller
      */
     public function index()
     {
-        //
-        return view ('super.managestudent');
+        $data['users'] = User::where('permissionLevel', '=', 1)->get();
+
+        return view ('super.managestudent', $data);
     }
 
     /**

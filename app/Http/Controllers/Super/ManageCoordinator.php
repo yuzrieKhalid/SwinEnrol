@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 class ManageCoordinator extends Controller
 {
     /**
@@ -16,8 +18,9 @@ class ManageCoordinator extends Controller
      */
     public function index()
     {
-        //
-        return view ('super.managecoordinator');
+        $data['users'] = User::where('permissionLevel', '=', 2)->get();
+        
+        return view ('super.managecoordinator', $data);
     }
 
     /**
@@ -51,6 +54,7 @@ class ManageCoordinator extends Controller
     public function show($id)
     {
         //
+        return response()->json(User::where('username', '=', $id)->get());
     }
 
     /**

@@ -22,15 +22,17 @@
                                 <th>Username</th>
                                 <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managestudentadmin/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
-                            <tr>
-                                <td class="td_username">admin</td>
-                                <td>
-                                    <div class="pull-right">
-                                        <a class="btn btn-default" href="#" role="button">Edit</a>
-                                        <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td class="td_username">{{ $user->username }}</td>
+                                    <td>
+                                        <div class="pull-right">
+                                            <a class="btn btn-default" href="#" role="button">Edit</a>
+                                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>

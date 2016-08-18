@@ -35,7 +35,7 @@
                                 <div class="col-md-8">
                                     <label>Enrolment Period</label>
                                     <div>
-                                        <div class="input-daterange input-group" id="datepicker">
+                                        <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                             <input type="text" class="input-sm form-control" id="open_dates_{{ $enrolment->id }}" value="{{ $enrolment->reenrolmentOpenDate }}" />
                                             <span class="input-group-addon">to</span>
                                             <input type="text" class="input-sm form-control" id="close_dates_{{ $enrolment->id }}" value="{{ $enrolment->reenrolmentCloseDate }}" />
@@ -45,14 +45,14 @@
 
                                 <div class="col-md-4">
                                     <label>Adjustment Date Due</label>
-                                    <div class="input-daterange input-group" id="datepicker">
+                                    <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                         <input type="text" class="input-sm form-control" id="adjustment_date_{{ $enrolment->id }}" value="{{ $enrolment->adjustmentCloseDate }}" />
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Current Term Final Exams Result Release</label>
-                                    <div class="input-daterange input-group" id="datepicker">
+                                    <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                         <input type="text" class="input-sm form-control" id="results_release_date_{{ $enrolment->id }}" value="{{ $enrolment->examResultsRelease }}" />
                                     </div>
                                 </div>
@@ -112,19 +112,19 @@
                             </select>
 
                             <label>Enrolment Period</label>
-                            <div class="input-daterange input-group" id="datepicker">
+                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                 <input type="text" class="input-sm form-control" id="reenrolmentCloseDate" name="start"/>
                                 <span class="input-group-addon">to</span>
                                 <input type="text" class="input-sm form-control" id="reenrolmentOpenDate" name="end"/>
                             </div>
 
                             <label>Adjustment Date Due</label>
-                            <div class="input-daterange input-group" id="datepicker">
+                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                 <input type="text" class="input-sm form-control" id="adjustmentCloseDate" name="adjust"/>
                             </div>
 
                             <label>Current Term Final Exams Result Release</label>
-                            <div class="input-daterange input-group" id="datepicker">
+                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                 <input type="text" class="input-sm form-control" id="examResultsRelease" name="adjust"/>
                             </div>
 
@@ -147,12 +147,15 @@
 
 
 @section('extra_js')
-<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-<script>
-// $('#foundation_semester1 .input-daterange').datepicker({
-//     format: 'yyyy-mm-dd'
-// })
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}">
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '-3d'
+});
 
+</script>
+
+<script>
 (function() {
 
     // Get CSRF token

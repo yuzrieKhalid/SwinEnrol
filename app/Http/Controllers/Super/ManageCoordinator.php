@@ -19,8 +19,8 @@ class ManageCoordinator extends Controller
     public function index()
     {
         $data['users'] = User::where('permissionLevel', '=', 2)->get();
-        
-        return view ('super.managecoordinator', $data);
+
+        return view('super.managecoordinator', $data);
     }
 
     /**
@@ -30,8 +30,7 @@ class ManageCoordinator extends Controller
      */
     public function create()
     {
-        //
-        return view ('super.managecoordinator_create');
+        return view('super.managecoordinator_create');
     }
 
     /**
@@ -42,7 +41,18 @@ class ManageCoordinator extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'username',
+            'password'
+        ]);
+
+        $user = new User;
+        $user->username = $input['username'];
+        $user->password = bcrypt($input['password']);
+        $user->permissionLevel = 2;
+        $user->save();
+
+        return redirect('super/managecoordinator');
     }
 
     /**
@@ -65,7 +75,11 @@ class ManageCoordinator extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['user'] = User::where('permissionLevel', '=', 2)
+        ->where('username', '=', $id)
+        ->get();
+
+        return view('super.managecoordinator_create', $data);
     }
 
     /**
@@ -77,7 +91,19 @@ class ManageCoordinator extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'username',
+            'password'
+        ]);
+
+        $user = User::where('permissionLevel', '=', 2)
+        ->where('username', '=', $id)
+        ->update([
+            'username' => $input['username'],
+            'password' => $input['password']
+        ]);
+
+        return redirect('super/managecoordinator');
     }
 
     /**
@@ -88,6 +114,10 @@ class ManageCoordinator extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('permissionLevel', '=', 2)
+        ->where('username', '=', $id)
+        ->delete();
+
+        return redirect('super/managecoordinator');
     }
 }

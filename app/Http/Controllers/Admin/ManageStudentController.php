@@ -147,4 +147,13 @@ class ManageStudentController extends Controller
         $student->delete();
         return response()->json($student);
     }
+
+    /**
+     * Sends a request to retrieve a file from the user
+     *
+     */
+    public function fileUpload()
+    {
+        // TODO: upload file logic
+    }
 }

@@ -24,33 +24,46 @@
                 </div>
 
                 <div class="panel-body">
-                    <h3>
-                        <span class="pull-right">
+                    <!-- maybe should use a <form> -->
+                    <h3>Add Student</h3><hr>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
+                                <label>Bulk Import from Excel file</label>
+                                <input id="upload" type="file">
+                            </form>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <label>Add Student (1 Person)</label>
                             <!-- the modal is at the bottom of the page-->
-                            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                            <a class="form-control btn btn-default" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
                                 Add Student
                             </a>
-                            <a class="btn btn-default" href="#" role="button">Import File</a>
-                            <a class="btn btn-default" href="#" role="button">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            </a>
-                        </span>
-                        <label for="search">Search Students:</label>
-                        <input type="search" name="search" id="search"></input>
-                    </h3>
-                    <table class="table">
+                        </div>
+                    </div>
+
+                    <h3>Student List</h3>
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <th>Student ID</th>
-                            <th colspan="2">Student Name</th>
-                            <td>
+                            <th>Student Name</th>
+                            <th>
+                                <input type="search" id="search" placeholder="Search Student">
+                            </th>
                         </thead>
                         @foreach ($students as $student)
                         <tr>
                             <td>{{ $student->studentID }}</td>
                             <td>{{ $student->givenName }} {{ $student->surname }}</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                            <td>
+                                <a class="btn btn-default" href="#" role="button">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Edit
+                                </a>
+                                <a class="btn btn-default" href="#" role="button">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -136,6 +149,16 @@
             'method': method,
             'data': data
         }).done(function(data) { window.location.reload() })
+    })
+
+    $('#upload').change(function() {
+        // TODO: Upload file logic in JS
+        console.log($(this).val());
+    })
+
+    $('#search').change(function() {
+        // TODO: search the table for students
+        console.log($(this).val());
     })
 }) ()
 </script>

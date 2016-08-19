@@ -24,6 +24,7 @@ Route::group([
     'middleware' => 'web',
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
+    Route::post('managestudents/upload', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
 });

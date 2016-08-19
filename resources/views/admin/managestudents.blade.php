@@ -25,7 +25,7 @@
 
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <div class="panel panel-success">
                                 <div class="panel-heading text-center">
                                     Bulk Import from Excel file
@@ -36,13 +36,13 @@
                                     </form>
                                 </div>
                                 <div class="panel-footer">
-                                    <a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target="#processData">
+                                    <button class="btn btn-success" id="processButton" role="button" data-toggle="modal" data-target="#processData" disabled>
                                         Process Data
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <div class="panel panel-info">
                                 <div class="panel-heading text-center">
                                     Add Student
@@ -142,6 +142,40 @@
                     </div> <!-- end .modal-dialog -->
                 </div> <!-- end .modal fade -->
 
+                <!-- Modal: Bulk Import Data Processing -->
+                <div class="modal fade" id="processData" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Add a Student</h2>
+                            </div>
+
+                            <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
+                                <div class="modal-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th>Student ID</th>
+                                            <th>Surname</th>
+                                            <th>Firstname</th>
+                                            <th>Email</th>
+                                            <th>Course Code</th>
+                                        </thead>
+                                        <!-- template row to be populated based on the input from the file -->
+                                        <tr class="tr_template hidden">
+                                            <td class="id">ID</td>
+                                            <td class="surname">Surname</td>
+                                            <td class="firstname">Firstname</td>
+                                            <td class="email">Email</td>
+                                            <td class="coursecode">Course Code</td>
+                                        </tr>
+                                    </table>
+                                </div> <!-- end modal-body -->
+                            </form>
+                        </div> <!-- end. modal-content-->
+                    </div> <!-- end .modal-dialog -->
+                </div> <!-- end .modal fade -->
+
             </div> <!-- end .panel -->
         </div>
     </div>
@@ -156,6 +190,7 @@
         return $('meta[name=_token]').attr('content')
     }
 
+    // add one student
     $('.create').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
@@ -176,16 +211,21 @@
     })
 
 
-    // TODO: Upload file logic in JS
+    // enable the button only if a file has been chosen
     $('#upload').change(function() {
-        console.log($(this).val());
+        $('#processButton').prop('disabled', false)
+    })
+
+    // TODO: Upload file logic in JS
+    $('#processData').click(function() {
+        // using row template class
     })
 
     // TODO: search the table for students
     $('#search').change(function() {
         console.log($(this).val());
     })
-    
+
 }) ()
 </script>
 @stop

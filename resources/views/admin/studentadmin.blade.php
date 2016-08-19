@@ -15,7 +15,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Home</h1>
+                    <h3>Home</h3>
                 </div>
 
                 <div class="panel-body">

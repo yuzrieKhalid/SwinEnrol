@@ -20,54 +20,78 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Manage Students</h1>
+                    <h3>Manage Students</h3>
                 </div>
 
                 <div class="panel-body">
-                    <!-- maybe should use a <form> -->
-                    <h3>Add Student</h3><hr>
                     <div class="row">
-                        <div class="col-md-6 text-center">
-                            <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
-                                <label>Bulk Import from Excel file</label>
-                                <input id="upload" type="file">
-                            </form>
+                        <div class="col-md-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading text-center">
+                                    Bulk Import from Excel file
+                                </div>
+                                <div class="panel-body">
+                                    <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
+                                        <input id="upload" type="file">
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target="#processData">
+                                        Process Data
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-center">
-                            <label>Add Student (1 Person)</label>
-                            <!-- the modal is at the bottom of the page-->
-                            <a class="form-control btn btn-default" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
-                                Add Student
-                            </a>
+                        <div class="col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading text-center">
+                                    Add Student
+                                </div>
+                                <div class="panel-body">
+                                    Adds one individual student
+                                </div>
+                                <div class="panel-footer">
+                                    <!-- the modal is at the bottom of the page-->
+                                    <a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                                        Add Student
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <h3>Student List</h3>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>
-                                <input type="search" id="search" placeholder="Search Student">
-                            </th>
-                        </thead>
-                        @foreach ($students as $student)
-                        <tr>
-                            <td>{{ $student->studentID }}</td>
-                            <td>{{ $student->givenName }} {{ $student->surname }}</td>
-                            <td>
-                                <a class="btn btn-default" href="#" role="button">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    Edit
-                                </a>
-                                <a class="btn btn-default" href="#" role="button">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            Student List
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>
+                                        <input type="search" id="search" placeholder="Search Student">
+                                    </th>
+                                </thead>
+                                @foreach ($students as $student)
+                                <tr>
+                                    <td>{{ $student->studentID }}</td>
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#" role="button">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-default" href="#" role="button">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal: Add Student -->
@@ -151,15 +175,17 @@
         }).done(function(data) { window.location.reload() })
     })
 
+
+    // TODO: Upload file logic in JS
     $('#upload').change(function() {
-        // TODO: Upload file logic in JS
         console.log($(this).val());
     })
 
+    // TODO: search the table for students
     $('#search').change(function() {
-        // TODO: search the table for students
         console.log($(this).val());
     })
+    
 }) ()
 </script>
 @stop

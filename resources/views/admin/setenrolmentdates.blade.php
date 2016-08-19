@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-9">
-            <div class="panel panel-danger">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Enrolment Dates</h3>
                 </div>

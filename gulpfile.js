@@ -17,6 +17,7 @@ elixir(function(mix) {
 
     const datepickerPath = './node_modules/bootstrap-datepicker/dist/';
     const touchspinPath = './node_modules/bootstrap-touchspin/dist/';
+    const xlsxPath = './node_modules/xlsx/dist/';
 
     mix.sass([
         'app.scss',
@@ -30,9 +31,11 @@ elixir(function(mix) {
         bootstrapPath + 'javascripts/bootstrap.js',
         datepickerPath + 'js/bootstrap-datepicker.js',
         touchspinPath + 'jquery.bootstrap-touchspin.js'
+
     ], 'public/js/app.js');
 
     mix.copy(bootstrapPath + 'fonts/**', 'public/fonts');
     mix.copy(fontAwesomePath + 'fonts/**', 'public/fonts/fontawesome');
+    mix.copy(xlsxPath + 'xlsx.full.min.js', 'public/js/xlsx.min.js');
 
 });

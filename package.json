@@ -9,6 +9,7 @@
     "bootstrap-sass": "^3.0.0",
     "bootstrap-touchspin": "^3.1.1",
     "jquery": "^2.2.3",
-    "laravel-elixir": "*"
+    "laravel-elixir": "*",
+    "xlsx": "^0.8.0"
   }
 }

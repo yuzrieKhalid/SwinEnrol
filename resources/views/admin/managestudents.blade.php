@@ -92,97 +92,108 @@
                             </table>
                         </div>
                     </div>
-                </div>
-
-                <!-- Modal: Add Student -->
-                <div class="modal fade" id="adminAddStudent" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">Add a Student</h2>
-                            </div>
-
-                            <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Student ID:</label>
-                                        <input class="form-control" id="studentID" placeholder="4318595">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Family Name / Surname:</label>
-                                        <input type="text" class="form-control" id="surname" placeholder="Doe">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Given Name:</label>
-                                        <input type="text" class="form-control" id="givenName" placeholder="John">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="example.com">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Course Code:</label>
-                                        <input type="text" class="form-control" id="courseCode" placeholder="IO47">
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default create"
-                                        data-method="POST" data-url="{{ route('admin.managestudents.store') }}">
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                        </div> <!-- end. modal-content-->
-                    </div> <!-- end .modal-dialog -->
-                </div> <!-- end .modal fade -->
-
-                <!-- Modal: Bulk Import Data Processing -->
-                <div class="modal fade" id="processData" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">Add a Student</h2>
-                            </div>
-
-                            <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
-                                <div class="modal-body">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <th>Student ID</th>
-                                            <th>Surname</th>
-                                            <th>Firstname</th>
-                                            <th>Email</th>
-                                            <th>Course Code</th>
-                                        </thead>
-                                        <!-- template row to be populated based on the input from the file -->
-                                        <tr class="tr_template hidden">
-                                            <td class="id">ID</td>
-                                            <td class="surname">Surname</td>
-                                            <td class="firstname">Firstname</td>
-                                            <td class="email">Email</td>
-                                            <td class="coursecode">Course Code</td>
-                                        </tr>
-                                    </table>
-                                </div> <!-- end modal-body -->
-                            </form>
-                        </div> <!-- end. modal-content-->
-                    </div> <!-- end .modal-dialog -->
-                </div> <!-- end .modal fade -->
-
+                </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
-        </div>
-    </div>
+
+            <!-- Modal: Add Student -->
+            <div class="modal fade" id="adminAddStudent" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">Add a Student</h2>
+                        </div>
+
+                        <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Student ID:</label>
+                                    <input class="form-control" id="studentID" placeholder="4318595">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Family Name / Surname:</label>
+                                    <input type="text" class="form-control" id="surname" placeholder="Doe">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Given Name:</label>
+                                    <input type="text" class="form-control" id="givenName" placeholder="John">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Course Code:</label>
+                                    <input type="text" class="form-control" id="courseCode" placeholder="IO47">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default create"
+                                    data-method="POST" data-url="{{ route('admin.managestudents.store') }}">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end. modal-content-->
+                </div> <!-- end .modal-dialog -->
+            </div> <!-- end .modal fade -->
+
+            <!-- Modal: Bulk Import Data Processing -->
+            <div class="modal fade" id="processData" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Bulk Import Student</h3>
+                        </div>
+
+                        <form class="form" method="POST">
+                            <div class="modal-body">
+                                <table class="table table-striped" id="students_table">
+                                    <thead>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Firstname</th>
+                                        <th>Email</th>
+                                        <th>Course Code</th>
+                                    </thead>
+                                    <!-- template row to be populated based on the input from the file -->
+                                    <tr class="tr_template hidden">
+                                        <td class="id">Student ID</td>
+                                        <td class="surname">Surname</td>
+                                        <td class="firstname">Firstname</td>
+                                        <td class="email">Email</td>
+                                        <td class="coursecode">Course Code</td>
+                                    </tr>
+                                </table>
+                            </div> <!-- end modal-body -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success pull-right" id="import"
+                                    data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
+                                    Import
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end. modal-content-->
+                </div> <!-- end .modal-dialog -->
+            </div> <!-- end .modal fade -->
+
+            <!-- <pre> to debug the json only -->
+            <!-- <pre id="out"></pre> -->
+
+        </div> <!-- end .col-md-9 -->
+    </div> <!-- end .row -->
 </div>
 @stop
 
 @section('extra_js')
+<script src="{{ asset('js/xlsx.min.js') }}"></script>
+
 <script>
 (function() {
     // Get CSRF token
@@ -190,6 +201,8 @@
         return $('meta[name=_token]').attr('content')
     }
 
+    // Normal CRUD Section
+    // -------------------
     // add one student
     $('.create').click(function() {
         let method = $(this).data('method')
@@ -211,14 +224,91 @@
     })
 
 
-    // enable the button only if a file has been chosen
-    $('#upload').change(function() {
+    // Uploading Section
+    // -------------------
+    // 3. Populate the template table with data from Workbook
+    let addStudent = function(student) {
+        let clone_tr = $('#students_table').find('.tr_template').clone()
+        clone_tr.removeClass('hidden')
+        clone_tr.removeClass('tr_template')
+
+        // populate column by column [only get the respective column]
+        clone_tr.children('td.id').html(student.stdID)
+        clone_tr.children('td.surname').html(student.surname)
+        clone_tr.children('td.firstname').html(student.firstname)
+        clone_tr.children('td.email').html(student.email)
+        clone_tr.children('td.coursecode').html(student.coursecode)
+
+        $('#students_table').append(clone_tr)
+    }
+
+    // 2(a) to JSON Array
+    let to_json = function(workbook) {
+        let result = {}
+        // for (Type SheetNames as SheetName) : in most cases only one but they may separate the data in few sheets
+        workbook.SheetNames.forEach(function(sheetName) {
+            // get the row object array - data in every row (1 row = 1 student)
+            let students = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName])
+            if (students.length > 0) { result[sheetName] = students }
+
+            students.forEach(function(student) {
+                addStudent(student)
+            })
+        })
+
+        return result
+    }
+
+    // 2. Process the workbook into JSON format
+    // Also stores the JSON Array to be transferred into the database
+    let output = ""
+    let process_workbook = function(workbook) {
+        output = JSON.stringify(to_json(workbook), 2, 2)
+
+        // store the output in JSON Object (Array) - students is an array
+        let students = $.parseJSON('[' + output + ']')
+
+        // console.log(students);
+        // $('#out').text(students)
+    }
+
+    // 1. read file
+    let file = []
+    let upload = $('#upload').change(function() {
+        // get the file details (.files[0] since only one file)
+        let file = document.querySelector('input[type=file]').files[0]
+
+        // utility to read file
+        let reader = new FileReader()
+
+        reader.onload = function(event) {
+            // 1. read file content
+            let data = event.target.result
+
+            // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
+            let workbook = XLSX.read(data, {type: 'binary'})
+
+            // 3. Handle the processing
+            process_workbook(workbook)
+        }
+        reader.readAsBinaryString(file)
+
+        // enable the button only if a file has been chosen
         $('#processButton').prop('disabled', false)
     })
 
-    // TODO: Upload file logic in JS
-    $('#processData').click(function() {
-        // using row template class
+    let importData = $('#import').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            // TODO make it accept the array.. well how...
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) { window.location.reload() })
     })
 
     // TODO: search the table for students

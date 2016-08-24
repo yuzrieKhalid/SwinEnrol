@@ -22,10 +22,4 @@ class Unit extends Model
 	{
 		return $this->hasMany('App\EnrolmentUnits', 'unitCode');
 	}
-
-    // inverse relation
-    public function course()
-	{
-		return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
-	}
 }

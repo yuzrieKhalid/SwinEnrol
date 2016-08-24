@@ -15,10 +15,10 @@ class CreateUnitTermTable extends Migration
         Schema::create('unit_term', function (Blueprint $table) {
             $table->string('unitType');
             $table->string('unitCode');
+            $table->string('courseCode');
             $table->integer('year')->unsigned();
             $table->string('term');
             $table->string('enrolmentTerm');
-            $table->string('courseCode')->nullable();
 
             $table->foreign('unitType')->references('unitType')->on('unit_type');
             $table->foreign('unitCode')->references('unitCode')->on('unit')

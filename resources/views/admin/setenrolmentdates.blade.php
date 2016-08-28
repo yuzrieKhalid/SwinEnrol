@@ -6,17 +6,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/admin') }}" class="list-group-item">Home</a>
-                <a href="{{ url('/admin/managestudents') }}" class="list-group-item">Manage Students</a>
-                <a href="{{ url('/admin/setenrolmentdates') }}" class="list-group-item active">Set Enrolment Dates</a>
-            </div>
-        </div>
+        @include('admin.menu')
 
         <div class="col-md-9">
+        <p class="pull-left visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
+                </p> 
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Enrolment Dates</h3>

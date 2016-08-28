@@ -4,17 +4,7 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/student') }}" class="list-group-item">Enrolment Status</a>
-                <a href="{{ url('/student/history') }}" class="list-group-item active">Enrolment History</a>
-                <a href="{{ url('/student/manageunits/create') }}" class="list-group-item">Manage Units</a>
-                <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
-                <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
-                
-                <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item">Other Enrolment Issues</a>
-            </div>
-        </div>
+        @include('student.menu')
 
         <div class="col-md-9">
             <div class="panel panel-default">
@@ -57,7 +47,7 @@
                     </div>
 
                     <!-- Ongoing Units Table -->
-                    <div class="table-responsive">
+                    <!-- <div class="table-responsive">
                         <table class="table">
                             <caption><h3>Current Semester Units</h3></caption>
                             <thead>
@@ -74,17 +64,17 @@
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
                                         @if($unit->status == 'confirmed')
-                                            <!-- Waiting to be approved (Phase 2) -->
-                                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                                            <!Waiting to be approved (Phase 2) -->
+                                            <!-- <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
                                         @endif
                                     </tr>
                                 @endforeach
                             @endif
                         </table>
-                    </div>
+                    </div>  -->
 
                     <!-- Units Not Yet Taken / Failed Table -->
-                    <div class="table-responsive">
+                    <!-- <div class="table-responsive">
                         <table class="table">
                             <caption><h3>Not Completed Units</h3></caption>
                             <thead>
@@ -101,14 +91,14 @@
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
                                         @if($unit->status == 'confirmed')
-                                            <!-- Is currently taken -->
-                                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                            <! Is currently taken -->
+                                            <!-- <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
                                         @endif
                                     </tr>
                                 @endforeach
                             @endif
                         </table>
-                    </div>
+                    </div>  -->
 
                 </div>
             </div> <!-- end .panel -->

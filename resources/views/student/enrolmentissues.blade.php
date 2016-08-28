@@ -4,22 +4,12 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/student') }}" class="list-group-item">Enrolment Status</a>
-                <a href="{{ url('/student/enrolmenthistory') }}" class="list-group-item">Enrolment History</a>
-                <a href="{{ url('/student/manageunits/create') }}" class="list-group-item">Manage Units</a>
-                <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
-                <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
-                <!-- <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a> -->
-                <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item active">Other Enrolment Issues</a>
-            </div>
-        </div>
+        @include('student.menu')
 
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Contact Course Coordinator <small>for Enrolment Issues</small></h1>
+                    <h1>Other Enrolment Issues</h1>
                 </div>
 
                 <div class="panel-body">
@@ -112,9 +102,9 @@
                                         <option value="ICT">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="programWithdrawal">Application Withdrawal from Program</option>
-                                        <option value="leaveOfAbsence">Application for Leave of Absence</option>
-                                        <option value="timetableClash">Form for Student with Irreconcilable Timetable Clashes</option>
-                                        <option value="deferAnOffer">Application to Defer an Offer (Locals Only)</option>
+                                        <!-- <option value="leaveOfAbsence">Application for Leave of Absence</option> -->
+                                        <!-- <option value="timetableClash">Form for Student with Irreconcilable Timetable Clashes</option> -->
+                                        <!-- <option value="deferAnOffer">Application to Defer an Offer (Locals Only)</option> -->
                                         <option value="others">Others (None of the above)</option>
                                     </select>
                                 </div>
@@ -200,12 +190,12 @@
                                 <h4>Swinburne Unit (Exemption Sought)</h4>
                                 <div class="form-group">
                                     <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Unit Code:</label>
+                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
                                     <div class="col-sm-2">
                                         <input type="text" class="form-control" placeholder="HIT0001" disabled>
                                     </div>
                                     <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Unit Title:</label>
+                                    <label class="control-label col-sm-2" for="name">Program Title:</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Makan Mi Maggie" disabled>
                                     </div>
@@ -215,24 +205,23 @@
                                 <div class="form-group">
                                     <!-- Unit Code-->
                                     <label class="control-label col-sm-2" for="name">Unit Code:</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input type="text" class="form-control" placeholder="HIT0001">
                                     </div>
+
+                                    <label class="control-label col-sm-2" for="name">Year:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" placeholder="2010">
+                                    </div> 
+                                    <br>
+
                                     <!-- Unit Title-->
                                     <label class="control-label col-sm-2" for="name">Unit Title:</label>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" placeholder="Makan Mi Maggie">
                                     </div>
                                     <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Year:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="HIT0001">
-                                    </div>
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Institution Name:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Makan Mi Maggie">
-                                    </div>
+                                                                   
                                 </div>
                             </div>
 
@@ -243,12 +232,12 @@
                                 <h4>Program Details</h4>
                                 <div class="form-group">
                                     <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Unit Code:</label>
+                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
                                     <div class="col-sm-2">
                                         <input type="text" class="form-control" placeholder="HIT0001" disabled>
                                     </div>
                                     <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Unit Title:</label>
+                                    <label class="control-label col-sm-2" for="name">Program Title:</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Makan Mi Maggie" disabled>
                                     </div>
@@ -311,177 +300,8 @@
                                 </p>
                             </div>
 
-                            <!-- Case: Leave of Absence -->
-                            <div class="hidden" id="leaveOfAbsence">
-                                <h3>APPLICATION FOR LEAVE OF ABSENCE</h3>
-
-                                <h4>Details</h4>
-                                <div class="form-group">
-                                    <!-- Unit Code-->
-                                    <label class="control-label col-sm-3" for="name">Teaching Period:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-1" for="name">Year:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- Date of last class attended -->
-                                    <label class="control-label col-sm-3" for="name">Last class attended:</label>
-                                    <div class="col-sm-3" id="lastClassAttended_loa">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="lastClassAttended" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Reason for LoA -->
-                                <label class="control-label" for="name">Reasons for Leave of Absence:</label>
-                                <textarea class="form-control custom-control" name="cName" rows="3" style="resize:none"></textarea>
-
-                                <!-- Conditions -->
-                                <h4>Conditions</h4>
-                                <p>
-                                    1. For domestic students the last date to lodge an application for leave of absence without a Financial Penalty is by close of business on the Unit of Study Census Date
-                                    OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment/Invoice).
-                                </p>
-                                <p>
-                                    2. Refunds are subject to the return of your University ID card, fee receipt, and any other University property or materials you may have in your possession.
-                                </p>
-                                <p>
-                                    3. No refund of fees will be made when a student withdraws from a unit of study after close business of the Unit of Study Census Date.
-                                </p>
-                                <p>
-                                    4. Before applying for leave of absence students are advised to read the 'Deferral and Leave of Absence' policies and regulations on
-                                    Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at
-                                    <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
-                                </p>
-                            </div>
-
-                            <!-- Case: Timetable Clash -->
-                            <div class="hidden" id="timetableClash">
-                                <h3>IRRECONCILABLE TIMETABLE CLASHES FORM</h3>
-
-                                <h4>Timetable Clash Details</h4>
-                                <h5>Unit 1</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <tr>
-                                            <td>Unit Code</td>
-                                            <td>Activity (EG: LE1/01)</td>
-                                            <td>Day</td>
-                                            <td>Time</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <h5>Unit 2</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <tr>
-                                            <td>Unit Code</td>
-                                            <td>Activity (EG: LE1/01)</td>
-                                            <td>Day</td>
-                                            <td>Time</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <h4>Special Conditions [ <small><span class="label label-primary"><span class="glyphicon glyphicon-ok"></span></span> the related box</small> ]</h4>
-                                <div id="timetableSpecialCondition">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="spCase1">
-                                            A final year mandatory unit has a timetable clash with another mandatory unit.
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="spCase2">
-                                            A mandatory pre-requisite unit (which cannot be deferred to a later semester in course) clashes with another unit.
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="spCase3">
-                                            A mandatory unit is offered once a year (which cannot be deferred to a later semester in course) and is clashed with another unit.
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="spCase4">
-                                            A mandatory unit is phasing out.
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value="spCase5">
-                                            A mandatory unit is clashes with elective/minor units and there is no feasible replacement unit.
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <h4>Informing the Unit Convenors</h4>
-                                <h5>Unit Convenor 1</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Unit Code</td>
-                                            <td>Date</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <h5>Unit Convenor 2</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Unit Code</td>
-                                            <td>Date</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                            <td><input type="text" class="form-control"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <!-- Disclaimers -->
-                                <h4>Disclaimers</h4>
-                                <p>
-                                    1. It is your decision to enroll into the unit with timetable clashes.
-                                </p>
-                                <p>
-                                    2. It is your responsibility to put in extra time and effort to revise on the lessons that you might have missed.
-                                    Do not expect the academic staff (your lecturers) to repeat the lessons that you have missed. Academic staff will extend
-                                    their assistance to you as much as they are able to, but the responsibility for you to cope with your lessons is solely yours.
-                                </p>
-                                <p>
-                                    3. The University will not entertain any special consideration appeals if you are not able to cope in your studies due to your decision to attend clashes classes.
-                                </p>
-                                <p>
-                                    4. The unit convenors of the units that have a timetable clash have to be informed about the timetable clash.
-                                </p>
-                            </div>
+                    
+                            
 
                             <!-- Case: Defer an Offer -->
                             <div class="hidden" id="deferAnOffer">

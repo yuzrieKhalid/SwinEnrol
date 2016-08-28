@@ -2,19 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <!-- <div class="row"> -->
+     <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/coordinator') }}" class="list-group-item">Home</a>
-                <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item">Manage Study Planner</a>
-                <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item active">Manage Unit Listings</a>
-                <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item">Manage Units</a>
-                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item">Resolve Enrolment Issues</a>
-            </div>
-        </div>
+       
+         @include('coordinator.menu')
 
         <div class="col-md-9">
+            <p class="pull-left visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
+            </p>            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Unit Listings</h1>
@@ -162,5 +159,32 @@
             <!-- end Add Unit Modal -->
         </div>
     </div>
+    <!-- </div> -->
+
+    
 </div>
 @stop
+
+<!-- @section('extra_js')
+<script>
+    $(document$).ready(function(){
+
+    $('.nav-menu-bt').click(function() {
+        $('.navbar').css('-webkit-transform', 'translate(0,0)');
+        console.log('Pressed');
+    });
+});
+
+------ css ------
+.navbar{
+  position: fixed;
+  height:100%;
+  width:20%;
+  overflow: hidden;
+  background-color: #48a770;
+
+  -webkit-transform: translate(-100,0);
+}
+
+</script>
+@stop -->

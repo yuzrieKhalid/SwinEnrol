@@ -1,27 +1,16 @@
 @extends('layouts.app')
 
-@section('extra_head')
+<!-- @section('extra_head')
     <meta name="_token" content="{{ csrf_token() }}"/>
-@stop
+@stop -->
 
 @section('content')
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/student') }}" class="list-group-item">Enrolment Status</a>
-                <a href="{{ url('/student/enrolmenthistory') }}" class="list-group-item">Enrolment History</a>
-                <a href="{{ url('/student/manageunits/create') }}" class="list-group-item active">Manage Units</a>
-                <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
-                <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
-                <!-- <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a> -->
-                <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item">Other Enrolment Issues</a>
-            </div>
-        </div>
+        @include('student.menu')
 
         <div class="col-md-9">
-            <!-- Enrolled units -->
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Current Enrolment
@@ -85,7 +74,7 @@
                     </div>
 
                     <div class="core_group">
-                        <table class="table">
+                        <table class="table" id="core-table">
                             <thead>
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
@@ -101,9 +90,7 @@
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                     </button>
 
-                                    <!-- <a class="submit pull-right" href="{{ $unit->unitCode }}" role="button">
-                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
-                                    </a> -->
+                                
                                 </td>
                             </tr>
                             @endforeach
@@ -171,6 +158,7 @@
             _token: getToken(),
             unitCode: $(this).attr('id')
         }
+            $(this).parent().parent().remove();
 
         $.ajax({
             'url': url,
@@ -179,13 +167,21 @@
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
+                //$('#addUnit').modal().hide()
                 window.location.reload()
+                // $(this).closest('tr').revmove()
+
             } else {
                 // if button method not as preset
                 console.log('It is of unknown method')
                 window.location.reload()
             }
         })
+
+
+        // $(document).on("click", "remove" , function() {
+        //     $(this).parent().remove();
+        // });
     })
 }) ()
 </script>

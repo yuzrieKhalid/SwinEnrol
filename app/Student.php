@@ -8,6 +8,13 @@ class Student extends Model
 {
     public $table = 'student';
 
+    protected $fillable = [
+        'studentID',
+        'surname',
+        'givenName',
+        'email',
+        'courseCode'
+    ];
     // primary key
     protected $primaryKey = 'studentID';
     public $increments = false;
@@ -27,4 +34,5 @@ class Student extends Model
 	{
 		return $this->hasMany('App\EnrolmentUnits', 'studentID');
 	}
+
 }

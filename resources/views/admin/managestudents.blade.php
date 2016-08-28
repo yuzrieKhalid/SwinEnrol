@@ -179,12 +179,13 @@
                                 </button>
                             </div>
                         </form>
+
                     </div> <!-- end. modal-content-->
                 </div> <!-- end .modal-dialog -->
             </div> <!-- end .modal fade -->
 
             <!-- <pre> to debug the json only -->
-            <!-- <pre id="out"></pre> -->
+            <pre id="out"></pre>
 
         </div> <!-- end .col-md-9 -->
     </div> <!-- end .row -->
@@ -220,14 +221,16 @@
             'url': url,
             'method': method,
             'data': data
-        }).done(function(data) { window.location.reload() })
+        }).done(function(data) {
+            // window.location.reload()
+        })
     })
 
 
     // Uploading Section
     // -------------------
     // 3. Populate the template table with data from Workbook
-    let addStudent = function(student) {
+    let populateTable = function(student) {
         let clone_tr = $('#students_table').find('.tr_template').clone()
         clone_tr.removeClass('hidden')
         clone_tr.removeClass('tr_template')
@@ -252,7 +255,7 @@
             if (students.length > 0) { result[sheetName] = students }
 
             students.forEach(function(student) {
-                addStudent(student)
+                populateTable(student)
             })
         })
 
@@ -260,20 +263,19 @@
     }
 
     // 2. Process the workbook into JSON format
-    // Also stores the JSON Array to be transferred into the database
+    let students = []
     let output = ""
     let process_workbook = function(workbook) {
         output = JSON.stringify(to_json(workbook), 2, 2)
 
         // store the output in JSON Object (Array) - students is an array
-        let students = $.parseJSON('[' + output + ']')
+        students = $.parseJSON('[' + output + ']')
 
-        // console.log(students);
-        // $('#out').text(students)
+        // console.log(students[0].sheet1.length);
+        $('#out').text(output)
     }
 
     // 1. read file
-    let file = []
     let upload = $('#upload').change(function() {
         // get the file details (.files[0] since only one file)
         let file = document.querySelector('input[type=file]').files[0]
@@ -297,18 +299,24 @@
         $('#processButton').prop('disabled', false)
     })
 
+    // Transferring the array into the database through AJAX
     let importData = $('#import').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
-        data = {
-            // TODO make it accept the array.. well how...
+        let data = {
+            '_token': getToken(),
+            'jsondata': output,
+            'arrlength': students[0].sheet1[0].length
         }
 
         $.ajax({
             'url': url,
             'method': method,
-            'data': data
-        }).done(function(data) { window.location.reload() })
+            'data': data,
+            enctype: 'multipart/form-data'
+        }).done(function(data) {
+            window.location.reload()
+        })
     })
 
     // TODO: search the table for students

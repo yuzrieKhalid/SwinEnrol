@@ -152,8 +152,38 @@ class ManageStudentController extends Controller
      * Sends a request to retrieve a file from the user
      *
      */
-    public function fileUpload()
+    public function fileUpload(Request $request)
     {
-        // TODO: upload file logic
+        $input = $request->only([
+            'jsondata',
+            'arrlength'
+        ]);
+
+        $arrlength = $input['arrlength'];
+        $jsondata = $input['jsondata'];
+        $jsonArray = json_decode($jsondata, true);
+
+        $student = new Student;
+        for ($i=0; $i < $arrlength; $i++) {
+            $student->create([
+                'studentID' => $jsonArray['sheet1'][$i]['stdID'],
+                'surname' => $jsonArray['sheet1'][$i]['surname'],
+                'givenName' => $jsonArray['sheet1'][$i]['firstname'],
+                'email' => $jsonArray['sheet1'][$i]['email'],
+                'courseCode' => $jsonArray['sheet1'][$i]['coursecode'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        return response()->json($student);
     }
 }
+
+// console.log(studentsInfo[0].firstname); // this to help easier access the students
+// let studentsInfo = {}
+// // to access the students : console.log(students[0].sheet1[0].firstname);
+// for (var i = 0; i < students[0].sheet1.length; i++) {
+//     // to access each student : console.log(students[0].sheet1[i].firstname);
+//     studentsInfo[i] = students[0].sheet1[i]
+// }

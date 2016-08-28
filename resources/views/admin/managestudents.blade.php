@@ -185,7 +185,7 @@
             </div> <!-- end .modal fade -->
 
             <!-- <pre> to debug the json only -->
-            <pre id="out"></pre>
+            <!-- <pre id="out"></pre> -->
 
         </div> <!-- end .col-md-9 -->
     </div> <!-- end .row -->

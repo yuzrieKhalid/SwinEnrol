@@ -163,20 +163,19 @@ class ManageStudentController extends Controller
         $jsondata = $input['jsondata'];
         $jsonArray = json_decode($jsondata, true);
 
-        $student = new Student;
-        for ($i=0; $i < $arrlength; $i++) {
-            $student->create([
-                'studentID' => $jsonArray['sheet1'][$i]['stdID'],
-                'surname' => $jsonArray['sheet1'][$i]['surname'],
-                'givenName' => $jsonArray['sheet1'][$i]['firstname'],
-                'email' => $jsonArray['sheet1'][$i]['email'],
-                'courseCode' => $jsonArray['sheet1'][$i]['coursecode'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+        foreach ($jsonArray as $data) {
+            foreach ($data as $value) {
+                $student = new Student;
+                $student->studentID = $value['stdID'];
+                $student->surname = $value['surname'];
+                $student->givenName = $value['firstname'];
+                $student->email = $value['email'];
+                $student->courseCode = $value['coursecode'];
+                $student->save();
+            }
         }
 
-        return response()->json($student);
+        return response()->json($jsonArray);
     }
 }
 

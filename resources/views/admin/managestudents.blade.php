@@ -305,7 +305,7 @@
         let data = {
             '_token': getToken(),
             'jsondata': output,
-            'arrlength': students[0].sheet1[0].length
+            'arrlength': students[0].data[0].length
         }
 
         $.ajax({

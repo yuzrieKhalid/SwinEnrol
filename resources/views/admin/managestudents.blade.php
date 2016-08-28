@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('extra_head')
-<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
 <meta name="_token" content="{{ csrf_token() }}" />
 @stop
 

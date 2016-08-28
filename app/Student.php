@@ -20,11 +20,6 @@ class Student extends Model
     public $increments = false;
 
     // relation
-    public function internal_course_transfer()
-	{
-		return $this->hasMany('App\InternalCourseTransfer', 'studentID');
-	}
-
 	public function student_enrolment_issues()
 	{
 		return $this->hasMany('App\StudentEnrolmentIssues', 'studentID');
@@ -35,4 +30,9 @@ class Student extends Model
 		return $this->hasMany('App\EnrolmentUnits', 'studentID');
 	}
 
+    // inverse relation
+    public function course()
+    {
+        return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
+    }
 }

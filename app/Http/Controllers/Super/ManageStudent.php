@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 class ManageStudent extends Controller
 {
     /**
@@ -16,8 +18,9 @@ class ManageStudent extends Controller
      */
     public function index()
     {
-        //
-        return view ('super.managestudent');
+        $data['users'] = User::where('permissionLevel', '=', 1)->get();
+
+        return view ('super.managestudent', $data);
     }
 
     /**
@@ -27,8 +30,7 @@ class ManageStudent extends Controller
      */
     public function create()
     {
-        //
-        return view ('super.managestudent_create');
+        return view('super.managestudent_create');
     }
 
     /**
@@ -39,7 +41,18 @@ class ManageStudent extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'username',
+            'password'
+        ]);
+
+        $user = new User;
+        $user->username = $input['username'];
+        $user->password = bcrypt($input['password']);
+        $user->permissionLevel = 1;
+        $user->save();
+
+        return redirect('super/managestudent');
     }
 
     /**
@@ -61,7 +74,12 @@ class ManageStudent extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['user'] = User::where('permissionLevel', '=', 1)
+        ->where('username', '=', $id)
+        ->get();
+
+        // return response()->json($data);
+        return view ('super.managestudent_create', $data);
     }
 
     /**
@@ -73,7 +91,19 @@ class ManageStudent extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'username',
+            'password'
+        ]);
+
+        $user = User::where('permissionLevel', '=', 1)
+        ->where('username', '=', $id)
+        ->update([
+            'username' => $input['username'],
+            'password' => $input['password']
+        ]);
+
+        return redirect('super/managestudent');
     }
 
     /**
@@ -84,6 +114,10 @@ class ManageStudent extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('permissionLevel', '=', 1)
+        ->where('username', '=', $id)
+        ->delete();
+
+        return redirect('super/managestudent');
     }
 }

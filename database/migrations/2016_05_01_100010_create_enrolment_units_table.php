@@ -26,7 +26,7 @@ class CreateEnrolmentUnitsTable extends Migration
 
             $table->foreign('studentID')->references('studentID')->on('student');
             $table->foreign('unitCode')->references('unitCode')->on('unit')
-                ->onDelete('cascade')->onUpdate('cascade');
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

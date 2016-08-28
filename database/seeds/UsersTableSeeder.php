@@ -17,49 +17,49 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => '4304373',
                 'password' => bcrypt('940927'),
-                'permissionLevel' => 'student',
+                'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => '4318595',
                 'password' => bcrypt('950807'),
-                'permissionLevel' => 'student',
+                'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => '4315405',
                 'password' => bcrypt('901226'),
-                'permissionLevel' => 'student',
+                'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'student',
                 'password' => bcrypt('student'),
-                'permissionLevel' => 'student',
+                'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'coordinator',
                 'password' => bcrypt('coordinator'),
-                'permissionLevel' => 'coordinator',
+                'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'admin',
                 'password' => bcrypt('admin'),
-                'permissionLevel' => 'admin',
+                'permissionLevel' => '3',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'username' => 'super',
                 'password' => bcrypt('super'),
-                'permissionLevel' => 'super',
+                'permissionLevel' => '4',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

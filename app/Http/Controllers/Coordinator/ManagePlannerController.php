@@ -55,7 +55,7 @@ class ManagePlannerController extends Controller
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type', 'course')
             ->where([
-                ['unitType', '=', 'Study Planner'],
+                ['unitType', '=', 'study_planner'],
                 ['year', '=', $input['year']],
                 ['term', '=', $input['term']],
                 ['courseCode', '=', $input['courseCode']]
@@ -133,7 +133,7 @@ class ManagePlannerController extends Controller
         ]);
 
         $unit = new UnitTerm;
-        $unit->unitType = 'Study Planner';
+        $unit->unitType = 'study_planner';
         $unit->unitCode = $input['unitCode'];
         $unit->year = (int) $input['year'];
         $unit->term = $input['term'];
@@ -190,6 +190,7 @@ class ManagePlannerController extends Controller
         $planner->unitCode = $input['unitCode'];
         $planner->year = $input['year'];
         $planner->term = $input['term'];
+        $planner->unitType = 'study_planner';
         $planner->save();
 
         return response()->json($planner);
@@ -212,10 +213,11 @@ class ManagePlannerController extends Controller
         ]);
 
         $planner = UnitTerm::where('unitCode', '=', $input['unitCode'])
-            ->where('courseCode', '=', $input['courseCode']) // todo: get course code from request
+            ->where('courseCode', '=', $input['courseCode'])
             ->where('year', '=', $input['year'])
             ->where('term', '=', $input['term'])
             ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->where('unitType', '=', 'study_planner')
             ->delete();
 
         return response()->json($planner);

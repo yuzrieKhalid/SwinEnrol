@@ -151,11 +151,11 @@
     })
 
     $('#addLong').click(function(){
-        $('#enrolmentTerm').val(0)
+        $('#enrolmentTerm').val('long')
     })
 
     $('#addShort').click(function(){
-        $('#enrolmentTerm').val(1)
+        $('#enrolmentTerm').val('short')
     })
 
 })()

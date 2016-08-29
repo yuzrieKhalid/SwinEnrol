@@ -99,12 +99,9 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" id="issueTitle">
                                         <option>Select One</option>
-                                        <option value="ICT">Internal Course Transfer</option>
+                                        <option value="ict">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="programWithdrawal">Application Withdrawal from Program</option>
-                                        <!-- <option value="leaveOfAbsence">Application for Leave of Absence</option> -->
-                                        <!-- <option value="timetableClash">Form for Student with Irreconcilable Timetable Clashes</option> -->
-                                        <!-- <option value="deferAnOffer">Application to Defer an Offer (Locals Only)</option> -->
                                         <option value="others">Others (None of the above)</option>
                                     </select>
                                 </div>
@@ -113,21 +110,21 @@
                             <hr>
 
                             <!-- Case: Internal Course Transfer -->
-                            <div class="hidden" id="ICT">
+                            <div class="hidden" id="ict">
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
                                     <input type="text" name="yearOfRequestedTransfer" class="form-control">
-                                
+
                                 <h4>CURRENT PROGRAM</h4>
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Code:</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" name="currentProgramCode" class="form-control" placeholder="fetch from db" disabled>
-                                        </div>
-                                            <label class="control-label col-sm-2">Program Title:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="currentProgramTitle" class="form-control" placeholder="fetch from db" disabled>
-                                        </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="currentProgramCode" class="form-control" placeholder="fetch from db" disabled>
+                                    </div>
+                                        <label class="control-label col-sm-2">Program Title:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="currentProgramTitle" class="form-control" placeholder="fetch from db" disabled>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -140,7 +137,7 @@
                                 <h4>PROPOSED PROGRAM</h4>
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="prname">Program Title:</label>
-                                    <div class="col-sm-10">                            
+                                    <div class="col-sm-10">
                                         <select class="form-control" name="sPPn" id="prname">
                                             <option value="none"></option>
                                             <option value="one">I047 Bachelor in Computer Science</option>
@@ -148,40 +145,35 @@
                                         </select>
                                     </div>
                                 </div>
-                        
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pryear">Program Year:</label>
-                            <div class="col-sm-2">
-                                
-                                <select class="form-control" name="sPPc" id="prcode">
-                                    <option value="none"></option>
-                                    <option value="2013">2013</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2018">2018</option>
-                                </select>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pryear">Program Year:</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="sPPc" id="prcode">
+                                            <option value="none"></option>
+                                            <option value="2013">2013</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Reasons for Requesting Transfer </label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control custom-control" name="sReason" rows="3" style="resize:none"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="submit" value="Submit" class="btn btn-default">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Reasons for Requesting Transfer </label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control custom-control" name="sReason" rows="3" style="resize:none"></textarea>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <input type="submit" value="Submit" class="btn btn-default">
-                            </div>
-                        </div>
-
-
-
-                    </div>
 
                             <!-- Case: Exemption -->
                             <div class="hidden" id="exemption">
@@ -212,7 +204,7 @@
                                     <label class="control-label col-sm-2" for="name">Year:</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" placeholder="2010">
-                                    </div> 
+                                    </div>
                                     <br>
 
                                     <!-- Unit Title-->
@@ -221,7 +213,7 @@
                                         <input type="text" class="form-control" placeholder="Makan Mi Maggie">
                                     </div>
                                     <!-- Unit Code-->
-                                                                   
+
                                 </div>
                             </div>
 
@@ -300,73 +292,6 @@
                                 </p>
                             </div>
 
-                    
-                            
-
-                            <!-- Case: Defer an Offer -->
-                            <div class="hidden" id="deferAnOffer">
-                                <h3>APPLICATION TO DEFER AN OFFER</h3>
-
-                                <h4>Program Details</h4>
-                                <div class="form-group">
-                                    <!-- Program Code-->
-                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <!-- The Offered Program-->
-                                    <label class="control-label col-sm-5" for="name">Program for which offer was received:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- Major -->
-                                    <label class="control-label col-sm-2" for="name">Major:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <!-- Semester/Year -->
-                                    <label class="control-label col-sm-2" for="name">Semester/Year:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <!-- Semester/Year -->
-                                    <label class="control-label col-sm-2" for="name">Deferment Period:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <!-- Reason for LoA -->
-                                <label class="control-label" for="name">Reasons for Deferment:</label>
-                                <textarea class="form-control custom-control" name="cName" rows="3" style="resize:none"></textarea>
-
-                                <!-- Conditions -->
-                                <h4>Conditions</h4>
-                                <p>
-                                    1. The granting of deferment is not automatic and requests are assessed on a case by case basis. Eligibility to defer an offer should be checked with the offering Faculty
-                                </p>
-                                <p>
-                                    2. Ensure all sections of the form are completed including the "Applicant's Declaration" in Section D.
-                                </p>
-                                <p>
-                                    3. Notify Student Central immediately of any change of address.
-                                </p>
-                                <p>
-                                    4. The Enrolment Officer will contact you should further information be required.
-                                </p>
-                                <p>
-                                    5. All applicants will be notified in writing of the outcome of their application.
-                                </p>
-                                <p>
-                                    6. Applicants are advised to refer to the 'Deferment and Leave of Absence' policies and regulations on
-                                    Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at
-                                    <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
-                                </p>
-                            </div>
-
                         </div> <!-- end #studentIssue -->
 
                         <!-- if none of the above, show the basic content box -->
@@ -391,25 +316,12 @@
 @stop
 
 @section('extra_js')
-<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-<script>
-// datepicker scripts
-// withdrawal datepicker
-$('#lastClassAttended_withdrawal .input-daterange').datepicker({
-    format: 'dd MM yyyy'
-})
-// loa datepicker
-$('#lastClassAttended_loa .input-daterange').datepicker({
-    format: 'dd MM yyyy'
-})
-</script>
-
 <script>
 // issueTitle change form script
 (function() {
-    let selectIssue = $("#issueTitle");
+    let selectIssue = $("#issueTitle")
 
-    selectIssue.data("prev",selectIssue.val());
+    selectIssue.data("prev",selectIssue.val())
     $('#' + selectIssue.data("prev")).removeClass("hidden")
 
     selectIssue.change(function(data){

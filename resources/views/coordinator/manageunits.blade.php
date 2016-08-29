@@ -111,16 +111,6 @@
                                 <label class="control-label" for="unitName">Unit Name:</label>
                                 <input type="text" name="unitName" class="form-control" id="unitName">
 
-                                <label class="control-label" for="courseCode">Course Code:</label>
-                                <!-- <input type="text" name="courseCode" class="form-control" id="courseCode"> -->
-                                <select class="form-control" name="courseCode">
-                                    <option value="0">None</option>
-
-                                    @foreach($courses as $course)
-                                    <option value="{{ $course->courseCode }}">{{ $course->courseCode }}</option>
-                                    @endforeach
-                                </select>
-
                                 <div class="form-group">
                                     <label for="prerequisite">Prerequisite</label>
                                     <!-- <input type="text" name="prerequisite" class="form-control" id="prerequisite"> -->
@@ -156,10 +146,6 @@
 
                                 <label class="control-label" for="minimumCompletedUnits">Minimum Completed Units:</label>
                                 <input id="minimumCompletedUnits" type="text" name="minimumCompletedUnits" value="0">
-
-                                <label class="control-label" for="core">This is a Core:
-                                    <input type="checkbox" autocomplete="off" name="core" id="core">
-                                </label>
                             </div>
                         </div>
 
@@ -228,12 +214,10 @@ $("input[name='minimumCompletedUnits']").TouchSpin({
             _token: getToken(),
             unitCode: $('#unitCode').val(),
             unitName: $('#unitName').val(),
-            courseCode: $('select[name=courseCode]').val(),
             prerequisite: $('select[name=prerequisite]').val(),
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
-            minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            core: $('#core').val()
+            minimumCompletedUnits: $('#minimumCompletedUnits').val()
         }
 
 

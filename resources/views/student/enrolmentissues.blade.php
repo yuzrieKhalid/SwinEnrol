@@ -119,11 +119,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" name="currentProgramCode" class="form-control" placeholder="fetch from db" disabled>
+                                        <input type="text" name="currentProgramCode" class="form-control" placeholder="" disabled>
                                     </div>
                                         <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="currentProgramTitle" class="form-control" placeholder="fetch from db" disabled>
+                                        <input type="text" name="currentProgramTitle" class="form-control" placeholder="" disabled>
                                     </div>
                                 </div>
 
@@ -184,12 +184,12 @@
                                     <!-- Unit Code-->
                                     <label class="control-label col-sm-2" for="name">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="HIT0001" disabled>
+                                        <input type="text" class="form-control" placeholder="" disabled>
                                     </div>
                                     <!-- Unit Title-->
                                     <label class="control-label col-sm-2" for="name">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Makan Mi Maggie" disabled>
+                                        <input type="text" class="form-control" placeholder="" disabled>
                                     </div>
                                 </div>
 
@@ -198,21 +198,28 @@
                                     <!-- Unit Code-->
                                     <label class="control-label col-sm-2" for="name">Unit Code:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="HIT0001">
+                                        <input type="text" class="form-control" placeholder="">
                                     </div>
 
+                                    <!-- Program Year-->
                                     <label class="control-label col-sm-2" for="name">Year:</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" placeholder="2010">
                                     </div>
-                                    <br>
+                                    <br><br>
 
                                     <!-- Unit Title-->
                                     <label class="control-label col-sm-2" for="name">Unit Title:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Makan Mi Maggie">
+                                        <input type="text" class="form-control" placeholder="">
                                     </div>
-                                    <!-- Unit Code-->
+                                    <br><br>
+
+                                    <!-- Attach Proof -->
+                                    <label class="control-label col-sm-2">Attachment: </label>
+                                    <div class="col-sm-10">
+                                        <input type="file">
+                                    </div>
 
                                 </div>
                             </div>
@@ -226,12 +233,12 @@
                                     <!-- Unit Code-->
                                     <label class="control-label col-sm-2" for="name">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="HIT0001" disabled>
+                                        <input type="text" class="form-control" placeholder="" disabled>
                                     </div>
                                     <!-- Unit Title-->
                                     <label class="control-label col-sm-2" for="name">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Makan Mi Maggie" disabled>
+                                        <input type="text" class="form-control" placeholder="" disabled>
                                     </div>
                                 </div>
 

@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\UnitTerm;
 use App\Course;
+use App\Student;
+use App\Config;
 
 use Carbon\Carbon;
 
@@ -22,18 +25,22 @@ class ViewPlannerController extends Controller
             'courseCode'
         ]);
 
+        $user = Auth::user();
+        $student = Student::where('studentID', '=', $user->username)->get();
+
         if($input['year'] == 0)
         {
             $year = Carbon::now();
             $input['year'] = $year->year;
         }
 
+        // default to semester 1 for now
         if($input['term'] == '')
             $input['term'] = 'Semester 1';
 
-        // default to BCS for now
+        // default to student's course
         if($input['courseCode'] == '')
-            $input['courseCode'] = 'I047';
+            $input['courseCode'] = $student[0]->courseCode;
 
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type', 'course')

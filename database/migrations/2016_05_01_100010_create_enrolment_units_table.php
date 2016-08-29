@@ -16,7 +16,7 @@ class CreateEnrolmentUnitsTable extends Migration
         {
             $table->string('studentID');
             $table->string('unitCode');
-            $table->integer('year')->unsigned();    // future update may change type to datetime
+            $table->integer('year')->unsigned();
             $table->string('term');
             $table->string('status');
             $table->string('result');

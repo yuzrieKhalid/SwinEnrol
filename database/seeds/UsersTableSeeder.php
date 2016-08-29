@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => '4304373',
                 'password' => bcrypt('940927'),
+                'email' => '4304373@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => '4318595',
                 'password' => bcrypt('950807'),
+                'email' => '4318595@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -31,6 +33,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => '4315405',
                 'password' => bcrypt('901226'),
+                'email' => '4315405@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -38,6 +41,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'student',
                 'password' => bcrypt('student'),
+                'email' => '4318595@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -45,6 +49,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'coordinator',
                 'password' => bcrypt('coordinator'),
+                'email' => '4318595@students.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -52,6 +57,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'admin',
                 'password' => bcrypt('admin'),
+                'email' => '4318595@students.swinburne.edu.my',
                 'permissionLevel' => '3',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -59,6 +65,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'super',
                 'password' => bcrypt('super'),
+                'email' => '4318595@students.swinburne.edu.my',
                 'permissionLevel' => '4',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

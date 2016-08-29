@@ -18,6 +18,7 @@ class CreateStudentEnrolmentIssuesTable extends Migration
             $table->integer('issueID')->unsigned();
             $table->string('status');
             $table->string('submissionData');
+            $table->binary('attachmentData');
 
             $table->timestamps();
 

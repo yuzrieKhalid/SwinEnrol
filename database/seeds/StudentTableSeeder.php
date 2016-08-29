@@ -18,7 +18,8 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4304373',
                 'surname' => 'Thomas Chew',
                 'givenName' => 'Jason',
-                'email' => '4304373@students.swinburne.edu.my',
+                'paymentStatus' => 'paid',
+                'concededPass' => 0,
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -27,7 +28,8 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4318595',
                 'surname' => 'Bin Khalid',
                 'givenName' => 'Mohamad Yuzrie',
-                'email' => '4318595@students.swinburne.edu.my',
+                'paymentStatus' => 'paid',
+                'concededPass' => 0,
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -36,7 +38,8 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4315405',
                 'surname' => 'Haque',
                 'givenName' => 'Sariful',
-                'email' => '4315405@students.swinburne.edu.my',
+                'paymentStatus' => 'paid',
+                'concededPass' => 0,
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

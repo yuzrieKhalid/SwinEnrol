@@ -7,60 +7,92 @@
         @include('student.menu')
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1>Units<small id="sariful">Sariful here</small></h1>
+                    <h1>Study Planner</h1>
                 </div>
 
                 <div class="panel-body">
-                    <!-- Sample Content 1 -->
-                    <h2><small>Year 1 Sem 1</small></h2>
-                    <table class="table">
-                        <thead>
-                            <th>Unit Code</th>
-                            <th>Unit Title</th>
-                            <th>Pre-requisites</th>
-                        </thead>
-                        @foreach ($units as $unit)
-                        <tr>
-                            <td>{{ $unit->unitCode }}</td>
-                            <td>{{ $unit->unitName }}</td>
-                            <td>{{ $unit->prerequisite }}</td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <!-- Planner selection form -->
+                    <form class="form-inline" method="POST" action="{{ url('student/viewstudyplanner') }}">
+                        <!-- Year Selection -->
+                        <div class="form-group">
+                            <select class="form-control" name="year" id="year" onchange="this.form.submit()">
+                                @for($n = $currentYear - 5; $n < $currentYear + 1; $n++)
+                                    @if($n == $year)
+                                        <option value="{{ $n }}" selected>{{ $n }}</option>
+                                    @else
+                                        <option value="{{ $n }}">{{ $n }}</option>
+                                    @endif
+                                @endfor
+                            </select>
+                        </div>
 
-                    <!-- Sample Content 2 -->
-                    <h2><small>Year 1 Winter Sem</small></h2>
-                    <p>This semester have yet to have a study planner</p>
-                    <!--
-                    <table class="table">
-                        <thead>
-                            <th>Unit Code</th>
-                            <th>Unit Title</th>
-                            <th>Pre-requisites</th>
-                        </thead>
+                        <!-- Semester Selection -->
+                        <div class="form-group">
+                            <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                                @if($semester == "Semester 1")
+                                    <option value="Semester 1" selected>Semester 1</li>
+                                @else
+                                    <option value="Semester 1">Semester 1</li>
+                                @endif
 
-                        {{--
-                            @if(empty($units))
-                            <tr>
-                                <td colspan="3">This semester have yet to have a study planner</td>
-                            </tr>
-                            @else
+                                @if($semester == "Semester 2")
+                                    <option value="Semester 2" selected>Semester 2</li>
+                                @else
+                                    <option value="Semester 2">Semester 2</li>
+                                @endif
+                            </select>
+                        </div>
 
-                            @foreach ($units as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unitName }}</td>
-                                <td>{{ $unit->prerequisite }}</td>
-                            </tr>
-                            @endforeach
+                        <!-- Course Selection -->
+                        <div class="form-group">
+                            <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
+                                @foreach($courses as $course)
+                                    @if($course->courseCode == $courseCode)
+                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                    @endif
+                                @endforeach
 
+                                @foreach($courses as $course)
+                                    @if($course->courseCode != $courseCode)
+                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </div>
+                    </form>
+                    <!-- end Planner selection form -->
+
+                    {{-- generate semester/unit list --}}
+                    @if(count($termUnits) > 0)
+                        @for($n = 0; $n < $size; $n++)
+                            @if($count[$n] > 0)
+                                <h2>
+                                    <small>{{ $term[$n] }}</small>
+                                </h2>
+                                <table class="table">
+                                    <col width="125">
+                                    <thead>
+                                        <th>Unit Code</th>
+                                        <th colspan="2">Unit Title</th>
+                                    </thead>
+                                    {{-- Fetch data for study planner --}}
+                                    @foreach ($termUnits as $unit)
+                                        @if($n == $unit->enrolmentTerm)
+                                            <tr>
+                                                <td>{{ $unit->unitCode }}</td>
+                                                <td>{{ $unit->unit->unitName }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </table>
                             @endif
-                        --}}
-
-                    </table>
-                    -->
+                        @endfor
+                    @endif
                 </div>
             </div> <!-- end .panel -->
 

@@ -17,7 +17,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3315',
                 'unitName' => 'Languages in Software Development',
-                'courseCode' => 'I047',
                 'core' => 'true',
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
@@ -29,7 +28,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3158',
                 'unitName' => 'Software Engineering Project A',
-                'courseCode' => 'I047',
                 'core' => 'true',
                 'prerequisite' => 'HIT3315',
                 'corequisite' => 'None',
@@ -41,7 +39,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3310',
                 'unitName' => 'Software Architecture and Design',
-                'courseCode' => 'I047',
                 'core' => 'true',
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
@@ -53,7 +50,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT10001',
                 'unitName' => 'Introduction to Management',
-                'courseCode' => 'B123',
                 'core' => 'false',
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
@@ -65,7 +61,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10007',
                 'unitName' => 'Management Accounting',
-                'courseCode' => 'B123',
                 'core' => 'true',
                 'prerequisite' => 'None',
                 'corequisite' => 'None',

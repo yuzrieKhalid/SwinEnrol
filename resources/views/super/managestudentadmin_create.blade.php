@@ -12,13 +12,22 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="panel panel-default">
+                <div class="panel panel-warning">
                     <div class="panel-heading">
                         <h1>Add Student Admin</h1>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                        @if(isset($user))
+                            <form class="form-horizontal" role="form" method="POST" action="/super/managestudentadmin/{{ $user[0]->username }}">
+                        @else
+                            <form class="form-horizontal" role="form" method="POST" action="{{ route('super.managestudentadmin.store') }}">
+                        @endif
+
                             {!! csrf_field() !!}
+
+                            @if(isset($user))
+                                <input type="hidden" name="_method" value="PUT">
+                            @endif
 
                             <!-- <div class="form-group{{ $errors->has('permissionLevel') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Permission Level</label>
@@ -38,7 +47,11 @@
                                 <label class="col-md-4 control-label">Username</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="username" value="{{ old('username') }}">
+                                    @if(isset($user))
+                                        <input type="text" class="form-control" name="username" value="{{ $user[0]->username }}">
+                                    @else
+                                        <input type="text" class="form-control" name="username" value="">
+                                    @endif
 
                                     @if ($errors->has('username'))
                                         <span class="help-block">
@@ -93,7 +106,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Register
+                                        Save
                                     </button>
                                     <a class="btn btn-danger" href="{{ url('/super/managestudentadmin') }}" role="button">Cancel</a>
                                 </div>

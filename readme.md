@@ -22,17 +22,13 @@ For the installation, you can choose to do it in Virtual Machine or Dual Boot wi
 2. `cd Documents`
 3. `git clone https://github.com/yuzrieSiddiq/SwinEnrol.git`
 4. `cd SwinEnrol`
-
 5. `cp .env.example .env`
 6. `gedit .env` (replace DB_USERNAME, DB_DATABASE and DB_PASSWORD)
-
 7. `composer install`
 8. `npm install`
-
 9. `php artisan migrate`
 10. `php artisan db:seed`
 11. `php artisan serve`
-
 12. Open your Internet browser
 13. Go to `localhost:8000`
 14. You can check your pages by directly doing something like this `localhost:8000/admin/setenrolmentdates`
@@ -46,10 +42,7 @@ Answer: Immediately contact Yuzrie or Jason for help. We'll try to help as soon 
 
 ## For CSS and Designs
 1. The file is called app.scss in `SwinEnrol/resources/assets/sass/app.scss`
-2. To see the changes, go to terminal and run `gulp`
-2a. Let `gulp` run alongside with `php artisan serve`
-2b. If you are constantly doing the css, run `gulp watch` it will run until you stop it, just like `php artisan serve`
-3.
+2. To see the changes, go to terminal and run `gulp`. Let `gulp` run alongside with `php artisan serve`. If you are constantly doing the css, run `gulp watch` it will run until you stop it, just like `php artisan serve`
 
 ## For those new to Ubuntu tips
 

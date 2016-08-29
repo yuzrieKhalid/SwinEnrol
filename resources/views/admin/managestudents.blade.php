@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('extra_head')
-<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
 <meta name="_token" content="{{ csrf_token() }}" />
 @stop
 
@@ -12,312 +11,317 @@
         @include('admin.menu')
 
         <div class="col-md-9">
-        <p class="pull-left visible-xs">
-                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-                </p> 
+            <!-- to be fixed -->
+            <p class="pull-left visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
+            </p>
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Students</h1>
                 </div>
 
                 <div class="panel-body">
-                    <h3>
-                        <span class="pull-right">
-                            <!-- the modal is at the bottom of the page-->
-                            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
-                                Add Student
-                            </a>
-                            <a class="btn btn-default" href="#" role="button">Import File</a>
-                            <a class="btn btn-default" href="#" role="button">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            </a>
-                        </span>
-                        <label for="search">Search Students:</label>
-                        <input type="search" name="search" id="search"></input>
-                    </h3>
-                    <table class="table">
-                        <thead>
-                            <th>Student ID</th>
-                            <th colspan="2">Student Name</th>
-                            <td>
-                        </thead>
-                        @foreach ($students as $student)
-                        <tr>
-                            <td>{{ $student->studentID }}</td>
-                            <td>{{ $student->givenName }} {{ $student->surname }}</td>
-                            <td><a class="pull-right" href="#" role="button"><span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button">Edit</a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </table>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading text-center">
+                                    Bulk Import from Excel file
+                                </div>
+                                <div class="panel-body">
+                                    <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
+                                        <input id="upload" type="file">
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <button class="btn btn-success" id="processButton" role="button" data-toggle="modal" data-target="#processData" disabled>
+                                        Process Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading text-center">
+                                    Add Student
+                                </div>
+                                <div class="panel-body">
+                                    Adds one individual student
+                                </div>
+                                <div class="panel-footer">
+                                    <!-- the modal is at the bottom of the page-->
+                                    <a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                                        Add Student
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Modal: Add Student -->
-                <div class="modal fade" id="adminAddStudent" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h2 class="modal-title">Add a Student</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            Student List
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>
+                                        <input type="search" id="search" placeholder="Search Student">
+                                    </th>
+                                </thead>
+                                @foreach ($students as $student)
+                                <tr>
+                                    <td>{{ $student->studentID }}</td>
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#" role="button">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-default" href="#" role="button">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end .panel-body -->
+            </div> <!-- end .panel -->
+
+            <!-- Modal: Add Student -->
+            <div class="modal fade" id="adminAddStudent" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">Add a Student</h2>
+                        </div>
+
+                        <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Student ID:</label>
+                                    <input class="form-control" id="studentID" placeholder="4318595">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Family Name / Surname:</label>
+                                    <input type="text" class="form-control" id="surname" placeholder="Doe">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Given Name:</label>
+                                    <input type="text" class="form-control" id="givenName" placeholder="John">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Course Code:</label>
+                                    <input type="text" class="form-control" id="courseCode" placeholder="IO47">
+                                </div>
                             </div>
 
-                            <form class="form" method="POST" action="{{ url('/admin/managestudents') }}">
-                                <div class="modal-body">
-                                    <!-- Student Personal Details  -->
-                                    <h3>Personal Details</h3>
-                                    <div class="form-group">
-                                        <label for="gender">Gender: </label>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Gender <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Male</a></li>
-                                                <li><a href="#">Female</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default create"
+                                    data-method="POST" data-url="{{ route('admin.managestudents.store') }}">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div> <!-- end. modal-content-->
+                </div> <!-- end .modal-dialog -->
+            </div> <!-- end .modal fade -->
 
-                                    <div id="dateOfBirth">
-                                        <label for="dateOfBirth">Date of Birth: </label>
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" >
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+            <!-- Modal: Bulk Import Data Processing -->
+            <div class="modal fade" id="processData" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Bulk Import Student</h3>
+                        </div>
 
-                                    <div class="form-group">
-                                        <label for="surname">Family Name / Surname:</label>
-                                        <input type="text" class="form-control" id="surname" placeholder="John">
-                                    </div>
+                        <form class="form" method="POST">
+                            <div class="modal-body">
+                                <table class="table table-striped" id="students_table">
+                                    <thead>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Firstname</th>
+                                        <th>Email</th>
+                                        <th>Course Code</th>
+                                    </thead>
+                                    <!-- template row to be populated based on the input from the file -->
+                                    <tr class="tr_template hidden">
+                                        <td class="id">Student ID</td>
+                                        <td class="surname">Surname</td>
+                                        <td class="firstname">Firstname</td>
+                                        <td class="email">Email</td>
+                                        <td class="coursecode">Course Code</td>
+                                    </tr>
+                                </table>
+                            </div> <!-- end modal-body -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success pull-right" id="import"
+                                    data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
+                                    Import
+                                </button>
+                            </div>
+                        </form>
 
-                                    <div class="form-group">
-                                        <label for="givenName">Given Name:</label>
-                                        <input type="text" class="form-control" id="givenName" placeholder="Doe">
-                                    </div>
+                    </div> <!-- end. modal-content-->
+                </div> <!-- end .modal-dialog -->
+            </div> <!-- end .modal fade -->
 
-                                    <div class="form-group">
-                                        <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="example.com">
-                                    </div>
+            <!-- <pre> to debug the json only -->
+            <!-- <pre id="out"></pre> -->
 
-                                    <!-- Overseas Address Details -->
-                                    <h3>Overseas Address Details</h3>
-                                    <div class="form-group">
-                                        <label for="overseasAddress">Overseas Address:</label>
-                                        <textarea class="form-control" id="overseasAddress" rows="2"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="overseasCountry">Overseas Country:</label>
-                                        <input type="text" class="form-control" id="overseasCountry" placeholder="United States">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="overseasPostcode">Overseas Postcode:</label>
-                                        <input type="text" class="form-control" id="overseasPostcode" placeholder="129320">
-                                    </div>
-
-                                    <!-- Malaysian Address Details -->
-                                    <h3>Malaysian Address Details</h3>
-                                    <div class="form-group">
-                                        <label for="malaysianAddress">Malaysian Address:</label>
-                                        <textarea class="form-control" id="malaysianAddress" rows="2"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="malaysianCountry">Malaysian Country:</label>
-                                        <input type="text" class="form-control" id="malaysianCountry" placeholder="Sarawak">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="malaysianPostcode">Malaysian Postcode:</label>
-                                        <input type="text" class="form-control" id="malaysianPostcode" placeholder="96100">
-                                    </div>
-
-                                    <!-- Contact Details -->
-                                    <div class="form-group">
-                                        <label for="overseasTelephone">Overseas Postcode:</label>
-                                        <input type="text" class="form-control" id="overseasTelephone" placeholder="012345678">
-                                    </div>
-
-                                    <!-- Contact Details -->
-                                    <h3>Contact Details</h3>
-                                    <div class="form-group">
-                                        <label for="malaysianTelephone">Malaysian Telephone:</label>
-                                        <input type="text" class="form-control" id="malaysianTelephone">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="overseasTelephone">Overseas Telephone:</label>
-                                        <input type="text" class="form-control" id="overseasTelephone">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="fax">Fax:</label>
-                                        <input type="text" class="form-control" id="fax">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="mobile">Mobile:</label>
-                                        <input type="text" class="form-control" id="mobile">
-                                    </div>
-
-                                    <!-- Visa/Citizenship Details -->
-                                    <h3>Visa Details</h3>
-                                    <div class="form-group">
-                                        <label for="countryOfCitizenship">Country of Citizenship:</label>
-                                        <input type="text" class="form-control" id="countryOfCitizenship">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="birthCountry">Birth Country:</label>
-                                        <input type="text" class="form-control" id="birthCountry">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="identityCardOrPassportNumber">Identity Card / Passport Number:</label>
-                                        <input type="text" class="form-control" id="identityCardOrPassportNumber">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="passportExpiry">Passport Expiry:</label>
-                                        <input type="text" class="form-control" id="passportExpiry">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="visaValidity">Visa Validity:</label>
-                                        <input type="text" class="form-control" id="visaValidity">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="visaType">Visa Type:</label>
-                                        <input type="text" class="form-control" id="visaType">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="visaExpiry">Visa Expiry:</label>
-                                        <input type="text" class="form-control" id="visaExpiry">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="visaCollectionLoaction">Visa Collection Location:</label>
-                                        <input type="text" class="form-control" id="visaCollectionLoaction">
-                                    </div>
-
-                                    <h3>Study Details</h3>
-                                    <div class="form-group">
-                                        <label for="firstName">Course Level</label>
-
-                                        <!-- select to be populated from database -->
-                                        <select class="form-control">
-                                            <option value="1">Foundation</option>
-                                            <option value="2">Diploma</option>
-                                            <option value="3">Degree</option>
-                                            <option value="4">Masters (by Coursework)</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="firstName">Course</label>
-                                        <!-- select to be populated from database -->
-                                        <select class="form-control">
-                                            <option value="1">Course 1</option>
-                                            <option value="2">Course 2</option>
-                                            <option value="3">Course 3</option>
-                                        </select>
-                                    </div>
-                                    <div id="courseCommencement">
-                                        <label for="courseCommencement">Course Commencement: </label>
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" >
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h3>Emergency Contact</h3>
-                                    <div class="form-group">
-                                        <label for="emergencyContactName">Emergency Contact Name:</label>
-                                        <input type="text" class="form-control" id="emergencyContactName">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="emergencyContactAddress">Emergency Contact Address:</label>
-                                        <input type="text" class="form-control" id="emergencyContactAddress">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="emergencyContactTelephone">Emergency Contact Telephone:</label>
-                                        <input type="text" class="form-control" id="emergencyContactTelephone">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="emergencyContactFax">Emergency Contact Fax:</label>
-                                        <input type="text" class="form-control" id="emergencyContactFax">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="emergencyContactMobile">Emergency Contact Mobile:</label>
-                                        <input type="text" class="form-control" id="emergencyContactMobile">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="emergencyContactEmail">Emergency Contact Email:</label>
-                                        <input type="text" class="form-control" id="emergencyContactEmail">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="emergencyContactRelationship">Emergency Contact Relationship:</label>
-                                        <input type="text" class="form-control" id="emergencyContactRelationship">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="EmergencyContactSpokenLanaguage">Emergency Contact Spoken Language:</label>
-                                        <input type="text" class="form-control" id="EmergencyContactSpokenLanaguage">
-                                    </div>
-
-                                    <h3>Student Accepted On: </h3>
-                                    <div id="acceptanceDate">
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" value="{{ $now }}">
-                                            <div class="input-group-addon">
-                                                <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default">Submit</button>
-                                </div>
-                            </form>
-                        </div> <!-- end. modal-content-->
-                    </div> <!-- end .modal-dialog -->
-                </div> <!-- end .modal fade -->
-
-            </div> <!-- end .panel -->
-        </div>
-    </div>
+        </div> <!-- end .col-md-9 -->
+    </div> <!-- end .row -->
 </div>
 @stop
 
 @section('extra_js')
-<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/xlsx.min.js') }}"></script>
+
 <script>
-$('#dateOfBirth .date').datepicker({
-    format: 'dd/mm/yyyy'
-});
+(function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
 
-$('#courseCommencement .date').datepicker({
-    format: 'dd/mm/yyyy'
-});
+    // Normal CRUD Section
+    // -------------------
+    // add one student
+    $('.create').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            _token: getToken(),
+            studentID: $('#studentID').val(),
+            surname: $('#surname').val(),
+            givenName: $('#givenName').val(),
+            email: $('#email').val(),
+            courseCode: $('#courseCode').val()
+        }
 
-$('#acceptanceDate .date').datepicker({
-    format: 'dd/mm/yyyy'
-});
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            // window.location.reload()
+        })
+    })
+
+
+    // Uploading Section
+    // -------------------
+    // 3. Populate the template table with data from Workbook
+    let populateTable = function(student) {
+        let clone_tr = $('#students_table').find('.tr_template').clone()
+        clone_tr.removeClass('hidden')
+        clone_tr.removeClass('tr_template')
+
+        // populate column by column [only get the respective column]
+        clone_tr.children('td.id').html(student.stdID)
+        clone_tr.children('td.surname').html(student.surname)
+        clone_tr.children('td.firstname').html(student.firstname)
+        clone_tr.children('td.email').html(student.email)
+        clone_tr.children('td.coursecode').html(student.coursecode)
+
+        $('#students_table').append(clone_tr)
+    }
+
+    // 2(a) to JSON Array
+    let to_json = function(workbook) {
+        let result = {}
+        // for (Type SheetNames as SheetName) : in most cases only one but they may separate the data in few sheets
+        workbook.SheetNames.forEach(function(sheetName) {
+            // get the row object array - data in every row (1 row = 1 student)
+            let students = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName])
+            if (students.length > 0) { result[sheetName] = students }
+
+            students.forEach(function(student) {
+                populateTable(student)
+            })
+        })
+
+        return result
+    }
+
+    // 2. Process the workbook into JSON format
+    let students = []
+    let output = ""
+    let process_workbook = function(workbook) {
+        output = JSON.stringify(to_json(workbook), 2, 2)
+
+        // store the output in JSON Object (Array) - students is an array
+        students = $.parseJSON('[' + output + ']')
+
+        // console.log(students[0].sheet1.length);
+        $('#out').text(output)
+    }
+
+    // 1. read file
+    let upload = $('#upload').change(function() {
+        // get the file details (.files[0] since only one file)
+        let file = document.querySelector('input[type=file]').files[0]
+
+        // utility to read file
+        let reader = new FileReader()
+
+        reader.onload = function(event) {
+            // 1. read file content
+            let data = event.target.result
+
+            // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
+            let workbook = XLSX.read(data, {type: 'binary'})
+
+            // 3. Handle the processing
+            process_workbook(workbook)
+        }
+        reader.readAsBinaryString(file)
+
+        // enable the button only if a file has been chosen
+        $('#processButton').prop('disabled', false)
+    })
+
+    // Transferring the array into the database through AJAX
+    let importData = $('#import').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        let data = {
+            '_token': getToken(),
+            'jsondata': output,
+            'arrlength': students[0].data[0].length
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data,
+            enctype: 'multipart/form-data'
+        }).done(function(data) {
+            window.location.reload()
+        })
+    })
+
+    // TODO: search the table for students
+    $('#search').change(function() {
+        console.log($(this).val());
+    })
+
+}) ()
 </script>
 @stop

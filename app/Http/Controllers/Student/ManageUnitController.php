@@ -12,6 +12,7 @@ use App\Student;
 use App\Unit;
 use App\EnrolmentUnits;
 use DB;
+use Carbon\Carbon;
 
 // student's unit operation is different. it should only add units to student's info
 
@@ -155,8 +156,13 @@ class ManageUnitController extends Controller
      */
     public function destroy($id)
     {
-        $enrolled = EnrolmentUnits::where('unitCode', '=', $id);
-        $enrolled->delete();
+        $user = Auth::user();
+        $student = Student::where('studentID', '=', $user->username)->get();
+        $enrolled = EnrolmentUnits::where('unitCode', '=', $id)
+        ->where('studentID', '=', $student[0]->studentID)
+        ->where('year', '=', Carbon::now()->year)
+        ->where('term', '=', '2') // todo: get from config
+        ->delete();
 
         return response()->json($enrolled);
     }

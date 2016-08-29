@@ -24,6 +24,7 @@ Route::group([
     'middleware' => 'web',
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
+    Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
 });
@@ -35,6 +36,7 @@ Route::group([
     'middleware' => 'web',
 ], function() {
     Route::get('/', 'Coordinator\HomeController@index');
+    Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
@@ -49,6 +51,7 @@ Route::group([
     Route::get('/', 'Student\HomeController@index');
     Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
+    Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');

@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Login extends Model
+class Config extends Model
 {
-    protected $table = 'login';
-    
+    protected $table = 'config';
+
     // primary key
-    protected $primaryKey = 'username';
     public $incrementing = false;
 }

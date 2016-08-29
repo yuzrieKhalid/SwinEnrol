@@ -15,16 +15,11 @@ class Course extends Model
     // relation
     public function unit()
 	{
-		return $this->hasMany('App\Unit', 'courseCode');
-	}
-
-	public function internal_course_transfer()
-	{
-		return $this->hasMany('App\InternalCourseTransfer', 'courseCode');
+		return $this->hasMany('App\UnitTerm', 'courseCode');
 	}
 
     public function unit_term()
     {
-        return $this->hasMany('App\UnitTerm', 'courseCode');
+        return $this->hasMany('App\Student', 'courseCode');
     }
 }

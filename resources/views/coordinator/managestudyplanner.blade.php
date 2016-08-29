@@ -10,84 +10,102 @@
         <div class="row row-offcanvas row-offcanvas-left">
             <!-- Reserve 3 space for navigation column -->
             @include('coordinator.menu')
-            
+
             <div class="col-md-9">
+                <!-- To be fixed -->
                 <p class="pull-left visible-xs">
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-                </p>  
-                <div class="panel panel-default">
+                </p>
+                
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <h1>Study Planner</h1>
                     </div>
 
-                    {{-- todo: fetch dropdown data from database --}}
                     <div class="panel-body">
                         <a class="pull-right btn btn-default" data-toggle="modal" data-target="#addUnit" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <div class="btn-group btn-group" role="group" aria-label="...">
-                            <!-- Year Dropdown -->
-                            <div class="btn-group" role="group">
-                                <button type="button" id="dropdown-year" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Year
-                                <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-year">
-                                    <li><a href="#">Year 1</a></li>
-                                    <li><a href="#">Year 2</a></li>
-                                    <li><a href="#">Year 3</a></li>
-                                </ul>
+                        <!-- Planner selection form -->
+                        <form class="form-inline" method="POST" action="{{ route('coordinator.managestudyplanner.create') }}">
+                            <!-- Year Selection -->
+                            <div class="form-group">
+                                <select class="form-control" name="year" id="year" onchange="this.form.submit()">
+                                    @for($n = $currentYear - 5; $n < $currentYear + 1; $n++)
+                                        @if($n == $year)
+                                            <option value="{{ $n }}" selected>{{ $n }}</option>
+                                        @else
+                                            <option value="{{ $n }}">{{ $n }}</option>
+                                        @endif
+                                    @endfor
+                                </select>
                             </div>
 
-                            <!-- Semester Dropdown -->
-                            <div class="btn-group" role="group">
-                                <button type="button" id="dropdown-semester" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Semester
-                                <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-semester">
-                                    <li><a href="#">Semester 1</a></li>
-                                    <li><a href="#">Semester 2</a></li>
-                                    <li><a href="#">Semester 3</a></li>
-                                </ul>
+                            <!-- Semester Selection -->
+                            <div class="form-group">
+                                <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                                    @if($semester == "Semester 1")
+                                        <option value="Semester 1" selected>Semester 1</li>
+                                    @else
+                                        <option value="Semester 1">Semester 1</li>
+                                    @endif
+
+                                    @if($semester == "Semester 2")
+                                        <option value="Semester 2" selected>Semester 2</li>
+                                    @else
+                                        <option value="Semester 2">Semester 2</li>
+                                    @endif
+                                </select>
                             </div>
 
-                            <!-- Course Dropdown -->
-                            <div class="btn-group" role="group">
-                                <button type="button" id="dropdown-course" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Course
-                                <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown-course">
-                                    <li><a href="#">Course 1</a></li>
-                                    <li><a href="#">Course 2</a></li>
-                                    <li><a href="#">Course 3</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        @for($n = 0; $n < $size; $n++)
-                            @if($count[$n] > 0)
-                                <h2>
-                                    <small>{{ $term[$n] }}</small>
-                                </h2>
-                                <table class="table">
-                                    <col width="125">
-                                    <thead>
-                                        <th>Unit Code</th>
-                                        <th colspan="2">Unit Title</th>
-                                    </thead>
-                                    {{-- Fetch data for study planner --}}
-                                    @foreach ($termUnits as $unit)
-                                        @if($n == $unit->enrolmentTerm)
-                                            <tr>
-                                                <td>{{ $unit->unitCode }}</td>
-                                                <td>{{ $unit->unit->unitName }}</td>
-                                                <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                                            </tr>
+                            <!-- Course Selection -->
+                            <div class="form-group">
+                                <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
+                                    @foreach($courses as $course)
+                                        @if($course->courseCode == $courseCode)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
                                         @endif
                                     @endforeach
-                                </table>
-                            @endif
-                        @endfor
+
+                                    @foreach($courses as $course)
+                                        @if($course->courseCode != $courseCode)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </div>
+                        </form>
+                        <!-- end Planner selection form -->
+
+                        {{-- generate semester/unit list --}}
+                        @if(count($termUnits) > 0)
+                            @for($n = 0; $n < $size; $n++)
+                                @if($count[$n] > 0)
+                                    <h2>
+                                        <small>{{ $term[$n] }}</small>
+                                    </h2>
+                                    <table class="table">
+                                        <col width="125">
+                                        <thead>
+                                            <th>Unit Code</th>
+                                            <th colspan="2">Unit Title</th>
+                                        </thead>
+                                        {{-- Fetch data for study planner --}}
+                                        @foreach ($termUnits as $unit)
+                                            @if($n == $unit->enrolmentTerm)
+                                                <tr>
+                                                    <td>{{ $unit->unitCode }}</td>
+                                                    <td>{{ $unit->unit->unitName }}</td>
+                                                    <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </table>
+                                @endif
+                            @endfor
+                        @endif
+
                     </div>
                 </div> <!-- end .panel -->
             </div>
@@ -127,22 +145,6 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <!-- required by form -->
-                                <div class="form-group hidden">
-                                    <label class="control-label col-sm-2" for="term">Term:</label>
-                                    <div class="col-sm-10">
-                                        <p class="form-control-static">{{ $semester }}</p>
-                                    </div>
-                                    <input type="hidden" name="term" id="term" value="{{ $semester }}">
-                                </div>
-                                <div class="form-group hidden">
-                                    <label class="control-label col-sm-2" for="year">Year:</label>
-                                    <div class="col-sm-10">
-                                        <p class="form-control-static">{{ $year }}</p>
-                                    </div>
-                                    <input type="hidden" name="year" id="year" value="{{ $year }}">
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -174,7 +176,8 @@
                 unitCode: $('select[name=unitCode]').val(),
                 enrolmentTerm: $('select[name=enrolmentTerm]').val(),
                 year: $('#year').val(),
-                term: $('#term').val()
+                term: $('#term').val(),
+                courseCode: $('#courseCode').val()
             }
         }
         if(method == "DELETE")
@@ -184,7 +187,8 @@
                 unitCode: $(this).data('unitCode'),
                 enrolmentTerm: $(this).data('enrolmentTerm'),
                 year: $('#year').val(),
-                term: $('#term').val()
+                term: $('#term').val(),
+                courseCode: $('#courseCode').val()
             }
         }
 

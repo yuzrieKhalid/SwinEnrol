@@ -10,6 +10,7 @@
     "bootstrap-touchspin": "^3.1.1",
     "jquery": "^2.2.3",
     "laravel-elixir": "*",
+    "xlsx": "^0.8.0",
     "offcanvas-menu": "^0.1.6"
   },
   "name": "off_menu",
@@ -32,4 +33,5 @@
     "url": "https://github.com/yuzrieSiddiq/SwinEnrol/issues"
   },
   "homepage": "https://github.com/yuzrieSiddiq/SwinEnrol#readme"
+  }
 }

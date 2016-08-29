@@ -15,7 +15,7 @@ class UnitTermTableSeeder extends Seeder
         //
         DB::table('unit_term')->insert([
 			[
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'ACC10007',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -25,7 +25,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -35,7 +35,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -45,7 +45,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3315',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -55,7 +55,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'MGT10001',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -65,7 +65,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -75,7 +75,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -85,7 +85,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3310',
 				'year' => 2016,
 				'term' => 'Semester 1',
@@ -95,7 +95,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 2',
@@ -105,7 +105,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'MGT10001',
 				'year' => 2016,
 				'term' => 'Semester 2',
@@ -115,7 +115,7 @@ class UnitTermTableSeeder extends Seeder
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Study Planner',
+				'unitType' => 'study_planner',
 				'unitCode' => 'HIT3315',
 				'year' => 2016,
 				'term' => 'Semester 2',
@@ -126,52 +126,62 @@ class UnitTermTableSeeder extends Seeder
 			],
             // ******************************
             [
-				'unitType' => 'Unit Listing',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'HIT3315',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
-                'courseCode' => NULL,
+                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Unit Listing',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
-                'courseCode' => NULL,
+                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Unit Listing',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'MGT10001',
 				'year' => 2016,
 				'term' => 'Semester 1',
 				'enrolmentTerm' => '0',
-                'courseCode' => NULL,
+                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Unit Listing',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'HIT3158',
 				'year' => 2016,
 				'term' => 'Semester 2',
 				'enrolmentTerm' => '0',
-                'courseCode' => NULL,
+                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
             [
-				'unitType' => 'Unit Listing',
+				'unitType' => 'unit_listing',
 				'unitCode' => 'ACC10007',
 				'year' => 2016,
 				'term' => 'Semester 2',
 				'enrolmentTerm' => '0',
-                'courseCode' => NULL,
+                'courseCode' => 'I047',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitType' => 'unit_listing',
+				'unitCode' => 'ACC10007',
+				'year' => 2016,
+				'term' => 'Semester 2',
+				'enrolmentTerm' => '1',
+                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

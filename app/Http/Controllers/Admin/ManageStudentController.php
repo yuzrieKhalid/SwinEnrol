@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Carbon\Carbon;
 use App\Student;
+use App\User;
 
 class ManageStudentController extends Controller
 {
@@ -55,84 +56,31 @@ class ManageStudentController extends Controller
     {
         // Gets input from form and create new instance in the database
         $input = $request->only([
-            'title',
-            'gender',
-            'dateOfBirth',
+            'studentID',
             'surname',
             'givenName',
             'email',
-            'overseasAddress',
-            'overseasCountry',
-            'malaysianAddress',
-            'malaysianCountry',     // maybe extra here, confirm later
-            'malaysianPostcode',
-            'overseasTelephone',
-            'malaysianTelephone',
-            'fax',
-            'mobile',
-            'countryOfCitizenship',
-            'birthCountry',
-            'identityCardOrPassportNumber',
-            'passportExpiry',
-            'visaValidity',
-            'visaType',
-            'visaExpiry',
-            'visaCollectionLoaction', // some typo, need to confirm later
-            'courseAccepted1',
-            'courseAccepted2',
-            'courseAccepted3',
-            'emergencyContactName',
-            'emergencyContactAddress',
-            'emergencyContactTelephone',
-            'emergencyContactFax',
-            'emergencyContactMobile',
-            'emergencyContactRelationship',
-            'emergencyContactSpokenLanaguage',  // another typo
-            'acceptanceDate'
+            'courseCode'
         ]);
 
         // create new student
         $student = new Student;
-        $student->title = $input['title'];
-        $student->gender = $input['gender'];
-        $student->dateOfBirth = $input['dateOfBirth'];
+        $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->email = $input['email'];
-        $student->overseasAddress = $input['overseasAddress'];
-        $student->overseasCountry = $input['overseasCountry'];
-        $student->overseasPostcode = $input['overseasPostcode'];
-        $student->malaysianAddress = $input['malaysianAddress'];
-        $student->malaysianCountry = $input['malaysianCountry'];
-        $student->malaysianPostcode = $input['malaysianPostcode'];
-        $student->overseasTelephone = $input['overseasTelephone'];
-        $student->malaysianTelephone = $input['malaysianTelephone'];
-        $student->fax = $input['fax'];
-        $student->mobile = $input['mobile'];
-        $student->countryOfCitizenship = $input['countryOfCitizenship'];
-        $student->birthCountry = $input['birthCountry'];
-        $student->identityCardOrPassportNumber = $input['identityCardOrPassportNumber'];
-        $student->passportExpiry = $input['passportExpiry'];
-        $student->visaValidity = $input['visaValidity'];
-        $student->visaType = $input['visaType'];
-        $student->visaExpiry = $input['visaExpiry'];
-        $student->visaCollectionLoaction = $input['visaCollectionLoaction'];
-        $student->courseAccepted1 = $input['courseAccepted1'];
-        $student->courseAccepted2 = $input['courseAccepted2'];
-        $student->courseAccepted3 = $input['courseAccepted3'];
-        $student->courseCommencement = $input['courseCommencement'];
-        $student->emergencyContactName = $input['emergencyContactName'];
-        $student->emergencyContactAddress = $input['emergencyContactAddress'];
-        $student->emergencyContactTelephone = $input['emergencyContactTelephone'];
-        $student->emergencyContactFax = $input['emergencyContactFax'];
-        $student->emergencyContactMobile = $input['emergencyContactMobile'];
-        $student->emergencyContactEmail = $input['emergencyContactEmail'];
-        $student->emergencyContactRelationship = $input['emergencyContactRelationship'];
-        $student->EmergencyContactSpokenLanaguage = $input['EmergencyContactSpokenLanaguage'];
-        $student->acceptanceDate = $input['acceptanceDate'];
+        $student->courseCode = $input['courseCode'];
+
+        // adds the student to the User table too
+        $user = new User;
+        $user->username = $student->studentID;
+        $user->password = bcrypt('newstudent');
+        $user->permissionLevel = 'student';
 
         // save into database
         $student->save();
+        $user->save();
+
         return response()->json($student);
     }
 
@@ -168,81 +116,20 @@ class ManageStudentController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->only([
-            'title',
-            'gender',
-            'dateOfBirth',
+            'studentID',
             'surname',
             'givenName',
             'email',
-            'overseasAddress',
-            'overseasCountry',
-            'malaysianAddress',
-            'malaysianCountry',     // maybe extra here, confirm later
-            'malaysianPostcode',
-            'overseasTelephone',
-            'malaysianTelephone',
-            'fax',
-            'mobile',
-            'countryOfCitizenship',
-            'birthCountry',
-            'identityCardOrPassportNumber',
-            'passportExpiry',
-            'visaValidity',
-            'visaType',
-            'visaExpiry',
-            'visaCollectionLoaction',// some typo, need to confirm later
-            'courseAccepted1',
-            'courseAccepted2',
-            'courseAccepted3',
-            'emergencyContactName',
-            'emergencyContactAddress',
-            'emergencyContactTelephone',
-            'emergencyContactFax',
-            'emergencyContactMobile',
-            'emergencyContactRelationship',
-            'emergencyContactSpokenLanaguage',
-            'acceptanceDate'
+            'courseCode'
         ]);
 
-        // create new student
-        $student = Student::findOrFail($id);
-        $student->title = $input['title'];
-        $student->gender = $input['gender'];
-        $student->dateOfBirth = $input['dateOfBirth'];
+        // find student and update
+        $student = new Student;
+        $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->email = $input['email'];
-        $student->overseasAddress = $input['overseasAddress'];
-        $student->overseasCountry = $input['overseasCountry'];
-        $student->overseasPostcode = $input['overseasPostcode'];
-        $student->malaysianAddress = $input['malaysianAddress'];
-        $student->malaysianCountry = $input['malaysianCountry'];
-        $student->malaysianPostcode = $input['malaysianPostcode'];
-        $student->overseasTelephone = $input['overseasTelephone'];
-        $student->malaysianTelephone = $input['malaysianTelephone'];
-        $student->fax = $input['fax'];
-        $student->mobile = $input['mobile'];
-        $student->countryOfCitizenship = $input['countryOfCitizenship'];
-        $student->birthCountry = $input['birthCountry'];
-        $student->identityCardOrPassportNumber = $input['identityCardOrPassportNumber'];
-        $student->passportExpiry = $input['passportExpiry'];
-        $student->visaValidity = $input['visaValidity'];
-        $student->visaType = $input['visaType'];
-        $student->visaExpiry = $input['visaExpiry'];
-        $student->visaCollectionLoaction = $input['visaCollectionLoaction'];
-        $student->courseAccepted1 = $input['courseAccepted1'];
-        $student->courseAccepted2 = $input['courseAccepted2'];
-        $student->courseAccepted3 = $input['courseAccepted3'];
-        $student->courseCommencement = $input['courseCommencement'];
-        $student->emergencyContactName = $input['emergencyContactName'];
-        $student->emergencyContactAddress = $input['emergencyContactAddress'];
-        $student->emergencyContactTelephone = $input['emergencyContactTelephone'];
-        $student->emergencyContactFax = $input['emergencyContactFax'];
-        $student->emergencyContactMobile = $input['emergencyContactMobile'];
-        $student->emergencyContactEmail = $input['emergencyContactEmail'];
-        $student->emergencyContactRelationship = $input['emergencyContactRelationship'];
-        $student->EmergencyContactSpokenLanaguage = $input['EmergencyContactSpokenLanaguage'];
-        $student->acceptanceDate = $input['acceptanceDate'];
+        $student->courseCode = $input['courseCode'];
 
         $student->save();
         return response()->json($student);
@@ -260,4 +147,42 @@ class ManageStudentController extends Controller
         $student->delete();
         return response()->json($student);
     }
+
+    /**
+     * Sends a request to retrieve a file from the user
+     *
+     */
+    public function fileUpload(Request $request)
+    {
+        $input = $request->only([
+            'jsondata',
+            'arrlength'
+        ]);
+
+        $arrlength = $input['arrlength'];
+        $jsondata = $input['jsondata'];
+        $jsonArray = json_decode($jsondata, true);
+
+        foreach ($jsonArray as $data) {
+            foreach ($data as $value) {
+                $student = new Student;
+                $student->studentID = $value['stdID'];
+                $student->surname = $value['surname'];
+                $student->givenName = $value['firstname'];
+                $student->email = $value['email'];
+                $student->courseCode = $value['coursecode'];
+                $student->save();
+            }
+        }
+
+        return response()->json($jsonArray);
+    }
 }
+
+// console.log(studentsInfo[0].firstname); // this to help easier access the students
+// let studentsInfo = {}
+// // to access the students : console.log(students[0].sheet1[0].firstname);
+// for (var i = 0; i < students[0].sheet1.length; i++) {
+//     // to access each student : console.log(students[0].sheet1[i].firstname);
+//     studentsInfo[i] = students[0].sheet1[i]
+// }

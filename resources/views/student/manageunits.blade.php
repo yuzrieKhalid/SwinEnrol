@@ -11,7 +11,7 @@
         @include('student.menu')
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Current Enrolment
                         <span class="pull-right">
@@ -56,7 +56,7 @@
             </div> <!-- end .panel -->
 
             <!-- Available units -->
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Add Units
                         <span class="pull-right">
@@ -90,7 +90,7 @@
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                     </button>
 
-                                
+
                                 </td>
                             </tr>
                             @endforeach

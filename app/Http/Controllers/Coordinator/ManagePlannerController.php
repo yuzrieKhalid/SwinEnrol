@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\StudyPlanner;
 use App\UnitTerm;
 use App\Unit;
+use App\Course;
 use DB;
-
-use Log;
 
 use Carbon\Carbon;
 
@@ -25,7 +23,7 @@ class ManagePlannerController extends Controller
      */
     public function index()
     {
-        return response()->json(StudyPlanner::all());
+        return response()->json(UnitTerm::all());
     }
 
     /**
@@ -33,25 +31,40 @@ class ManagePlannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $input = $request->only([
+            'year',
+            'term',
+            'courseCode'
+        ]);
+
+        if($input['year'] == 0)
+        {
+            $year = Carbon::now();
+            $input['year'] = $year->year;
+        }
+
+        if($input['term'] == '')
+            $input['term'] = 'Semester 1';
+
+        // default to BCS for now
+        if($input['courseCode'] == '')
+            $input['courseCode'] = 'I047';
+
         $data = [];
-        $units = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'Study Planner')
+        $units = UnitTerm::with('unit', 'unit_type', 'course')
+            ->where([
+                ['unitType', '=', 'study_planner'],
+                ['year', '=', $input['year']],
+                ['term', '=', $input['term']],
+                ['courseCode', '=', $input['courseCode']]
+            ])
             ->get();
-        // $units = DB::table('study_planner')
-        //     ->join('unit', 'study_planner.unitCode', '=', 'unit.unitCode')
-        //     ->select('study_planner.*', 'unit.unitName')
-        //     ->get();
         $data['termUnits'] = $units;
 
         // get semester size
         $data['size'] = 9;  // todo: change size to server configuration
-        // $data['size'] = DB::table('unit_term')
-        //     ->where([
-        //         ['year', '=', '2016'], // todo: get from user
-        //         ['term', '=', 'Semester 1'] // todo: get from user
-        //     ])->max('enrolmentTerm');
 
         // get semester unit count
         for($n = 0; $n < $data['size']; $n++)
@@ -74,12 +87,32 @@ class ManagePlannerController extends Controller
         $units = Unit::all();
         $data['units'] = $units;
 
+        // get current year
+        $data['currentYear'] = Carbon::now()->year;
+
         // get year
-        $data['year'] = 2016; // todo: get from user request
+        $data['year'] = $input['year'];
 
         // get semester
-        $data['semester'] = 'Semester 1'; // todo: get from user request
+        $data['semester'] = $input['term'];
 
+        // get selected course
+        $selectedCourse = Course::where('courseCode', '=', $input['courseCode'])->get();
+        if(count($selectedCourse) > 0)
+        {
+            $data['courseCode'] = $selectedCourse[0]->courseCode;
+            $data['courseName'] = $selectedCourse[0]->courseName;
+        }
+        else
+        {
+            $data['courseCode'] = '';
+            $data['courseName'] = '';
+        }
+
+        // get all courses
+        $data['courses'] = Course::all();
+
+        // return response()->json($data);
         return view ('coordinator.managestudyplanner', $data);
     }
 
@@ -95,15 +128,17 @@ class ManagePlannerController extends Controller
             'unitCode',
             'year',
             'term',
-            'enrolmentTerm'
+            'enrolmentTerm',
+            'courseCode'
         ]);
 
         $unit = new UnitTerm;
-        $unit->unitType = 'Study Planner';
+        $unit->unitType = 'study_planner';
         $unit->unitCode = $input['unitCode'];
         $unit->year = (int) $input['year'];
         $unit->term = $input['term'];
         $unit->enrolmentTerm = (int) $input['enrolmentTerm'];
+        $unit->courseCode = $input['courseCode'];
         $unit->created_at = Carbon::now();
         $unit->updated_at = Carbon::now();
         $unit->save();
@@ -155,6 +190,7 @@ class ManagePlannerController extends Controller
         $planner->unitCode = $input['unitCode'];
         $planner->year = $input['year'];
         $planner->term = $input['term'];
+        $planner->unitType = 'study_planner';
         $planner->save();
 
         return response()->json($planner);
@@ -177,10 +213,11 @@ class ManagePlannerController extends Controller
         ]);
 
         $planner = UnitTerm::where('unitCode', '=', $input['unitCode'])
-            // ->where('courseCode', '=', $input['courseCode']) // todo: get course code from request
+            ->where('courseCode', '=', $input['courseCode'])
             ->where('year', '=', $input['year'])
             ->where('term', '=', $input['term'])
             ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->where('unitType', '=', 'study_planner')
             ->delete();
 
         return response()->json($planner);

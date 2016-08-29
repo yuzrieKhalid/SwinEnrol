@@ -33,13 +33,16 @@ class ManageListingController extends Controller
     {
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'Study Planner')
+            ->where('unitType', '=', 'unit_listing')
+            ->where('enrolmentTerm', '=', '0')
             ->get();
-        // $units = DB::table('unit_listing')
-        //     ->join('unit', 'unit_listing.unitCode', '=', 'unit.unitCode')
-        //     ->select('unit_listing.*', 'unit.unitName')
-        //     ->get();
         $data['termUnits'] = $units;
+
+        $units = UnitTerm::with('unit', 'unit_type')
+            ->where('unitType', '=', 'unit_listing')
+            ->where('enrolmentTerm', '=', '1')
+            ->get();
+        $data['termUnitsShort'] = $units;
 
         $units = Unit::all();
         $data['units'] = $units;
@@ -56,18 +59,17 @@ class ManageListingController extends Controller
     public function store(Request $request)
     {
         $input = $request->only([
-            'year',
-            'term',
-            'unitCode'
+            'unitCode',
+            'enrolmentTerm'
         ]);
 
-        $unitlisting = new UnitListing;
-        $unitlisting->year = $input['year'];
-        $unitlisting->term = $input['term'];
-        $unitlisting->unitCode = $input['unitCode'];
+        $unit = new UnitTerm;
+        $unit->unitType = 'unit_listing';
+        $unit->unitCode = $input['unitCode'];
+        $unit->enrolmentTerm = $input['enrolmentTerm'];
 
-        $unitlisting->save();
-        return response()->json($unitlisting);
+        $unit->save();
+        return response()->json($unit);
     }
 
     /**
@@ -102,14 +104,12 @@ class ManageListingController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->only([
-            'year',
-            'term',
-            'unitCode'
+            'unitCode',
+            'enrolmentTerm'
         ]);
 
-        $unitlisting = UnitListing::findOrFail($id);
-        $unitlisting->year = $input['year'];
-        $unitlisting->term = $input['term'];
+        // not working (because it's not necessary)
+        $unitlisting = UnitTerm::findOrFail($id);
         $unitlisting->unitCode = $input['unitCode'];
 
         $unitlisting->save();
@@ -122,10 +122,16 @@ class ManageListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $unitlisting = UnitListing::findOrFail($id);
-        $unitlisting->delete();
+        $input = $request->only([
+            'unitCode',
+            'enrolmentTerm'
+        ]);
+
+        $unitlisting = UnitTerm::where('unitCode', '=', $input['unitCode'])
+            ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->delete();
 
         return response()->json($unitlisting);
     }

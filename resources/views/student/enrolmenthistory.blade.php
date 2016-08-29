@@ -7,7 +7,7 @@
         @include('student.menu')
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Enrolment History</h1>
                 </div>
@@ -16,7 +16,6 @@
                     <!-- Completed Units Table -->
                     <div class="table-responsive">
                         <table class="table">
-                            <caption><h3>Completed Units</h3></caption>
                             <thead>
                                 <th>Unit Code</th>
                                 <th>Unit Title</th>
@@ -46,59 +45,27 @@
                         </table>
                     </div>
 
-                    <!-- Ongoing Units Table -->
-                    <!-- <div class="table-responsive">
+                    <!-- Exempted Units -> only for students who applied for exemption -->
+                    <div class="table-responsive">
                         <table class="table">
-                            <caption><h3>Current Semester Units</h3></caption>
+                            <caption><h3>Advanced Standing (Exemption)</h3></caption>
                             <thead>
                                 <th>Unit Code</th>
                                 <th>Unit Title</th>
-                                <th>Status</th>
                             </thead>
 
-                            @if(empty($enrolled))
-                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                            @if(empty($exempted))
+                                <tr><td colspan="2">No Units Exempted</td></tr>
                             @else
-                                @foreach ($enrolled as $unit)
+                                @foreach ($exempted as $unit)
                                     <tr>
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
-                                        @if($unit->status == 'confirmed')
-                                            <!Waiting to be approved (Phase 2) -->
-                                            <!-- <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
-                                        @endif
                                     </tr>
                                 @endforeach
                             @endif
                         </table>
-                    </div>  -->
-
-                    <!-- Units Not Yet Taken / Failed Table -->
-                    <!-- <div class="table-responsive">
-                        <table class="table">
-                            <caption><h3>Not Completed Units</h3></caption>
-                            <thead>
-                                <th>Unit Code</th>
-                                <th>Unit Title</th>
-                                <th>Status</th>
-                            </thead>
-
-                            @if(empty($enrolled))
-                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
-                            @else
-                                @foreach ($enrolled as $unit)
-                                    <tr>
-                                        <td>{{ $unit->unitCode }}</td>
-                                        <td>{{ $unit->unit->unitName }}</td>
-                                        @if($unit->status == 'confirmed')
-                                            <! Is currently taken -->
-                                            <!-- <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                        @endif
-                                    </tr>
-                                @endforeach
-                            @endif
-                        </table>
-                    </div>  -->
+                    </div>
 
                 </div>
             </div> <!-- end .panel -->

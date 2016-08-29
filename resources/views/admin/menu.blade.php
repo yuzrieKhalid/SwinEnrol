@@ -1,4 +1,4 @@
-<div class="col-md-3 sidebar-offcanvas" id="sidebar">
+<div class="col-md-3">
     <div class="list-group">
         <a href="{{ url('/admin') }}" class="list-group-item">Home</a>
         <a href="{{ url('/admin/managestudents') }}" class="list-group-item">Manage Students</a>

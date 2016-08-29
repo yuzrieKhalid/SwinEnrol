@@ -6,16 +6,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row row-offcanvas row-offcanvas-left">
+    <div class="row">
         <!-- Reserve 3 space for navigation column -->
         @include('admin.menu')
 
         <div class="col-md-9">
-            <!-- to be fixed -->
-            <p class="pull-left visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-            </p>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Students</h1>

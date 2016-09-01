@@ -15,9 +15,7 @@
 
         <div class="col-md-9">
             <!-- To be fixed -->
-            <p class="pull-left visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-            </p>
+            
 
             <div class="panel panel-success">
                 <div class="panel-heading">

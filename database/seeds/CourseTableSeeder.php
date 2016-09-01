@@ -16,7 +16,7 @@ class CourseTableSeeder extends Seeder
         DB::table('course')->insert([
             [
                 'courseCode' => 'I047',
-                'courseName' => 'BCS',
+                'courseName' => 'Bachelor of Computer Science',
                 'graduationRequirements' => 'None',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

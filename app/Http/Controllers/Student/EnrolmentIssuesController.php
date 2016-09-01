@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+use App\Course;
+use App\Student;
+use App\EnrolmentIssues;
+use App\StudentEnrolmentIssues;
+
 class EnrolmentIssuesController extends Controller
 {
     /**
@@ -16,7 +22,20 @@ class EnrolmentIssuesController extends Controller
      */
     public function index()
     {
-        return view ('student.enrolmentissues');
+        $data = [];
+
+        $user = Auth::user();
+        $student = Student::where('studentID', '=', $user->username)->get();
+
+        foreach ($student as $key) {
+            $studentcourse = Course::where('courseCode', '=', $key->courseCode)->get();
+        }
+
+
+        $data['student'] = $student;
+        $data['studentcourse'] = $studentcourse;
+
+        return view ('student.enrolmentissues', $data);
     }
 
     /**
@@ -37,7 +56,13 @@ class EnrolmentIssuesController extends Controller
      */
     public function store(Request $request)
     {
+        // $input = $request->only([
         //
+        // ]);
+        //
+        // $issue = new StudentEnrolmentIssues;
+        //
+        // return response()->json($)
     }
 
     /**

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+<meta name="_token" content="{{ csrf_token() }}" />
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -99,7 +103,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" id="issueTitle">
                                         <option>Select One</option>
-                                        <option value="ict">Internal Course Transfer</option>
+                                        <option value="course_transfer">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="programWithdrawal">Application Withdrawal from Program</option>
                                         <option value="others">Others (None of the above)</option>
@@ -110,35 +114,38 @@
                             <hr>
 
                             <!-- Case: Internal Course Transfer -->
-                            <div class="hidden" id="ict">
+                            <div class="hidden" id="course_transfer">
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
-                                    <input type="text" name="yearOfRequestedTransfer" class="form-control">
+                                <input type="text" id="yearOfRequestedTransfer" class="form-control">
 
                                 <h4>CURRENT PROGRAM</h4>
+
+                                @foreach($studentcourse as $course)
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" name="currentProgramCode" class="form-control" placeholder="" disabled>
+                                        <input type="text" id="fromProgramCode" class="form-control" value="{{ $course->courseCode }}" disabled>
                                     </div>
                                         <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="currentProgramTitle" class="form-control" placeholder="" disabled>
+                                        <input type="text" id="fromProgramTitle" class="form-control" value="{{ $course->courseName }}" disabled>
                                     </div>
                                 </div>
+                                @endforeach
 
                                 <div class="form-group">
                                     <label class="control-label col-sm-5">Year of first enrolment in current program:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" name="currentProgramIntakeYear" class="form-control">
+                                        <input type="text" id="fromProgramIntakeYear" class="form-control">
                                     </div>
                                 </div>
 
                                 <h4>PROPOSED PROGRAM</h4>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" for="prname">Program Title:</label>
+                                    <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" name="sPPn" id="prname">
+                                        <select class="form-control" id="toProgramTitle">
                                             <option value="none"></option>
                                             <option value="one">I047 Bachelor in Computer Science</option>
                                             <option value="two">I046 Bachelor of Software Engineering</option>
@@ -147,9 +154,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" for="pryear">Program Year:</label>
+                                    <label class="control-label col-sm-2">Program Year:</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" name="sPPc" id="prcode">
+                                        <select class="form-control" id="toProgramYear">
                                             <option value="none"></option>
                                             <option value="2013">2013</option>
                                             <option value="2014">2014</option>
@@ -162,18 +169,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" for="pwd">Reasons for Requesting Transfer </label>
+                                    <label class="control-label col-sm-2">Reasons for Requesting Transfer </label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control custom-control" name="sReason" rows="3" style="resize:none"></textarea>
+                                        <textarea class="form-control custom-control" id="toReasons" rows="3" style="resize:none"></textarea>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <input type="submit" value="Submit" class="btn btn-default">
-                                    </div>
-                                </div>
-                            </div>
+                            </div> <!-- end .course_transfer -->
 
                             <!-- Case: Exemption -->
                             <div class="hidden" id="exemption">
@@ -314,7 +315,7 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button class="btn btn-default submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -326,6 +327,12 @@
 <script>
 // issueTitle change form script
 (function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    // SELECT ISSUE SCRIPT
     let selectIssue = $("#issueTitle")
 
     selectIssue.data("prev",selectIssue.val())
@@ -342,9 +349,44 @@
 
         // always the latest selected option
         let option = $(this).find('option:selected').val()
-        console.log("Selected " + option);
         $('#' + option).removeClass("hidden")
     })
+
+    // CREATE ISSUE SCRIPT
+    let createIssue = $('.submit').click(function() {
+        // placeholder for the data
+        let string_jsondata = ""
+
+        // get the issueTitle value and get the data based on the issue
+        let option = $('#issueTitle').find('option:selected').val()
+        if (option == 'course_transfer') {
+            let yearOfRequestedTransfer = $('#yearOfRequestedTransfer').val()
+            let fromProgramCode = $('#fromProgramCode').val()
+            let fromProgramTitle = $('#fromProgramTitle').val()
+            let fromProgramIntakeYear = $('#fromProgramIntakeYear').val()
+
+            console.log(yearOfRequestedTransfer)
+            console.log(fromProgramCode)
+            console.log(fromProgramTitle)
+            console.log(fromProgramIntakeYear)
+
+        } else if (option == 'exemption') {
+            console.log('exempted')
+
+        } else if (option == 'programWithdrawal') {
+            console.log('withdraw')
+
+        } else {
+            console.log('other issues')
+
+        }
+        // AJAX Part 1
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        let data = {
+            '_token': getToken()
+        }
+    });
 }) ()
 </script>
 @stop

@@ -16,19 +16,25 @@ class EnrolmentIssuesTableSeeder extends Seeder
         DB::table('enrolment_issues')->insert([
             [
                 'id' => 1,
-                'issueType' => 'single_unit',
+                'issueType' => 'course_transfer',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => 2,
-                'issueType' => 'prerequisite',
+                'issueType' => 'exemption',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => 3,
-                'issueType' => 'timestable_clash',
+                'issueType' => 'programWithdrawal',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 4,
+                'issueType' => 'others',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

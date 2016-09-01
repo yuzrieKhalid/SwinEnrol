@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 use App\UnitListing;
 use App\UnitTerm;
 use App\Unit;
+use App\Config;
 use DB;
+
+use Carbon\Carbon;
 
 class ManageListingController extends Controller
 {
@@ -31,16 +34,21 @@ class ManageListingController extends Controller
      */
     public function create()
     {
+        $semester = Config::where('id', '=', 'semester')->get();
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('enrolmentTerm', '=', '0')
+            ->where('year', '=', Carbon::now()->year)
+            ->where('term', '=', $semester[0]->value)
+            ->where('enrolmentTerm', '=', 'long')
             ->get();
         $data['termUnits'] = $units;
 
         $units = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('enrolmentTerm', '=', '1')
+            ->where('year', '=', Carbon::now()->year)
+            ->where('term', '=', $semester[0]->value)
+            ->where('enrolmentTerm', '=', 'short')
             ->get();
         $data['termUnitsShort'] = $units;
 
@@ -63,10 +71,15 @@ class ManageListingController extends Controller
             'enrolmentTerm'
         ]);
 
+        $semester = Config::where('id', '=', 'semester')->get();
+
         $unit = new UnitTerm;
         $unit->unitType = 'unit_listing';
         $unit->unitCode = $input['unitCode'];
+        $unit->year = Carbon::now()->year;
+        $unit->term = $semester[0]->value;
         $unit->enrolmentTerm = $input['enrolmentTerm'];
+        $unit->courseCode = 'I047'; // todo: get from coordinator
 
         $unit->save();
         return response()->json($unit);
@@ -129,7 +142,11 @@ class ManageListingController extends Controller
             'enrolmentTerm'
         ]);
 
+        $semester = Config::where('id', '=', 'semester')->get();
+
         $unitlisting = UnitTerm::where('unitCode', '=', $input['unitCode'])
+            ->where('year', '=', Carbon::now()->year)
+            ->where('term', '=', $semester[0]->value)
             ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
             ->delete();
 

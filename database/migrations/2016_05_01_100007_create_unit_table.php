@@ -16,7 +16,6 @@ class CreateUnitTable extends Migration
         {
             $table->string('unitCode');
             $table->string('unitName');
-            $table->boolean('core');
             $table->string('prerequisite');
             $table->string('corequisite');
             $table->string('antirequisite');

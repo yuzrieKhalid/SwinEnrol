@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 use Auth;
 use App\Course;
@@ -25,15 +26,25 @@ class EnrolmentIssuesController extends Controller
         $data = [];
 
         $user = Auth::user();
-        $student = Student::where('studentID', '=', $user->username)->get();
 
-        foreach ($student as $key) {
-            $studentcourse = Course::where('courseCode', '=', $key->courseCode)->get();
-        }
-
+        // get User Student
+        $student = Student::where('studentID', '=', $user->username)->first();
+        $studentcourse = Course::where('courseCode', '=', $student->courseCode)->get();
 
         $data['student'] = $student;
         $data['studentcourse'] = $studentcourse;
+
+        // get all courses apart from the one currently being taken
+        $courses = Course::where('courseCode', '!=', $student->courseCode)->get();
+        $data['courses'] = $courses;
+
+        // get previous, current and next year
+        $currentyear = Carbon::now()->year;
+        $nextyear = Carbon::now()->addYears(1)->year;
+        $next2year = Carbon::now()->addYears(2)->year;
+        $data['currentyear'] = $currentyear;
+        $data['nextyear'] = $nextyear;
+        $data['next2year'] = $next2year;
 
         return view ('student.enrolmentissues', $data);
     }

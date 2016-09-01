@@ -117,7 +117,7 @@
                             <div class="hidden" id="course_transfer">
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
-                                <input type="text" id="yearOfRequestedTransfer" class="form-control">
+                                <input type="text" id="yearOfRequestedTransfer" class="form-control" placeholder="e.g., {{ $currentyear }} Semester 1">
 
                                 <h4>CURRENT PROGRAM</h4>
 
@@ -145,10 +145,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="toProgramTitle">
+                                        <select class="form-control" id="toProgram">
                                             <option value="none"></option>
-                                            <option value="one">I047 Bachelor in Computer Science</option>
-                                            <option value="two">I046 Bachelor of Software Engineering</option>
+                                            @foreach($courses as $course)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} {{ $course->courseName }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -158,12 +159,9 @@
                                     <div class="col-sm-2">
                                         <select class="form-control" id="toProgramYear">
                                             <option value="none"></option>
-                                            <option value="2013">2013</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
+                                            <option value="{{ $currentyear }}">{{ $currentyear }}</option>
+                                            <option value="{{ $nextyear }}">{{ $nextyear }}</option>
+                                            <option value="{{ $next2year }}">{{ $next2year }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -355,20 +353,22 @@
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
         // placeholder for the data
-        let string_jsondata = ""
+        let submissionData = ""
+        let attachmentData = null
 
         // get the issueTitle value and get the data based on the issue
         let option = $('#issueTitle').find('option:selected').val()
         if (option == 'course_transfer') {
-            let yearOfRequestedTransfer = $('#yearOfRequestedTransfer').val()
-            let fromProgramCode = $('#fromProgramCode').val()
-            let fromProgramTitle = $('#fromProgramTitle').val()
-            let fromProgramIntakeYear = $('#fromProgramIntakeYear').val()
-
-            console.log(yearOfRequestedTransfer)
-            console.log(fromProgramCode)
-            console.log(fromProgramTitle)
-            console.log(fromProgramIntakeYear)
+            let json_ict = {}
+            json_ict["yearOfRequestedTransfer"] = $('#yearOfRequestedTransfer').val()
+            json_ict["fromProgramCode"] = $('#fromProgramCode').val()
+            json_ict["fromProgramTitle"] = $('#fromProgramTitle').val()
+            json_ict["fromProgramIntakeYear"] = $('#fromProgramIntakeYear').val()
+            json_ict["toProgram"] = $('#toProgram').val()
+            json_ict["toProgramYear"] = $('#toProgramYear').val()
+            json_ict["toReasons"] = $('#toReasons').val()
+            submissionData = JSON.stringify(json_ict)
+            // end option == 'course_transfer'
 
         } else if (option == 'exemption') {
             console.log('exempted')
@@ -380,12 +380,21 @@
             console.log('other issues')
 
         }
-        // AJAX Part 1
+
+        // AJAX Creating the Issue
         let method = $(this).data('method')
         let url = $(this).data('url')
         let data = {
-            '_token': getToken()
+            '_token': getToken(),
+            'submissionData': submissionData,
+            'attachmentData': attachmentData
         }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data,
+        }).done(function(data) { window.location.reload() })
     });
 }) ()
 </script>

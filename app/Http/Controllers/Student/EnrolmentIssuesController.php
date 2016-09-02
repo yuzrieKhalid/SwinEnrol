@@ -67,13 +67,21 @@ class EnrolmentIssuesController extends Controller
      */
     public function store(Request $request)
     {
-        // $input = $request->only([
-        //
-        // ]);
-        //
-        // $issue = new StudentEnrolmentIssues;
-        //
-        // return response()->json($)
+        $input = $request->only([
+            'issueID',
+            'submissionData',
+            'attachmentData'
+        ]);
+
+        $issue = new StudentEnrolmentIssues;
+        $issue->studentID = Auth::user()->username;
+        $issue->issueID = $input['issueID'];
+        $issue->status = 'pending';
+        $issue->submissionData = $input['submissionData'];
+        $issue->attachmentData = $input['attachmentData'];
+        $issue->save();
+
+        return response()->json($issue);
     }
 
     /**

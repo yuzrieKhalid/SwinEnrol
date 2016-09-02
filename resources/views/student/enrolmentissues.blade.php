@@ -313,7 +313,7 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-default submit">Submit</button>
+                    <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
                 </div>
             </div>
         </div>
@@ -355,6 +355,7 @@
         // placeholder for the data
         let submissionData = ""
         let attachmentData = null
+        let issueID = 0
 
         // get the issueTitle value and get the data based on the issue
         let option = $('#issueTitle').find('option:selected').val()
@@ -368,6 +369,7 @@
             json_ict["toProgramYear"] = $('#toProgramYear').val()
             json_ict["toReasons"] = $('#toReasons').val()
             submissionData = JSON.stringify(json_ict)
+            issueID = 1
             // end option == 'course_transfer'
 
         } else if (option == 'exemption') {
@@ -378,7 +380,6 @@
 
         } else {
             console.log('other issues')
-
         }
 
         // AJAX Creating the Issue
@@ -386,6 +387,7 @@
         let url = $(this).data('url')
         let data = {
             '_token': getToken(),
+            'issueID': issueID,
             'submissionData': submissionData,
             'attachmentData': attachmentData
         }
@@ -394,7 +396,9 @@
             'url': url,
             'method': method,
             'data': data,
-        }).done(function(data) { window.location.reload() })
+        }).done(function(data) {
+
+        })
     });
 }) ()
 </script>

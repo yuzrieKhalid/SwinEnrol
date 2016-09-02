@@ -41,7 +41,62 @@ class ConfigController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->only([
+            'enrolmentPhase',
+            'semester',
+            'year',
+            'semesterLength'
+        ]);
+
+        $data['status'] = true;
+
+        // Enrolment Phase
+        $enrolmentPhase = Config::find('enrolmentPhase');
+        $enrolmentPhase->value = $input['enrolmentPhase'];
+        $enrolmentPhaseVal = intval($input['enrolmentPhase']);
+        if($enrolmentPhaseVal < 1 || $enrolmentPhaseVal > 3)
+        {
+            $data['status'] = false;
+            $data['epMessage'] = 'Enrolment Phase must be between values 1 and 3.';
+        }
+
+        // Semester
+        $semester = Config::find('semester');
+        $semester->value = $input['semester'];
+
+        // Semester Length
+        $semesterLength = Config::find('semesterLength');
+        $semesterLength->value = $input['semesterLength'];
+        $semesterLengthVal = intval($input['semesterLength']);
+        if($semesterLengthVal < 1)
+        {
+            $data['status'] = false;
+            $data['slMessage'] = 'Semester Length must be a number greater than 0.';
+        }
+
+        // Year
+        $year = Config::find('year');
+        $year->value = $input['year'];
+        $yearVal = intval($input['year']);
+        if($yearVal < 1)
+        {
+            $data['status'] = false;
+            $data['yMessage'] = 'Year must be a number greater than 0.';
+        }
+
+        // save changes
+        if($data['status'] == true)
+        {
+
+            $enrolmentPhase->save();
+            $semester->save();
+            $semesterLength->save();
+            $year->save();
+        }
+
+        $data['config'] = Config::all();
+
+        return view('super.config', $data);
     }
 
     /**

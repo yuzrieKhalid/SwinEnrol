@@ -6,6 +6,8 @@
             <!-- Reserve 3 space for navigation column -->
             <div class="col-md-3">
                 <div class="list-group">
+                    <a href="{{ url('/super/managestudentadmin') }}" class="list-group-item">Home</a>
+                    <a href="{{ url('/super/config') }}" class="list-group-item">Configuration</a>
                     <a href="{{ url('/super/managestudentadmin') }}" class="list-group-item">Manage Student Administrators</a>
                     <a href="{{ url('/super/managecoordinator') }}" class="list-group-item">Manage Course Coordinators</a>
                     <a href="{{ url('/super/managestudent') }}" class="list-group-item active">Manage Students</a>

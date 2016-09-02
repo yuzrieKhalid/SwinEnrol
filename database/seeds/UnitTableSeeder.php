@@ -37,7 +37,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3310',
                 'unitName' => 'Software Architecture and Design',
-                'core' => 'true',
                 'prerequisite' => 'None',
                 'corequisite' => 'None',
                 'antirequisite' => 'None',

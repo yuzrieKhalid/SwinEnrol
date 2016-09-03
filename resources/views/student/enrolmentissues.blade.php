@@ -421,11 +421,13 @@ $('.datepicker').datepicker({
             // check for dual qualification
             let dualQualification = ""
             if ($('#dualYes:checked').val())
-                dualQualification = 'yes'
+                dualQualification = 'YES'
             else
-                dualQualification = 'no'
+                dualQualification = 'NO'
 
             let json_withdrawal = {}
+            json_withdrawal["fromProgramCode"] = $('.fromProgramCode').val()
+            json_withdrawal["fromProgramTitle"] = $('.fromProgramTitle').val()
             json_withdrawal["effectiveYear"] = $('.effectiveYear').val()
             json_withdrawal["teachingPeriod"] = $('.teachingPeriod').val()
             json_withdrawal["lastClassAttendedDate"] = $('.lastClassAttendedDate').val()

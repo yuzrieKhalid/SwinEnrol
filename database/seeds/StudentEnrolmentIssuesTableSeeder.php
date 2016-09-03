@@ -36,7 +36,7 @@ class StudentEnrolmentIssuesTableSeeder extends Seeder
                 "studentID" => "4318595",
                 "issueID" => 3,
                 "status" => "Pending",
-                "submissionData" => "{\"effectiveYear\":\"2018\",\"teachingPeriod\":\"4 Years\",\"dualQualification\":\"yes\",\"reasonForWithdrawal\":\"I'm done\"}",
+                "submissionData" => "{\"effectiveYear\":\"2018\",\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"teachingPeriod\":\"4 Years\",\"lastClassAttendedDate\":\"31-08-2016\",\"dualQualification\":\"YES\",\"reasonForWithdrawal\":\"I'm done\"}",
                 "attachmentData" => "",
                 "created_at"=> Carbon::now(),
                 "updated_at"=> Carbon::now()

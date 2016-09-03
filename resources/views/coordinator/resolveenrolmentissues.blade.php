@@ -72,7 +72,6 @@
 
                                                     <h3>Advanced Standing (Exemption) Details</h3>
                                                     <p>Current Program: <span class="text-primary currentProgram">[I047] [Bachelor of Computer Science]</span></p>
-                                                    <p>Current Program Intake: <span class="text-primary currentIntake">[April 2014]</span></p>
                                                     <hr>
                                                     <p>Exemption Unit: <span class="text-success exemptionUnit">[HIT 1302] [Introduction to Business Information System]</span></p>
                                                     <p>Exemption Year: <span class="text-success exemptionYear">[2018]</span></p>
@@ -92,7 +91,9 @@
                                                     <p>Last Class Attended: <span class="text-primary lastClassAttended">[31-08-2016]</span></p>
                                                     <hr>
                                                     <p>Reason of Transfer:</p>
-                                                    <p class="reason">[Reason]</p>
+                                                    <blockquote>
+                                                        <p class="reason">[Reason]</p>
+                                                    </blockquote>
                                                 </div>
 
                                                 <div class="issue_4 hidden">
@@ -101,7 +102,9 @@
                                                     <p>Status: <span class="text-warning status">Pending</span></p>
 
                                                     <h3>Others Issue</h3>
-                                                    <p class="others">Content Here</p>
+                                                    <blockquote>
+                                                        <p class="others">Content Here</p>
+                                                    </blockquote>
                                                 </div>
                                             </div>
 
@@ -155,12 +158,52 @@
 
     // 3.2 Advanced Standing (Exemption)
     let addModalData_2 = function(issue) {
+        // parsing the JSON Object
+        let submissionData = JSON.parse(issue.submissionData)
 
+        // cloning and populating the data
+        let modal_template = $('#modal_placeholder').find('.modal_template').clone()
+        modal_template.find('.issue_2').removeClass('hidden')
+        modal_template.removeClass('modal_template')
+        modal_template.attr('id', issue.studentID + '_' + issue.issueID)
+
+        modal_template.find('.studentID').html(issue.studentID)
+        modal_template.find('.issue').html(issue.enrolment_issues.issueType)
+        modal_template.find('.status').html(issue.status)
+
+        modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
+        modal_template.find('.exemptionUnit').html(submissionData.exemptionUnitCode + ' ' + submissionData.exemptionUnitTitle)
+        modal_template.find('.exemptionYear').html(submissionData.exemptionUnitYear)
+        // TODO: ABILITY TO DOWNLOAD THE ATTACHMENT
+        // modal_template.find('.attachmentData').children('a').attr('data-url', issue.attachmentData)
+        // modal_template.find('.attachmentData').children('a').html(issue.attachmentData.file)
+
+        $('#modal_placeholder').append(modal_template)
     }
 
     // 3.3 Withdrawal From Program
     let addModalData_3 = function(issue) {
+        // parsing the JSON Object
+        let submissionData = JSON.parse(issue.submissionData)
 
+        // cloning and populating the data
+        let modal_template = $('#modal_placeholder').find('.modal_template').clone()
+        modal_template.find('.issue_3').removeClass('hidden')
+        modal_template.removeClass('modal_template')
+        modal_template.attr('id', issue.studentID + '_' + issue.issueID)
+
+        modal_template.find('.studentID').html(issue.studentID)
+        modal_template.find('.issue').html(issue.enrolment_issues.issueType)
+        modal_template.find('.status').html(issue.status)
+
+        modal_template.find('.effectiveYear').html(submissionData.effectiveYear)
+        modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
+        modal_template.find('.dualQualification').html(submissionData.dualQualification)
+        modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
+        modal_template.find('.lastClassAttended').html(submissionData.lastClassAttendedDate)
+        modal_template.find('.reason').html(submissionData.reasonForWithdrawal)
+
+        $('#modal_placeholder').append(modal_template)
     }
 
     // 3.4 Others
@@ -187,7 +230,7 @@
             addModalData_1(issue)
         } else if (issue.issueID == 2) {
             addModalData_2(issue)
-        } else if (issue.issueID == 2) {
+        } else if (issue.issueID == 3) {
             addModalData_3(issue)
         } else {
             addModalData_4(issue)

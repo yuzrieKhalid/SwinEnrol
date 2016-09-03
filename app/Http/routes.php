@@ -73,7 +73,6 @@ Route::group([
 });
 
 Route::get('/phase', 'PhaseController@phaseTrigger');
-Route::get('/unit', 'PhaseController@unitApprove'); // temporary: for testing purpose only
 
 /*
 Route::group([

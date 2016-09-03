@@ -317,8 +317,8 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    {{--- <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button> ---}}
-                    <button class="btn btn-default submit">Submit</button>
+                    <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
+                    <!-- <button class="btn btn-default submit">Submit</button> -->
                 </div>
             </div>
         </div>
@@ -378,6 +378,7 @@
         // get the issueTitle value and get the data based on the issue
         let option = $('#issueTitle').find('option:selected').val()
         if (option == 'course_transfer') {
+            // keep everything in an array to be stringified into a JSON Object
             let json_ict = {}
             json_ict["yearOfRequestedTransfer"] = $('.yearOfRequestedTransfer').val()
             json_ict["fromProgramCode"] = $('.fromProgramCode').val()
@@ -386,15 +387,27 @@
             json_ict["toProgram"] = $('.toProgram').val()
             json_ict["toProgramYear"] = $('.toProgramYear').val()
             json_ict["toReasons"] = $('.toReasons').val()
+
+            // stringify the array into JSON Object
             submissionData = JSON.stringify(json_ict)
+            attachmentData = null
             issueID = 1
             // end option == 'course_transfer'
 
         } else if (option == 'exemption') {
-            let encodedStr = btoa(attached_data)
-            let decodedStr = atob(encodedStr)
-            console.log("Encoded: " + encodedStr)
-            console.log("Decoded: " + decodedStr)
+            // convert the string to base64 encoding
+            let encodedContent = btoa(attached_data)
+
+            let json_exemption = {}
+            json_exemption["fromProgramCode"] = $('.fromProgramCode').val()
+            json_exemption["fromProgramTitle"] = $('.fromProgramTitle').val()
+            json_exemption["exemptionUnitCode"] = $('.exemptionUnitCode').val()
+            json_exemption["exemptionUnitYear"] = $('.exemptionUnitYear').val()
+            json_exemption["exemptionUnitTitle"] = $('.exemptionUnitTitle').val()
+
+            submissionData = JSON.stringify(json_exemption)
+            attachmentData = encodedContent
+            issueID = 2
 
         } else if (option == 'programWithdrawal') {
             console.log('withdraw')
@@ -419,6 +432,7 @@
             'data': data,
             enctype: 'multipart/form-data'
         }).done(function(data) {
+            console.log(issueID);
             console.log("SubmissionData: " + submissionData);
             console.log("AttachmentData: " + attachmentData);
         })

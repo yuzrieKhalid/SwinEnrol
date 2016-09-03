@@ -117,7 +117,7 @@
                             <div class="hidden" id="course_transfer">
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
-                                <input type="text" id="yearOfRequestedTransfer" class="form-control" placeholder="e.g., {{ $currentyear }} Semester 1">
+                                <input type="text" class="form-control yearOfRequestedTransfer" placeholder="e.g., {{ $currentyear }} Semester 1">
 
                                 <h4>CURRENT PROGRAM</h4>
 
@@ -125,11 +125,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" id="fromProgramCode" class="form-control" value="{{ $course->courseCode }}" disabled>
+                                        <input type="text" class="form-control fromProgramCode" value="{{ $course->courseCode }}" disabled>
                                     </div>
                                         <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" id="fromProgramTitle" class="form-control" value="{{ $course->courseName }}" disabled>
+                                        <input type="text" class="form-control fromProgramTitle" value="{{ $course->courseName }}" disabled>
                                     </div>
                                 </div>
                                 @endforeach
@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5">Year of first enrolment in current program:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" id="fromProgramIntakeYear" class="form-control">
+                                        <input type="text" class="form-control fromProgramIntakeYear">
                                     </div>
                                 </div>
 
@@ -145,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="toProgram">
+                                        <select class="form-control toProgram">
                                             <option value="none"></option>
                                             @foreach($courses as $course)
                                             <option value="{{ $course->courseCode }}">{{ $course->courseCode }} {{ $course->courseName }}</option>
@@ -157,7 +157,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Year:</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" id="toProgramYear">
+                                        <select class="form-control toProgramYear">
                                             <option value="none"></option>
                                             <option value="{{ $currentyear }}">{{ $currentyear }}</option>
                                             <option value="{{ $nextyear }}">{{ $nextyear }}</option>
@@ -169,7 +169,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Reasons for Requesting Transfer </label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control custom-control" id="toReasons" rows="3" style="resize:none"></textarea>
+                                        <textarea class="form-control custom-control toReasons" rows="3" style="resize:none"></textarea>
                                     </div>
                                 </div>
                             </div> <!-- end .course_transfer -->
@@ -179,45 +179,47 @@
                                 <h3>APPLICATION FOR ADVANCED STANDING (EXEMPTION)</h3>
 
                                 <h4>Swinburne Unit (Exemption Sought)</h4>
+                                @foreach($studentcourse as $course)
                                 <div class="form-group">
-                                    <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
+                                    <!-- Program Code-->
+                                    <label class="control-label col-sm-2">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="" disabled>
+                                        <input type="text" class="form-control fromProgramCode" value="{{ $course->courseCode }}" disabled>
                                     </div>
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Program Title:</label>
+                                    <!-- Program Title-->
+                                    <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="" disabled>
+                                        <input type="text" class="form-control fromProgramTitle" value="{{ $course->courseName }}" disabled>
                                     </div>
                                 </div>
+                                @endforeach
 
                                 <h4>Grounds Upon Which Exemption is Sought (Prior Study)</h4>
                                 <div class="form-group">
                                     <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Unit Code:</label>
+                                    <label class="control-label col-sm-2">Unit Code:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="">
+                                        <input type="text" class="form-control exemptionUnitCode">
                                     </div>
 
                                     <!-- Program Year-->
-                                    <label class="control-label col-sm-2" for="name">Year:</label>
+                                    <label class="control-label col-sm-2">Year:</label>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" placeholder="2010">
+                                        <input type="text" class="form-control exemptionUnitYear">
                                     </div>
                                     <br><br>
 
                                     <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Unit Title:</label>
+                                    <label class="control-label col-sm-2">Unit Title:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="">
+                                        <input type="text" class="form-control exemptionUnitTitle">
                                     </div>
                                     <br><br>
 
                                     <!-- Attach Proof -->
                                     <label class="control-label col-sm-2">Attachment: </label>
                                     <div class="col-sm-10">
-                                        <input type="file">
+                                        <input type="file" class="attachFile">
                                     </div>
 
                                 </div>
@@ -227,28 +229,30 @@
                             <div class="hidden" id="programWithdrawal">
                                 <h3>APPLICATION FOR WITHDRAWAL FROM PROGRAM</h3>
 
+                                @foreach($studentcourse as $course)
                                 <h4>Program Details</h4>
                                 <div class="form-group">
                                     <!-- Unit Code-->
-                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
+                                    <label class="control-label col-sm-2">Program Code:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="" disabled>
+                                        <input type="text" class="form-control" value="{{ $course->courseCode }}" disabled>
                                     </div>
                                     <!-- Unit Title-->
-                                    <label class="control-label col-sm-2" for="name">Program Title:</label>
+                                    <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="" disabled>
+                                        <input type="text" class="form-control" value="{{ $course->courseName }}" disabled>
                                     </div>
                                 </div>
+                                @endforeach
 
                                 <div class="form-group">
                                     <!-- Withdrawal effective-->
-                                    <label class="control-label col-sm-4" for="name">Withdrawal effective from year:</label>
+                                    <label class="control-label col-sm-4">Withdrawal effective from year:</label>
                                     <div class="col-sm-2">
                                         <input type="text" class="form-control">
                                     </div>
                                     <!-- Teaching period-->
-                                    <label class="control-label col-sm-3" for="name">Teaching Period:</label>
+                                    <label class="control-label col-sm-3">Teaching Period:</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control">
                                     </div>
@@ -256,10 +260,10 @@
 
                                 <div class="form-group">
                                     <!-- Dual Qualification? -->
-                                    <label class="control-label col-sm-4" for="name">Is this a dual qualification?</label>
+                                    <label class="control-label col-sm-4">Is this a dual qualification?</label>
                                     <div class="col-sm-2">
-                                        <label class="radio-inline"><input type="radio" name="dualYes">Yes</label>
-                                        <label class="radio-inline"><input type="radio" name="dualNo">No</label>
+                                        <label class="radio-inline"><input type="radio" id="dualYes">Yes</label>
+                                        <label class="radio-inline"><input type="radio" id="dualNo">No</label>
                                     </div>
                                     <!-- Date of last class attended -->
                                     <label class="control-label col-sm-3" for="name">Last class attended:</label>
@@ -313,7 +317,8 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
+                    {{--- <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button> ---}}
+                    <button class="btn btn-default submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -361,19 +366,29 @@
         let option = $('#issueTitle').find('option:selected').val()
         if (option == 'course_transfer') {
             let json_ict = {}
-            json_ict["yearOfRequestedTransfer"] = $('#yearOfRequestedTransfer').val()
-            json_ict["fromProgramCode"] = $('#fromProgramCode').val()
-            json_ict["fromProgramTitle"] = $('#fromProgramTitle').val()
-            json_ict["fromProgramIntakeYear"] = $('#fromProgramIntakeYear').val()
-            json_ict["toProgram"] = $('#toProgram').val()
-            json_ict["toProgramYear"] = $('#toProgramYear').val()
-            json_ict["toReasons"] = $('#toReasons').val()
+            json_ict["yearOfRequestedTransfer"] = $('.yearOfRequestedTransfer').val()
+            json_ict["fromProgramCode"] = $('.fromProgramCode').val()
+            json_ict["fromProgramTitle"] = $('.fromProgramTitle').val()
+            json_ict["fromProgramIntakeYear"] = $('.fromProgramIntakeYear').val()
+            json_ict["toProgram"] = $('.toProgram').val()
+            json_ict["toProgramYear"] = $('.toProgramYear').val()
+            json_ict["toReasons"] = $('.toReasons').val()
             submissionData = JSON.stringify(json_ict)
             issueID = 1
             // end option == 'course_transfer'
 
         } else if (option == 'exemption') {
             console.log('exempted')
+            console.log($('.fromProgramCode').val());
+            console.log($('.fromProgramTitle').val());
+            console.log($('.exemptionUnitCode').val());
+            console.log($('.exemptionUnitYear').val());
+            console.log($('.exemptionUnitTitle').val());
+            console.log($('.attachFile').val());
+
+            let attachFile = $('.attachFile').change(function() {
+                let file = document.querySelector('input')
+            })
 
         } else if (option == 'programWithdrawal') {
             console.log('withdraw')
@@ -396,8 +411,9 @@
             'url': url,
             'method': method,
             'data': data,
+            enctype: 'multipart/form-data'
         }).done(function(data) {
-
+            console.log("SubmissionData: " + submissionData);
         })
     });
 }) ()

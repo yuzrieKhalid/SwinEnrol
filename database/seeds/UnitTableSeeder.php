@@ -17,9 +17,9 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3315',
                 'unitName' => 'Languages in Software Development',
-                'prerequisite' => 'None',
-                'corequisite' => 'None',
-                'antirequisite' => 'None',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -28,8 +28,8 @@ class UnitTableSeeder extends Seeder
                 'unitCode' => 'HIT3158',
                 'unitName' => 'Software Engineering Project A',
                 'prerequisite' => 'HIT3315',
-                'corequisite' => 'None',
-                'antirequisite' => 'None',
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -37,9 +37,29 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3310',
                 'unitName' => 'Software Architecture and Design',
-                'prerequisite' => 'None',
-                'corequisite' => 'None',
-                'antirequisite' => 'None',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HIT1234',
+                'unitName' => 'Internet Technologies',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => 'HIT1235',
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HIT1235',
+                'unitName' => 'Web Programming',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => 'HIT1234',
                 'minimumCompletedUnits' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -47,9 +67,9 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT10001',
                 'unitName' => 'Introduction to Management',
-                'prerequisite' => 'None',
-                'corequisite' => 'None',
-                'antirequisite' => 'None',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -57,10 +77,40 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10007',
                 'unitName' => 'Management Accounting',
-                'prerequisite' => 'None',
-                'corequisite' => 'None',
-                'antirequisite' => 'None',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ACC10008',
+                'unitName' => 'Management Accounting B',
+                'prerequisite' => 'ACC10007',
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'UNI20',
+                'unitName' => 'A Unit With Many MinimumCompletedUnits',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '20',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'UNI2',
+                'unitName' => 'A Unit With Few MinimumCompletedUnits',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

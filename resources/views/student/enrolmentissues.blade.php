@@ -249,34 +249,33 @@
                                     <!-- Withdrawal effective-->
                                     <label class="control-label col-sm-4">Withdrawal effective from year:</label>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control effectiveYear">
                                     </div>
                                     <!-- Teaching period-->
                                     <label class="control-label col-sm-3">Teaching Period:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control teachingPeriod">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <!-- Dual Qualification? -->
-                                    <label class="control-label col-sm-4">Is this a dual qualification?</label>
-                                    <div class="col-sm-2">
-                                        <label class="radio-inline"><input type="radio" id="dualYes">Yes</label>
-                                        <label class="radio-inline"><input type="radio" id="dualNo">No</label>
-                                    </div>
-                                    <!-- Date of last class attended -->
-                                    <label class="control-label col-sm-3" for="name">Last class attended:</label>
-                                    <div class="col-sm-3" id="lastClassAttended_withdrawal">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" name="lastClassAttended" />
+                                    <label class="control-label col-sm-4">Is this a dual qualification?<span class="help-block">Leave the box empty if "No"</span></label>
+                                    <label class="radio-inline"><input type="checkbox" name="dualqualification" id="dualYes" checked> YES</label>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Dual Qualification? -->
+                                    <label class="control-label col-sm-4">Last class attended:</label>
+                                    <div class="input-daterange input-group datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control input-sm" id="lastClassAttendedDate" /></label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Reason for Withdrawal -->
-                                <label class="control-label" for="name">Reasons for withdrawal:</label>
-                                <textarea class="form-control custom-control" name="cName" rows="3" style="resize:none"></textarea>
+                                <label class="control-label">Reasons for withdrawal:</label>
+                                <textarea class="form-control reasonForWithdrawal" rows="3"></textarea>
 
                                 <!-- Conditions -->
                                 <h4>Conditions</h4>
@@ -317,8 +316,8 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
-                    <!-- <button class="btn btn-default submit">Submit</button> -->
+                    {{--- <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button> ---}}
+                    <button class="btn btn-default submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -327,6 +326,14 @@
 @stop
 
 @section('extra_js')
+<script>
+// Application For Withdrawal From Program datepicker
+$('.datepicker').datepicker({
+    format: 'dd-mm-yyyy',
+    startDate: '-3d'
+});
+</script>
+
 <script>
 // issueTitle change form script
 (function() {
@@ -412,6 +419,21 @@
         } else if (option == 'programWithdrawal') {
             console.log('withdraw')
 
+            // let dualqualification = $('input[name="dualqualification"]:checked').val()
+            // console.log(dualqualification);
+
+            let effectiveYear = $('.effectiveYear').val()
+            let teachingPeriod = $('.teachingPeriod').val()
+            let dualYes = $('#dualYes:checked').val()
+            let lastClass = $('#lastClassAttendedDate').val()
+            let reasonForWithdrawal = $('.reasonForWithdrawal').val()
+
+            console.log(effectiveYear)
+            console.log(teachingPeriod)
+            console.log(dualYes)
+            console.log(lastClass)
+            console.log(reasonForWithdrawal)
+
         } else {
             console.log('other issues')
         }
@@ -432,9 +454,9 @@
             'data': data,
             enctype: 'multipart/form-data'
         }).done(function(data) {
-            console.log(issueID);
-            console.log("SubmissionData: " + submissionData);
-            console.log("AttachmentData: " + attachmentData);
+            // console.log(issueID);
+            // console.log("SubmissionData: " + submissionData);
+            // console.log("AttachmentData: " + attachmentData);
         })
     });
 }) ()

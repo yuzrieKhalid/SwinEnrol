@@ -308,7 +308,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Content: </label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control custom-control" name="cName" rows="3" style="resize:none"></textarea>
+                                    <textarea class="form-control otherIssues" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +436,9 @@ $('.datepicker').datepicker({
             issueID = 3
 
         } else {
-            console.log('other issues')
+            submissionData = $('.otherIssues').val()
+            attachmentData = null
+            issueID = 4
         }
 
         // AJAX Creating the Issue

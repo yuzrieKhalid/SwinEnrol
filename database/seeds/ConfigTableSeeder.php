@@ -24,6 +24,12 @@ class ConfigTableSeeder extends Seeder
                 'value' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 'year',
+                'value' => '2016',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

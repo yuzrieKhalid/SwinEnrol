@@ -62,11 +62,11 @@ Route::group([
     'prefix' => 'super',
     'middleware' => 'web',
 ], function() {
-    // TODO: add the routes like this:
-    // Route::get('/', 'Super\HomeController@index');
+    Route::get('/', 'Super\HomeController@index');
     Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');
     Route::get('managecoordinator', 'Super\ManageCoordinator@index');
     Route::get('managestudent', 'Super\ManageStudent@index');
+    Route::resource('config', 'Super\ConfigController');
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
     Route::resource('managestudent', 'Super\ManageStudent');

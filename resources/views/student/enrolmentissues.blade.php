@@ -316,8 +316,8 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    {{--- <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button> ---}}
-                    <button class="btn btn-default submit">Submit</button>
+                    <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
+                    <!-- <button class="btn btn-default submit">Submit</button> -->
                 </div>
             </div>
         </div>
@@ -417,22 +417,23 @@ $('.datepicker').datepicker({
             issueID = 2
 
         } else if (option == 'programWithdrawal') {
-            console.log('withdraw')
+            // check for dual qualification
+            let dualQualification = ""
+            if ($('#dualYes:checked').val())
+                dualQualification = 'yes'
+            else
+                dualQualification = 'no'
 
-            // let dualqualification = $('input[name="dualqualification"]:checked').val()
-            // console.log(dualqualification);
+            let json_withdrawal = {}
+            json_withdrawal["effectiveYear"] = $('.effectiveYear').val()
+            json_withdrawal["teachingPeriod"] = $('.teachingPeriod').val()
+            json_withdrawal["lastClassAttendedDate"] = $('.lastClassAttendedDate').val()
+            json_withdrawal["dualQualification"] = dualQualification
+            json_withdrawal["reasonForWithdrawal"] = $('.reasonForWithdrawal').val()
 
-            let effectiveYear = $('.effectiveYear').val()
-            let teachingPeriod = $('.teachingPeriod').val()
-            let dualYes = $('#dualYes:checked').val()
-            let lastClass = $('#lastClassAttendedDate').val()
-            let reasonForWithdrawal = $('.reasonForWithdrawal').val()
-
-            console.log(effectiveYear)
-            console.log(teachingPeriod)
-            console.log(dualYes)
-            console.log(lastClass)
-            console.log(reasonForWithdrawal)
+            submissionData = JSON.stringify(json_withdrawal)
+            attachmentData = null
+            issueID = 3
 
         } else {
             console.log('other issues')

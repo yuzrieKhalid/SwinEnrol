@@ -145,10 +145,10 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Title:</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control toProgram">
+                                        <select class="form-control toProgramCode">
                                             <option value="none"></option>
                                             @foreach($courses as $course)
-                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} {{ $course->courseName }}</option>
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} <span class="toProgramTitle">{{ $course->courseName }}</span></option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -391,7 +391,8 @@ $('.datepicker').datepicker({
             json_ict["fromProgramCode"] = $('.fromProgramCode').val()
             json_ict["fromProgramTitle"] = $('.fromProgramTitle').val()
             json_ict["fromProgramIntakeYear"] = $('.fromProgramIntakeYear').val()
-            json_ict["toProgram"] = $('.toProgram').val()
+            json_ict["toProgramCode"] = $('.toProgramCode').val()
+            json_ict["toProgramTitle"] = $('.toProgramTitle').val()
             json_ict["toProgramYear"] = $('.toProgramYear').val()
             json_ict["toReasons"] = $('.toReasons').val()
 

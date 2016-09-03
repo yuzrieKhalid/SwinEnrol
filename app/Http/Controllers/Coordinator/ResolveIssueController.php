@@ -19,7 +19,7 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
-        return response()->json(StudentEnrolmentIssues::with('student', 'enrolment_issues')->get());
+        return response()->json(StudentEnrolmentIssues::with('student', 'enrolment_issues')->where('status', '=', 'pending')->get());
     }
 
     /**
@@ -30,13 +30,10 @@ class ResolveIssueController extends Controller
     public function create()
     {
         $data = [];
-        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')->get();
-        // $issues = DB::table('enrolment_issues')
-        //     ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
-        //     ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
-
+        // Combine table Student (for Student Info), StudentEnrolmentIssues (for the submitted data)
+        // and EnrolmentIssues (to get the type of the enrolment issues)
+        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
+                    ->where('status', '=', 'pending')->get();
         $data['issues'] = $issues;
 
         return view ('coordinator.resolveenrolmentissues', $data);

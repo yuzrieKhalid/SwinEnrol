@@ -355,6 +355,19 @@
         $('#' + option).removeClass("hidden")
     })
 
+    // UPLOAD FILE SCRIPT
+    let attached_data = ""
+    let attachFile = $('.attachFile').change(function() {
+        let file = document.querySelector('input[type=file]').files[0]
+        let reader = new FileReader()
+
+        reader.onload = function(event) {
+            attached_data = event.target.result
+            // console.log(attached_data);
+        }   // read the raw binary data (not yet encoded to base64)
+        reader.readAsBinaryString(file)
+    })
+
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
         // placeholder for the data
@@ -378,17 +391,10 @@
             // end option == 'course_transfer'
 
         } else if (option == 'exemption') {
-            console.log('exempted')
-            console.log($('.fromProgramCode').val());
-            console.log($('.fromProgramTitle').val());
-            console.log($('.exemptionUnitCode').val());
-            console.log($('.exemptionUnitYear').val());
-            console.log($('.exemptionUnitTitle').val());
-            console.log($('.attachFile').val());
-
-            let attachFile = $('.attachFile').change(function() {
-                let file = document.querySelector('input')
-            })
+            let encodedStr = btoa(attached_data)
+            let decodedStr = atob(encodedStr)
+            console.log("Encoded: " + encodedStr)
+            console.log("Decoded: " + decodedStr)
 
         } else if (option == 'programWithdrawal') {
             console.log('withdraw')
@@ -414,6 +420,7 @@
             enctype: 'multipart/form-data'
         }).done(function(data) {
             console.log("SubmissionData: " + submissionData);
+            console.log("AttachmentData: " + attachmentData);
         })
     });
 }) ()

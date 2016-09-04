@@ -15,20 +15,21 @@ use Carbon\Carbon;
 class ViewListingController extends Controller
 {
     public function index() {
-        $semester = Config::where('id', '=', 'semester')->get();
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
 
         $units = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('year', '=', Carbon::now()->year)
-            ->where('term', '=', $semester[0]->value)
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
             ->where('enrolmentTerm', '=', 'long')
             ->get();
         $data['termUnits'] = $units;
 
         $units = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('year', '=', Carbon::now()->year)
-            ->where('term', '=', $semester[0]->value)
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
             ->where('enrolmentTerm', '=', 'short')
             ->get();
         $data['termUnitsShort'] = $units;

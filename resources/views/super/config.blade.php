@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="{{ $config[1]->id }}">Semester</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control">
+                                    <select class="form-control" name="{{ $config[1]->id }}">
                                         <option>Semester 1</option>
                                         @if($config[1]->value == 'Semester 1')
                                             <option>Semester 2</option>

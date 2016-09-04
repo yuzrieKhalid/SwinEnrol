@@ -53,8 +53,7 @@ class ConfigController extends Controller
         // Enrolment Phase
         $enrolmentPhase = Config::find('enrolmentPhase');
         $enrolmentPhase->value = $input['enrolmentPhase'];
-        $enrolmentPhaseVal = intval($input['enrolmentPhase']);
-        if($enrolmentPhaseVal < 1 || $enrolmentPhaseVal > 3)
+        if($enrolmentPhase->value < 1 || $enrolmentPhase->value > 3 || !is_numeric($input['enrolmentPhase']))
         {
             $data['status'] = false;
             $data['epMessage'] = 'Enrolment Phase must be between values 1 and 3.';
@@ -67,8 +66,7 @@ class ConfigController extends Controller
         // Semester Length
         $semesterLength = Config::find('semesterLength');
         $semesterLength->value = $input['semesterLength'];
-        $semesterLengthVal = intval($input['semesterLength']);
-        if($semesterLengthVal < 1)
+        if($semesterLength->value < 1 || !is_numeric($input['semesterLength']))
         {
             $data['status'] = false;
             $data['slMessage'] = 'Semester Length must be a number greater than 0.';
@@ -78,7 +76,7 @@ class ConfigController extends Controller
         $year = Config::find('year');
         $year->value = $input['year'];
         $yearVal = intval($input['year']);
-        if($yearVal < 1)
+        if($yearVal < 1 || !is_numeric($input['year']))
         {
             $data['status'] = false;
             $data['yMessage'] = 'Year must be a number greater than 0.';
@@ -87,7 +85,6 @@ class ConfigController extends Controller
         // save changes
         if($data['status'] == true)
         {
-
             $enrolmentPhase->save();
             $semester->save();
             $semesterLength->save();

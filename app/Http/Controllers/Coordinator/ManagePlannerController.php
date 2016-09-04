@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\UnitTerm;
 use App\Unit;
 use App\Course;
-use DB;
+use App\Config;
 
 use Carbon\Carbon;
 
@@ -39,14 +39,16 @@ class ManagePlannerController extends Controller
             'courseCode'
         ]);
 
+        $year = Config::find('year')->value;
+        $semester = Config::find('semester')->value;
+
         if($input['year'] == 0)
         {
-            $year = Carbon::now();
-            $input['year'] = $year->year;
+            $input['year'] = $year;
         }
 
         if($input['term'] == '')
-            $input['term'] = 'Semester 1';
+            $input['term'] = $semester;
 
         // default to BCS for now
         if($input['courseCode'] == '')
@@ -64,15 +66,14 @@ class ManagePlannerController extends Controller
         $data['termUnits'] = $units;
 
         // get semester size
-        $data['size'] = 9;  // todo: change size to server configuration
+        $data['size'] = Config::find('semesterLength')->value;
 
         // get semester unit count
         for($n = 0; $n < $data['size']; $n++)
         {
-            $count[$n] = DB::table('unit_term')
-                ->where([
-                    ['year', '=', '2016'], // todo: get from user
-                    ['term', '=', 'Semester 1'], // todo: get from user
+            $count[$n] = UnitTerm::where([
+                    ['year', '=', $year],
+                    ['term', '=', $semester],
                     ['enrolmentTerm', '=', $n]
                 ])->count();
         }
@@ -87,10 +88,10 @@ class ManagePlannerController extends Controller
         $units = Unit::all();
         $data['units'] = $units;
 
-        // get current year
-        $data['currentYear'] = Carbon::now()->year;
-
         // get year
+        $data['currentYear'] = Config::find('year')->value;
+
+        // get year selection
         $data['year'] = $input['year'];
 
         // get semester
@@ -112,7 +113,6 @@ class ManagePlannerController extends Controller
         // get all courses
         $data['courses'] = Course::all();
 
-        // return response()->json($data);
         return view ('coordinator.managestudyplanner', $data);
     }
 
@@ -143,7 +143,6 @@ class ManagePlannerController extends Controller
         $unit->updated_at = Carbon::now();
         $unit->save();
 
-        // return response()->json($unit);
         return response()->json($unit);
     }
 

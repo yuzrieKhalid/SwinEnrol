@@ -33,7 +33,7 @@ class ConfigTableSeeder extends Seeder
             ],
             [
                 'id' => 'semesterLength',
-                'value' => '3',
+                'value' => '9',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

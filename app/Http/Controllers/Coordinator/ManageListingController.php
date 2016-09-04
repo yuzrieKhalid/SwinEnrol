@@ -11,7 +11,6 @@ use App\UnitListing;
 use App\UnitTerm;
 use App\Unit;
 use App\Config;
-use DB;
 
 use Carbon\Carbon;
 
@@ -34,26 +33,25 @@ class ManageListingController extends Controller
      */
     public function create()
     {
-        $semester = Config::where('id', '=', 'semester')->get();
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
+
         $data = [];
-        $units = UnitTerm::with('unit', 'unit_type')
+        $data['termUnits'] = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('year', '=', Carbon::now()->year)
-            ->where('term', '=', $semester[0]->value)
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
             ->where('enrolmentTerm', '=', 'long')
             ->get();
-        $data['termUnits'] = $units;
 
-        $units = UnitTerm::with('unit', 'unit_type')
+        $data['termUnitsShort'] = UnitTerm::with('unit', 'unit_type')
             ->where('unitType', '=', 'unit_listing')
-            ->where('year', '=', Carbon::now()->year)
-            ->where('term', '=', $semester[0]->value)
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
             ->where('enrolmentTerm', '=', 'short')
             ->get();
-        $data['termUnitsShort'] = $units;
 
-        $units = Unit::all();
-        $data['units'] = $units;
+        $data['units'] = Unit::all();
 
         return view ('coordinator.manageunitlisting', $data);
     }
@@ -71,13 +69,14 @@ class ManageListingController extends Controller
             'enrolmentTerm'
         ]);
 
-        $semester = Config::where('id', '=', 'semester')->get();
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
 
         $unit = new UnitTerm;
         $unit->unitType = 'unit_listing';
         $unit->unitCode = $input['unitCode'];
-        $unit->year = Carbon::now()->year;
-        $unit->term = $semester[0]->value;
+        $unit->year = $year;
+        $unit->term = $semester;
         $unit->enrolmentTerm = $input['enrolmentTerm'];
         $unit->courseCode = 'I047'; // todo: get from coordinator
 
@@ -142,12 +141,14 @@ class ManageListingController extends Controller
             'enrolmentTerm'
         ]);
 
-        $semester = Config::where('id', '=', 'semester')->get();
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
 
         $unitlisting = UnitTerm::where('unitCode', '=', $input['unitCode'])
-            ->where('year', '=', Carbon::now()->year)
-            ->where('term', '=', $semester[0]->value)
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
             ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
+            ->where('courseCode', '=', 'I047') // todo: get from coordinator
             ->delete();
 
         return response()->json($unitlisting);

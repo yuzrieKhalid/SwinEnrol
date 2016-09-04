@@ -117,7 +117,7 @@
                             <div class="hidden" id="course_transfer">
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
-                                <input type="text" class="form-control yearOfRequestedTransfer" placeholder="e.g., {{ $currentyear }} Semester 1">
+                                <input type="text" class="form-control yearOfRequestedTransfer" placeholder="e.g., 3 / 5">
 
                                 <h4>CURRENT PROGRAM</h4>
 

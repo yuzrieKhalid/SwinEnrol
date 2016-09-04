@@ -8,7 +8,6 @@ use App\Http\Requests;
 
 use App\Config;
 use App\EnrolmentUnits;
-use App\Unit;
 
 class PhaseController extends Controller
 {

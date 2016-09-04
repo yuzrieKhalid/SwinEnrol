@@ -106,7 +106,6 @@
                                         <option value="course_transfer">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="programWithdrawal">Application Withdrawal from Program</option>
-                                        <option value="others">Others (None of the above)</option>
                                     </select>
                                 </div>
                             </div>

@@ -382,7 +382,7 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" id="sd" data-toggle="confirmation" class="btn btn-default">Submit</button>
                 </div>
             </div>
         </div>
@@ -426,6 +426,20 @@ $('#lastClassAttended_loa .input-daterange').datepicker({
         console.log("Selected " + option);
         $('#' + option).removeClass("hidden")
     })
+
+    // $('#sd').confirmation('toggle')
+    // $('[data-toggle=confirmation]').confirmation({
+    //   rootSelector: '[data-toggle=confirmation]',
+    //   // other options
+    // })
 }) ()
 </script>
+
+<!-- <script>
+
+$('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+});
+</script> -->
 @stop

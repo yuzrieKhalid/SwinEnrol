@@ -34,9 +34,14 @@
 
 // });
 
-
-(function() {
-  $('[data-toggle="offcanvas"]').click(function () {
-    $('.row-offcanvas').toggleClass('active')
-  });
-});
+// $(document).ready(function () {
+//     $('[data-toggle="offcanvas"]').click(function () {
+//             $('.row-offcanvas').toggleClass('active')
+//           });
+//     });
+// $(document).ready(function () {
+//   $('[data-toggle=confirmation]').confirmation({
+//     rootSelector: '[data-toggle=confirmation]',
+//   // other options
+//   });
+// });

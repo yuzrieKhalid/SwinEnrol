@@ -25,11 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->permissionLevel === 'super')
+        if (Auth::user()->permissionLevel === '4')
             return view ('super.managestudentadmin');
-        else if (Auth::user()->permissionLevel === 'admin')
+        else if (Auth::user()->permissionLevel === '3')
             return view ('admin.studentadmin');
-        else if (Auth::user()->permissionLevel === 'coordinator')
+        else if (Auth::user()->permissionLevel === '2')
             return view ('coordinator.coordinator');
 
         // else (student)

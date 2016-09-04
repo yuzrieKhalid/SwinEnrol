@@ -37,13 +37,13 @@
                             <td>{{ $unit->unit->unitName }}</td>
                             @if($unit->status == 'confirmed')
                             <!-- Has already passed -->
-                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
                             @elseif($unit->status == 'pending')
                             <!-- Waiting to be approved (Phase 2) -->
-                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
                             @else
                             <!-- Is currently taken -->
-                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
                             @endif
                         </tr>
                         @endforeach
@@ -57,4 +57,14 @@
     </div>
 
 </div>
+
+@stop
+
+@section ('extra_js')
+<script>
+(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+}) ()
+</script>
+
 @stop

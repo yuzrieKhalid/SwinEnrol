@@ -12,12 +12,20 @@
         <!-- Reserve 3 space for navigation column -->
         @include('coordinator.menu')
 
+
+
+
+
+
+        <!-- function confirmDeleteModal(id){
+            $('#deleteModal').modal();
+        	$('#submit').html('<a class="btn btn-danger" onclick="deleteData">Delete</a>');
+        }
+
+         -->
+
+
         <div class="col-md-9">
-            <!-- To be fixed -->
-            <p class="pull-left visible-xs">
-                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-            </p>
-            
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Units</h1>
@@ -57,10 +65,12 @@
                                 </a>
                             </td>
                             <td class="td_unitDelete">
+
                                 <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
                             </td>
+
                         </tr>
                         @endif
                         @endforeach

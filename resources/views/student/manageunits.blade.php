@@ -10,6 +10,68 @@
         <!-- Reserve 3 space for navigation column -->
         @include('student.menu')
 
+        <div class="modal fade" id="rR" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Drop Unit</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label" for="reasonD">Reason: </label>
+                                <textarea class="form-control custom-control" id="reasonD" rows="3" style="resize:none"></textarea>
+                            </div>
+                            <p>IMPORTANT INFORMATION</p>
+
+                            <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
+
+                            <p>2.  Enrolment Deadlines:</p>
+
+                            <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
+
+                            <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
+
+                        </div>
+
+                        <div class="panel-footer">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="modal fade" id="rA" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h2 class="modal-title">Add Unit</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label" for="reasonD">Reason: </label>
+                                <textarea class="form-control custom-control" id="reasonD" rows="3" style="resize:none"></textarea>
+                            </div>
+                            <p>IMPORTANT INFORMATION</p>
+
+                            <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
+
+                            <p>2.  Enrolment Deadlines:</p>
+
+                            <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
+
+                            <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
+
+                        </div>
+
+                        <div class="panel-footer">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -42,7 +104,7 @@
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
                                 <td>
-                                    <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
+                                    <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-toggle="modal" data-target="#rR" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
                                         <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -69,12 +131,14 @@
                 <div class="panel-body">
                     <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
                         <!-- On press will make one of them hiddden -->
-                        <a id="core_group" class="btn btn-default" href="#" role="button">Core</a>
-                        <a id="elective_group" class="btn btn-default" href="#" role="button">Elective</a>
+                        <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">Long Semester</a>
+                        <a id="elective_group" class="btn btn-default" href="#elective_tab" data-toggle="tab" role="button">Short Semester</a>
+                    </div>
                     </div>
 
-                    <div class="core_group">
-                        <table class="table" id="core-table">
+                    <div id = "myTabContent" class = "tab-content">
+                    <div class="tab-pane fade in active" id="core-table">
+                        <table class="table">
                             <thead>
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
@@ -86,7 +150,7 @@
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unitName }}</td>
                                 <td>
-                                    <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
+                                    <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-toggle="modal" data-target="#rA" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                     </button>
 
@@ -96,15 +160,31 @@
                             @endforeach
                         </table>
                     </div>
-                    <div class="elective_group hidden">
+                    <div class="tab-pane fade" id="elective_tab">
                         <table class="table">
                             <thead>
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
                             </thead>
+
+                            <!-- @foreach ($units as $unit)
+                            <tr>
+                                <td>{{ $unit->unitCode }}</td>
+                                <td>{{ $unit->unitName }}</td>
+                                <td>
+                                    <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}"  data-toggle="modal" data-target="#rA" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
+                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+                                    </button>
+
+
+                                </td>
+                            </tr>
+                            @endforeach -->
+
+
                         </table>
                     </div>
-                </div>
+                  </div>
             </div> <!-- end .panel -->
         </div>
     </div>
@@ -168,15 +248,16 @@
             if (method == "POST") {
                 addUnit(data)
                 //$('#addUnit').modal().hide()
-                window.location.reload()
+                // window.location.reload()
                 // $(this).closest('tr').revmove()
 
             } else {
                 // if button method not as preset
                 console.log('It is of unknown method')
-                window.location.reload()
+                // window.location.reload()
             }
         })
+
 
 
         // $(document).on("click", "remove" , function() {

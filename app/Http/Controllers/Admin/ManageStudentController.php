@@ -124,7 +124,7 @@ class ManageStudentController extends Controller
         ]);
 
         // find student and update
-        $student = new Student;
+        $student = Student::findOrFail($id);
         $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];

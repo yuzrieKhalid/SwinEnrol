@@ -302,19 +302,9 @@
                             </div>
 
                         </div> <!-- end #studentIssue -->
-
-                        <!-- if none of the above, show the basic content box -->
-                        <div class="hidden" id="others">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Content: </label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control otherIssues" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
                     </form>
                 </div>
+
                 <div class="panel-footer">
                     <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
                     <!-- <button class="btn btn-default submit">Submit</button> -->
@@ -439,9 +429,7 @@ $('.datepicker').datepicker({
             issueID = 3
 
         } else {
-            submissionData = $('.otherIssues').val()
-            attachmentData = null
-            issueID = 4
+            console.log("Something is wrong, this shouldn't occur");
         }
 
         // AJAX Creating the Issue

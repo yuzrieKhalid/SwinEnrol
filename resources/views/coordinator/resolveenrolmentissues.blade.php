@@ -206,11 +206,6 @@
         $('#modal_placeholder').append(modal_template)
     }
 
-    // 3.4 Others
-    let addModalData_4 = function(issue) {
-
-    }
-
     // 2. Populate the table `student_enrolment_issues_table`
     let addData = function(issue) {
         let tr_template = $('#student_enrolment_issues_table').find('.tr_template').clone()
@@ -233,7 +228,7 @@
         } else if (issue.issueID == 3) {
             addModalData_3(issue)
         } else {
-            addModalData_4(issue)
+            console.log("Something is wrong, this shouldn't occur");
         }
     }
 

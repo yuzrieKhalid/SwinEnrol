@@ -17,7 +17,8 @@ class CreateStudentTable extends Migration
             $table->string('studentID');
             $table->string('surname');
             $table->string('givenName');
-            $table->string('email');
+            $table->string('paymentStatus');
+            $table->integer('concededPass');
             $table->string('courseCode');
 
             $table->timestamps();

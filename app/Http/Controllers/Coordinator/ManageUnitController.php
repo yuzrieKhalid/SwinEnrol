@@ -37,10 +37,8 @@ class ManageUnitController extends Controller
     {
         $data = [];
         $units = Unit::get();
-        $courses = Course::all();
 
         $data['units'] = $units;
-        $data['courses'] = $courses;
 
         // since its the same page as index, need to check for the $units
         return view ('coordinator.manageunits', $data);
@@ -57,8 +55,6 @@ class ManageUnitController extends Controller
         $input = $request->only([
             'unitCode',
             'unitName',
-            'courseCode',
-            'core',
             'prerequisite',
             'corequisite',
             'antirequisite',
@@ -68,12 +64,10 @@ class ManageUnitController extends Controller
         $unit = new Unit;
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->courseCode = $input['courseCode'];
         $unit->prerequisite = $input['prerequisite'];
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
-        $unit->core = $input['core'];
         $unit->save();
 
         return response()->json($unit);
@@ -101,11 +95,9 @@ class ManageUnitController extends Controller
         $data = [];
         $unit = Unit::findOrFail($id);
         $units = Unit::all();
-        $courses = Course::all();
 
         $data['unit'] = $unit;
         $data['units'] = $units;
-        $data['courses'] = $courses;
         return view ('coordinator.manageunits_edit', $data);
     }
 
@@ -121,8 +113,6 @@ class ManageUnitController extends Controller
         $input = $request->only([
             'unitCode',
             'unitName',
-            'courseCode',
-            'core',
             'prerequisite',
             'corequisite',
             'antirequisite',
@@ -132,12 +122,10 @@ class ManageUnitController extends Controller
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->courseCode = $input['courseCode'];
         $unit->prerequisite = $input['prerequisite'];
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = $input['minimumCompletedUnits'];
-        $unit->core = $input['core'];
         $unit->save();
 
         return response()->json($unit);

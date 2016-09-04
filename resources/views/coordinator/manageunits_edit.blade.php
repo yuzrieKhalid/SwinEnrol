@@ -29,22 +29,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="courseCode">Course Code:</label>
-                    <div class="col-sm-6">
-                        <select class="form-control" name="courseCode">
-                            <option value="{{ $unit->courseCode }}">{{ $unit->courseCode }} </option>
-
-                            @foreach($courses as $course)
-
-                            @if($unit->courseCode !== $course->courseCode)
-                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} </option>
-                            @endif
-
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-2 control-label" for="prerequisite">Prerequisite:</label>
                     <div class="col-sm-6">
                         <select class="form-control" name="prerequisite">
@@ -84,12 +68,6 @@
                             @endif
                             @endforeach
                         </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="core">This is a Core:</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" autocomplete="off" name="core" id="core">
                     </div>
                 </div>
                 <div class="form-group">

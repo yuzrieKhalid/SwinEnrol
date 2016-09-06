@@ -20,6 +20,13 @@ class CreateUnitTable extends Migration
             $table->string('corequisite');//->nullable();
             $table->string('antirequisite');//->nullable();
             $table->integer('minimumCompletedUnits')->unsigned();
+            $table->integer('maxStudentCount')->unsigned();
+            $table->integer('lectureGroupCount')->unsigned();
+            $table->string('lectureDuration');
+            $table->integer('tutorialGroupCount')->unsigned();
+            $table->string('tutorialDuration');
+            $table->string('unitInfo');
+
 
             $table->primary('unitCode');
             // $table->foreign('prerequisite')->references('unitCode')->on('unit');

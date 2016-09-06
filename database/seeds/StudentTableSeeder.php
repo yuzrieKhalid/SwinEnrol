@@ -18,9 +18,10 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4304373',
                 'surname' => 'Thomas Chew',
                 'givenName' => 'Jason',
-                'paymentStatus' => 'paid',
                 'concededPass' => 0,
                 'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -28,9 +29,10 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4318595',
                 'surname' => 'Bin Khalid',
                 'givenName' => 'Mohamad Yuzrie',
-                'paymentStatus' => 'paid',
                 'concededPass' => 0,
                 'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -38,9 +40,21 @@ class StudentTableSeeder extends Seeder
                 'studentID' => '4315405',
                 'surname' => 'Haque',
                 'givenName' => 'Sariful',
-                'paymentStatus' => 'paid',
                 'concededPass' => 0,
                 'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'student',
+                'surname' => 'name',
+                'givenName' => 'student',
+                'concededPass' => 0,
+                'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

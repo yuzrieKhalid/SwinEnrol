@@ -28,7 +28,6 @@ class HomeController extends Controller
                 ['studentID', '=', $user->username],
                 ['year', '=', Config::find('year')->value],
                 ['term', '=', Config::find('semester')->value],
-                ['status', '=', 'pending']
             ])->get();
         $data['enrolled'] = $enrolled;
 

@@ -25,22 +25,24 @@ class ViewPlannerController extends Controller
             'courseCode'
         ]);
 
+        $year = Config::find('year')->value;
+        $semester = Config::find('semester')->value;
+
         $user = Auth::user();
-        $student = Student::where('studentID', '=', $user->username)->get();
+        $student = Student::find($user->username);;
 
         if($input['year'] == 0)
         {
-            $year = Carbon::now();
-            $input['year'] = $year->year;
+            $input['year'] = $year;
         }
 
-        // default to semester 1 for now
+        // default to current semester
         if($input['term'] == '')
-            $input['term'] = 'Semester 1';
+            $input['term'] = $semester;
 
         // default to student's course
         if($input['courseCode'] == '')
-            $input['courseCode'] = $student[0]->courseCode;
+            $input['courseCode'] = $student->courseCode;
 
         $data = [];
         $units = UnitTerm::with('unit', 'unit_type', 'course')
@@ -54,14 +56,14 @@ class ViewPlannerController extends Controller
         $data['termUnits'] = $units;
 
         // get semester size
-        $data['size'] = 9;  // todo: change size to server configuration
+        $data['size'] = Config::find('semesterLength')->value;
 
         // get semester unit count
         for($n = 0; $n < $data['size']; $n++)
         {
             $count[$n] = UnitTerm::where([
-                    ['year', '=', '2016'], // todo: get from user
-                    ['term', '=', 'Semester 1'], // todo: get from user
+                    ['year', '=', $year], // todo: get from user
+                    ['term', '=', $semester], // todo: get from user
                     ['enrolmentTerm', '=', $n]
                 ])->count();
         }
@@ -97,7 +99,6 @@ class ViewPlannerController extends Controller
         // get all courses
         $data['courses'] = Course::all();
 
-        return view ('student.viewstudyplanner', $data);
-        // return view ('student.viewstudyplanner');
+        return view('student.viewstudyplanner', $data);
     }
 }

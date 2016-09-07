@@ -31,11 +31,6 @@ class ResolveIssueController extends Controller
     {
         $data = [];
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')->get();
-        // $issues = DB::table('enrolment_issues')
-        //     ->join('student', 'student.studentID', '=', 'enrolment_issues.studentID')
-        //     ->select('enrolment_issues.*', 'student.givenName', 'student.surname')
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
 
         $data['issues'] = $issues;
 

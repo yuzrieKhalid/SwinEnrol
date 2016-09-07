@@ -11,7 +11,7 @@ use Auth;
 use App\Student;
 use App\Unit;
 use App\EnrolmentUnits;
-use DB;
+use App\Config;
 use Carbon\Carbon;
 
 // student's unit operation is different. it should only add units to student's info
@@ -31,15 +31,15 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::where('studentID', '=', '$user->username')->get();
         $data['student'] = $student;
-        // get units for student
-        // $units = DB::table('enrolment_units')
-        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-        //     ->select('enrolment_units.*', 'unit.unitName')
-        //     // ->where('studentID', '=', $studentID) // need to check for current term too
-        //     ->get();
 
         // need to rename it later to not confused
-        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        $enrolled = EnrolmentUnits::with('unit')
+            ->where([
+                ['studentID', '=', $user->username],
+                ['year', '=', Config::find('year')->value],
+                ['term', '=', Config::find('semester')->value],
+                ['status', '=', 'pending']
+            ])->get();
         $data['enrolled'] = $enrolled;
 
         $units = Unit::all();
@@ -60,20 +60,20 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::where('studentID', '=', '$user->username')->get();
         $data['student'] = $student;
-        // get units for student
-        // $units = DB::table('enrolment_units')
-        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-        //     ->select('enrolment_units.*', 'unit.unitName')
-        //     // ->where('studentID', '=', $studentID) // need to check for current term too
-        //     ->get();
 
-        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        $enrolled = EnrolmentUnits::with('unit')
+            ->where([
+                ['studentID', '=', $user->username],
+                ['year', '=', Config::find('year')->value],
+                ['term', '=', Config::find('semester')->value],
+                ['status', '=', 'pending']
+            ])->get();
         $data['enrolled'] = $enrolled;
 
         $units = Unit::all();
         $data['units'] = $units;
 
-        return view ('student.manageunits', $data);
+        return view('student.manageunits', $data);
     }
 
     /**
@@ -92,8 +92,8 @@ class ManageUnitController extends Controller
         $new_unit_enrolment = new EnrolmentUnits;
         $new_unit_enrolment->studentID = Auth::user()->username;
         $new_unit_enrolment->unitCode = $input['unitCode'];
-        $new_unit_enrolment->year = 2016;
-        $new_unit_enrolment->term = '2';
+        $new_unit_enrolment->year = Config::find('year')->value;
+        $new_unit_enrolment->term = Config::find('semester')->value;
         $new_unit_enrolment->status = 'pending';
         $new_unit_enrolment->result = '0.00';
         $new_unit_enrolment->grade = '0.00';
@@ -157,11 +157,11 @@ class ManageUnitController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
-        $student = Student::where('studentID', '=', $user->username)->get();
+        $student = Student::find($user->username);
         $enrolled = EnrolmentUnits::where('unitCode', '=', $id)
-        ->where('studentID', '=', $student[0]->studentID)
-        ->where('year', '=', Carbon::now()->year)
-        ->where('term', '=', '2') // todo: get from config
+        ->where('studentID', '=', $student->studentID)
+        ->where('year', '=', Config::find('year')->value)
+        ->where('term', '=', Config::find('semester')->value)
         ->delete();
 
         return response()->json($enrolled);

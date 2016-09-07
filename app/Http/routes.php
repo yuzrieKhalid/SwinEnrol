@@ -71,6 +71,9 @@ Route::group([
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
     Route::resource('managestudent', 'Super\ManageStudent');
 });
+
+Route::get('/phase', 'PhaseController@phaseTrigger');
+
 /*
 Route::group([
     'middleware' => 'web'

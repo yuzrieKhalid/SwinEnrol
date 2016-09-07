@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('extra_head')
-    <!-- remember csrf token needs middleware -->
     <meta name="_token" content="{{ csrf_token() }}"/>
-    <link href="{{ asset('css/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" type="text/css">
 @stop
 
 @section('content')
@@ -26,7 +24,7 @@
                             <th></th>
                             <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                         </thead>
-                        @foreach( $units as $unit)
+                        @foreach($units as $unit)
                         @if(isset($unit))
                         <tr>
                             <td class="td_unitCode">{{ $unit->unitCode }}</td>

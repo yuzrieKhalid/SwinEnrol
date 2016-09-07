@@ -35,12 +35,27 @@ class PhaseController extends Controller
         // check business rules
         foreach($students as $student)
         {
+            // get all student's current pending units
             $pending = EnrolmentUnits::with('unit')
             ->where('studentID', '=', $student->studentID)
             ->where('year', '=', $year)
             ->where('term', '=', $term)
             ->where('status', '=', 'pending')
             ->get();
+
+            // sort units, move units with corequisite to the back
+            $units = [];
+            foreach($pending as $unit)
+            {
+                if($unit['unit']->corequisite == "")
+                {
+                    array_unshift($units, $unit);
+                }
+                else
+                {
+                    array_push($units, $unit);
+                }
+            }
 
             $completed = EnrolmentUnits::where('studentID', '=', $student->studentID)
             ->where('grade', '=', 'pass')
@@ -56,7 +71,6 @@ class PhaseController extends Controller
                     if($unit->unitCode == $completedUnit->unitCode)
                     {
                         $status = false;
-                        $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
                     }
                 }
 
@@ -73,10 +87,6 @@ class PhaseController extends Controller
                             break;
                         }
                     }
-                    if($status == false)
-                    {
-                        $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
-                    }
                 }
 
                 // antirequisite
@@ -87,19 +97,31 @@ class PhaseController extends Controller
                 if(count($antirequisite) > 0)
                 {
                     $status = false;
-                    $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
                 }
 
                 // minimumCompletedUnits
                 if($unit['unit']->minimumCompletedUnits > count($completed))
                 {
                     $status = false;
-                    $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
+                }
+
+                // corequisite
+                if($unit['unit']->corequisite != '')
+                {
+                    $corequisite = EnrolmentUnits::where('studentID', '=', $student->studentID)
+                    ->where('unitCode', '=', $unit['unit']->corequisite)
+                    ->where('status', '=', 'confirmed')
+                    ->get();
+
+                    if(count($corequisite) < 1)
+                    {
+                        $status = false;
+                    }
                 }
 
                 if($status == true)
                 {
-                    EnrolmentUnits::where('studentID', '=', '4304373')
+                    EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
                     ->where('term', '=', $term)
@@ -109,11 +131,13 @@ class PhaseController extends Controller
                 }
                 else
                 {
-                    EnrolmentUnits::where('studentID', '=', '4304373')
+                    EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
                     ->where('term', '=', $term)
                     ->update(['status' => 'dropped']);
+
+                    $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
                 }
             }
         }

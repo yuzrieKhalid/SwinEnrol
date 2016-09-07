@@ -206,6 +206,18 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'grade' => 'ungraded',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            // corequisite
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'COR30',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

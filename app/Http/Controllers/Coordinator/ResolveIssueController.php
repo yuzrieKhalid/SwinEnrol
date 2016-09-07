@@ -91,7 +91,7 @@ class ResolveIssueController extends Controller
     {
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                     ->where('issueID', '=', $issueID)
-                    ->where('status', '=', 'Pending')->get();
+                    ->where('status', '=', 'pending')->get();
 
         if ($issueID === 1)
         {

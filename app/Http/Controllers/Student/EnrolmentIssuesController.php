@@ -76,7 +76,7 @@ class EnrolmentIssuesController extends Controller
         $issue = new StudentEnrolmentIssues;
         $issue->studentID = Auth::user()->username;
         $issue->issueID = $input['issueID'];
-        $issue->status = 'Pending';
+        $issue->status = 'pending';
         $issue->submissionData = $input['submissionData'];
         $issue->attachmentData = $input['attachmentData'];
         $issue->save();

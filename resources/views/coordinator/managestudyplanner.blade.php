@@ -24,7 +24,7 @@
                             <!-- Year Selection -->
                             <div class="form-group">
                                 <select class="form-control" name="year" id="year" onchange="this.form.submit()">
-                                    @for($n = $currentYear - 5; $n < $currentYear + 1; $n++)
+                                    @for($n = $currentYear - 5; $n < $currentYear + 2; $n++)
                                         @if($n == $year)
                                             <option value="{{ $n }}" selected>{{ $n }}</option>
                                         @else

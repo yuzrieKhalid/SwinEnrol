@@ -40,7 +40,6 @@ class ManageUnitController extends Controller
 
         $data['units'] = $units;
 
-        // since its the same page as index, need to check for the $units
         return view ('coordinator.manageunits', $data);
     }
 

@@ -40,6 +40,7 @@ class ResolveIssueController extends Controller
         // and EnrolmentIssues (to get the type of the enrolment issues)
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
                     ->where('status', '=', 'pending')->get();
+
         $data['issues'] = $issues;
 
         return view ('coordinator.resolveenrolmentissues', $data);

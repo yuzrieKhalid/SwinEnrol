@@ -15,13 +15,25 @@ class ConfigTableSeeder extends Seeder
         DB::table('config')->insert([
             [
                 'id' => 'enrolmentPhase',
-                'value' => '0',
+                'value' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
                 'id' => 'semester',
                 'value' => 'Semester 1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 'year',
+                'value' => '2016',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 'semesterLength',
+                'value' => '9',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

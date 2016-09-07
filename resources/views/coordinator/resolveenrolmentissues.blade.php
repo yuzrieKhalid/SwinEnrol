@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+<meta name="_token" content="{{ csrf_token() }}" />
+@stop
+
 @section('content')
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-left">
@@ -110,8 +114,18 @@
 
                                             <!-- footer -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Disapprove</button>
+                                                <div class="hidden data-temporary">
+                                                    <pre class="stdID">stdID</pre>
+                                                    <pre class="issID">issID</pre>
+                                                </div>
+                                                <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid=""
+                                                    data-url="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
+                                                    Approve
+                                                </button>
+                                                <button type="button" class="btn btn-danger submit" data-method="DELETE"
+                                                    data-url="{{ route('coordinator.resolveenrolmentissues.disapprove', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
+                                                    Disapprove
+                                                </button>
                                             </div>
                                         </div> <!-- .modal-content> -->
                                     </div> <!-- .modal-dialog -->
@@ -130,6 +144,11 @@
 @section('extra_js')
 <script>
 (function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
     // 3 Adding submissionData appropriately
     // 3.1 Internal Course Transfer
     let addModalData_1 = function(issue) {
@@ -153,7 +172,20 @@
         modal_template.find('.proposedIntakeYear').html(submissionData.toProgramYear)
         modal_template.find('.reason').html(submissionData.toReasons)
 
+        // replace the id to be passed into the route
+        let route = modal_template.find('.modal-footer').children('.submit').data('url')
+        route = route.replace('stdID', issue.studentID)
+        route = route.replace('issID', issue.issueID)
+
+        // replace the original data-url with the replaced stdID and issID
+        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
+        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
+
         $('#modal_placeholder').append(modal_template)
+
+        console.log(modal_template.find('.modal-footer').children('.submit').data('url'));
     }
 
     // 3.2 Advanced Standing (Exemption)
@@ -177,6 +209,17 @@
         // TODO: ABILITY TO DOWNLOAD THE ATTACHMENT
         // modal_template.find('.attachmentData').children('a').attr('data-url', issue.attachmentData)
         // modal_template.find('.attachmentData').children('a').html(issue.attachmentData.file)
+
+        // replace the id to be passed into the route
+        let route = modal_template.find('.modal-footer').children('.submit').data('url')
+        route = route.replace('stdID', issue.studentID)
+        route = route.replace('issID', issue.issueID)
+
+        // replace the original data-url with the replaced stdID and issID
+        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
+        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
 
         $('#modal_placeholder').append(modal_template)
     }
@@ -202,6 +245,18 @@
         modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
         modal_template.find('.lastClassAttended').html(submissionData.lastClassAttendedDate)
         modal_template.find('.reason').html(submissionData.reasonForWithdrawal)
+
+        // needs to be this long because .replace() only creates new string, and does not replace the old string
+        // replace the id to be passed into the route
+        let route = modal_template.find('.modal-footer').children('.submit').data('url')
+        route = route.replace('stdID', issue.studentID)
+        route = route.replace('issID', issue.issueID)
+
+        // replace the original data-url with the replaced stdID and issID
+        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
+        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
 
         $('#modal_placeholder').append(modal_template)
     }
@@ -242,6 +297,47 @@
         })
     }
     getSubmissionData()
+
+    // 4. AJAX
+    $(document).delegate(".submit", "click", function(){
+        let url = $(this).data('url')
+        let method = $(this).data('method')
+        let issid = $(this).data('issid')
+        let data = []
+
+        if (issid == 1) {
+            // case: course transfer
+            data = {
+                '_token': getToken(),
+                'proposedProgramCode': 'testprogramcode',
+                'proposedIntakeYear': '2016'
+            }
+        // endif
+        } else if (issid == 2) {
+            // case: exemption
+            data = {
+                '_token': getToken(),
+                'exemptionUnitCode': 'hit2123',
+                'exemptionYear': '2016'
+            }
+        // endif
+        } else if (issid == 3) {
+            // case withdrawal
+            data = {
+                '_token': getToken(),
+
+            }
+        //endif
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function() {
+
+        })
+    })
 }) ()
 </script>
 @stop

@@ -40,6 +40,16 @@ Route::group([
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
+
+    // Route::get('resolveenrolmentissues/{studentID}/{issueID}', 'Coordinator\ResolveIssueController@update');
+    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.approve',
+        'uses' => 'Coordinator\ResolveIssueController@update'
+    ]);
+    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.disapprove',
+        'uses' => 'Coordinator\ResolveIssueController@destroy'
+    ]);
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
 });
 

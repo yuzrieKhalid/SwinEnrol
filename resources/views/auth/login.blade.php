@@ -78,3 +78,12 @@
     </div>
 </div>
 @endsection
+
+@section('extra_js')
+<script>
+(function(){
+    // focus username textbox
+    $('#username').focus()
+})()
+</script>
+@stop

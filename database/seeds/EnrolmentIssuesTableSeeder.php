@@ -28,7 +28,7 @@ class EnrolmentIssuesTableSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'issueType' => 'Program Withdrawal',
+                'issueType' => 'Leave of Absence',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

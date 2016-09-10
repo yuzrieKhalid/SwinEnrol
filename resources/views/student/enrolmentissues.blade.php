@@ -105,7 +105,7 @@
                                         <option>Select One</option>
                                         <option value="course_transfer">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
-                                        <option value="programWithdrawal">Application Withdrawal from Program</option>
+                                        <option value="leave_of_absence">Application for Leave of Absence</option>
                                     </select>
                                 </div>
                             </div>
@@ -225,8 +225,8 @@
                             </div>
 
                             <!-- Case: Withdrawal -->
-                            <div class="hidden" id="programWithdrawal">
-                                <h3>APPLICATION FOR WITHDRAWAL FROM PROGRAM</h3>
+                            <div class="hidden" id="leave_of_absence">
+                                <h3>APPLICATION FOR LEAVE OF ABSENCE</h3>
 
                                 @foreach($studentcourse as $course)
                                 <h4>Program Details</h4>
@@ -245,58 +245,50 @@
                                 @endforeach
 
                                 <div class="form-group">
-                                    <!-- Withdrawal effective-->
-                                    <label class="control-label col-sm-4">Withdrawal effective from year:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control effectiveYear">
-                                    </div>
-                                    <!-- Teaching period-->
-                                    <label class="control-label col-sm-3">Teaching Period:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control teachingPeriod">
-                                    </div>
+                                    <!-- Dual Qualification? -->
+                                    <label class="control-label col-sm-5">Are you an international student holding a student visa?<span class="help-block">Leave the box empty if "No"</span></label>
+                                    <label class="radio-inline"><input type="checkbox" name="isForeigner" id="isForeigner" checked> YES</label>
                                 </div>
 
-                                <div class="form-group">
-                                    <!-- Dual Qualification? -->
-                                    <label class="control-label col-sm-4">Is this a dual qualification?<span class="help-block">Leave the box empty if "No"</span></label>
-                                    <label class="radio-inline"><input type="checkbox" name="dualqualification" id="dualYes" checked> YES</label>
+                                <div class="hidden isInternational">
+                                    <label class="control-label">International Student Officer Name</label>
+                                    <input class="form-control iso_name" type="text" value="">
+                                    <hr>
                                 </div>
-                                <div class="form-group">
-                                    <!-- Dual Qualification? -->
-                                    <label class="control-label col-sm-4">Last class attended:</label>
-                                    <div class="input-daterange input-group datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control input-sm" id="lastClassAttendedDate" /></label>
-                                        </div>
-                                    </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered applicationTable">
+                                        <tr>
+                                            <th>Teaching Period</th>
+                                            <th>Year</th>
+                                        </tr>
+                                        <tr class="tr_template">
+                                            <td><input class="form-control teachingPeriod" type="text" value=""></td>
+                                            <td><input class="form-control year" type="text" value="2016"></td>
+                                        </tr>
+                                    </table>
                                 </div>
 
                                 <!-- Reason for Withdrawal -->
-                                <label class="control-label">Reasons for withdrawal:</label>
-                                <textarea class="form-control reasonForWithdrawal" rows="3"></textarea>
+                                <label class="control-label">Reasons for Leave Of Absence:</label>
+                                <textarea class="form-control reasonForLOA" rows="3"></textarea>
 
                                 <!-- Conditions -->
                                 <h4>Conditions</h4>
                                 <p>
-                                    1. For domestic students the last date for withdrawal without a Financial Penalty is by close of business on the Unit of Study Census Date OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment/ Invoice).
+                                    1. For domestic students the last date to lodge an application for leave of absence without a Financial Penalty is by close of business on the Unit of Study Census Date
+                                    OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment /
+                                    Invoice).
                                 </p>
                                 <p>
                                     2. Refunds are subject to the return of your University ID card, fee receipt, and any other University property or materials you may have in your possession.
                                 </p>
                                 <p>
-                                    3. No refund of fees will be made where a student withdraws from a unit of study after close of business of the Unit of Study Census Date.
+                                    3. No refund of fees will be made when a student withdraws from a unit of study after close business of the Unit of Study Census Date.
                                 </p>
                                 <p>
-                                    4. The final date for withdrawal without an Academic Penalty on your results is dependent on the number of teaching weeks for your unit of study or program. The dates
-                                    are listed below:
-                                    -> 12 and/or 14 week semester - by close of business on the Friday of the fourth teaching week
-                                    -> 6 week term / semester - by close of business on the Friday of the second teaching week
-                                </p>
-                                <p>
-                                    5. Before withdrawing students are advised to read the Withdrawal from Program or Unit of Study policy and procedure on
-                                    Academic Course Regulations 2013, Chapter 2 Part 3: Withdrawal and cancellation at
-                                    <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
+                                    4. Before applying for leave of absence students are advised to read the 'Deferral and Leave of Absence' policies and regulations on
+                                    Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
                                 </p>
                             </div>
 
@@ -329,6 +321,15 @@ $('.datepicker').datepicker({
     // Get CSRF token
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
+    }
+
+    // CHECK IS FOREIGNER // TODO fix bug: detect the change on checked
+    if ($('#isForeigner:checked').val()) {
+        isForeigner = 'YES'
+        $('.isInternational').removeClass('hidden')
+    } else {
+        isForeigner = 'NO'
+        $('.isInternational').addClass('hidden')
     }
 
     // SELECT ISSUE SCRIPT
@@ -406,22 +407,17 @@ $('.datepicker').datepicker({
             attachmentData = encodedContent
             issueID = 2
 
-        } else if (option == 'programWithdrawal') {
-            // check for dual qualification
-            let dualQualification = ""
-            if ($('#dualYes:checked').val())
-                dualQualification = 'YES'
-            else
-                dualQualification = 'NO'
+        } else if (option == 'leave_of_absence') {
+
 
             let json_withdrawal = {}
             json_withdrawal["fromProgramCode"] = $('.fromProgramCode').val()
             json_withdrawal["fromProgramTitle"] = $('.fromProgramTitle').val()
-            json_withdrawal["effectiveYear"] = $('.effectiveYear').val()
+            json_withdrawal["isForeigner"] = isForeigner
+            json_withdrawal["iso_name"] = $('.iso_name').val()
             json_withdrawal["teachingPeriod"] = $('.teachingPeriod').val()
-            json_withdrawal["lastClassAttendedDate"] = $('.lastClassAttendedDate').val()
-            json_withdrawal["dualQualification"] = dualQualification
-            json_withdrawal["reasonForWithdrawal"] = $('.reasonForWithdrawal').val()
+            json_withdrawal["year"] = $('.year').val()
+            json_withdrawal["reasonForLOA"] = $('.reasonForLOA').val()
 
             submissionData = JSON.stringify(json_withdrawal)
             attachmentData = null
@@ -448,10 +444,10 @@ $('.datepicker').datepicker({
             enctype: 'multipart/form-data'
         }).done(function(data) {
             // console.log(issueID);
-            // console.log("SubmissionData: " + submissionData);
+            console.log("SubmissionData: " + submissionData);
             // console.log("AttachmentData: " + attachmentData);
         })
-    });
+    })
 }) ()
 </script>
 @stop

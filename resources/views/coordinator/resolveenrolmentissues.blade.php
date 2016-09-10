@@ -88,11 +88,10 @@
                                                     <p>Status: <span class="text-warning status">Pending</span></p>
 
                                                     <h3>Withdrawal From Program Details</h3>
-                                                    <p>Effective Year: <span class="text-primary effectiveYear">2018</span></p>
-                                                    <p>Current Program: <span class="text-primary currentProgram">[I047] [Bachelor of Computer Science]</span></p>
-                                                    <p>Dual Qualification: <span class="text-primary dualQualification">[YES]</span></p>
                                                     <p>Teaching Period: <span class="text-primary teachingPeriod">[4 Years]</span></p>
-                                                    <p>Last Class Attended: <span class="text-primary lastClassAttended">[31-08-2016]</span></p>
+                                                    <p>Year: <span class="text-primary year">2018</span></p>
+                                                    <p>Is An International Student: <span class="text-primary isForeigner">[YES]</span></p>
+                                                    <p>Internation Student Officer: <span class="text-primary iso_name">[31-08-2016]</span></p>
                                                     <hr>
                                                     <p>Reason of Transfer:</p>
                                                     <blockquote>
@@ -239,12 +238,11 @@
         modal_template.find('.issue').html(issue.enrolment_issues.issueType)
         modal_template.find('.status').html(issue.status)
 
-        modal_template.find('.effectiveYear').html(submissionData.effectiveYear)
-        modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
-        modal_template.find('.dualQualification').html(submissionData.dualQualification)
         modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
-        modal_template.find('.lastClassAttended').html(submissionData.lastClassAttendedDate)
-        modal_template.find('.reason').html(submissionData.reasonForWithdrawal)
+        modal_template.find('.year').html(submissionData.year)
+        modal_template.find('.isForeigner').html(submissionData.isForeigner)
+        modal_template.find('.iso_name').html(submissionData.iso_name)
+        modal_template.find('.reason').html(submissionData.reasonForLOA)
 
         // needs to be this long because .replace() only creates new string, and does not replace the old string
         // replace the id to be passed into the route

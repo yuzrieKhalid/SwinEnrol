@@ -55,6 +55,7 @@ Route::group([
         'uses' => 'Coordinator\ResolveIssueController@destroy'
     ]);
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
+    Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
 });
 
 // Student

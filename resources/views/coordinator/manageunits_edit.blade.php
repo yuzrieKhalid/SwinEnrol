@@ -36,7 +36,14 @@
                     <div class="form-group">
                         <label for="prerequisite">Prerequisite</label>
                         <select class="form-control" name="prerequisite">
-                            <option value="None">None</option>
+                            <!-- check if there's a prerequisite/corequisite/antirequisite to show -->
+                            @if($prerequisite !== null)
+                                <option value="{{ $prerequisite->unitCode }}">{{ $prerequisite->unitCode }} {{ $prerequisite->unitName }}</option>
+                            @else
+                                <option value="None">None</option>
+                            @endif
+
+                            <!-- populate the dropdown list -->
                             @foreach($units as $aUnit)
                             @if($aUnit->unitCode !== $unit->prerequisite)
                                 <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>
@@ -48,7 +55,13 @@
                     <div class="form-group">
                         <label for="corequisite">Corequisite</label>
                         <select class="form-control" name="corequisite">
-                            <option value="None">None</option>
+                            <!-- check if there's a prerequisite/corequisite/antirequisite to show -->
+                            @if($corequisite !== null)
+                                <option value="{{ $corequisite->unitCode }}">{{ $corequisite->unitCode }} {{ $corequisite->unitName }}</option>
+                            @else
+                                <option value="None">None</option>
+                            @endif
+
                             @foreach($units as $aUnit)
                             @if($aUnit->unitCode !== $unit->corequisite)
                                 <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>
@@ -60,7 +73,13 @@
                     <div class="form-group">
                         <label for="antirequisite">Antirequisite</label>
                         <select class="form-control" name="antirequisite">
-                            <option value="None">None</option>
+                            <!-- check if there's a prerequisite/corequisite/antirequisite to show -->
+                            @if($antirequisite !== null)
+                                <option value="{{ $antirequisite->unitCode }}">{{ $antirequisite->unitCode }} {{ $antirequisite->unitName }}</option>
+                            @else
+                                <option value="None">None</option>
+                            @endif
+
                             @foreach($units as $aUnit)
                             @if($aUnit->unitCode !== $unit->antirequisite)
                                 <option value="{{ $aUnit->unitCode }}">{{ $aUnit->unitCode }} {{ $aUnit->unitName }}</option>

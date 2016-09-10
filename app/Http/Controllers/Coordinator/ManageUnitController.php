@@ -57,7 +57,8 @@ class ManageUnitController extends Controller
             'prerequisite',
             'corequisite',
             'antirequisite',
-            'minimumCompletedUnits'
+            'minimumCompletedUnits',
+            'information'
         ]);
 
         $unit = new Unit;
@@ -67,6 +68,7 @@ class ManageUnitController extends Controller
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
+        $unit->information = $input['information'];
         $unit->save();
 
         return response()->json($unit);
@@ -95,9 +97,20 @@ class ManageUnitController extends Controller
         $unit = Unit::findOrFail($id);
         $units = Unit::all();
 
+        // used first() instead of get() because it is guaranteed to only come up with only one unique unit
+        $prerequisite = Unit::where('unitCode', '=', $unit->prerequisite)->first();
+        $corequisite = Unit::where('unitCode', '=', $unit->corequisite)->first();
+        $antirequisite = Unit::where('unitCode', '=', $unit->antirequisite)->first();
+
         $data['unit'] = $unit;
         $data['units'] = $units;
+
+        $data['prerequisite'] = $prerequisite;
+        $data['corequisite'] = $corequisite;
+        $data['antirequisite'] = $antirequisite;
+
         return view ('coordinator.manageunits_edit', $data);
+        // return response()->json($data);
     }
 
     /**

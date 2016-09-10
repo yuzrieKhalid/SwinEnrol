@@ -20,6 +20,7 @@ class CreateUnitTable extends Migration
             $table->string('corequisite');//->nullable();
             $table->string('antirequisite');//->nullable();
             $table->integer('minimumCompletedUnits')->unsigned();
+            $table->string('information');
 
             $table->primary('unitCode');
             // $table->foreign('prerequisite')->references('unitCode')->on('unit');

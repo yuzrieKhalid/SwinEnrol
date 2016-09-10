@@ -86,7 +86,7 @@
 
                                     <div class="form-group"> <!-- minimumCompletedUnits -->
                                         <label class="control-label">Minimum Completed Units:</label>
-                                        <input class="numbers" type="text" value="0">
+                                        <input class="numbers" type="text" value="0" id="minimumCompletedUnits">
                                     </div>
                                 </div>
 
@@ -124,10 +124,21 @@
                             </div> <!-- end .row -->
                             <hr>
 
-                            <div class="form-group">
-                                <label>UNIT CONVENOR</label>
-                                <input class="form-control" type="text" id="unitConvenor">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>UNIT CONVENOR</label>
+                                        <input class="form-control" type="text" id="unitConvenor">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>MAXIMUM NUMBER OF STUDENTS FOR UNIT</label>
+                                        <input class="numbers" type="text" value="0" id="maxStudents">
+                                    </div>
+                                </div>
                             </div>
+                            <hr>
 
                             <div class="row">
                                 <div class="col-md-6 col_lecture">
@@ -135,17 +146,22 @@
                                     <h4>LECTURE</h4>
                                     <div class="form-group">
                                         <label class="control-label">Duration (Hours)</label>
-                                        <input class="numbers_duration" type="text">
+                                        <input class="numbers_duration" type="text" id="lectureDuration">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Number of Groups</label>
-                                        <input class="numbers" type="text" value="0">
+                                        <input class="numbers" type="text" value="0" id="lectureGroups">
                                     </div>
                                     <div class="form-group">
                                         <button id="addLecturer" type="button"><span class="glyphicon glyphicon-plus"></span> Add Lecturer</button>
                                     </div>
                                     <div class="form-group hidden lecturer_template">
-                                        <input class="form-control" type="text">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="input_lecturer[]">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -158,18 +174,23 @@
                                     <div class="tutorial_section">
                                         <div class="form-group">
                                             <label class="control-label">Duration (Hours)</label>
-                                            <input class="numbers_duration" type="text">
+                                            <input class="numbers_duration" type="text" id="tutorialDuration">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Number of Groups</label>
-                                            <input class="numbers" type="text" value="0">
+                                            <input class="numbers" type="text" value="0" id="tutorialGroups">
                                         </div>
 
                                         <div class="form-group">
                                             <button id="addTutor" type="button"><span class="glyphicon glyphicon-plus"></span> Add Tutors</button>
                                         </div>
                                         <div class="form-group hidden tutor_template">
-                                            <input class="form-control" type="text">
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" name="input_tutor[]">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div> <!-- end .tutorial_section -->
                                 </div> <!-- end .col -->
@@ -192,6 +213,61 @@
 @section('extra_js')
 <script>
 (function() {
+    // get dynamic data from the more information section
+    // returns a string jsondata
+    let getUnitInformation = function() {
+        // get the name of the convenor, lecture and tutor details
+        let convenor = $('#unitConvenor').val()
+        let lectureDuration = $('#lectureDuration').val()
+        let lectureGroups = $('#lectureGroups').val()
+        let tutorialDuration = $('#tutorialDuration').val()
+        let tutorialGroups = $('#tutorialGroups').val()
+        let maxStudents = $('#maxStudents').val()
+
+        // get the number of input boxes
+        let lecturers_count = $('.input_lecturer').length
+        let tutors_count = $('.input_tutor').length
+
+        // get the value for each inputboxes including the first hidden input box
+        let lecturers_inputs = $('input[name^=input_lecturer]').map(function(id, element)  { return $(element).val() }).get()
+        let tutors_inputs    = $('input[name^=input_tutor]').map(function(id, element)     { return $(element).val() }).get()
+
+        // get the array that skips the first empty/hidden element
+        let lecturers = []
+        let tutors = []
+        for (let i = 0; i < lecturers_count; i++) { lecturers[i] = lecturers_inputs[i+1] }
+        for (let i = 0; i < tutors_count; i++)    { tutors[i] = tutors_inputs[i+1] }
+
+        // create the JSON Object manually when tutorial is disabled/enabled
+        let jsondata = []
+        if ($('#toggle_tutorial').attr('data-id') == 1) {
+            // Tutorial is Enabled
+            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count},
+                {tutorialDuration, tutorialGroups, tutors, tutors_count} ]
+        } else {
+            // Tutorial is Disabled
+            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count} ]
+        }
+
+        // stringify before return
+        let information = JSON.stringify(jsondata)
+
+        // for testing only
+        // let parser = JSON.parse(information)
+        // console.log(parser)
+
+        return information
+    }
+
+    // cleanly remove all three parents when pressing the x button
+    //        <button>   <span>   <div>
+    $('.col_lecture').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+    $('.col_tutorial').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+
     // disabling Tutorial Section
     $('#toggle_tutorial').click(function() {
         if ($('#toggle_tutorial').attr('data-id') == 1) {
@@ -213,6 +289,7 @@
         let newLecturerTextbox = $('.col_lecture').find('.lecturer_template').clone()
         newLecturerTextbox.removeClass('lecturer_template')
         newLecturerTextbox.removeClass('hidden')
+        newLecturerTextbox.addClass('input_lecturer')
 
         $('.col_lecture').append(newLecturerTextbox)
     })
@@ -222,6 +299,7 @@
         let newTutorTextbox = $('.col_tutorial').find('.tutor_template').clone()
         newTutorTextbox.removeClass('tutor_template')
         newTutorTextbox.removeClass('hidden')
+        newTutorTextbox.addClass('input_tutor')
 
         $('.col_tutorial').append(newTutorTextbox)
     })
@@ -229,7 +307,8 @@
     // prettify the numbers column
     $(".numbers").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons
-        mousewheel: true                // allow scrolling to increase/decrease value
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999                       // maximum number can be added
     })
     $(".numbers_duration").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons
@@ -284,24 +363,18 @@
             prerequisite: $('select[name=prerequisite]').val(),
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
-            minimumCompletedUnits: $('#minimumCompletedUnits').val()
+            minimumCompletedUnits: $('#minimumCompletedUnits').val(),
+            information: getUnitInformation()
         }
-
-
 
         $.ajax({
             'url': url,
             'method': method,
             'data': data
         }).done(function(data) {
-            if (method == "POST") {
-                addUnit(data)
-                // hide and reload the page (it looks proper)
-                $('#addUnit').modal().hide()
-                window.location.reload()
-            } else {
-                window.location.reload()
-            }
+            addUnit(data)
+            // $('#addUnit').modal().hide()
+            window.location.reload()
         })
     })
     // data.forEach is not a function

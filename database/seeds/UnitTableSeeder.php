@@ -21,6 +21,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -31,6 +32,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -41,6 +43,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -51,6 +54,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => 'HIT1235',
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -61,6 +65,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => 'HIT1234',
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -71,6 +76,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -81,6 +87,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -91,6 +98,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -101,6 +109,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '20',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -111,6 +120,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',
+                'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

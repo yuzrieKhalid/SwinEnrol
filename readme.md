@@ -16,6 +16,8 @@ Please read this first before you start development. The technology we're going 
 
 For the installation, you can choose to do it in Virtual Machine or Dual Boot with Windows (I won't mind either way). After OS installation, please install LAMP on Ubuntu, you can follow [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu) or [How to Ubuntu](http://howtoubuntu.org/how-to-install-lamp-on-ubuntu). Just a reminder, replace MySQL with [MariaDB installation](http://www.2daygeek.com/install-upgrade-mariadb-10-on-ubuntu-debian-mint/#). Lastly, don't forget to install git. After finsih installation, clone this repository. (If you have problem cloning, refer to below "How to get started" instructions - the ssh part). Once this is done, in the Terminal (working directory), do `php artisan key:generate`. To start the project, do `php artisan serve` and open your internet browser and go to `localhost:8000`. If you see no errors you're good to go.
 
+For those using PHP7 and having problem even after fresh install, go to [stackoverflow here](http://stackoverflow.com/questions/35815376/to-enable-extensions-verify-that-they-are-enabled-in-those-ini-files-vagrant)
+
 ## Getting Started
 
 1. Open your Terminal

@@ -21,7 +21,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"10\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -32,7 +32,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"20\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -43,7 +43,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"30\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"2\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -54,7 +54,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => 'HIT1235',
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"40\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"3\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -65,7 +65,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => 'HIT1234',
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -76,7 +76,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"60\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -87,7 +87,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"70\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -98,7 +98,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"80\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"5\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -109,7 +109,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '20',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"90\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"9\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -120,7 +120,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',
-                'information' => NULL,
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -131,29 +131,7 @@ class UnitTableSeeder extends Seeder
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',
-                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"5\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'INFO1',
-                'unitName' => 'A Unit With Information Another One',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
-                'minimumCompletedUnits' => '2',
-                'information' => "[{\"convenor\":\"Timothy\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Wai Fai\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"3\",\"tutors\":[\"Ah Fei\"],\"tutors_count\":1}]",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'INFO2',
-                'unitName' => 'A Unit With Information Another 2',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
-                'minimumCompletedUnits' => '2',
-                'information' => "[{\"convenor\":\"Sakana\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Yuzrie\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Shientze\"],\"tutors_count\":1}]",
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"110\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

@@ -113,11 +113,11 @@
                     <h4>LECTURE</h4>
                     <div class="form-group">
                         <label class="control-label">Duration (Hours)</label>
-                        <input class="numbers_duration" type="text" value="{{ $lectureDuration }}">
+                        <input class="numbers_duration" type="text" value="{{ $lectureDuration }}" id="lectureDuration">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Number of Groups</label>
-                        <input class="numbers" type="text" value="{{ $lectureGroups }}">
+                        <input class="numbers" type="text" value="{{ $lectureGroups }}" id="lectureGroups">
                     </div>
                     <div class="form-group">
                         <button id="addLecturer" type="button"><span class="glyphicon glyphicon-plus"></span> Add Lecturer</button>
@@ -155,11 +155,11 @@
                     <div class="tutorial_section">
                         <div class="form-group">
                             <label class="control-label">Duration (Hours)</label>
-                            <input class="numbers_duration" type="text" value="{{ $tutorialDuration }}">
+                            <input class="numbers_duration" type="text" value="{{ $tutorialDuration }}" id="tutorialDuration">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Number of Groups</label>
-                            <input class="numbers" type="text" value="{{ $tutorialGroups }}">
+                            <input class="numbers" type="text" value="{{ $tutorialGroups }}" id="tutorialGroups">
                         </div>
 
                         <div class="form-group">
@@ -294,7 +294,8 @@
     // prettify the numbers column
     $(".numbers").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons
-        mousewheel: true                // allow scrolling to increase/decrease value
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999
     })
     $(".numbers_duration").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons

@@ -23,7 +23,17 @@ class ManageListingController extends Controller
      */
     public function index()
     {
-        return response()->json(UnitListing::all());
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
+
+        $unitterm = UnitTerm::with('unit')
+            ->where('unitType', '=', 'unit_listing')
+            ->where('year', '=', $year)
+            ->where('term', '=', $semester)
+            ->where('enrolmentTerm', '=', 'long')
+            ->get();
+
+        return response()->json($unitterm);
     }
 
     /**

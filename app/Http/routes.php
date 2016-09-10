@@ -35,6 +35,10 @@ Route::group([
     'prefix' => 'coordinator',
     'middleware' => 'web',
 ], function() {
+    Route::get('/url', [
+        'as' => 'coordinator.home.index',
+        'uses' => 'Coordinator\HomeController@data'
+    ]);
     Route::get('/', 'Coordinator\HomeController@index');
     Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');

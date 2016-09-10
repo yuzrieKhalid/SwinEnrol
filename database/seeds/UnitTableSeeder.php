@@ -123,6 +123,39 @@ class UnitTableSeeder extends Seeder
                 'information' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'INFO',
+                'unitName' => 'A Unit With Information',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '2',
+                'information' => "[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"5\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'INFO1',
+                'unitName' => 'A Unit With Information Another One',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '2',
+                'information' => "[{\"convenor\":\"Timothy\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Wai Fai\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"3\",\"tutors\":[\"Ah Fei\"],\"tutors_count\":1}]",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'INFO2',
+                'unitName' => 'A Unit With Information Another 2',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '2',
+                'information' => "[{\"convenor\":\"Sakana\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Yuzrie\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Shientze\"],\"tutors_count\":1}]",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

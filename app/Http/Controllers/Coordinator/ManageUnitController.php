@@ -109,8 +109,33 @@ class ManageUnitController extends Controller
         $data['corequisite'] = $corequisite;
         $data['antirequisite'] = $antirequisite;
 
+        // extract data from unit information JSON
+        $information = json_decode($unit->information);
+        $convenor = $information[0]->convenor;
+        $maxStudents = $information[1]->maxStudents;
+        $lectureDuration = $information[2]->lectureDuration;
+        $lectureGroups = $information[2]->lectureGroups;
+        $lecturers = $information[2]->lecturers;
+        $lecturers_count = $information[2]->lecturers_count;
+        $tutorialDuration = $information[3]->tutorialDuration;
+        $tutorialGroups = $information[3]->tutorialGroups;
+        $tutors = $information[3]->tutors;
+        $tutors_count = $information[3]->tutors_count;
+
+        $data['convenor'] = $convenor;
+        $data['maxStudents'] = $maxStudents;
+        $data['lectureDuration'] = $lectureDuration;
+        $data['lectureGroups'] = $lectureGroups;
+        $data['lecturers'] = $lecturers;
+        $data['lecturers_count'] = $lecturers_count;
+        $data['tutorialDuration'] = $tutorialDuration;
+        $data['tutorialGroups'] = $tutorialGroups;
+        $data['tutors'] = $tutors;
+        $data['tutors_count'] = $tutors_count;
+
         return view ('coordinator.manageunits_edit', $data);
-        // return response()->json($data);
+        // return response()->json($information);
+        // return response()->json($lecturers);
     }
 
     /**
@@ -128,7 +153,8 @@ class ManageUnitController extends Controller
             'prerequisite',
             'corequisite',
             'antirequisite',
-            'minimumCompletedUnits'
+            'minimumCompletedUnits',
+            'information'
         ]);
 
         $unit = Unit::findOrFail($id);
@@ -138,6 +164,7 @@ class ManageUnitController extends Controller
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = $input['minimumCompletedUnits'];
+        $unit->information = $input['information'];
         $unit->save();
 
         return response()->json($unit);

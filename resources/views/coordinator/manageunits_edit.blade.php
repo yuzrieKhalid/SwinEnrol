@@ -91,10 +91,21 @@
             </div> <!-- end .row -->
             <hr>
 
-            <div class="form-group">
-                <label>UNIT CONVENOR</label>
-                <input class="form-control" type="text" id="unitConvenor">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>UNIT CONVENOR</label>
+                        <input class="form-control" type="text" id="unitConvenor" value="{{ $convenor }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>MAXIMUM NUMBER OF STUDENTS FOR UNIT</label>
+                        <input class="numbers" type="text" value="{{ $maxStudents }}" id="maxStudents">
+                    </div>
+                </div>
             </div>
+            <hr>
 
             <div class="row">
                 <div class="col-md-6 col_lecture">
@@ -102,18 +113,37 @@
                     <h4>LECTURE</h4>
                     <div class="form-group">
                         <label class="control-label">Duration (Hours)</label>
-                        <input class="numbers_duration" type="text">
+                        <input class="numbers_duration" type="text" value="{{ $lectureDuration }}">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Number of Groups</label>
-                        <input class="numbers" type="text" value="0">
+                        <input class="numbers" type="text" value="{{ $lectureGroups }}">
                     </div>
                     <div class="form-group">
                         <button id="addLecturer" type="button"><span class="glyphicon glyphicon-plus"></span> Add Lecturer</button>
                     </div>
                     <div class="form-group hidden lecturer_template">
-                        <input class="form-control" type="text">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="input_lecturer[]">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                            </span>
+                        </div>
                     </div>
+
+                    <!-- fetch from database if got -->
+                    @if(isset($lecturers))
+                    @foreach($lecturers as $lecturer)
+                    <div class="form-group input_lecturer">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="input_lecturer[]" value="{{ $lecturer }}">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
                 </div>
 
                 <div class="col-md-6 col_tutorial">
@@ -125,19 +155,36 @@
                     <div class="tutorial_section">
                         <div class="form-group">
                             <label class="control-label">Duration (Hours)</label>
-                            <input class="numbers_duration" type="text">
+                            <input class="numbers_duration" type="text" value="{{ $tutorialDuration }}">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Number of Groups</label>
-                            <input class="numbers" type="text" value="0">
+                            <input class="numbers" type="text" value="{{ $tutorialGroups }}">
                         </div>
 
                         <div class="form-group">
                             <button id="addTutor" type="button"><span class="glyphicon glyphicon-plus"></span> Add Tutors</button>
                         </div>
                         <div class="form-group hidden tutor_template">
-                            <input class="form-control" type="text">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="input_tutor[]">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                </span>
+                            </div>
                         </div>
+                        @if(isset($lecturers))
+                        @foreach($tutors as $tutor)
+                        <div class="form-group input_tutor">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="input_tutor[]" value="{{ $tutor }}">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                </span>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
                     </div> <!-- end .tutorial_section -->
                 </div> <!-- end .col -->
             </div> <!-- end .row -->
@@ -153,6 +200,61 @@
 @section('extra_js')
 <script>
 (function() {
+    // get dynamic data from the more information section
+    // returns a string jsondata
+    let getUnitInformation = function() {
+        // get the name of the convenor, lecture and tutor details
+        let convenor = $('#unitConvenor').val()
+        let lectureDuration = $('#lectureDuration').val()
+        let lectureGroups = $('#lectureGroups').val()
+        let tutorialDuration = $('#tutorialDuration').val()
+        let tutorialGroups = $('#tutorialGroups').val()
+        let maxStudents = $('#maxStudents').val()
+
+        // get the number of input boxes
+        let lecturers_count = $('.input_lecturer').length
+        let tutors_count = $('.input_tutor').length
+
+        // get the value for each inputboxes including the first hidden input box
+        let lecturers_inputs = $('input[name^=input_lecturer]').map(function(id, element)  { return $(element).val() }).get()
+        let tutors_inputs    = $('input[name^=input_tutor]').map(function(id, element)     { return $(element).val() }).get()
+
+        // get the array that skips the first empty/hidden element
+        let lecturers = []
+        let tutors = []
+        for (let i = 0; i < lecturers_count; i++) { lecturers[i] = lecturers_inputs[i+1] }
+        for (let i = 0; i < tutors_count; i++)    { tutors[i] = tutors_inputs[i+1] }
+
+        // create the JSON Object manually when tutorial is disabled/enabled
+        let jsondata = []
+        if ($('#toggle_tutorial').attr('data-id') == 1) {
+            // Tutorial is Enabled
+            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count},
+                {tutorialDuration, tutorialGroups, tutors, tutors_count} ]
+        } else {
+            // Tutorial is Disabled
+            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count} ]
+        }
+
+        // stringify before return
+        let information = JSON.stringify(jsondata)
+
+        // for testing only
+        // let parser = JSON.parse(information)
+        // console.log(parser)
+
+        return information
+    }
+
+    // cleanly remove all three parents when pressing the x button
+    //        <button>   <span>   <div>
+    $('.col_lecture').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+    $('.col_tutorial').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+
     // disabling Tutorial Section
     $('#toggle_tutorial').click(function() {
         if ($('#toggle_tutorial').attr('data-id') == 1) {
@@ -174,6 +276,7 @@
         let newLecturerTextbox = $('.col_lecture').find('.lecturer_template').clone()
         newLecturerTextbox.removeClass('lecturer_template')
         newLecturerTextbox.removeClass('hidden')
+        newLecturerTextbox.addClass('input_lecturer')
 
         $('.col_lecture').append(newLecturerTextbox)
     })
@@ -183,6 +286,7 @@
         let newTutorTextbox = $('.col_tutorial').find('.tutor_template').clone()
         newTutorTextbox.removeClass('tutor_template')
         newTutorTextbox.removeClass('hidden')
+        newTutorTextbox.addClass('input_tutor')
 
         $('.col_tutorial').append(newTutorTextbox)
     })
@@ -216,7 +320,7 @@
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            core: $('#core').val()
+            information: getUnitInformation()
         }
 
         $.ajax({

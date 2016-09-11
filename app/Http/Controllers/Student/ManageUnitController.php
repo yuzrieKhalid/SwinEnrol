@@ -84,23 +84,46 @@ class ManageUnitController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only([
+      $tuser = Auth::user();
+      $tenrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $tuser->username)->get();
+      $input = $request->only([
             // enrolment data
             'unitCode',
         ]);
 
-        $new_unit_enrolment = new EnrolmentUnits;
-        $new_unit_enrolment->studentID = Auth::user()->username;
-        $new_unit_enrolment->unitCode = $input['unitCode'];
-        $new_unit_enrolment->year = 2016;
-        $new_unit_enrolment->term = '2';
-        $new_unit_enrolment->status = 'pending';
-        $new_unit_enrolment->result = '0.00';
-        $new_unit_enrolment->grade = '0.00';
-        $new_unit_enrolment->save();
+      $temp = 0;
+      $count = 0;
+      foreach ($tenrolled as $unit){
+        if($input['unitCode']==$unit->unitCode){
+            $temp = 1;
+          }
+          else {}
+            $count = $count+1;
+        }
 
-        return response()->json($new_unit_enrolment);
+        if($count<5){
+          if($temp == 0){
+            $new_unit_enrolment = new EnrolmentUnits;
+            $new_unit_enrolment->studentID = Auth::user()->username;
+            $new_unit_enrolment->unitCode = $input['unitCode'];
+            $new_unit_enrolment->year = 2016;
+            $new_unit_enrolment->term = '2';
+            $new_unit_enrolment->status = 'pending';
+            $new_unit_enrolment->result = '0.00';
+            $new_unit_enrolment->grade = '0.00';
+            $new_unit_enrolment->save();
+          }
+
+          if($temp == 1){
+              //alert dialog
+              return Redirect::back()->with('error_code', 5);
+          }
+        }
+          return response()->json($new_unit_enrolment);
     }
+
+
+
 
     /**
      * Display the specified resource.

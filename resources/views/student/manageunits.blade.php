@@ -74,13 +74,8 @@
 
         <div class="col-md-9">
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h1>Current Enrolment
-                        <span class="pull-right">
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                        </span>
-                    </h1>
+                <div class="from-group panel-heading">
+                    <h1>Current Enrolment</h1>
                 </div>
 
                 <div class="panel-body">
@@ -104,8 +99,8 @@
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
                                 <td>
-                                    <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-toggle="modal" data-target="#rR" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
-                                        <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                  <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
+                                      <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
                             </tr>
@@ -137,27 +132,30 @@
                     </div>
 
                     <div id = "myTabContent" class = "tab-content">
-                    <div class="tab-pane fade in active" id="core-table">
+                    <div class="tab-pane fade in active @if ($errors->has('$unit->unitCode')) has-error @endif" id="core-table">
                         <table class="table">
                             <thead>
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
                             </thead>
-
                             <!-- Check if already enrolled, don't add to this list -->
                             @foreach ($units as $unit)
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unitName }}</td>
                                 <td>
-                                    <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-toggle="modal" data-target="#rA" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
+                                    <button type="submit" id="{{ $unit->unitCode }}"
+                                       class="submit btn btn-sm" data-method="POST"
+                                         data-url="{{ route('student.manageunits.store') }}">
                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                     </button>
+
 
 
                                 </td>
                             </tr>
                             @endforeach
+
                         </table>
                     </div>
                     <div class="tab-pane fade" id="elective_tab">
@@ -166,22 +164,6 @@
                                 <th>Unit Code</th>
                                 <th colspan="2">Unit Title</th>
                             </thead>
-
-                            <!-- @foreach ($units as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unitName }}</td>
-                                <td>
-                                    <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}"  data-toggle="modal" data-target="#rA" data-method="POST" data-url="{{ route('student.manageunits.store') }}">
-                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
-                                    </button>
-
-
-                                </td>
-                            </tr>
-                            @endforeach -->
-
-
                         </table>
                     </div>
                   </div>
@@ -192,6 +174,8 @@
 @stop
 
 @section ('extra_js')
+
+
 <script>
 // TODO: implement the '+' button
 
@@ -224,7 +208,7 @@
         let url = $('#enrolled_table').data('url')
         $.get(url, function(data) {
             data.forEach(function(unit) {
-                // add the unit to the data
+                // add the unit to the datadata-target="#rR"
                 addUnit(unit)
             })
         })
@@ -247,18 +231,18 @@
         }).done(function(data) {
             if (method == "POST") {
                 addUnit(data)
-                //$('#addUnit').modal().hide()
-                // window.location.reload()
-                // $(this).closest('tr').revmove()
-
+                window.location.reload()
             } else {
-                // if button method not as preset
                 console.log('It is of unknown method')
-                // window.location.reload()
+                window.location.reload()
             }
         })
 
+        // $('#rA').modal('show');
 
+        // @if(Session::has('error'))
+        //   alert("{{Session::get('error')}}");
+        // @endif
 
         // $(document).on("click", "remove" , function() {
         //     $(this).parent().remove();

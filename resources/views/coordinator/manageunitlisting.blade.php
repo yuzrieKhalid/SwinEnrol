@@ -7,19 +7,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <!-- <div class="row"> -->
+     <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/coordinator') }}" class="list-group-item">Home</a>
-                <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item">Manage Study Planner</a>
-                <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item active">Manage Unit Listings</a>
-                <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item">Manage Units</a>
-                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item">Resolve Enrolment Issues</a>
-            </div>
-        </div>
+
+         @include('coordinator.menu')
 
         <div class="col-md-9">
+            <!-- To be fixed -->
+            
+
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Unit Listings</h1>
@@ -64,55 +61,76 @@
                         @endforeach
                     </table>
                 </div>
-                </div>
             </div>
-            <!-- Add Unit Modal -->
-            <div class="modal fade" id="addUnit" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h2 class="modal-title">Add Unit</h2>
-                        </div>
+        </div>
+        <!-- Add Unit Modal -->
+        <div class="modal fade" id="addUnit" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">Add Unit</h2>
+                    </div>
 
-                        <div class="modal-body">
-                            <form class="form-horizontal">
+                    <div class="modal-body">
+                        <form class="form-horizontal">
 
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="unitCode">Unit:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="unitCode">
-                                            @foreach($units as $unit)
-                                                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} - {{ $unit->unitName }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="unitCode">Unit:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="unitCode">
+                                        @foreach($units as $unit)
+                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} - {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                            </div>
 
-                                <div class="form-group hidden">
-                                    <label class="control-label col-sm-2" for="enrolmentTerm">Term:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="enrolmentTerm" disabled value="0">
-                                    </div>
+                            <div class="form-group hidden">
+                                <label class="control-label col-sm-2" for="enrolmentTerm">Term:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="enrolmentTerm" disabled value="0">
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
+                    </div>
 
-                        <div class="modal-footer">
-                            <button type="submit" class="submit btn btn-default" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunitlisting.store') }}">Create</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="submit btn btn-default" id="submit" data-method="POST" data-url="{{ route('coordinator.manageunitlisting.store') }}">Create</button>
                     </div>
                 </div>
             </div>
-            <!-- end Add Unit Modal -->
-        </div>
-    </div>
-</div>
+        </div> <!-- end Add Unit Modal -->
+    </div> <!-- end .row -->
+</div> <!-- end .container -->
 @stop
 
 @section('extra_js')
 <script>
+// Sariful's part
+$(document$).ready(function(){
+    $('.nav-menu-bt').click(function() {
+        $('.navbar').css('-webkit-transform', 'translate(0,0)');
+        console.log('Pressed');
+    });
+});
+
+// ------ css ------
+.navbar{
+  position: fixed;
+  height:100%;
+  width:20%;
+  overflow: hidden;
+  background-color: #48a770;
+
+  -webkit-transform: translate(-100,0);
+}
+
+</script>
+
+<script>
+// Yuzrie's part
 (function() {
     // Get CSRF token
     let getToken = function() {

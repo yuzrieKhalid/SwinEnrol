@@ -8,17 +8,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ asset('resources/assets/sass/app.scss') }}"> -->
+
+
     @yield('extra_head')
 </head>
 
 <body id="app-layout">
     @if(!Auth::guest())
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-offcanvas-touch navbar-offcanvas-fade">
         <div class="container">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -64,6 +67,7 @@
 
     <!-- JavaScripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- <script src="{{ asset('resources/assets/js/app.js') }}"></script> -->
     @yield('extra_js')
 </body>
 </html>

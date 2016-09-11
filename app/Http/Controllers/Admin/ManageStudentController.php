@@ -59,7 +59,6 @@ class ManageStudentController extends Controller
             'studentID',
             'surname',
             'givenName',
-            'email',
             'courseCode'
         ]);
 
@@ -68,7 +67,6 @@ class ManageStudentController extends Controller
         $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
-        $student->email = $input['email'];
         $student->courseCode = $input['courseCode'];
 
         // adds the student to the User table too
@@ -119,7 +117,6 @@ class ManageStudentController extends Controller
             'studentID',
             'surname',
             'givenName',
-            'email',
             'courseCode'
         ]);
 
@@ -128,7 +125,7 @@ class ManageStudentController extends Controller
         $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
-        $student->email = $input['email'];
+        // $student->email = $input['email'];
         $student->courseCode = $input['courseCode'];
 
         $student->save();
@@ -169,7 +166,6 @@ class ManageStudentController extends Controller
                 $student->studentID = $value['stdID'];
                 $student->surname = $value['surname'];
                 $student->givenName = $value['firstname'];
-                $student->email = $value['email'];
                 $student->courseCode = $value['coursecode'];
                 $student->save();
             }

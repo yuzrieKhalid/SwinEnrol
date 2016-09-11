@@ -4,17 +4,7 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/student') }}" class="list-group-item active">Enrolment Status</a>
-                <a href="{{ url('/student/enrolmenthistory') }}" class="list-group-item">Enrolment History</a>
-                <a href="{{ url('/student/manageunits/create') }}" class="list-group-item">Manage Units</a>
-                <a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item">View Study Planner</a>
-                <a href="{{ url('/student/viewunitlistings') }}" class="list-group-item">View Unit Listings</a>
-                <a href="{{ url('/student/internalcoursetransfer/create') }}" class="list-group-item">Internal Course Transfer</a>
-                <a href="{{ url('/student/enrolmentissues') }}" class="list-group-item">Other Enrolment Issues</a>
-            </div>
-        </div>
+        @include('student.menu')
 
         <div class="col-md-9">
             <div class="panel panel-primary">
@@ -47,13 +37,13 @@
                             <td>{{ $unit->unit->unitName }}</td>
                             @if($unit->status == 'confirmed')
                             <!-- Has already passed -->
-                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
                             @elseif($unit->status == 'pending')
                             <!-- Waiting to be approved (Phase 2) -->
-                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
                             @else
                             <!-- Is currently taken -->
-                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
                             @endif
                         </tr>
                         @endforeach
@@ -67,4 +57,14 @@
     </div>
 
 </div>
+
+@stop
+
+@section ('extra_js')
+<script>
+(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+}) ()
+</script>
+
 @stop

@@ -25,7 +25,7 @@ elixir(function(mix) {
         touchspinPath + 'jquery.bootstrap-touchspin.css'
     ], 'public/css/app.css');
 
-    mix.babel([
+    mix.scripts([
         'app.js',
         jQueryPath + 'jquery.js',
         bootstrapPath + 'javascripts/bootstrap.js',

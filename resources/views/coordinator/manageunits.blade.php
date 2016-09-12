@@ -8,20 +8,24 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="{{ url('/coordinator') }}" class="list-group-item">Home</a>
-                <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item">Manage Study Planner</a>
-                <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item">Manage Unit Listings</a>
-                <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item active">Manage Units</a>
-                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item">Resolve Enrolment Issues</a>
-            </div>
-        </div>
+        @include('coordinator.menu')
+
+
+
+
+
+
+        <!-- function confirmDeleteModal(id){
+            $('#deleteModal').modal();
+        	$('#submit').html('<a class="btn btn-danger" onclick="deleteData">Delete</a>');
+        }
+
+         -->
+
 
         <div class="col-md-9">
-            <!--  this panel shows the created units -->
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Units</h1>
@@ -61,10 +65,12 @@
                                 </a>
                             </td>
                             <td class="td_unitDelete">
+
                                 <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
                             </td>
+
                         </tr>
                         @endif
                         @endforeach

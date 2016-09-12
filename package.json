@@ -10,6 +10,27 @@
     "bootstrap-touchspin": "^3.1.1",
     "jquery": "^2.2.3",
     "laravel-elixir": "*",
-    "xlsx": "^0.8.0"
-  }
+    "xlsx": "^0.8.0",
+    "offcanvas-menu": "^0.1.6"
+  },
+  "name": "off_menu",
+  "description": "Swinburne Student Enrolment System is a Software Engineering Project for IO47 March Intake 2016. The system is continued to be developed by 3 people: - Mohamad Yuzrie Bin Khalid - Jason Thomas Chew - Sariful Haque",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuzrieSiddiq/SwinEnrol.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuzrieSiddiq/SwinEnrol/issues"
+  },
+  "homepage": "https://github.com/yuzrieSiddiq/SwinEnrol#readme"
 }

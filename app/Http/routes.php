@@ -56,6 +56,14 @@ Route::group([
     ]);
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
     Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
+    Route::post('enrolmentamendment/{studentID}/unit/{unitCode}', [
+        'as' => 'coordinator.enrolmentamendment.approve',
+        'uses' => 'Coordinator\EnrolmentAmendmentController@update'
+    ]);
+    Route::delete('enrolmentamendment/{studentID}/unit/{unitCode}', [
+        'as' => 'coordinator.enrolmentamendment.disapprove',
+        'uses' => 'Coordinator\EnrolmentAmendmentController@destroy'
+    ]);
 });
 
 // Student

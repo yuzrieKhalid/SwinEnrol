@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\StudentEnrolmentIssues;
+use App\EnrolmentUnits;
+use App\Unit;
+
 class EnrolmentAmendmentController extends Controller
 {
     /**
@@ -16,7 +20,10 @@ class EnrolmentAmendmentController extends Controller
      */
     public function index()
     {
-        //
+        $amendment = EnrolmentUnits::with('unit', 'student')
+                        ->where('status', '=', 'pending')->get();
+
+        return response()->json($amendment);
     }
 
     /**
@@ -26,7 +33,14 @@ class EnrolmentAmendmentController extends Controller
      */
     public function create()
     {
-        return view ('coordinator.enrolmentamendment');
+        $data = [];
+
+        $amendment = EnrolmentUnits::with('unit', 'student')
+                        ->where('status', '=', 'pending')->get();
+
+        $data['amendment'] = $amendment;
+
+        return view ('coordinator.enrolmentamendment', $data);
     }
 
     /**
@@ -69,7 +83,7 @@ class EnrolmentAmendmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $studentID, $unitCode)
     {
         //
     }
@@ -80,8 +94,28 @@ class EnrolmentAmendmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($studentID, $unitCode)
     {
         //
+    }
+
+    /**
+     * Approve button
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function approve()
+    {
+
+    }
+
+    /**
+     * Disapprove button
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function disapprove()
+    {
+
     }
 }

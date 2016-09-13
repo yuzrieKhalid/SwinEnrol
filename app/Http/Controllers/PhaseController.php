@@ -158,26 +158,31 @@ class PhaseController extends Controller
         return $data;
     }
 
-    /**
-     * Finalizes units in the current enrolment
-     *
-     * @return json string with status
-     */
-    public function unitLock()
-    {
-        // get config setting
-        $phase = Config::find('enrolmentPhase');
-        $year = Config::find('year');
-        $semester = Config::find('semester');
-
-        // check if short/long semester
-        if($phase == '2')
-            $length = 'short';
-        else
-            $length = 'long';
-
-        // update all pending units
-    }
+    // /**
+    //  * Finalizes units in the current enrolment
+    //  *
+    //  * @return json string with status
+    //  */
+    // public function unitLock()
+    // {
+    //     // get config setting
+    //     $phase = Config::find('enrolmentPhase')->value;
+    //     $year = Config::find('year')->value;
+    //     $semester = Config::find('semester')->value;
+    //
+    //     // check if short/long semester
+    //     if($phase == '2')
+    //         $length = 'short';
+    //     else
+    //         $length = 'long';
+    //
+    //     // update all pending units
+    //     EnrolmentUnits::where('unitCode', '=', $unit->unitCode)
+    //     ->where('year', '=', $year)
+    //     ->where('term', '=', $term)
+    //     ->where('semesterLength', '=', $length)
+    //     ->update(['status' => 'confirmed']);
+    // }
 
     /**
      * Checks for event to change enrolment phase
@@ -207,8 +212,6 @@ class PhaseController extends Controller
         }
         else if($phase->value == '4')
         {
-            // lock enrolment
-
             $phase->value = '5';
         }
         else if($phase->value == '5')
@@ -222,8 +225,6 @@ class PhaseController extends Controller
         }
         else if($phase->value == '7')
         {
-            // lock enrolment
-
             $phase->value = '8';
         }
         else if($phase->value == '8')

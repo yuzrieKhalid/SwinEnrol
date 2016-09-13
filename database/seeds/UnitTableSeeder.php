@@ -205,6 +205,22 @@ class UnitTableSeeder extends Seeder
                 'unitInfo' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'SHO27',
+                'unitName' => 'Short Semester Unit',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

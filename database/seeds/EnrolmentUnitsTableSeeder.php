@@ -240,10 +240,10 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // short semester
             [
                 'studentID' => '4304373',
-                'unitCode' => 'MGT10001',
+                'unitCode' => 'SHO27',
                 'year' => 2016,
                 'term' => 'Semester 1',
-                'semesterLength' => 'long',
+                'semesterLength' => 'short',
                 'status' => 'pending',
                 'result' => 0.00,
                 'grade' => 'ungraded',

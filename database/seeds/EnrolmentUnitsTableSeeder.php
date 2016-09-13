@@ -29,6 +29,28 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'studentID' => '4318595',
                 'unitCode' => 'MGT10001',
                 'year' => 2016,
+                'term' => 'Semester 1',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4318595',
+                'unitCode' => 'ACC10007',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4318595',
+                'unitCode' => 'MGT10001',
+                'year' => 2016,
                 'term' => 'Semester 2',
                 'status' => 'confirmed',
                 'result' => 0.00,

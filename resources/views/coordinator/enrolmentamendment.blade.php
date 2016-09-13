@@ -51,11 +51,11 @@
 
                                         <!-- footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-success approve" data-method="POST"
+                                            <button type="button" class="btn btn-success approve" data-method="PUT"
                                                 data-url="{{ route('coordinator.enrolmentamendment.approve', ['studentID' => $enrolment->studentID, 'unitCode' => $enrolment->unitCode]) }}">
                                                 Approve</button>
                                             <button type="button" class="btn btn-danger disapprove" data-method="DELETE"
-                                                data-url="{{ route('coordinator.enrolmentamendment.disapprove', ['studentID' => $enrolment->studentID, 'unitCode' => $enrolment->unitCode]) }}">
+                                                data-url="{{ route('coordinator.enrolmentamendment.approve', ['studentID' => $enrolment->studentID, 'unitCode' => $enrolment->unitCode]) }}">
                                                 Disapprove</button>
                                         </div>
                                     </div> <!-- .modal-content -->
@@ -82,13 +82,50 @@
 
 @section('extra_js')
 <script type="text/javascript">
-    (function() {
-        $('.approve').click(function() {
-            // btn > modal-footer > modal-content > modal-dialog > modal : attr('id')
-            let theID = $(this).parent().parent().parent().parent().attr('id')
+(function() {
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+    // $('.approve').click(function() {
+    //     // btn > modal-footer > modal-content > modal-dialog > modal : attr('id')
+    //     let theID = $(this).parent().parent().parent().parent().attr('id')
+    //     window.location = $(this).data('url')
+    // })
 
-            console.log($(this).data('url'))
+    $('.approve').click(function() {
+        let url = $(this).data('url')
+        let method = $(this).data('method')
+        let data = {
+            '_token': getToken(),
+            'status': 'confirmed'
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function() {
+            // window.location.reload()
         })
-    }) ()
+    }) // approve
+
+    $('.disapprove').click(function() {
+        let url = $(this).data('url')
+        let method = $(this).data('method')
+        let data = {
+            '_token': getToken(),
+            'status': 'dropped'
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function() {
+            // window.location.reload()
+        })
+    }) // disapprove
+}) ()
 </script>
 @stop

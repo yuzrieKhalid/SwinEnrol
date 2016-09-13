@@ -80,12 +80,16 @@ class EnrolmentAmendmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $studentID
+     * @param  string  $unitCode
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $studentID, $unitCode)
     {
-        //
+        $new_enrolment = EnrolmentUnits::where('studentID', '=', $studentID)
+                            ->where('unitCode', '=', $unitCode)
+                            ->update(['status' => 'confirmed']);
+        return response()->json($new_enrolment);
     }
 
     /**
@@ -96,26 +100,10 @@ class EnrolmentAmendmentController extends Controller
      */
     public function destroy($studentID, $unitCode)
     {
-        //
-    }
+        $new_enrolment = EnrolmentUnits::where('studentID', '=', $studentID)
+                            ->where('unitCode', '=', $unitCode)
+                            ->update(['status' => 'dropped']);
 
-    /**
-     * Approve button
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function approve()
-    {
-
-    }
-
-    /**
-     * Disapprove button
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function disapprove()
-    {
-
+        return response()->json($new_enrolment);
     }
 }

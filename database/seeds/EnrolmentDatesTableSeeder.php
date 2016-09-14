@@ -15,7 +15,7 @@ class EnrolmentDatesTableSeeder extends Seeder
         //
         DB::table('enrolment_dates')->insert([
             'year' => 2016,
-            'level' => 'degree',
+            'level' => 'Degree',
             'term' => 'Semester 2',
             'reenrolmentOpenDate' => '2016-01-01',
             'reenrolmentCloseDate' => '2016-02-01',

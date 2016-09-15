@@ -80,7 +80,7 @@ class ConfigController extends Controller
 
         // Enrolment Phase
         $data['enrolmentPhase']->value = $input['enrolmentPhase'];
-        if($data['enrolmentPhase']->value < 1 || $data['enrolmentPhase']->value > 3 || !is_numeric($input['enrolmentPhase']))
+        if($data['enrolmentPhase']->value < 1 || $data['enrolmentPhase']->value > 8 || !is_numeric($input['enrolmentPhase']))
         {
             $data['status'] = false;
             $data['error']['enrolmentPhase'] = 'Enrolment Phase must be between values 1 and 3.';

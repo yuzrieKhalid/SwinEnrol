@@ -83,7 +83,7 @@ class ConfigController extends Controller
         if($data['enrolmentPhase']->value < 1 || $data['enrolmentPhase']->value > 8 || !is_numeric($input['enrolmentPhase']))
         {
             $data['status'] = false;
-            $data['error']['enrolmentPhase'] = 'Enrolment Phase must be between values 1 and 3.';
+            $data['error']['enrolmentPhase'] = 'Enrolment Phase must be between values 1 and 8.';
         }
 
         // Semester

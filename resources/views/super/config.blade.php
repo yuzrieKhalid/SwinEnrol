@@ -57,11 +57,7 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" name="{{ $semester->id }}">
                                         <option>Semester 1</option>
-                                        @if($semester->value == 'Semester 1')
-                                            <option>Semester 2</option>
-                                        @else
-                                            <option selected>Semester 2</option>
-                                        @endif
+                                        <option @if($semester->value == 'Semester 2') selected @endif>Semester 2</option>
                                     </select>
                                 </div>
                             </div>

@@ -113,61 +113,79 @@
             </div> <!-- end .panel -->
 
             <!-- Available units -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h1>Add Units
-                        <span class="pull-right">
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                        </span>
-                    </h1>
-                </div>
-
-                <div class="panel-body">
-                    <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
-                        <!-- On press will make one of them hiddden -->
-                        <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">Long Semester</a>
-                        <a id="elective_group" class="btn btn-default" href="#elective_tab" data-toggle="tab" role="button">Short Semester</a>
-                    </div>
+            @if($phase->value == 1 || $phase->value == 3 || $phase->value == 6)
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1>Add Units
+                            <span class="pull-right">
+                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
+                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                            </span>
+                        </h1>
                     </div>
 
-                    <div id = "myTabContent" class = "tab-content">
-                    <div class="tab-pane fade in active @if ($errors->has('$unit->unitCode')) has-error @endif" id="core-table">
-                        <table class="table">
-                            <thead>
-                                <th>Unit Code</th>
-                                <th colspan="2">Unit Title</th>
-                            </thead>
-                            <!-- Check if already enrolled, don't add to this list -->
-                            @foreach ($units as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unitName }}</td>
-                                <td>
-                                    <button type="submit" id="{{ $unit->unitCode }}"
-                                       class="submit btn btn-sm" data-method="POST"
-                                         data-url="{{ route('student.manageunits.store') }}">
-                                        <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
-                                    </button>
-
-
-
-                                </td>
-                            </tr>
-                            @endforeach
-
-                        </table>
+                    <div class="panel-body">
+                        <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
+                            <!-- On press will make one of them hiddden -->
+                            @if($phase->value == 1 || $phase->value == 6)
+                                <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">Long Semester</a>
+                            @endif
+                            @if($phase->value == 1 || $phase->value == 3)
+                                <a id="elective_group" class="btn btn-default" href="#elective-table" data-toggle="tab" role="button">Short Semester</a>
+                            @endif
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="elective_tab">
-                        <table class="table">
-                            <thead>
-                                <th>Unit Code</th>
-                                <th colspan="2">Unit Title</th>
-                            </thead>
-                        </table>
+
+                    <div id="content" class="tab-content">
+                        @if($phase->value == 1 || $phase->value == 6)
+                            <div class="tab-pane fade active in @if ($errors->has('$unit->unitCode')) has-error @endif" id="core-table">
+                                <table class="table">
+                                    <thead>
+                                        <th>Unit Code</th>
+                                        <th colspan="2">Unit Title</th>
+                                    </thead>
+                                    <!-- Check if already enrolled, don't add to this list -->
+                                    @foreach ($longSemester as $unit)
+                                        <tr>
+                                            <td>{{ $unit->unitCode }}</td>
+                                            <td>{{ $unit->unit->unitName }}</td>
+                                            <td>
+                                                <button type="submit" id="{{ $unit->unitCode }}"
+                                                   class="submit btn btn-sm" data-method="POST"
+                                                     data-url="{{ route('student.manageunits.store') }}">
+                                                    <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        @endif
+
+                        <div class="tab-pane fade @if($phase->value == 3) active in @endif" id="elective-table">
+                            <table class="table">
+                                <thead>
+                                    <th>Unit Code</th>
+                                    <th colspan="2">Unit Title</th>
+                                </thead>
+                                @foreach ($shortSemester as $unit)
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        <td>
+                                            <button type="submit" id="{{ $unit->unitCode }}"
+                                               class="submit btn btn-sm" data-method="POST"
+                                                 data-url="{{ route('student.manageunits.store') }}">
+                                                <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
-                  </div>
-            </div> <!-- end .panel -->
+                </div> <!-- end .panel -->
+            @endif
         </div>
     </div>
 </div>

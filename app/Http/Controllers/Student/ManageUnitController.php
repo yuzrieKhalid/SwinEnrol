@@ -13,6 +13,9 @@ use App\Unit;
 use App\EnrolmentUnits;
 use DB;
 use Carbon\Carbon;
+use App\Config;
+use App\Course;
+use App\UnitTerm;
 
 // student's unit operation is different. it should only add units to student's info
 
@@ -55,23 +58,45 @@ class ManageUnitController extends Controller
      */
     public function create()
     {
-        $data = [];
+        $data['phase'] = Config::find('enrolmentPhase');
 
         $user = Auth::user();
-        $student = Student::where('studentID', '=', '$user->username')->get();
+        $student = Student::find($user->username);
+        $course = Course::find($student->courseCode);
         $data['student'] = $student;
-        // get units for student
-        // $units = DB::table('enrolment_units')
-        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-        //     ->select('enrolment_units.*', 'unit.unitName')
-        //     // ->where('studentID', '=', $studentID) // need to check for current term too
-        //     ->get();
 
         $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['enrolled'] = $enrolled;
 
-        $units = Unit::all();
+        // get all current units
+        $allUnits = UnitTerm::with('course')
+        ->with('unit')
+        ->where('unitType', '=', 'unit_listing')
+        ->where('year', '=', Config::find('year')->value)
+        ->where('term', '=', Config::find('semester')->value)
+        ->get();
+        // return response()->json($allUnits);
+
+        // filter units according to level of study
+        $units = [];
+        foreach($allUnits as $unit)
+        {
+            if($unit['course']->studyLevel == $course->studyLevel)
+                array_push($units, $unit);
+        }
         $data['units'] = $units;
+
+        // sort units into long/short semesters
+        $data['longSemester'] = [];
+        $data['shortSemester'] = [];
+        foreach($units as $unit)
+        {
+            if($unit->enrolmentTerm == 'long')
+                array_push($data['longSemester'], $unit);
+            if($unit->enrolmentTerm == 'short')
+                array_push($data['shortSemester'], $unit);
+        }
+        // return response()->json($units);
 
         return view ('student.manageunits', $data);
     }

@@ -1,10 +1,10 @@
 <div class="col-md-3 sidebar-offcanvas" id="sidebar">
     <div class = "list-group">
-        <a href="{{ url('/coordinator') }}" class="list-group-item">Home</a>
-        <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item">Manage Study Planner</a>
-        <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item">Manage Unit Listings</a>
-        <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item">Manage Units</a>
-        <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item">Resolve Enrolment Issues</a>
+        <a href="{{ url('/coordinator') }}" class="list-group-item @if(Request::is('coordinator')) active @endif">Home</a>
+        <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item @if(Request::is('coordinator/managestudyplanner*')) active @endif">Manage Study Planner</a>
+        <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item @if(Request::is('coordinator/manageunitlisting*')) active @endif">Manage Unit Listings</a>
+        <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item @if(Request::is('coordinator/manageunits*')) active @endif">Manage Units</a>
+        <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item @if(Request::is('coordinator/resolveenrolmentissues*')) active @endif">Resolve Enrolment Issues</a>
     </div>
 </div>
 

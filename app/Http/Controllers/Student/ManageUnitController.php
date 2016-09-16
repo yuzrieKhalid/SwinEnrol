@@ -63,7 +63,45 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::find($user->username);
         $course = Course::find($student->courseCode);
-        $data['student'] = $student;
+
+        // check if foundation student
+        if($course->studyLevel == 'Foundation')
+        {
+            $data['courses'] = Course::where('studyLevel', '=', 'degree')->get();
+
+            // get all units in current course
+            $courseUnits = UnitTerm::with('course')
+            ->where('courseCode', '=', $student->courseCode)
+            ->get();
+
+            // get all completed units in current course
+            $completedUnits = EnrolmentUnits::with('student')
+            ->where('studentID', '=', $student->studentID)
+            ->where('grade', '=', 'pass')
+            ->get();
+
+            // check foundation completion
+            $completed = true;
+            $status = false;
+            foreach($courseUnits as $courseUnit)
+            {
+                foreach($completedUnits as $completedUnit)
+                {
+                    if($courseUnit->unitCode == $completedUnit->unitCode)
+                    {
+                        $status = true;
+                        break;
+                    }
+                    else
+                        $status = false;
+                }
+                if($status == false)
+                    $completed = false;
+            }
+            // show form if foundation completed
+            if($completed == true)
+                return view('student.selectcourse', $data);
+        }
 
         // get all enrolled units
         $enrolled = EnrolmentUnits::with('unit')
@@ -128,10 +166,28 @@ class ManageUnitController extends Controller
                     array_push($data['shortSemester'], $unit);
                 $exists = false;
             }
-
         }
 
         return view ('student.manageunits', $data);
+    }
+
+    /**
+     * Updates student's course when articulating
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function articulate(Request $request)
+    {
+        $input = $request->only([
+            'courseCode'
+        ]);
+
+        $student = Student::find(Auth::user()->username);
+        $student->courseCode = $input['courseCode'];
+        $student->save();
+
+        return redirect('student/manageunits/create');
     }
 
     /**

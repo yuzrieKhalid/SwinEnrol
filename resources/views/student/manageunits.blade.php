@@ -23,15 +23,10 @@
                                 <textarea class="form-control custom-control" id="reasonD" rows="3" style="resize:none"></textarea>
                             </div>
                             <p>IMPORTANT INFORMATION</p>
-
                             <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
-
                             <p>2.  Enrolment Deadlines:</p>
-
                             <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
-
                             <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
-
                         </div>
 
                         <div class="panel-footer">
@@ -54,15 +49,10 @@
                                 <textarea class="form-control custom-control" id="reasonD" rows="3" style="resize:none"></textarea>
                             </div>
                             <p>IMPORTANT INFORMATION</p>
-
                             <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
-
                             <p>2.  Enrolment Deadlines:</p>
-
                             <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
-
                             <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
-
                         </div>
 
                         <div class="panel-footer">
@@ -185,10 +175,7 @@
                                             <td>{{ $unit->unitCode }}</td>
                                             <td>{{ $unit->unit->unitName }}</td>
                                             <td>
-                                                <button type="submit" id="{{ $unit->unitCode }}"
-                                                    class="submit btn btn-sm" data-method="POST"
-                                                    data-url="{{ route('student.manageunits.store') }}"
-                                                    data-length="long">
+                                                <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="long">
                                                     <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                 </button>
                                             </td>
@@ -209,10 +196,7 @@
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
                                         <td>
-                                            <button type="submit" id="{{ $unit->unitCode }}"
-                                                class="submit btn btn-sm" data-method="POST"
-                                                data-url="{{ route('student.manageunits.store') }}"
-                                                data-length="short">
+                                            <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
                                                 <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                             </button>
                                         </td>

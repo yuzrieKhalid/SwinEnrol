@@ -249,6 +249,31 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'grade' => 'ungraded',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            // articulation
+            [
+                'studentID' => 'articulate',
+                'unitCode' => 'FO1',
+                'year' => 2015,
+                'term' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 0.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'articulate',
+                'unitCode' => 'FO2',
+                'year' => 2015,
+                'term' => 'Semester 2',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 0.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

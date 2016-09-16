@@ -59,7 +59,7 @@ class StudentTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'studentID' => 'articulating',
+                'studentID' => 'articulate',
                 'surname' => 'student',
                 'givenName' => 'articulating',
                 'concededPass' => 0,
@@ -71,8 +71,8 @@ class StudentTableSeeder extends Seeder
             ],
             [
                 'studentID' => 'articulatefail',
-                'surname' => 'name',
-                'givenName' => 'student',
+                'surname' => 'fail',
+                'givenName' => 'articulate',
                 'concededPass' => 0,
                 'courseCode' => 'FICT',
                 'year' => 2016,

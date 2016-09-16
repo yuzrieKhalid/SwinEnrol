@@ -19,8 +19,9 @@ class StudentTableSeeder extends Seeder
                 'surname' => 'Thomas Chew',
                 'givenName' => 'Jason',
                 'paymentStatus' => 'paid',
-                'concededPass' => 0,
                 'courseCode' => 'I047',
+                'lateClose' => NULL,
+                'lateOpen' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -29,8 +30,9 @@ class StudentTableSeeder extends Seeder
                 'surname' => 'Bin Khalid',
                 'givenName' => 'Mohamad Yuzrie',
                 'paymentStatus' => 'paid',
-                'concededPass' => 0,
                 'courseCode' => 'I047',
+                'lateClose' => NULL,
+                'lateOpen' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -39,8 +41,9 @@ class StudentTableSeeder extends Seeder
                 'surname' => 'Haque',
                 'givenName' => 'Sariful',
                 'paymentStatus' => 'paid',
-                'concededPass' => 0,
                 'courseCode' => 'I047',
+                'lateClose' => NULL,
+                'lateOpen' => NULL,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

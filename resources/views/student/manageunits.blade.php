@@ -79,6 +79,9 @@
                 </div>
 
                 <div class="panel-body">
+                    <h2>
+                        <small>Long Semester</small>
+                    </h2>
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
@@ -88,21 +91,53 @@
                         <tr class="hidden tr_template">
                             <td class="td_unitCode"></td>
                             <td class="td_unitName"></td>
-                            <td class="td_unitDelete">
-
-                            </td>
+                            <td class="td_unitDelete"></td>
                         </tr>
 
-                        @if (!empty($enrolled))
-                            @foreach ($enrolled as $unit)
+                        @if (!empty($enrolledLong))
+                            @foreach ($enrolledLong as $unit)
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
+                                @if($phase->value == 1 || $phase->value == 6 || $phase->value == 7)
                                 <td>
-                                  <button type="submit" class="submit btn btn-sm" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}">
+                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                       <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        @else
+                        <tr><td colspan="3">No units taken yet currently</td></tr>
+                        @endif
+                    </table>
+
+                    <h2><small>Short Semester</small></h2>
+                    <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
+                        <thead>
+                            <th>Unit Code</th>
+                            <th colspan="2">Unit Title</th>
+                        </thead>
+
+                        <tr class="hidden tr_template">
+                            <td class="td_unitCode"></td>
+                            <td class="td_unitName"></td>
+                            <td class="td_unitDelete"></td>
+                        </tr>
+
+                        @if (!empty($enrolledShort))
+                            @foreach ($enrolledShort as $unit)
+                            <tr>
+                                <td>{{ $unit->unitCode }}</td>
+                                <td>{{ $unit->unit->unitName }}</td>
+                                @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
+                                <td>
+                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                      <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                                @endif
                             </tr>
                             @endforeach
                         @else
@@ -151,8 +186,9 @@
                                             <td>{{ $unit->unit->unitName }}</td>
                                             <td>
                                                 <button type="submit" id="{{ $unit->unitCode }}"
-                                                   class="submit btn btn-sm" data-method="POST"
-                                                     data-url="{{ route('student.manageunits.store') }}">
+                                                    class="submit btn btn-sm" data-method="POST"
+                                                    data-url="{{ route('student.manageunits.store') }}"
+                                                    data-length="long">
                                                     <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                 </button>
                                             </td>
@@ -174,8 +210,9 @@
                                         <td>{{ $unit->unit->unitName }}</td>
                                         <td>
                                             <button type="submit" id="{{ $unit->unitCode }}"
-                                               class="submit btn btn-sm" data-method="POST"
-                                                 data-url="{{ route('student.manageunits.store') }}">
+                                                class="submit btn btn-sm" data-method="POST"
+                                                data-url="{{ route('student.manageunits.store') }}"
+                                                data-length="short">
                                                 <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                             </button>
                                         </td>
@@ -238,9 +275,10 @@
         let url = $(this).data('url')
         data = {
             _token: getToken(),
-            unitCode: $(this).attr('id')
+            unitCode: $(this).attr('id'),
+            enrolmentTerm: $(this).data('length')
         }
-            $(this).parent().parent().remove();
+            // $(this).parent().parent().remove();
 
         $.ajax({
             'url': url,
@@ -248,10 +286,11 @@
             'data': data
         }).done(function(data) {
             if (method == "POST") {
-                addUnit(data)
-                window.location.reload()
+                if(data == 'ok')
+                    window.location.reload()
+                else
+                    alert(data)
             } else {
-                console.log('It is of unknown method')
                 window.location.reload()
             }
         })

@@ -28,6 +28,7 @@ Route::group([
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
+    Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');

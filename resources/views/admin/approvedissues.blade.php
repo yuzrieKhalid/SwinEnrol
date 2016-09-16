@@ -11,16 +11,16 @@
         @include('admin.menu')
 
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h1>Resolve Issues</h1>
+                    <h1>Approved Issues</h1>
                 </div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="panel-body">
-                                <table class="table table-hover" id="student_enrolment_issues_table" data-url="{{ route('admin.resolveissue.index') }}">
+                                <table class="table table-hover" id="student_enrolment_issues_table" data-url="{{ route('admin.approvedissues.index') }}">
                                     <thead>
                                         <th>Student ID</th>
                                         <th>Student Name</th>
@@ -45,22 +45,53 @@
                                             <!-- header -->
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h3 class="modal-title">Issues Information</h3>
+                                                <h3 class="modal-title">Student Enrolment Information</h3>
                                             </div>
 
                                             <!-- body -->
                                             <div class="modal-body">
                                                 <!-- Generate According to the issueID -->
+                                                <div class="issue_1 hidden">
+                                                    <p>Student ID: <span class="text-warning studentID">4318595</span></p>
+                                                    <p>Issue ID : <span class="text-warning issue">[Course Transfer]</span></p>
+                                                    <p>Status: <span class="text-warning status">Pending</span></p>
+
+                                                    <h3>Internal Course Transfer Details</h3>
+                                                    <p>Year of Requested Transfer: <span class="text-primary yearOfRequestedTransfer">2008</span></p>
+                                                    <p>Current Program: <span class="text-primary currentProgram">[I047] [Bachelor of Computer Science]</span></p>
+                                                    <p>Current Program Intake: <span class="text-primary currentIntake">[April 2014]</span></p>
+                                                    <p>Proposed Program: <span class="text-success proposedProgram">[B123] [Business]</span></p>
+                                                    <p>Proposed Year: <span class="text-success proposedIntakeYear">[2018]</span></p>
+                                                    <hr>
+                                                    <p>Reason of Transfer:</p>
+                                                    <blockquote>
+                                                        <p class="reason">[Reason]</p>
+                                                    </blockquote>
+                                                </div>
+
+                                                <div class="issue_2 hidden">
+                                                    <p>Student ID: <span class="text-warning studentID">4318595</span></p>
+                                                    <p>Issue : <span class="text-warning issue">[Exemption]</span></p>
+                                                    <p>Status: <span class="text-warning status">Pending</span></p>
+
+                                                    <h3>Advanced Standing (Exemption) Details</h3>
+                                                    <p>Current Program: <span class="text-primary currentProgram">[I047] [Bachelor of Computer Science]</span></p>
+                                                    <hr>
+                                                    <p>Exemption Unit: <span class="text-success exemptionUnit">[HIT 1302] [Introduction to Business Information System]</span></p>
+                                                    <p>Exemption Year: <span class="text-success exemptionYear">[2018]</span></p>
+                                                    <p class="attachmentData">Attachment: <a href="#">iCATS Results Slip.pdf</a></p>
+                                                </div>
+
                                                 <div class="issue_3 hidden">
                                                     <p>Student ID: <span class="text-warning studentID">4318595</span></p>
-                                                    <p>Issue ID : <span class="text-warning issue">[Leave of Absence]</span></p>
+                                                    <p>Issue ID : <span class="text-warning issue">[Program Withdrawal]</span></p>
                                                     <p>Status: <span class="text-warning status">Pending</span></p>
 
                                                     <h3>Withdrawal From Program Details</h3>
                                                     <p>Teaching Period: <span class="text-primary teachingPeriod">[4 Years]</span></p>
                                                     <p>Year: <span class="text-primary year">2018</span></p>
                                                     <p>Is An International Student: <span class="text-primary isForeigner">[YES]</span></p>
-                                                    <p>International Student Officer: <span class="text-primary iso_name">[31-08-2016]</span></p>
+                                                    <p>Internation Student Officer: <span class="text-primary iso_name">[31-08-2016]</span></p>
                                                     <hr>
                                                     <p>Reason of Transfer:</p>
                                                     <blockquote>
@@ -82,17 +113,8 @@
 
                                             <!-- footer -->
                                             <div class="modal-footer">
-                                                <div class="hidden data-temporary">
-                                                    <pre class="stdID">stdID</pre>
-                                                    <pre class="issID">issID</pre>
-                                                </div>
-                                                <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid=""
-                                                    data-url="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
-                                                    Approve
-                                                </button>
-                                                <button type="button" class="btn btn-danger submit" data-method="DELETE"
-                                                    data-url="{{ route('coordinator.resolveenrolmentissues.disapprove', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
-                                                    Disapprove
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Close
                                                 </button>
                                             </div>
                                         </div> <!-- .modal-content> -->
@@ -118,14 +140,14 @@
     }
 
     // 3 Adding submissionData appropriately
-    // 3.1 Leave of Absence
-    let addModalData_3 = function(issue) {
+    // 3.1 Internal Course Transfer
+    let addModalData_1 = function(issue) {
         // parsing the JSON Object
         let submissionData = JSON.parse(issue.submissionData)
 
         // cloning and populating the data
         let modal_template = $('#modal_placeholder').find('.modal_template').clone()
-        modal_template.find('.issue_3').removeClass('hidden')
+        modal_template.find('.issue_1').removeClass('hidden')
         modal_template.removeClass('modal_template')
         modal_template.attr('id', issue.studentID + '_' + issue.issueID)
 
@@ -133,13 +155,51 @@
         modal_template.find('.issue').html(issue.enrolment_issues.issueType)
         modal_template.find('.status').html(issue.status)
 
-        modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
-        modal_template.find('.year').html(submissionData.year)
-        modal_template.find('.isForeigner').html(submissionData.isForeigner)
-        modal_template.find('.iso_name').html(submissionData.iso_name)
-        modal_template.find('.reason').html(submissionData.reasonForLOA)
+        modal_template.find('.yearOfRequestedTransfer').html(submissionData.yearOfRequestedTransfer)
+        modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
+        modal_template.find('.currentIntake').html(submissionData.fromProgramIntakeYear)
+        modal_template.find('.proposedProgram').html(submissionData.toProgramCode + ' ' + submissionData.toProgramTitle)
+        modal_template.find('.proposedIntakeYear').html(submissionData.toProgramYear)
+        modal_template.find('.reason').html(submissionData.toReasons)
 
-        // needs to be this long because .replace() only creates new string, and does not replace the old string
+        // replace the id to be passed into the route
+        let route = modal_template.find('.modal-footer').children('.submit').data('url')
+        route = route.replace('stdID', issue.studentID)
+        route = route.replace('issID', issue.issueID)
+
+        // replace the original data-url with the replaced stdID and issID
+        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
+        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
+
+        $('#modal_placeholder').append(modal_template)
+
+        console.log(modal_template.find('.modal-footer').children('.submit').data('url'));
+    }
+
+    // 3.2 Advanced Standing (Exemption)
+    let addModalData_2 = function(issue) {
+        // parsing the JSON Object
+        let submissionData = JSON.parse(issue.submissionData)
+
+        // cloning and populating the data
+        let modal_template = $('#modal_placeholder').find('.modal_template').clone()
+        modal_template.find('.issue_2').removeClass('hidden')
+        modal_template.removeClass('modal_template')
+        modal_template.attr('id', issue.studentID + '_' + issue.issueID)
+
+        modal_template.find('.studentID').html(issue.studentID)
+        modal_template.find('.issue').html(issue.enrolment_issues.issueType)
+        modal_template.find('.status').html(issue.status)
+
+        modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
+        modal_template.find('.exemptionUnit').html(submissionData.exemptionUnitCode + ' ' + submissionData.exemptionUnitTitle)
+        modal_template.find('.exemptionYear').html(submissionData.exemptionUnitYear)
+        // TODO: ABILITY TO DOWNLOAD THE ATTACHMENT
+        // modal_template.find('.attachmentData').children('a').attr('data-url', issue.attachmentData)
+        // modal_template.find('.attachmentData').children('a').html(issue.attachmentData.file)
+
         // replace the id to be passed into the route
         let route = modal_template.find('.modal-footer').children('.submit').data('url')
         route = route.replace('stdID', issue.studentID)
@@ -154,14 +214,14 @@
         $('#modal_placeholder').append(modal_template)
     }
 
-    // 3.2 New Students
-    let addModalData_4 = function(issue) {
+    // 3.3 Withdrawal From Program
+    let addModalData_3 = function(issue) {
         // parsing the JSON Object
         let submissionData = JSON.parse(issue.submissionData)
 
         // cloning and populating the data
         let modal_template = $('#modal_placeholder').find('.modal_template').clone()
-        modal_template.find('.issue_4').removeClass('hidden')
+        modal_template.find('.issue_3').removeClass('hidden')
         modal_template.removeClass('modal_template')
         modal_template.attr('id', issue.studentID + '_' + issue.issueID)
 
@@ -205,10 +265,12 @@
         $('#student_enrolment_issues_table').append(tr_template)
 
         // lastly, add the submissionData appropriately
-        if (issue.issueID == 3) {
+        if (issue.issueID == 1) {
+            addModalData_1(issue)
+        } else if (issue.issueID == 2) {
+            addModalData_2(issue)
+        } else if (issue.issueID == 3) {
             addModalData_3(issue)
-        } else if (issue.issueID == 4) {
-            addModalData_4(issue)
         } else {
             console.log("Something is wrong, this shouldn't occur");
         }
@@ -219,7 +281,6 @@
         let url = $('#student_enrolment_issues_table').data('url')
         $.get(url, function(data) {
             data.forEach(function(issue) {
-                console.log(issue);
                 addData(issue)
             })
         })

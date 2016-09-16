@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    public $table = 'student';
+    protected $table = 'student';
 
     protected $fillable = [
         'studentID',
@@ -17,7 +17,7 @@ class Student extends Model
     ];
     // primary key
     protected $primaryKey = 'studentID';
-    public $increments = false;
+    public $incrementing = false;
 
     // relation
 	public function student_enrolment_issues()

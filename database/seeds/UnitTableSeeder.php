@@ -221,6 +221,38 @@ class UnitTableSeeder extends Seeder
                 'unitInfo' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FO1',
+                'unitName' => 'Foundation Unit 1',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FO2',
+                'unitName' => 'Foundation Unit 2',
+                'prerequisite' => NULL,
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

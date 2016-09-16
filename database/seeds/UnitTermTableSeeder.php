@@ -124,6 +124,27 @@ class UnitTermTableSeeder extends Seeder
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
+            // *************** Foundation Units ***************
+            [
+				'unitType' => 'study_planner',
+				'unitCode' => 'FO1',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => '0',
+                'courseCode' => 'FICT',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitType' => 'study_planner',
+				'unitCode' => 'FO2',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => '0',
+                'courseCode' => 'FICT',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
             // *************** Unit Listing ***************
             [
 				'unitType' => 'unit_listing',
@@ -182,6 +203,27 @@ class UnitTermTableSeeder extends Seeder
 				'term' => 'Semester 2',
 				'enrolmentTerm' => 'short',
                 'courseCode' => 'I047',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            // *************** Foundation Units ***************
+            [
+				'unitType' => 'unit_listing',
+				'unitCode' => 'FO1',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => 'long',
+                'courseCode' => 'FICT',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitType' => 'unit_listing',
+				'unitCode' => 'FO2',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => 'long',
+                'courseCode' => 'FICT',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

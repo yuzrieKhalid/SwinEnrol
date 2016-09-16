@@ -57,6 +57,28 @@ class StudentTableSeeder extends Seeder
                 'term' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'articulating',
+                'surname' => 'student',
+                'givenName' => 'articulating',
+                'concededPass' => 0,
+                'courseCode' => 'FICT',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'articulatefail',
+                'surname' => 'name',
+                'givenName' => 'student',
+                'concededPass' => 0,
+                'courseCode' => 'FICT',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

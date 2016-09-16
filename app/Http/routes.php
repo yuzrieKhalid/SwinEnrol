@@ -56,6 +56,7 @@ Route::group([
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
     Route::resource('manageunits', 'Student\ManageUnitController');
+    Route::post('articulate', ['as' => 'student.articulate', 'uses' => 'Student\ManageUnitController@articulate']);
 });
 
 Route::group([

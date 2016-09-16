@@ -40,6 +40,15 @@ class StudentEnrolmentIssuesTableSeeder extends Seeder
                 "attachmentData" => "",
                 "created_at"=> Carbon::now(),
                 "updated_at"=> Carbon::now()
+            ],
+            [
+                "studentID" => "4318595",
+                "issueID" => 4,
+                "status" => "pending",
+                "submissionData" => "{\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"studentID\":\"4318595\",\"surname\":\"Bin Khalid\",\"given_name\":\"Mohamad Yuzrie\",\"year\":\"2016\",\"semester\":\"1\"}",
+                "attachmentData" => "",
+                "created_at"=> Carbon::now(),
+                "updated_at"=> Carbon::now()
             ]
 		]);
     }

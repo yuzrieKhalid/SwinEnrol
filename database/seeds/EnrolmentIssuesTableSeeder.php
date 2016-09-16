@@ -34,7 +34,7 @@ class EnrolmentIssuesTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'issueType' => 'Others',
+                'issueType' => 'New Student',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

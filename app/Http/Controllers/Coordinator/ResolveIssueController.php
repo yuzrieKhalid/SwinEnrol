@@ -25,7 +25,11 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
-        return response()->json(StudentEnrolmentIssues::with('student', 'enrolment_issues')->where('status', '=', 'pending')->get());
+        $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
+                                        ->where('status', '=', 'pending')
+                                        ->where('issueID', '=', '1')
+                                        ->orwhere('issueID', '=', '2')->get();
+        return response()->json($data);
     }
 
     /**

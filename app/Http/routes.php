@@ -27,6 +27,7 @@ Route::group([
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
+    Route::resource('resolveissue', 'Admin\ResolveIssueController');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');

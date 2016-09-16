@@ -12,19 +12,6 @@
         <!-- Reserve 3 space for navigation column -->
         @include('coordinator.menu')
 
-
-
-
-
-
-        <!-- function confirmDeleteModal(id){
-            $('#deleteModal').modal();
-        	$('#submit').html('<a class="btn btn-danger" onclick="deleteData">Delete</a>');
-        }
-
-         -->
-
-
         <div class="col-md-9">
             <div class="panel panel-success">
                 <div class="panel-heading">

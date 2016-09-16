@@ -117,7 +117,7 @@
                                 <h3>Internal Course Transfer</h3>
                                 <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
                                     <input type="text" name="yearOfRequestedTransfer" class="form-control">
-                                
+
                                 <h4>CURRENT PROGRAM</h4>
                                 <div class="form-group">
                                     <label class="control-label col-sm-2">Program Code:</label>
@@ -140,7 +140,7 @@
                                 <h4>PROPOSED PROGRAM</h4>
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="prname">Program Title:</label>
-                                    <div class="col-sm-10">                            
+                                    <div class="col-sm-10">
                                         <select class="form-control" name="sPPn" id="prname">
                                             <option value="none"></option>
                                             <option value="one">I047 Bachelor in Computer Science</option>
@@ -148,11 +148,11 @@
                                         </select>
                                     </div>
                                 </div>
-                        
+
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="pryear">Program Year:</label>
                             <div class="col-sm-2">
-                                
+
                                 <select class="form-control" name="sPPc" id="prcode">
                                     <option value="none"></option>
                                     <option value="2013">2013</option>
@@ -212,7 +212,7 @@
                                     <label class="control-label col-sm-2" for="name">Year:</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control" placeholder="2010">
-                                    </div> 
+                                    </div>
                                     <br>
 
                                     <!-- Unit Title-->
@@ -221,7 +221,7 @@
                                         <input type="text" class="form-control" placeholder="Makan Mi Maggie">
                                     </div>
                                     <!-- Unit Code-->
-                                                                   
+
                                 </div>
                             </div>
 
@@ -300,8 +300,8 @@
                                 </p>
                             </div>
 
-                    
-                            
+
+
 
                             <!-- Case: Defer an Offer -->
                             <div class="hidden" id="deferAnOffer">

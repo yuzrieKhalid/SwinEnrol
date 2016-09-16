@@ -109,6 +109,7 @@
                         <tr><td colspan="3">No units taken yet currently</td></tr>
                         @endif
                     </table>
+                    <button type="submit" name="button">Submit</button>
                 </div>
             </div> <!-- end .panel -->
 

@@ -62,7 +62,7 @@
                                     Upload Student Status (Result And Payment)
                                 </div>
                                 <div class="panel-body">
-                                    <form class="upload">
+                                    <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
                                         <input id="uploadRP" type="file">
                                     </form>
                                 </div>
@@ -84,14 +84,19 @@
                                 <thead>
                                     <th>Student ID</th>
                                     <th>Student Name</th>
-                                    <th>Result</th>
+                                    <!-- <th>Result</th> -->
                                     <th>Payment Status</th>
                                 </thead>
+                                @foreach ($students as $student)
+                                <tr>
+                                    <td>{{ $student->studentID }}</td>
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                    <td>{{ $student->paymentStatus }}</td> <!-- Payment Status -->
+                                </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>
-
-
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
                             Student List
@@ -108,18 +113,15 @@
                                 @foreach ($students as $student)
                                 <tr>
                                     <td>{{ $student->studentID }}</td>
-                                    <td>{{ $student->givenName }}{{ $student->surname }}</td>
-
-
-                                      <td>  <a class="btn btn-default" href="#" role="button">
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                    <td><a class="btn btn-default" href="#" role="button">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                            Edit
-                                        </a>
+                                            Edit</a>
                                         <a class="btn btn-default" href="#" role="button">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             Delete
                                         </a>
-                                        </td>
+                                      </td>
 
                                 </tr>
                                 @endforeach
@@ -232,21 +234,33 @@
                             <h3 class="modal-title">Student Status</h3>
                         </div>
 
-                        <form class="form">
+                        <form class="form" method="POST">
                             <div class="modal-body">
                                 <table class="table table-striped" id="students_table_status">
                                     <thead>
                                         <th>Student ID</th>
-                                        <th>Name</th>
-                                        <th>Result</th>
+                                        <th>Surname</th>
+                                        <th>Firstname</th>
+                                        <th>Course Code</th>
                                         <th>Payment Status</th>
-                                        <!-- <th>Course Code</th> -->
+                                        <tr class="tr_template hidden">
+                                            <td class="id">Student ID</td>
+                                            <td class="surname">Surname</td>
+                                            <td class="firstname">Firstname</td>
+                                            <td class="coursecode">Course Code</td>
+                                            <td class="paymentstatus">Payment Status</td>
+                                        </tr>
                                     </thead>
                                 </table>
                             </div>
                       </form>
 
                   </div> <!-- end. modal-content-->
+                  <div classhttps://drive.google.com/drive/folders/0ByJ2lkm_aQwMZFZnR2ZBWkRoaFk="modal-footer">
+                      <button type="button" class="btn btn-success pull-right" id="import"
+                          data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
+                          Import</button>
+                  </div>
               </div> <!-- end .modal-dialog -->
           </div>
         </div> <!-- end .modal fade -->
@@ -274,8 +288,9 @@
             studentID: $('#studentID').val(),
             surname: $('#surname').val(),
             givenName: $('#givenName').val(),
-            courseCode: $('#courseCode').val()
-        }
+            courseCode: $('#courseCode').val(),
+            paymentStatus: $('#paymentStatus').val()
+          }
         $.ajax({
             'url': url,
             'method': method,
@@ -296,8 +311,28 @@
         clone_tr.children('td.surname').html(student.surname)
         clone_tr.children('td.firstname').html(student.firstname)
         clone_tr.children('td.coursecode').html(student.coursecode)
+        //clone_tr.children('td.paymentstatus').html(student.coursecode)
+        //$('#students_table_status').append(clone_tr)
         $('#students_table').append(clone_tr)
     }
+//////
+    // let populateTable2 = function(student) {
+    //     let clone_tr = $('#students_table_status').find('.tr_template').clone()
+    //     clone_tr.removeClass('hidden')
+    //     clone_tr.removeClass('tr_template')
+    //     // populate column by column [only get the respective column]
+    //     clone_tr.children('td.id').html(student.stdID)
+    //     clone_tr.children('td.surname').html(student.surname)
+    //     clone_tr.children('td.firstname').html(student.firstname)
+    //     clone_tr.children('td.coursecode').html(student.coursecode)
+    //     clone_tr.children('td.paymentstatus').html(student.paymentstatus)
+    //     //$('#students_table_status').append(clone_tr)
+    //     $('#students_table_status').append(clone_tr)
+    // }
+///////
+
+
+
     // 2(a) to JSON Array
     let to_json = function(workbook) {
         let result = {}
@@ -338,8 +373,32 @@
         }
         reader.readAsBinaryString(file)
         // enable the button only if a file has been chosen
+      //  $('#processButtonForStatus').prop('disabled', false)
         $('#processButton').prop('disabled', false)
     })
+/////
+// let upload = $('#uploadRP').change(function() {
+//     // get the file details (.files[0] since only one file)
+//     let file = document.querySelector('input[type=file]').files[0]
+//     // utility to read file
+//     let reader = new FileReader()
+//     reader.onload = function(event) {
+//         // 1. read file content
+//         let data = event.target.result
+//         // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
+//         let workbook = XLSX.read(data, {type: 'binary'})
+//         // 3. Handle the processing
+//         process_workbook(workbook)
+//     }
+//     reader.readAsBinaryString(file)
+//     // enable the button only if a file has been chosen
+//   //  $('#processButtonForStatus').prop('disabled', false)
+//     $('#processButtonForStatus').prop('disabled', false)
+// })
+
+
+/////
+
     // Transferring the array into the database through AJAX
     let importData = $('#import').click(function() {
         let method = $(this).data('method')

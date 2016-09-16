@@ -60,12 +60,6 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::where('studentID', '=', '$user->username')->get();
         $data['student'] = $student;
-        // get units for student
-        // $units = DB::table('enrolment_units')
-        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-        //     ->select('enrolment_units.*', 'unit.unitName')
-        //     // ->where('studentID', '=', $studentID) // need to check for current term too
-        //     ->get();
 
         $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['enrolled'] = $enrolled;
@@ -100,8 +94,7 @@ class ManageUnitController extends Controller
           else {}
             $count = $count+1;
         }
-
-        if($count<5){
+        if($count<6){
           if($temp == 0){
             $new_unit_enrolment = new EnrolmentUnits;
             $new_unit_enrolment->studentID = Auth::user()->username;

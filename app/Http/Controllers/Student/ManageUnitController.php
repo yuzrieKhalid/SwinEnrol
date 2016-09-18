@@ -213,7 +213,7 @@ class ManageUnitController extends Controller
         ->where('status', '=', 'pending')
         ->count();
 
-        if($unitCount <= 5)
+        if($unitCount <= 4)
         {
             $unit = new EnrolmentUnits;
             $unit->studentID = Auth::user()->username;

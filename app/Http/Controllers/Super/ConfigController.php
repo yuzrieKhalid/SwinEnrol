@@ -18,7 +18,17 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        $data['config'] = Config::all();
+        // get config data
+        $data['enrolmentPhase'] = Config::find('enrolmentPhase');
+        $data['semester'] = Config::find('semester');
+        $data['year'] = Config::find('year');
+        $data['semesterLength'] = Config::find('semesterLength');
+        $data['approvalShort'] = Config::find('approvalShort');
+        $data['addCloseShort'] = Config::find('addCloseShort');
+        $data['dropCloseShort'] = Config::find('dropCloseShort');
+        $data['approvalLong'] = Config::find('approvalLong');
+        $data['addCloseLong'] = Config::find('addCloseLong');
+        $data['dropCloseLong'] = Config::find('dropCloseLong');
 
         return view('super.config', $data);
     }
@@ -45,50 +55,117 @@ class ConfigController extends Controller
             'enrolmentPhase',
             'semester',
             'year',
-            'semesterLength'
+            'semesterLength',
+            'approvalShort',
+            'addCloseShort',
+            'dropCloseShort',
+            'approvalLong',
+            'addCloseLong',
+            'dropCloseLong',
         ]);
 
         $data['status'] = true;
 
+        // get config data
+        $data['enrolmentPhase'] = Config::find('enrolmentPhase');
+        $data['semester'] = Config::find('semester');
+        $data['year'] = Config::find('year');
+        $data['semesterLength'] = Config::find('semesterLength');
+        $data['approvalShort'] = Config::find('approvalShort');
+        $data['addCloseShort'] = Config::find('addCloseShort');
+        $data['dropCloseShort'] = Config::find('dropCloseShort');
+        $data['approvalLong'] = Config::find('approvalLong');
+        $data['addCloseLong'] = Config::find('addCloseLong');
+        $data['dropCloseLong'] = Config::find('dropCloseLong');
+
         // Enrolment Phase
-        $enrolmentPhase = Config::find('enrolmentPhase');
-        $enrolmentPhase->value = $input['enrolmentPhase'];
-        if($enrolmentPhase->value < 1 || $enrolmentPhase->value > 3 || !is_numeric($input['enrolmentPhase']))
+        $data['enrolmentPhase']->value = $input['enrolmentPhase'];
+        if($data['enrolmentPhase']->value < 1 || $data['enrolmentPhase']->value > 8 || !is_numeric($input['enrolmentPhase']))
         {
             $data['status'] = false;
-            $data['epMessage'] = 'Enrolment Phase must be between values 1 and 3.';
+            $data['error']['enrolmentPhase'] = 'Enrolment Phase must be between values 1 and 8.';
         }
 
         // Semester
-        $semester = Config::find('semester');
-        $semester->value = $input['semester'];
+        $data['semester']->value = $input['semester'];
 
         // Semester Length
-        $semesterLength = Config::find('semesterLength');
-        $semesterLength->value = $input['semesterLength'];
-        if($semesterLength->value < 1 || !is_numeric($input['semesterLength']))
+        $data['semesterLength']->value = $input['semesterLength'];
+        if($data['semesterLength']->value < 1 || !is_numeric($input['semesterLength']))
         {
             $data['status'] = false;
-            $data['slMessage'] = 'Semester Length must be a number greater than 0.';
+            $data['error']['semesterLength'] = 'Semester Length must be a number greater than 0.';
         }
 
         // Year
-        $year = Config::find('year');
-        $year->value = $input['year'];
-        $yearVal = intval($input['year']);
-        if($yearVal < 1 || !is_numeric($input['year']))
+        $data['year']->value = $input['year'];
+        if($data['year']->value < 1 || !is_numeric($input['year']))
         {
             $data['status'] = false;
-            $data['yMessage'] = 'Year must be a number greater than 0.';
+            $data['error']['year'] = 'Year must be a number greater than 0.';
+        }
+
+        // Approval (Short)
+        $data['approvalShort']->value = $input['approvalShort'];
+        if($data['approvalShort']->value < 1 || !is_numeric($input['approvalShort']))
+        {
+            $data['status'] = false;
+            $data['error']['approvalShort'] = 'Value must be a number greater than 0.';
+        }
+
+        // Add Close (Short)
+        $data['addCloseShort']->value = $input['addCloseShort'];
+        if($data['addCloseShort']->value < 1 || !is_numeric($input['addCloseShort']))
+        {
+            $data['status'] = false;
+            $data['error']['addCloseShort'] = 'Value must be a number greater than 0.';
+        }
+
+        // Drop Close (Short)
+        $data['dropCloseShort']->value = $input['dropCloseShort'];
+        if($data['dropCloseShort']->value < 1 || !is_numeric($input['dropCloseShort']))
+        {
+            $data['status'] = false;
+            $data['error']['dropCloseShort'] = 'Value must be a number greater than 0.';
+        }
+
+        // Approval (Long)
+        $data['approvalLong']->value = $input['approvalLong'];
+        if($data['approvalLong']->value < 1 || !is_numeric($input['approvalLong']))
+        {
+            $data['status'] = false;
+            $data['error']['approvalLong'] = 'Value must be a number greater than 0.';
+        }
+
+        // Add Close (Long)
+        $data['addCloseLong']->value = $input['addCloseLong'];
+        if($data['addCloseLong']->value < 1 || !is_numeric($input['addCloseLong']))
+        {
+            $data['status'] = false;
+            $data['error']['addCloseLong'] = 'Value must be a number greater than 0.';
+        }
+
+        // Drop Close (Long)
+        $data['dropCloseLong']->value = $input['dropCloseLong'];
+        if($data['dropCloseLong']->value < 1 || !is_numeric($input['dropCloseLong']))
+        {
+            $data['status'] = false;
+            $data['error']['dropCloseLong'] = 'Value must be a number greater than 0.';
         }
 
         // save changes
         if($data['status'] == true)
         {
-            $enrolmentPhase->save();
-            $semester->save();
-            $semesterLength->save();
-            $year->save();
+            $data['enrolmentPhase']->save();
+            $data['semester']->save();
+            $data['semesterLength']->save();
+            $data['year']->save();
+            $data['approvalShort']->save();
+            $data['addCloseShort']->save();
+            $data['dropCloseShort']->save();
+            $data['approvalLong']->save();
+            $data['addCloseLong']->save();
+            $data['dropCloseLong']->save();
         }
 
         $data['config'] = Config::all();

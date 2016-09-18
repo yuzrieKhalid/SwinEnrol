@@ -18,17 +18,26 @@ class PhaseController extends Controller
      */
     public function unitApprove()
     {
+        // get config setting
         $data['status'] = $status = true;
         $data['year'] = $year = Config::find('year')->value;
         $data['term'] = $term = Config::find('semester')->value;
+        $data['phase'] = $phase = Config::find('enrolmentPhase')->value;
         $data['failed'] = ''; // for debug
         $data['success'] = ''; // for debug
+
+        // check if short/long semester
+        if($phase == '2')
+            $length = 'short';
+        else
+            $length = 'long';
 
         // get students with pending enrolment units
         $data['students'] = $students = EnrolmentUnits::distinct()
             ->select('studentID')
             ->where('year', '=', $year)
             ->where('term', '=', $term)
+            ->where('semesterLength', '=', $length)
             ->where('status', '=', 'pending')
             ->get();
 
@@ -40,6 +49,7 @@ class PhaseController extends Controller
             ->where('studentID', '=', $student->studentID)
             ->where('year', '=', $year)
             ->where('term', '=', $term)
+            ->where('semesterLength', '=', $length)
             ->where('status', '=', 'pending')
             ->get();
 
@@ -125,6 +135,7 @@ class PhaseController extends Controller
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
                     ->where('term', '=', $term)
+                    ->where('semesterLength', '=', $length)
                     ->update(['status' => 'confirmed']);
 
                     $data['success'] = $data['success'].$unit->unitCode.' '; // for debug
@@ -135,6 +146,7 @@ class PhaseController extends Controller
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
                     ->where('term', '=', $term)
+                    ->where('semesterLength', '=', $length)
                     ->update(['status' => 'dropped']);
 
                     $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
@@ -146,6 +158,32 @@ class PhaseController extends Controller
         return $data;
     }
 
+    // /**
+    //  * Finalizes units in the current enrolment
+    //  *
+    //  * @return json string with status
+    //  */
+    // public function unitLock()
+    // {
+    //     // get config setting
+    //     $phase = Config::find('enrolmentPhase')->value;
+    //     $year = Config::find('year')->value;
+    //     $semester = Config::find('semester')->value;
+    //
+    //     // check if short/long semester
+    //     if($phase == '2')
+    //         $length = 'short';
+    //     else
+    //         $length = 'long';
+    //
+    //     // update all pending units
+    //     EnrolmentUnits::where('unitCode', '=', $unit->unitCode)
+    //     ->where('year', '=', $year)
+    //     ->where('term', '=', $term)
+    //     ->where('semesterLength', '=', $length)
+    //     ->update(['status' => 'confirmed']);
+    // }
+
     /**
      * Checks for event to change enrolment phase
      *
@@ -153,28 +191,67 @@ class PhaseController extends Controller
      */
     public function phaseTrigger()
     {
+        $approval = [];
+        // get config setting
         $phase = Config::find('enrolmentPhase');
         $year = Config::find('year');
+        $semester = Config::find('semester');
 
         if($phase->value == '1')
         {
             $phase->value = '2';
-            $data['approval'] = $this->unitApprove();
         }
         else if($phase->value == '2')
         {
+            $approval = $this->unitApprove();
             $phase->value = '3';
         }
         else if($phase->value == '3')
         {
-            $phase->value = '1';
-            $year->value = intval($year->value) + 1;
-            $year->save();
+            $phase->value = '4';
+        }
+        else if($phase->value == '4')
+        {
+            $phase->value = '5';
+        }
+        else if($phase->value == '5')
+        {
+            $approval = $this->unitApprove();
+            $phase->value = '6';
+        }
+        else if($phase->value == '6')
+        {
+            $phase->value = '7';
+        }
+        else if($phase->value == '7')
+        {
+            $phase->value = '8';
+        }
+        else if($phase->value == '8')
+        {
+            if($semester->value == 'Semester 1')
+            {
+                // increment semester
+                $semester->value = 'Semester 2';
+                $semester->save();
+                $phase->value = '1';
+            }
+            else
+            {
+                // increment year and semester
+                $year->value = intval($year->value) + 1;
+                $year->save();
+                $semester->value = 'Semester 1';
+                $semester->save();
+                $phase->value = '1';
+            }
         }
 
         $phase->save();
         $data['phase'] = $phase->value;
-        $data['year'] = $year;
+        $data['year'] = $year->value;
+        $data['term'] = $semester->value;
+        $data['approval'] = $approval;
 
     return response()->json($data);
     }

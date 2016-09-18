@@ -18,6 +18,7 @@ class CreateEnrolmentUnitsTable extends Migration
             $table->string('unitCode');
             $table->integer('year')->unsigned();
             $table->string('term');
+            $table->string('semesterLength');
             $table->string('status');
             $table->decimal('result', 5, 2);
             $table->string('grade');

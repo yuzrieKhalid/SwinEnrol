@@ -27,8 +27,7 @@ class ResolveIssueController extends Controller
     {
         $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
                                         ->where('status', '=', 'pending')
-                                        ->where('issueID', '=', '1')
-                                        ->orwhere('issueID', '=', '2')->get();
+                                        ->where('issueID', '!=', '3')->get();
         return response()->json($data);
     }
 
@@ -97,27 +96,53 @@ class ResolveIssueController extends Controller
                     ->where('issueID', '=', $issueID)
                     ->where('status', '=', 'pending')->get();
 
-        if ($issueID === 1)
+        if ($issueID == '1')
         {
-            approve_1($request, $studentID);    // resolve course transfer issue
-            $issue->status = 'approved';        // change the issue status to approved
-            $issue->save();
+            $input = $request->only([
+                'proposedProgramCode',
+                'proposedIntakeYear'
+            ]);
+
+            // update student course code
+            $student = Student::where('studentID', '=', $studentID)
+                                ->update([
+                                    'courseCode' => $input['proposedProgramCode']
+                                    // no place to put the proposed intake year for student
+                                ]);
+
+            // update the issue
+            $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                        ->where('issueID', '=', $issueID)
+                        ->where('status', '=', 'pending')
+                        ->update(['status' => 'approved']);
+
+            return $issue;
+        } else {
+            $input = $request->only([
+                'exemptionUnitCode',
+                'exemptionYear'
+            ]);
+
+            // update student course code
+            $exemptionUnit = new EnrolmentUnits;
+            $exemptionUnit->studentID = $studentID;
+            $exemptionUnit->unitCode = $input['exemptionUnitCode'];
+            $exemptionUnit->year = $input['exemptionYear'];
+            $exemptionUnit->term = 'skipped';
+            $exemptionUnit->status = 'exempted';
+            $exemptionUnit->grade = 'pass';
+            $exemptionUnit->save();
+
+            // update the issue
+            $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                        ->where('issueID', '=', $issueID)
+                        ->where('status', '=', 'pending')
+                        ->update(['status' => 'approved']);
+
+            return response()->json($issue);
         }
 
-        else if ($issueID === 2)
-        {
-            approve_2($request, $studentID);    // approve exemption
-            $issue->status = 'approved';        // change the issue status to approved
-            $issue->save();
-        }
-
-        else if ($issueID === 3) {
-            $issue->status = 'approved';
-            $issue->save();
-            approve_3($request, $studentID);    // approve program withdrawal
-        }
-
-        return response()->json($issueID);
+        return response()->json($issue);
     }
 
     /**

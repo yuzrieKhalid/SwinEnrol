@@ -48,6 +48,10 @@ Route::group([
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
 
     // Route::get('resolveenrolmentissues/{studentID}/{issueID}', 'Coordinator\ResolveIssueController@update');
+    Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.approve',
+        'uses' => 'Coordinator\ResolveIssueController@update'
+    ]);
     Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
         'as' => 'coordinator.resolveenrolmentissues.approve',
         'uses' => 'Coordinator\ResolveIssueController@update'

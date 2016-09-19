@@ -16,10 +16,11 @@ class EnrolmentDatesTableSeeder extends Seeder
         DB::table('enrolment_dates')->insert([
             'year' => 2016,
             'level' => 'Degree',
-            'term' => 'Term 2',
+            'term' => 'Semester 2',
             'reenrolmentOpenDate' => '2016-01-01',
             'reenrolmentCloseDate' => '2016-02-01',
-            'adjustmentCloseDate' => '2016-03-15',
+            'shortCommence' => '2016-05-01',
+            'longCommence' => '2016-06-15',
             'examResultsRelease' => '2016-06-01',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

@@ -78,7 +78,8 @@
                                     <col width="125">
                                     <thead>
                                         <th>Unit Code</th>
-                                        <th colspan="2">Unit Title</th>
+                                        <th>Unit Title</th>
+                                        <th>Pre-requisite</th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
                                     @foreach ($termUnits as $unit)
@@ -86,6 +87,7 @@
                                             <tr>
                                                 <td>{{ $unit->unitCode }}</td>
                                                 <td>{{ $unit->unit->unitName }}</td>
+                                                <td>{{ $unit['unit']->prerequisite }}</td>
                                             </tr>
                                         @endif
                                     @endforeach

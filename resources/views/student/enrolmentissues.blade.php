@@ -220,7 +220,6 @@
                                     <div class="col-sm-10">
                                         <input type="file" class="attachFile">
                                     </div>
-
                                 </div>
                             </div>
 
@@ -298,7 +297,6 @@
 
                 <div class="panel-footer">
                     <button class="btn btn-default submit" data-method="POST" data-url="{{ route('student.enrolmentissues.store') }}">Submit</button>
-                    <!-- <button class="btn btn-default submit">Submit</button> -->
                 </div>
             </div>
         </div>
@@ -450,4 +448,12 @@ $('.datepicker').datepicker({
     })
 }) ()
 </script>
+
+<!-- <script>
+
+$('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+});
+</script> -->
 @stop

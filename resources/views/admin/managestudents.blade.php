@@ -29,7 +29,7 @@
                                     </form>
                                 </div>
                                 <div class="panel-footer">
-                                    <button class="btn btn-success" id="processButton" role="button" data-toggle="modal" data-target="#processData" disabled>
+                                    <button class="btn btn-success" id="processButton" role="button" data-toggle="modal" data-target="#processData" disable>
                                         Process Data
                                     </button>
                                 </div>
@@ -51,8 +51,47 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <div class="panel panel-success">
+                                <div class="panel-heading text-left">
+                                    Upload Student Status (Result And Payment)
+                                </div>
+                                <div class="panel-body">
+                                    <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
+                                        <input id="uploadRP" type="file">
+                                    </form>
+                                </div>
+                                <div class="panel-footer">
+                                    <button class="btn btn-success" id="processButtonForStatus" role="button" data-toggle="modal" data-target="#processDataForStatus">
+                                        Process Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            Student Status List
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <!-- <th>Result</th> -->
+                                    <th>Payment Status</th>
+                                </thead>
+                                @foreach ($students as $student)
+                                <tr>
+                                    <td>{{ $student->studentID }}</td>
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                    <td>{{ $student->paymentStatus }}</td> <!-- Payment Status -->
+                                </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
                             Student List
@@ -70,16 +109,15 @@
                                 <tr>
                                     <td>{{ $student->studentID }}</td>
                                     <td>{{ $student->givenName }} {{ $student->surname }}</td>
-                                    <td>
-                                        <a class="btn btn-default" href="#" role="button">
+                                    <td><a class="btn btn-default" href="#" role="button">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                            Edit
-                                        </a>
+                                            Edit</a>
                                         <a class="btn btn-default" href="#" role="button">
                                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             Delete
                                         </a>
-                                    </td>
+                                      </td>
+
                                 </tr>
                                 @endforeach
                             </table>
@@ -114,10 +152,10 @@
                                     <input type="text" class="form-control" id="givenName" placeholder="John">
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>Email:</label>
                                     <input type="email" class="form-control" id="email" placeholder="example.com">
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label>Course Code:</label>
@@ -152,7 +190,6 @@
                                         <th>Student ID</th>
                                         <th>Surname</th>
                                         <th>Firstname</th>
-                                        <th>Email</th>
                                         <th>Course Code</th>
                                     </thead>
                                     <!-- template row to be populated based on the input from the file -->
@@ -160,29 +197,70 @@
                                         <td class="id">Student ID</td>
                                         <td class="surname">Surname</td>
                                         <td class="firstname">Firstname</td>
-                                        <td class="email">Email</td>
                                         <td class="coursecode">Course Code</td>
                                     </tr>
-                                </table>
-                            </div> <!-- end modal-body -->
-                            <div class="modal-footer">
+
+
+                                  </table>
+                          </div> <!-- end. modal-content-->
+                        </form>
+
+
+
+                      </div> <!-- end modal-body -->
+                            <div classhttps://drive.google.com/drive/folders/0ByJ2lkm_aQwMZFZnR2ZBWkRoaFk="modal-footer">
                                 <button type="button" class="btn btn-success pull-right" id="import"
                                     data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
-                                    Import
-                                </button>
-                            </div>
-                        </form>
+                                    Import</button>
+
+                          </div> <!-- end. modal-content-->
 
                     </div> <!-- end. modal-content-->
                 </div> <!-- end .modal-dialog -->
-            </div> <!-- end .modal fade -->
 
-            <!-- <pre> to debug the json only -->
-            <!-- <pre id="out"></pre> -->
 
-        </div> <!-- end .col-md-9 -->
-    </div> <!-- end .row -->
-</div>
+
+
+            <div class="modal fade" id="processDataForStatus" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Student Status</h3>
+                        </div>
+
+                        <form class="form" method="POST">
+                            <div class="modal-body">
+                                <table class="table table-striped" id="students_table_status">
+                                    <thead>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Firstname</th>
+                                        <th>Course Code</th>
+                                        <th>Payment Status</th>
+                                        <tr class="tr_template hidden">
+                                            <td class="id">Student ID</td>
+                                            <td class="surname">Surname</td>
+                                            <td class="firstname">Firstname</td>
+                                            <td class="coursecode">Course Code</td>
+                                            <td class="paymentstatus">Payment Status</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                      </form>
+
+                  </div> <!-- end. modal-content-->
+                  <div classhttps://drive.google.com/drive/folders/0ByJ2lkm_aQwMZFZnR2ZBWkRoaFk="modal-footer">
+                      <button type="button" class="btn btn-success pull-right" id="import"
+                          data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
+                          Import</button>
+                  </div>
+              </div> <!-- end .modal-dialog -->
+          </div>
+        </div> <!-- end .modal fade -->
+      </div> <!-- end .col-md-9 -->
+</div> <!-- end .row -->
 @stop
 
 @section('extra_js')
@@ -194,7 +272,6 @@
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
     }
-
     // Normal CRUD Section
     // -------------------
     // add one student
@@ -206,10 +283,9 @@
             studentID: $('#studentID').val(),
             surname: $('#surname').val(),
             givenName: $('#givenName').val(),
-            email: $('#email').val(),
-            courseCode: $('#courseCode').val()
-        }
-
+            courseCode: $('#courseCode').val(),
+            paymentStatus: $('#paymentStatus').val()
+          }
         $.ajax({
             'url': url,
             'method': method,
@@ -218,8 +294,6 @@
             // window.location.reload()
         })
     })
-
-
     // Uploading Section
     // -------------------
     // 3. Populate the template table with data from Workbook
@@ -227,16 +301,32 @@
         let clone_tr = $('#students_table').find('.tr_template').clone()
         clone_tr.removeClass('hidden')
         clone_tr.removeClass('tr_template')
-
         // populate column by column [only get the respective column]
         clone_tr.children('td.id').html(student.stdID)
         clone_tr.children('td.surname').html(student.surname)
         clone_tr.children('td.firstname').html(student.firstname)
-        clone_tr.children('td.email').html(student.email)
         clone_tr.children('td.coursecode').html(student.coursecode)
-
+        //clone_tr.children('td.paymentstatus').html(student.coursecode)
+        //$('#students_table_status').append(clone_tr)
         $('#students_table').append(clone_tr)
     }
+//////
+    // let populateTable2 = function(student) {
+    //     let clone_tr = $('#students_table_status').find('.tr_template').clone()
+    //     clone_tr.removeClass('hidden')
+    //     clone_tr.removeClass('tr_template')
+    //     // populate column by column [only get the respective column]
+    //     clone_tr.children('td.id').html(student.stdID)
+    //     clone_tr.children('td.surname').html(student.surname)
+    //     clone_tr.children('td.firstname').html(student.firstname)
+    //     clone_tr.children('td.coursecode').html(student.coursecode)
+    //     clone_tr.children('td.paymentstatus').html(student.paymentstatus)
+    //     //$('#students_table_status').append(clone_tr)
+    //     $('#students_table_status').append(clone_tr)
+    // }
+///////
+
+
 
     // 2(a) to JSON Array
     let to_json = function(workbook) {
@@ -246,51 +336,63 @@
             // get the row object array - data in every row (1 row = 1 student)
             let students = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName])
             if (students.length > 0) { result[sheetName] = students }
-
             students.forEach(function(student) {
                 populateTable(student)
             })
         })
-
         return result
     }
-
     // 2. Process the workbook into JSON format
     let students = []
     let output = ""
     let process_workbook = function(workbook) {
         output = JSON.stringify(to_json(workbook), 2, 2)
-
         // store the output in JSON Object (Array) - students is an array
         students = $.parseJSON('[' + output + ']')
-
         // console.log(students[0].sheet1.length);
         $('#out').text(output)
     }
-
     // 1. read file
     let upload = $('#upload').change(function() {
         // get the file details (.files[0] since only one file)
         let file = document.querySelector('input[type=file]').files[0]
-
         // utility to read file
         let reader = new FileReader()
-
         reader.onload = function(event) {
             // 1. read file content
             let data = event.target.result
-
             // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
             let workbook = XLSX.read(data, {type: 'binary'})
-
             // 3. Handle the processing
             process_workbook(workbook)
         }
         reader.readAsBinaryString(file)
-
         // enable the button only if a file has been chosen
+      //  $('#processButtonForStatus').prop('disabled', false)
         $('#processButton').prop('disabled', false)
     })
+/////
+// let upload = $('#uploadRP').change(function() {
+//     // get the file details (.files[0] since only one file)
+//     let file = document.querySelector('input[type=file]').files[0]
+//     // utility to read file
+//     let reader = new FileReader()
+//     reader.onload = function(event) {
+//         // 1. read file content
+//         let data = event.target.result
+//         // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
+//         let workbook = XLSX.read(data, {type: 'binary'})
+//         // 3. Handle the processing
+//         process_workbook(workbook)
+//     }
+//     reader.readAsBinaryString(file)
+//     // enable the button only if a file has been chosen
+//   //  $('#processButtonForStatus').prop('disabled', false)
+//     $('#processButtonForStatus').prop('disabled', false)
+// })
+
+
+/////
 
     // Transferring the array into the database through AJAX
     let importData = $('#import').click(function() {
@@ -301,7 +403,6 @@
             'jsondata': output,
             'arrlength': students[0].data[0].length
         }
-
         $.ajax({
             'url': url,
             'method': method,
@@ -311,12 +412,10 @@
             window.location.reload()
         })
     })
-
     // TODO: search the table for students
     $('#search').change(function() {
         console.log($(this).val());
     })
-
 }) ()
 </script>
 @stop

@@ -20,12 +20,14 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
+                            <th>Pre-requisite</th>
                         </thead>
                         {{-- Fetch data for unit listing (long semester) --}}
                         @foreach ($termUnits as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
+                            <td>{{ $unit['unit']->prerequisite }}</td>
                         </tr>
                         @endforeach
                     </table>
@@ -37,12 +39,14 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
+                            <th>Pre-requisite</th>
                         </thead>
                         {{-- Fetch data for unit listing (short semester) --}}
                         @foreach ($termUnitsShort as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
+                            <td>{{ $unit['unit']->prerequisite }}</td>
                         </tr>
                         @endforeach
                     </table>

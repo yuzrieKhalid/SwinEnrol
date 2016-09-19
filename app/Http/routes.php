@@ -29,6 +29,7 @@ Route::group([
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@create');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');
@@ -86,6 +87,7 @@ Route::group([
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
     Route::resource('manageunits', 'Student\ManageUnitController');
+    Route::post('articulate', ['as' => 'student.articulate', 'uses' => 'Student\ManageUnitController@articulate']);
 });
 
 Route::group([
@@ -103,6 +105,7 @@ Route::group([
 });
 
 Route::get('/phase', 'PhaseController@phaseTrigger');
+Route::get('/unit', 'PhaseController@unitApprove');
 
 /*
 Route::group([

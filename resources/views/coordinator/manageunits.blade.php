@@ -50,10 +50,12 @@
                                 </a>
                             </td>
                             <td class="td_unitDelete">
+
                                 <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 </button>
                             </td>
+
                         </tr>
                         @endif
                         @endforeach

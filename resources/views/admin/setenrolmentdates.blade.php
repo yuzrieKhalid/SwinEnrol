@@ -26,7 +26,7 @@
 
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <label>Enrolment Period</label>
                                     <div>
                                         <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
@@ -38,14 +38,21 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label>Adjustment Date Due</label>
+                                    <label>Short Semester Commencement</label>
                                     <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="input-sm form-control" id="adjustment_date_{{ $enrolment->id }}" value="{{ $enrolment->adjustmentCloseDate }}" />
+                                        <input type="text" class="input-sm form-control" id="short_commence_{{ $enrolment->id }}" value="{{ $enrolment->shortCommence }}" />
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label>Current Term Final Exams Result Release</label>
+                                <div class="col-md-4">
+                                    <label>Long Semester Commencement</label>
+                                    <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                        <input type="text" class="input-sm form-control" id="long_commence_{{ $enrolment->id }}" value="{{ $enrolment->longCommence }}" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Final Exam Results Release</label>
                                     <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                         <input type="text" class="input-sm form-control" id="results_release_date_{{ $enrolment->id }}" value="{{ $enrolment->examResultsRelease }}" />
                                     </div>
@@ -57,7 +64,7 @@
                         <div class="panel-footer">
                             <button disabled type="button" class="btn btn-default update" id="update" data-id="{{ $enrolment->id }}"
                                 data-year="{{ $enrolment->year }}" data-term="{{ $enrolment->term }}" data-level="{{ $enrolment->level }}"
-                                data-method="PUT" data-url="{{ route('admin.setenrolmentdates.update', '$enrolment->id') }}">
+                                data-method="PUT" data-url="{{ route('admin.setenrolmentdates.update', $enrolment->id) }}">
                                 Update
                             </button>
 
@@ -85,7 +92,7 @@
 
                         <div class="modal-body">
                             <label class="control-label">Year:</label>
-                            <input class="form-control" type="number" id="year" value="2016"/>
+                            <input class="form-control" type="number" id="year" value="{{ $year }}"/>
 
                             <label class="control-label" for="studyLevel">Level:</label>
                             <select class="form-control" name="level" id="level">
@@ -99,10 +106,12 @@
 
                             <label class="control-label">Semester Term:</label>
                             <select class="form-control" name="term" id="term">
-                                <option value="Term 1">Term1</option>
-                                <option value="Term 2">Term2</option>
-                                <option value="Winter Term">WinterTerm</option>
-                                <option value="Summer Term">SummerTerm</option>
+                                <option value="Semester 1">Semester 1</option>
+                                @if($semester == 'Semester 1')
+                                <option value="Semester 2" selected>Semester 2</option>
+                                @else
+                                <option value="Semester 2">Semester 2</option>
+                                @endif
                             </select>
 
                             <label>Enrolment Period</label>
@@ -112,9 +121,14 @@
                                 <input type="text" class="input-sm form-control" id="reenrolmentOpenDate" name="end"/>
                             </div>
 
-                            <label>Adjustment Date Due</label>
+                            <label>Short Semester Commencement</label>
                             <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="input-sm form-control" id="adjustmentCloseDate" name="adjust"/>
+                                <input type="text" class="input-sm form-control" id="shortCommence" name="adjust"/>
+                            </div>
+
+                            <label>Long Semester Commencement</label>
+                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                <input type="text" class="input-sm form-control" id="longCommence" name="adjust"/>
                             </div>
 
                             <label>Current Term Final Exams Result Release</label>
@@ -168,7 +182,8 @@ $('.datepicker').datepicker({
             level: $('select[name=level]').val(),
             reenrolmentCloseDate: $('#reenrolmentCloseDate').val(),
             reenrolmentOpenDate: $('#reenrolmentOpenDate').val(),
-            adjustmentCloseDate: $('#adjustmentCloseDate').val(),
+            shortCommence: $('#shortCommence').val(),
+            longCommence: $('#longCommence').val(),
             examResultsRelease: $('#examResultsRelease').val()
         }
 
@@ -207,8 +222,13 @@ $('.datepicker').datepicker({
                     $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
                 })
 
-                // check the adjustmentCloseDate field
-                $('#adjustment_date_' + data.id).change(function() {
+                // check the shortCommence field
+                $('#short_commence_' + data.id).change(function() {
+                    $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
+                })
+
+                // check the longCommence field
+                $('#long_commence_' + data.id).change(function() {
                     $('#enrolmentPanel_' + data.id).find('.update').prop('disabled', false)
                 })
 
@@ -238,7 +258,8 @@ $('.datepicker').datepicker({
             level: theLevel,
             reenrolmentCloseDate: $('#close_dates_' + id).val(),
             reenrolmentOpenDate: $('#open_dates_' + id).val(),
-            adjustmentCloseDate: $('#adjustment_date_' + id).val(),
+            shortCommence: $('#short_commence_' + id).val(),
+            longCommence: $('#long_commence_' + id).val(),
             examResultsRelease: $('#results_release_date_' + id).val()
         }
 

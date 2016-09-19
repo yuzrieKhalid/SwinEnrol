@@ -11,8 +11,11 @@ use Auth;
 use App\Student;
 use App\Unit;
 use App\EnrolmentUnits;
-use App\Config;
+use DB;
 use Carbon\Carbon;
+use App\Config;
+use App\Course;
+use App\UnitTerm;
 
 // student's unit operation is different. it should only add units to student's info
 
@@ -31,15 +34,15 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::where('studentID', '=', '$user->username')->get();
         $data['student'] = $student;
+        // get units for student
+        // $units = DB::table('enrolment_units')
+        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
+        //     ->select('enrolment_units.*', 'unit.unitName')
+        //     // ->where('studentID', '=', $studentID) // need to check for current term too
+        //     ->get();
 
         // need to rename it later to not confused
-        $enrolled = EnrolmentUnits::with('unit')
-            ->where([
-                ['studentID', '=', $user->username],
-                ['year', '=', Config::find('year')->value],
-                ['term', '=', Config::find('semester')->value],
-                ['status', '=', 'pending']
-            ])->get();
+        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['enrolled'] = $enrolled;
 
         $units = Unit::all();
@@ -55,25 +58,136 @@ class ManageUnitController extends Controller
      */
     public function create()
     {
-        $data = [];
+        $data['phase'] = Config::find('enrolmentPhase');
 
         $user = Auth::user();
-        $student = Student::where('studentID', '=', '$user->username')->get();
-        $data['student'] = $student;
+        $student = Student::find($user->username);
+        $course = Course::find($student->courseCode);
 
+        // check if foundation student
+        if($course->studyLevel == 'Foundation')
+        {
+            $data['courses'] = Course::where('studyLevel', '=', 'degree')->get();
+
+            // get all units in current course
+            $courseUnits = UnitTerm::with('course')
+            ->where('courseCode', '=', $student->courseCode)
+            ->get();
+
+            // get all completed units in current course
+            $completedUnits = EnrolmentUnits::with('student')
+            ->where('studentID', '=', $student->studentID)
+            ->where('grade', '=', 'pass')
+            ->get();
+
+            // check foundation completion
+            $completed = true;
+            $status = false;
+            foreach($courseUnits as $courseUnit)
+            {
+                foreach($completedUnits as $completedUnit)
+                {
+                    if($courseUnit->unitCode == $completedUnit->unitCode)
+                    {
+                        $status = true;
+                        break;
+                    }
+                    else
+                        $status = false;
+                }
+                if($status == false)
+                    $completed = false;
+            }
+            // show form if foundation completed
+            if($completed == true)
+                return view('student.selectcourse', $data);
+        }
+
+        // get all enrolled units
         $enrolled = EnrolmentUnits::with('unit')
-            ->where([
-                ['studentID', '=', $user->username],
-                ['year', '=', Config::find('year')->value],
-                ['term', '=', Config::find('semester')->value],
-                ['status', '=', 'pending']
-            ])->get();
-        $data['enrolled'] = $enrolled;
+        ->where('studentID', '=', $user->username)
+        ->where('status', '=', 'pending')
+        ->get();
 
-        $units = Unit::all();
+        // sort enrolled units into long/short semesters
+        $data['enrolledLong'] = [];
+        $data['enrolledShort'] = [];
+        foreach($enrolled as $unit)
+        {
+            if($unit->semesterLength == 'long')
+                array_push($data['enrolledLong'], $unit);
+            if($unit->semesterLength == 'short')
+                array_push($data['enrolledShort'], $unit);
+        }
+
+        // get all current units
+        $allUnits = UnitTerm::with('course')
+        ->with('unit')
+        ->where('unitType', '=', 'unit_listing')
+        ->where('year', '=', Config::find('year')->value)
+        ->where('term', '=', Config::find('semester')->value)
+        ->get();
+
+        // filter units according to level of study
+        $units = [];
+        foreach($allUnits as $unit)
+        {
+            if($unit['course']->studyLevel == $course->studyLevel)
+                array_push($units, $unit);
+        }
         $data['units'] = $units;
 
-        return view('student.manageunits', $data);
+        // sort units into long/short semesters
+        $exists = false;
+        $data['longSemester'] = [];
+        $data['shortSemester'] = [];
+        foreach($units as $unit)
+        {
+            if($unit->enrolmentTerm == 'long')
+            {
+                foreach($data['enrolledLong'] as $enrolledUnit)
+                {
+                    if($unit->unitCode == $enrolledUnit->unitCode)
+                        $exists = true;
+                }
+                if($exists == false)
+                    array_push($data['longSemester'], $unit);
+                $exists = false;
+            }
+
+            if($unit->enrolmentTerm == 'short')
+            {
+                foreach($data['enrolledShort'] as $enrolledUnit)
+                {
+                    if($unit->unitCode == $enrolledUnit->unitCode)
+                        $exists = true;
+                }
+                if($exists == false)
+                    array_push($data['shortSemester'], $unit);
+                $exists = false;
+            }
+        }
+
+        return view ('student.manageunits', $data);
+    }
+
+    /**
+     * Updates student's course when articulating
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function articulate(Request $request)
+    {
+        $input = $request->only([
+            'courseCode'
+        ]);
+
+        $student = Student::find(Auth::user()->username);
+        $student->courseCode = $input['courseCode'];
+        $student->save();
+
+        return redirect('student/manageunits/create');
     }
 
     /**
@@ -87,19 +201,37 @@ class ManageUnitController extends Controller
         $input = $request->only([
             // enrolment data
             'unitCode',
+            'enrolmentTerm'
         ]);
 
-        $new_unit_enrolment = new EnrolmentUnits;
-        $new_unit_enrolment->studentID = Auth::user()->username;
-        $new_unit_enrolment->unitCode = $input['unitCode'];
-        $new_unit_enrolment->year = Config::find('year')->value;
-        $new_unit_enrolment->term = Config::find('semester')->value;
-        $new_unit_enrolment->status = 'pending';
-        $new_unit_enrolment->result = '0.00';
-        $new_unit_enrolment->grade = '0.00';
-        $new_unit_enrolment->save();
+        $user = Auth::user();
 
-        return response()->json($new_unit_enrolment);
+        $unitCount = EnrolmentUnits::where('studentID', '=', $user->username)
+        ->where('year', '=', Config::find('year')->value)
+        ->where('term', '=', Config::find('semester')->value)
+        ->where('semesterLength', '=', $input['enrolmentTerm'])
+        ->where('status', '=', 'pending')
+        ->count();
+
+        if($unitCount <= 4)
+        {
+            $unit = new EnrolmentUnits;
+            $unit->studentID = Auth::user()->username;
+            $unit->unitCode = $input['unitCode'];
+            $unit->year = Config::find('year')->value;
+            $unit->term = Config::find('semester')->value;
+            $unit->semesterLength = $input['enrolmentTerm'];
+            $unit->status = 'pending';
+            $unit->result = 0.00;
+            $unit->grade = 'ungraded';
+            $unit->save();
+        }
+        else
+        {
+            return "Cannot enrol more than 5 units.";
+        }
+
+        return "ok";
     }
 
     /**
@@ -154,16 +286,21 @@ class ManageUnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $input = $request->only([
+            'unitCode',
+            'enrolmentTerm'
+        ]);
+
         $user = Auth::user();
-        $student = Student::find($user->username);
-        $enrolled = EnrolmentUnits::where('unitCode', '=', $id)
-        ->where('studentID', '=', $student->studentID)
+        $unit = EnrolmentUnits::where('unitCode', '=', $input['unitCode'])
+        ->where('studentID', '=', Auth::user()->username)
         ->where('year', '=', Config::find('year')->value)
         ->where('term', '=', Config::find('semester')->value)
+        ->where('semesterLength', '=', $input['enrolmentTerm'])
         ->delete();
 
-        return response()->json($enrolled);
+        return response()->json($unit);
     }
 }

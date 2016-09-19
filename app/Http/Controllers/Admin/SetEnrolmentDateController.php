@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\EnrolmentDates;
+use App\Config;
 
 class SetEnrolmentDateController extends Controller
 {
@@ -40,6 +41,12 @@ class SetEnrolmentDateController extends Controller
         $dates  = EnrolmentDates::all();
 
         $data['dates'] = $dates;
+        $data['semester'] = Config::find('semester')->value;
+
+        if($data['semester'] == 'Semester 2')
+            $data['year'] = Config::find('year')->value + 1;
+        else
+            $data['year'] = Config::find('year')->value;
 
         return view ('admin.setenrolmentdates', $data);
     }
@@ -58,7 +65,8 @@ class SetEnrolmentDateController extends Controller
             'term',
             'reenrolmentOpenDate',
             'reenrolmentCloseDate',
-            'adjustmentCloseDate',
+            'shortCommence',
+            'longCommence',
             'examResultsRelease'
         ]);
 
@@ -68,7 +76,8 @@ class SetEnrolmentDateController extends Controller
         $enrolment->term = $input['term'];
         $enrolment->reenrolmentOpenDate = $input['reenrolmentOpenDate'];
         $enrolment->reenrolmentCloseDate = $input['reenrolmentCloseDate'];
-        $enrolment->adjustmentCloseDate = $input['adjustmentCloseDate'];
+        $enrolment->shortCommence = $input['shortCommence'];
+        $enrolment->longCommence = $input['longCommence'];
         $enrolment->examResultsRelease = $input['examResultsRelease'];
         $enrolment->save();
 
@@ -114,7 +123,8 @@ class SetEnrolmentDateController extends Controller
             'term',
             'reenrolmentOpenDate',
             'reenrolmentCloseDate',
-            'adjustmentCloseDate',
+            'shortCommence',
+            'longCommence',
             'examResultsRelease'
         ]);
 
@@ -124,7 +134,8 @@ class SetEnrolmentDateController extends Controller
         $enrolment->term = $input['term'];
         $enrolment->reenrolmentOpenDate = $input['reenrolmentOpenDate'];
         $enrolment->reenrolmentCloseDate = $input['reenrolmentCloseDate'];
-        $enrolment->adjustmentCloseDate = $input['adjustmentCloseDate'];
+        $enrolment->shortCommence = $input['shortCommence'];
+        $enrolment->longCommence = $input['longCommence'];
         $enrolment->examResultsRelease = $input['examResultsRelease'];
         $enrolment->save();
 

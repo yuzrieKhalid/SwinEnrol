@@ -20,7 +20,8 @@ class CreateEnrolmentDatesTable extends Migration
             $table->string('term');
             $table->date('reenrolmentOpenDate');
             $table->date('reenrolmentCloseDate');
-            $table->date('adjustmentCloseDate');
+            $table->date('shortCommence');
+            $table->date('longCommence');
             $table->date('examResultsRelease');
 
             $table->timestamps();

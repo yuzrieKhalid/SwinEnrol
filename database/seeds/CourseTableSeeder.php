@@ -18,6 +18,7 @@ class CourseTableSeeder extends Seeder
                 'courseCode' => 'I047',
                 'courseName' => 'Bachelor of Computer Science',
                 'graduationRequirements' => 'None',
+                'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -25,6 +26,7 @@ class CourseTableSeeder extends Seeder
                 'courseCode' => 'E456',
                 'courseName' => 'Engineering',
                 'graduationRequirements' => 'None',
+                'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -32,6 +34,15 @@ class CourseTableSeeder extends Seeder
                 'courseCode' => 'B123',
                 'courseName' => 'Business',
                 'graduationRequirements' => 'None',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'courseCode' => 'FICT',
+                'courseName' => 'Foundation (ICT)',
+                'graduationRequirements' => 'None',
+                'studyLevel' => 'Foundation',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

@@ -59,8 +59,8 @@ class ManageStudentController extends Controller
             'studentID',
             'surname',
             'givenName',
-            'email',
-            'courseCode'
+            'courseCode',
+            'paymentStatus'
         ]);
 
         // create new student
@@ -68,8 +68,8 @@ class ManageStudentController extends Controller
         $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
-        $student->email = $input['email'];
         $student->courseCode = $input['courseCode'];
+        $student->paymentStatus = $input['paymentStatus'];
 
         // adds the student to the User table too
         $user = new User;
@@ -119,8 +119,8 @@ class ManageStudentController extends Controller
             'studentID',
             'surname',
             'givenName',
-            'email',
-            'courseCode'
+            'courseCode',
+            'paymentStatus'
         ]);
 
         // find student and update
@@ -128,8 +128,8 @@ class ManageStudentController extends Controller
         $student->studentID = $input['studentID'];
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
-        $student->email = $input['email'];
         $student->courseCode = $input['courseCode'];
+        $student->paymentStatus = $input['paymentStatus'];
 
         $student->save();
         return response()->json($student);
@@ -169,8 +169,8 @@ class ManageStudentController extends Controller
                 $student->studentID = $value['stdID'];
                 $student->surname = $value['surname'];
                 $student->givenName = $value['firstname'];
-                $student->email = $value['email'];
                 $student->courseCode = $value['coursecode'];
+                $student->paymentStatus = $value['paymentstatus'];
                 $student->save();
             }
         }

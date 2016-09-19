@@ -32,6 +32,11 @@ class ApprovedIssuesController extends Controller
     {
         $data = [];
 
+        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
+                                        ->where('status', '=', 'approved')->get();
+
+        $data['issues'] = $issues;
+
         return view('admin.approvedissues', $data);
     }
 

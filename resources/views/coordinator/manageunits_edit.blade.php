@@ -92,12 +92,14 @@
             <hr>
 
             <div class="row">
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>UNIT CONVENOR</label>
                         <input class="form-control" type="text" id="unitConvenor" value="{{ $convenor }}">
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>MAXIMUM NUMBER OF STUDENTS FOR UNIT</label>
@@ -117,7 +119,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Number of Groups</label>
-                        <input class="numbers" type="text" value="{{ $lectureGroups }}" id="lectureGroups">
+                        <input class="numbers" type="text" value="{{ $lectureGroupCount }}" id="lectureGroups">
                     </div>
                     <div class="form-group">
                         <button id="addLecturer" type="button"><span class="glyphicon glyphicon-plus"></span> Add Lecturer</button>
@@ -159,7 +161,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Number of Groups</label>
-                            <input class="numbers" type="text" value="{{ $tutorialGroups }}" id="tutorialGroups">
+                            <input class="numbers" type="text" value="{{ $tutorialGroupCount }}" id="tutorialGroups">
                         </div>
 
                         <div class="form-group">
@@ -195,6 +197,7 @@
         </div>
     </div>
 </div>
+
 @stop
 
 @section('extra_js')
@@ -229,21 +232,20 @@
         let jsondata = []
         if ($('#toggle_tutorial').attr('data-id') == 1) {
             // Tutorial is Enabled
-            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count},
-                {tutorialDuration, tutorialGroups, tutors, tutors_count} ]
+            jsondata = [ {convenor}, {lecturers, lecturers_count}, {tutors, tutors_count} ]
         } else {
             // Tutorial is Disabled
-            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count} ]
+            jsondata = [ {convenor}, {lecturers, lecturers_count} ]
         }
 
         // stringify before return
-        let information = JSON.stringify(jsondata)
+        let unitInfo = JSON.stringify(jsondata)
 
         // for testing only
         // let parser = JSON.parse(information)
         // console.log(parser)
 
-        return information
+        return unitInfo
     }
 
     // cleanly remove all three parents when pressing the x button
@@ -295,7 +297,7 @@
     $(".numbers").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons
         mousewheel: true,               // allow scrolling to increase/decrease value
-        max: 9999
+        max: 9999                       // maximum number can be added
     })
     $(".numbers_duration").TouchSpin({
         verticalbuttons: true,          // type of up and down buttons
@@ -309,6 +311,37 @@
         return $('meta[name=_token]').attr('content')
     }
 
+    // Adds a task to the task well
+    let addUnit = function(unit) {
+        if ($('#units_table').find('.tr_template') == true) {
+            let tr_template = $('#units_table').find('.tr_template').clone()
+            tr_template.removeClass('hidden')
+            tr_template.removeClass('tr_template')
+
+            let unitEdit = tr_template.children('.td_unitEdit').html()
+            unitEdit = unitEdit.replace("id", unit.unitCode)
+            let unitDelete = tr_template.children('.td_unitDelete').html()
+            unitDelete = unitDelete.replace("id", unit.unitCode)
+
+            tr_template.children('.td_unitCode').html(unit.unitCode)
+            tr_template.children('.td_unitName').html(unit.unitName)
+            tr_template.children('.td_unitEdit').html(`${unitEdit}`)
+            tr_template.children('.td_unitDelete').html(`${unitDelete}`)
+
+            $('#units_table').append(tr_template)
+        }
+    }
+
+    // Get all tasks as a list
+    let getUnits = function() {
+        let url = $('#units_table').data('url')
+        $.get(url, function(data) {
+            data.forEach(function(unit) {
+                addUnit(unit);
+            })
+        })
+    }
+
     $('.submit').click(function(){
         let method = $(this).data('method')
         let url = $(this).data('url')
@@ -316,12 +349,16 @@
             _token: getToken(),
             unitCode: $('#unitCode').val(),
             unitName: $('#unitName').val(),
-            courseCode: $('select[name=courseCode]').val(),
             prerequisite: $('select[name=prerequisite]').val(),
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            information: getUnitInformation()
+            maxStudents: $('#maxStudents').val(),
+            lectureDuration: $('#lectureDuration').val(),
+            lectureGroupCount: $('#lectureGroups').val(),
+            tutorialDuration: $('#tutorialDuration').val(),
+            tutorialGroupCount: $('#tutorialGroups').val(),
+            unitInfo: getUnitInformation()
         }
 
         $.ajax({
@@ -329,15 +366,13 @@
             'method': method,
             'data': data
         }).done(function(data) {
-            if (method == "PUT") {
-                console.log("Updated")
-                window.location = $('#backToCreate').attr('href')
-            } else {
-                // if another button is pressed
-                window.location = $('#backToCreate').attr('href')
-            }
+            addUnit(data)
+            // $('#addUnit').modal().hide()
+            window.location.reload()
         })
     })
+    // data.forEach is not a function
+    getUnits()
 })()
 </script>
 @stop

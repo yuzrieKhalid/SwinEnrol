@@ -244,21 +244,20 @@
         let jsondata = []
         if ($('#toggle_tutorial').attr('data-id') == 1) {
             // Tutorial is Enabled
-            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count},
-                {tutorialDuration, tutorialGroups, tutors, tutors_count} ]
+            jsondata = [ {convenor}, {lecturers, lecturers_count}, {tutors, tutors_count} ]
         } else {
             // Tutorial is Disabled
-            jsondata = [ {convenor}, {maxStudents}, {lectureDuration, lectureGroups, lecturers, lecturers_count} ]
+            jsondata = [ {convenor}, {lecturers, lecturers_count} ]
         }
 
         // stringify before return
-        let information = JSON.stringify(jsondata)
+        let unitInfo = JSON.stringify(jsondata)
 
         // for testing only
         // let parser = JSON.parse(information)
         // console.log(parser)
 
-        return information
+        return unitInfo
     }
 
     // cleanly remove all three parents when pressing the x button
@@ -366,7 +365,12 @@
             corequisite: $('select[name=corequisite]').val(),
             antirequisite: $('select[name=antirequisite]').val(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            information: getUnitInformation()
+            maxStudents: $('#maxStudents').val(),
+            lectureDuration: $('#lectureDuration').val(),
+            lectureGroupCount: $('#lectureGroups').val(),
+            tutorialDuration: $('#tutorialDuration').val(),
+            tutorialGroupCount: $('#tutorialGroups').val(),
+            unitInfo: getUnitInformation()
         }
 
         $.ajax({
@@ -375,7 +379,6 @@
             'data': data
         }).done(function(data) {
             addUnit(data)
-            // $('#addUnit').modal().hide()
             window.location.reload()
         })
     })

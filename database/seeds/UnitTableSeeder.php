@@ -26,7 +26,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"10\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -42,7 +42,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"20\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"1\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -58,7 +58,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"30\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"1\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"2\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -74,7 +74,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"40\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"3\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -90,7 +90,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"50\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"2\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -106,7 +106,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"60\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -122,7 +122,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"70\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"3\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"4\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -138,7 +138,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"80\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"5\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -154,7 +154,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"90\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"9\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -170,7 +170,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -188,7 +188,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -204,7 +204,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -220,7 +220,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -236,7 +236,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -252,7 +252,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '[{\"convenor\":\"Brian Sim\"},{\"maxStudents\":\"100\"},{\"lectureDuration\":\"1.5\",\"lectureGroups\":\"4\",\"lecturers\":[\"Brian Sim\"],\"lecturers_count\":1},{\"tutorialDuration\":\"1.5\",\"tutorialGroups\":\"10\",\"tutors\":[\"Fish\"],\"tutors_count\":1}]',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

@@ -46,7 +46,7 @@ class HomeController extends Controller
 
         // to display unit listing based on long/short semester
         $termUnits = [];
-        if ($semester == 'Semester 1' || $semester == 'Semester 1') {
+        if ($semester == 'Semester 1' || $semester == 'Semester 2') {
             // for long semester
             $termUnits = UnitTerm::with('unit')
             ->where('unitType', '=', 'unit_listing')

@@ -224,7 +224,7 @@ class UnitTermTableSeeder extends Seeder
             // *************** Unit Listing ***************
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'HIT3315',
+                'unitCode' => 'HIT1401',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'enrolmentTerm' => 'long',
@@ -234,7 +234,7 @@ class UnitTermTableSeeder extends Seeder
             ],
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'HIT3158',
+                'unitCode' => 'HIT1312',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'enrolmentTerm' => 'long',
@@ -244,7 +244,7 @@ class UnitTermTableSeeder extends Seeder
             ],
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'MGT10001',
+                'unitCode' => 'HIT2080',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'enrolmentTerm' => 'long',
@@ -254,9 +254,9 @@ class UnitTermTableSeeder extends Seeder
             ],
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'HIT3158',
+                'unitCode' => 'HIT1307',
                 'year' => 2016,
-                'term' => 'Semester 1',
+                'term' => 'Semester 2',
                 'enrolmentTerm' => 'short',
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
@@ -264,7 +264,7 @@ class UnitTermTableSeeder extends Seeder
             ],
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'ACC10007',
+                'unitCode' => 'HIT2120',
                 'year' => 2016,
                 'term' => 'Semester 2',
                 'enrolmentTerm' => 'long',
@@ -274,10 +274,20 @@ class UnitTermTableSeeder extends Seeder
             ],
             [
                 'unitType' => 'unit_listing',
-                'unitCode' => 'ACC10007',
+                'unitCode' => 'HIT3181',
                 'year' => 2016,
                 'term' => 'Semester 2',
-                'enrolmentTerm' => 'short',
+                'enrolmentTerm' => 'long',
+                'courseCode' => 'I047',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+                'unitType' => 'unit_listing',
+                'unitCode' => 'HIT1402',
+                'year' => 2016,
+                'term' => 'Semester 2',
+                'enrolmentTerm' => 'long',
                 'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()

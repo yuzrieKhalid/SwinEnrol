@@ -305,9 +305,9 @@ class UnitTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitCode' => 'HIT3181',
-                'unitName' => 'Technical Software Development',
-                'prerequisite' => 'HIT2080',
+                'unitCode' => 'HIT1402',
+                'unitName' => 'Database Analysis and Design',
+                'prerequisite' => NULL,
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',
@@ -321,8 +321,8 @@ class UnitTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitCode' => 'HIT1402',
-                'unitName' => 'Database Analysis and Design',
+                'unitCode' => 'HIT1307',
+                'unitName' => 'Internet Technologies',
                 'prerequisite' => NULL,
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
@@ -340,6 +340,22 @@ class UnitTableSeeder extends Seeder
                 'unitCode' => 'HIT3172',
                 'unitName' => 'Object-Oriented Programming in C++',
                 'prerequisite' => 'HIT3181',
+                'corequisite' => NULL,
+                'antirequisite' => NULL,
+                'minimumCompletedUnits' => '2',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HIT3181',
+                'unitName' => 'Technical Software Development',
+                'prerequisite' => 'HIT2080',
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',

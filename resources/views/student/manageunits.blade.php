@@ -75,7 +75,8 @@
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
-                            <th colspan="2">Unit Title</th>
+                            <th>Unit Title</th>
+                            <th colspan="2">Status</th>
                         </thead>
 
                         <tr class="hidden tr_template">
@@ -89,6 +90,16 @@
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
+                                @if($unit->status == 'confirmed')
+                                <!-- Has already passed -->
+                                <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                @elseif($unit->status == 'pending')
+                                <!-- Waiting to be approved (Phase 2) -->
+                                <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
+                                @else
+                                <!-- Is currently taken -->
+                                <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
+                                @endif
                                 @if($phase->value == 1 || $phase->value == 6 || $phase->value == 7)
                                 <td>
                                   <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
@@ -107,7 +118,8 @@
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
-                            <th colspan="2">Unit Title</th>
+                            <th>Unit Title</th>
+                            <th colspan="2">Status</th>
                         </thead>
 
                         <tr class="hidden tr_template">
@@ -121,6 +133,16 @@
                             <tr>
                                 <td>{{ $unit->unitCode }}</td>
                                 <td>{{ $unit->unit->unitName }}</td>
+                                @if($unit->status == 'confirmed')
+                                <!-- Has already passed -->
+                                <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                @elseif($unit->status == 'pending')
+                                <!-- Waiting to be approved (Phase 2) -->
+                                <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
+                                @else
+                                <!-- Is currently taken -->
+                                <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
+                                @endif
                                 @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
                                 <td>
                                   <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">

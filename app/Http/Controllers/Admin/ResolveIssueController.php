@@ -79,14 +79,14 @@ class ResolveIssueController extends Controller
      */
     public function update(Request $request, $studentID, $issueID)
     {
-        $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                    ->where('issueID', '=', $issueID)
-                    ->where('status', '=', 'pending')->get();
 
         $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                     ->where('issueID', '=', $issueID)
                     ->where('status', '=', 'pending')
                     ->update(['status' => 'approved']);
+
+        $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                                        ->where('issueID', '=', $issueID)->get();
 
         return response()->json($issue);
     }
@@ -97,8 +97,16 @@ class ResolveIssueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($studentID, $issueID)
     {
-        return 'test disapprove';
+        $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                    ->where('issueID', '=', $issueID)
+                    ->where('status', '=', 'pending')
+                    ->update(['status' => 'disapproved']);
+
+        $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                                        ->where('issueID', '=', $issueID)->get();
+
+        return response()->json($issue);
     }
 }

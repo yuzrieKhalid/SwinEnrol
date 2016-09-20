@@ -7,10 +7,6 @@
         @include('coordinator.menu')
 
         <div class="col-md-9">
-            <!-- To be fixed -->
-            <p class="pull-left visible-xs">
-                <button type="button" id="offcanvas_btn" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
-            </p>
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Home</h1>
@@ -18,7 +14,7 @@
 
                 <div class="panel-body">
                     <h2>
-                        <small>Unit Listing : {{ $semester }} {{ $year }}</small>
+                        <small class="text-success">Unit Listing : {{ $semester }} {{ $year }}</small>
                     </h2>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" data-url="{{ route('coordinator.home.index') }}" id="homeIndexTable">
@@ -51,16 +47,8 @@
 @section('extra_js')
 <script>
 (function() {
-    // off canvas
-    $('[data-toggle="offcanvas"]').click(function () {
-        $('.row-offcanvas').toggleClass('active')
-    })
-
     // 2. Populate the table
     let addData = function(data) {
-        // parse the JSON String Information in Unit
-        let information = $.parseJSON(data.unit.information)
-
         // cloning and populating table data
         let tr_template = $('#homeIndexTable').find('.tr_template').clone()
         tr_template.removeClass('hidden')
@@ -69,10 +57,9 @@
         tr_template.children('.unitCode').html(data.unitCode)
         tr_template.children('.unitTitle').html(data.unit.unitName)
         tr_template.children('.enrolledStudents').html("_ /" + student_count)
-        tr_template.children('.maxStudents').html(information[1].maxStudents)
-        tr_template.children('.lectureGroupCount').html(information[2].lectureGroups)
-        tr_template.children('.tutorialGroupCount').html(information[3].tutorialGroups)
-        console.log(information) // see the structure of the array
+        tr_template.children('.maxStudents').html(data.unit.maxStudentCount)
+        tr_template.children('.lectureGroupCount').html(data.unit.lectureGroupCount)
+        tr_template.children('.tutorialGroupCount').html(data.unit.tutorialGroupCount)
 
         $('#homeIndexTable').append(tr_template)
     }

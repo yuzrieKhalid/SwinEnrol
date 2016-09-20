@@ -28,6 +28,18 @@ Route::group([
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
+    Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'admin.resolveissue.approve',
+        'uses' => 'Admin\ResolveIssueController@update'
+    ]);
+    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'admin.resolveissue.approve',
+        'uses' => 'Admin\ResolveIssueController@update'
+    ]);
+    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'admin.resolveissue.disapprove',
+        'uses' => 'Admin\ResolveIssueController@destroy'
+    ]);
     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
     Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@create');
 });

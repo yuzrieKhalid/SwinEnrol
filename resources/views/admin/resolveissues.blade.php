@@ -67,17 +67,6 @@
                                                         <p class="reason">[Reason]</p>
                                                     </blockquote>
                                                 </div>
-
-                                                <div class="issue_4 hidden">
-                                                    <p>Student ID: <span class="text-warning studentID">4318595</span></p>
-                                                    <p>Issue ID : <span class="text-warning issue">[Others]</span></p>
-                                                    <p>Status: <span class="text-warning status">Pending</span></p>
-
-                                                    <h3>Others Issue</h3>
-                                                    <blockquote>
-                                                        <p class="others">Content Here</p>
-                                                    </blockquote>
-                                                </div>
                                             </div>
 
                                             <!-- footer -->
@@ -87,11 +76,11 @@
                                                     <pre class="issID">issID</pre>
                                                 </div>
                                                 <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid=""
-                                                    data-url="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
+                                                    data-url="{{ route('admin.resolveissue.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Approve
                                                 </button>
                                                 <button type="button" class="btn btn-danger submit" data-method="DELETE"
-                                                    data-url="{{ route('coordinator.resolveenrolmentissues.disapprove', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
+                                                    data-url="{{ route('admin.resolveissue.disapprove', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Disapprove
                                                 </button>
                                             </div>
@@ -126,42 +115,6 @@
         // cloning and populating the data
         let modal_template = $('#modal_placeholder').find('.modal_template').clone()
         modal_template.find('.issue_3').removeClass('hidden')
-        modal_template.removeClass('modal_template')
-        modal_template.attr('id', issue.studentID + '_' + issue.issueID)
-
-        modal_template.find('.studentID').html(issue.studentID)
-        modal_template.find('.issue').html(issue.enrolment_issues.issueType)
-        modal_template.find('.status').html(issue.status)
-
-        modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
-        modal_template.find('.year').html(submissionData.year)
-        modal_template.find('.isForeigner').html(submissionData.isForeigner)
-        modal_template.find('.iso_name').html(submissionData.iso_name)
-        modal_template.find('.reason').html(submissionData.reasonForLOA)
-
-        // needs to be this long because .replace() only creates new string, and does not replace the old string
-        // replace the id to be passed into the route
-        let route = modal_template.find('.modal-footer').children('.submit').data('url')
-        route = route.replace('stdID', issue.studentID)
-        route = route.replace('issID', issue.issueID)
-
-        // replace the original data-url with the replaced stdID and issID
-        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
-
-        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
-        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
-
-        $('#modal_placeholder').append(modal_template)
-    }
-
-    // 3.2 New Students
-    let addModalData_4 = function(issue) {
-        // parsing the JSON Object
-        let submissionData = JSON.parse(issue.submissionData)
-
-        // cloning and populating the data
-        let modal_template = $('#modal_placeholder').find('.modal_template').clone()
-        modal_template.find('.issue_4').removeClass('hidden')
         modal_template.removeClass('modal_template')
         modal_template.attr('id', issue.studentID + '_' + issue.issueID)
 
@@ -231,31 +184,14 @@
         let url = $(this).data('url')
         let method = $(this).data('method')
         let issid = $(this).data('issid')
-        let data = []
+        let stdid = $(this).data('stdid')
 
-        if (issid == 1) {
-            // case: course transfer
-            data = {
-                '_token': getToken(),
-                'proposedProgramCode': 'testprogramcode',
-                'proposedIntakeYear': '2016'
-            }
-        // endif
-        } else if (issid == 2) {
-            // case: exemption
-            data = {
-                '_token': getToken(),
-                'exemptionUnitCode': 'hit2123',
-                'exemptionYear': '2016'
-            }
-        // endif
-        } else if (issid == 3) {
-            // case withdrawal
-            data = {
-                '_token': getToken(),
+        // update the url
+        url = url.replace('stdID', stdid)
+        url = url.replace('issID', issid)
 
-            }
-        //endif
+        let data = {
+            '_token': getToken()
         }
 
         $.ajax({

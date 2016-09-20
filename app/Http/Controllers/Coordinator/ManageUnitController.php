@@ -58,7 +58,12 @@ class ManageUnitController extends Controller
             'corequisite',
             'antirequisite',
             'minimumCompletedUnits',
-            'information'
+            'maxStudentCount',
+            'lectureGroupCount',
+            'lectureDuration',
+            'tutorialGroupCount',
+            'tutorialDuration',
+            'unitInfo'
         ]);
 
         $unit = new Unit;
@@ -68,7 +73,12 @@ class ManageUnitController extends Controller
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
-        $unit->information = $input['information'];
+        $unit->maxStudentCount = (int) $input['maxStudentCount'];
+        $unit->lectureGroupCount = $input['lectureGroupCount'];
+        $unit->lectureDuration = $input['lectureDuration'];
+        $unit->tutorialGroupCount = (int) $input['tutorialGroupCount'];
+        $unit->tutorialDuration = $input['tutorialDuration'];
+        $unit->unitInfo = $input['unitInfo'];
         $unit->save();
 
         return response()->json($unit);
@@ -110,32 +120,26 @@ class ManageUnitController extends Controller
         $data['antirequisite'] = $antirequisite;
 
         // extract data from unit information JSON
-        $information = json_decode($unit->information);
-        $convenor = $information[0]->convenor;
-        $maxStudents = $information[1]->maxStudents;
-        $lectureDuration = $information[2]->lectureDuration;
-        $lectureGroups = $information[2]->lectureGroups;
-        $lecturers = $information[2]->lecturers;
-        $lecturers_count = $information[2]->lecturers_count;
-        $tutorialDuration = $information[3]->tutorialDuration;
-        $tutorialGroups = $information[3]->tutorialGroups;
-        $tutors = $information[3]->tutors;
-        $tutors_count = $information[3]->tutors_count;
+        $unitInfo = json_decode($unit->unitInfo);
+        $convenor = $unitInfo[0]->convenor;
+        $lecturers = $unitInfo[1]->lecturers;
+        $lecturers_count = $unitInfo[1]->lecturers_count;
+        $tutors = $unitInfo[2]->tutors;
+        $tutors_count = $unitInfo[2]->tutors_count;
 
         $data['convenor'] = $convenor;
-        $data['maxStudents'] = $maxStudents;
-        $data['lectureDuration'] = $lectureDuration;
-        $data['lectureGroups'] = $lectureGroups;
+        $data['maxStudents'] = $unit->maxStudents;
+        $data['lectureDuration'] = $unit->lectureDuration;
+        $data['lectureGroupCount'] = $unit->lectureGroupCount;
         $data['lecturers'] = $lecturers;
         $data['lecturers_count'] = $lecturers_count;
-        $data['tutorialDuration'] = $tutorialDuration;
-        $data['tutorialGroups'] = $tutorialGroups;
+        $data['tutorialDuration'] = $unit->tutorialDuration;
+        $data['tutorialGroupCount'] = $unit->tutorialGroupCount;
         $data['tutors'] = $tutors;
         $data['tutors_count'] = $tutors_count;
 
         return view ('coordinator.manageunits_edit', $data);
-        // return response()->json($information);
-        // return response()->json($lecturers);
+        // return response()->json($unitInfo);
     }
 
     /**
@@ -154,7 +158,12 @@ class ManageUnitController extends Controller
             'corequisite',
             'antirequisite',
             'minimumCompletedUnits',
-            'information'
+            'maxStudentCount',
+            'lectureGroupCount',
+            'lectureDuration',
+            'tutorialGroupCount',
+            'tutorialDuration',
+            'unitInfo'
         ]);
 
         $unit = Unit::findOrFail($id);
@@ -163,8 +172,13 @@ class ManageUnitController extends Controller
         $unit->prerequisite = $input['prerequisite'];
         $unit->antirequisite = $input['antirequisite'];
         $unit->corequisite = $input['corequisite'];
-        $unit->minimumCompletedUnits = $input['minimumCompletedUnits'];
-        $unit->information = $input['information'];
+        $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
+        $unit->maxStudentCount = (int) $input['maxStudentCount'];
+        $unit->lectureGroupCount = $input['lectureGroupCount'];
+        $unit->lectureDuration = $input['lectureDuration'];
+        $unit->tutorialGroupCount = (int) $input['tutorialGroupCount'];
+        $unit->tutorialDuration = $input['tutorialDuration'];
+        $unit->unitInfo = $input['unitInfo'];
         $unit->save();
 
         return response()->json($unit);

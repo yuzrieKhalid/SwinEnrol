@@ -10,26 +10,62 @@ use App\Student;
 use App\Course;
 use App\Units;
 use App\EnrolmentUnits;
+use DB;
+use Config;
+use View;
 
 class EnrolmentStatusStudent extends Controller
 {
 
     public function index() {
 
-      // return view ('admin.enrolmentstatus',$data);
-      //$enrolledList = EnrolmentUnits::with('unit', 'student')->where('status', '=', '')
-      //
-      // return response()->json(EnrolmentUnits::with('student','unit')
-      // ->where('studentID','=', '4315405')
-      // ->get();
+      $data = [];
+      //$student = Student::all();
+
+      //$student = Student::make("studentID")->with("student", $student);
+      //$data['student'] = $student;
+
+      $studentID = Student::all();
+      $data['studentID']= $studentID;
+      // $enrolled = EnrolmentUnits:all();
+      // $data['enrolled']= $enrolled;
+
+    //  $enrolled = EnrolmentUnits::all();
+
+      return view('admin.enrolmentstatus', $data);
+
+      //return View::make('admin.enrolmentstatus', compact('student'));
+
+
+      //return view ('admin.enrolmentstatus',$data);
+
+
     }
     public function create(){
       // $data = [];
       //
       // //$enrolled = EnrolmentUnits::with('student','enrolment_units')->get();
-      // $enrolledUnit = EnrolmentUnits::with('student','unit')->where('unitCode','=', $student->unitCode)->get();
-      // $data['enrolled'] = $enrolledUnit;
-      return view ('admin.enrolmentstatus');
+      // $enrolled = EnrolmentUnits::with('student','unit')->where('studentID')->get();
+      //
+      // $data['enrolled'] = $enrolled;
+      // return view ('admin.enrolmentstatus',$data);
 
+    }
+
+    public function store(Request $request)
+    {
+      // $data = [];
+      //
+      //
+      // $student = Student::where('studentID', '=', true)->get();
+      // $data['student'] = $student;
+      //
+      // $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+      // $data['enrolled'] = $enrolled;
+      //
+      // $units = Unit::all();
+      // $data['units'] = $units;
+      //
+      // return response()->json($data);
     }
 }

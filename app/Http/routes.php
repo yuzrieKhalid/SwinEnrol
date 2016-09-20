@@ -27,7 +27,7 @@ Route::group([
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
-    Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@create');
+    Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@index');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');

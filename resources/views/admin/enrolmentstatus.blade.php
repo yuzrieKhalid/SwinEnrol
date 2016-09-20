@@ -23,16 +23,19 @@
                             <div class="panel-body">
                                 <table class="table table-hover">
                                     <thead>
-                                        <th>Student ID</th>
-                                        <th>Student Name</th>
-                                        <th>Date</th>
-                                    </thead>
+                                      <th>Student ID</th>
+                                      <th>Student Name</th>
+                                      </thead>
+                                    @foreach($studentID as $var)
+                                          <tr class="clickable-row" data-toggle="modal" data-target="#ad">
+                                            <td>{{ $var->studentID }}</td>
+                                            <td>{{ $var->givenName }} {{ $var->surname }} </td>
+                                              <!-- <td>{{ $var->surname }} </td> -->
 
-                                    <tr class="clickable-row" data-toggle="modal" data-target="#ad">
-                                      <td>Sariful</td>
-                                      <td>Sariful </td>
-                                      <td>21.2.2016</td>
-                                      </tr>
+                                          </tr>
+                                       @endforeach
+
+
                                     </table>
                               </div>
 
@@ -64,7 +67,7 @@
                                             @endforeach
                                             @endif
                                         </table>
-                                      </div>                                    
+                                      </div>
                                   </div>
                               </div>
                           </div>

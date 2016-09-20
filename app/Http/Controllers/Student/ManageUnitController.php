@@ -34,14 +34,7 @@ class ManageUnitController extends Controller
         $user = Auth::user();
         $student = Student::where('studentID', '=', '$user->username')->get();
         $data['student'] = $student;
-        // get units for student
-        // $units = DB::table('enrolment_units')
-        //     ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
-        //     ->select('enrolment_units.*', 'unit.unitName')
-        //     // ->where('studentID', '=', $studentID) // need to check for current term too
-        //     ->get();
 
-        // need to rename it later to not confused
         $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['enrolled'] = $enrolled;
 

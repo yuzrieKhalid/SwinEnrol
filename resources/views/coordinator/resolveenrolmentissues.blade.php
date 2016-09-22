@@ -85,10 +85,6 @@
 
                                             <!-- footer -->
                                             <div class="modal-footer">
-                                                <a type="button" class="btn btn-primary test" data-method="PUT" data-stdid="" data-issid="" data-first="" data-second=""
-                                                    href="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
-                                                    Approve
-                                                </a>
                                                 <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid="" data-first="" data-second=""
                                                     data-url="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Approve

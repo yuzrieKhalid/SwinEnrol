@@ -291,7 +291,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2120',
                 'unitName' => 'Data Communications and Security',
-                'prerequisite' => 'HIT3181',
+                'prerequisite' => NULL,
                 'corequisite' => NULL,
                 'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',

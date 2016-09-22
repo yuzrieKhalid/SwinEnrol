@@ -10,7 +10,7 @@ class UnitType extends Model
 
     // primary key
     protected $primaryKey = 'unitType';
-	public $increments = false;
+	public $incrementing = false;
 
     // relation
     public function unit_term()

@@ -31,14 +31,15 @@ class ViewPlannerController extends Controller
         $user = Auth::user();
         $student = Student::find($user->username);;
 
+        // default to student's intake year
         if($input['year'] == 0)
         {
-            $input['year'] = $year;
+            $input['year'] = $student->year;
         }
 
-        // default to current semester
+        // default to student's intake semester
         if($input['term'] == '')
-            $input['term'] = $semester;
+            $input['term'] = $student->term;
 
         // default to student's course
         if($input['courseCode'] == '')
@@ -62,8 +63,9 @@ class ViewPlannerController extends Controller
         for($n = 0; $n < $data['size']; $n++)
         {
             $count[$n] = UnitTerm::where([
-                    ['year', '=', $year], // todo: get from user
-                    ['term', '=', $semester], // todo: get from user
+                    ['year', '=', $input['year']],
+                    ['term', '=', $input['term']],
+                    ['courseCode', '=', $input['courseCode']],
                     ['enrolmentTerm', '=', $n]
                 ])->count();
         }
@@ -84,11 +86,11 @@ class ViewPlannerController extends Controller
         $data['semester'] = $input['term'];
 
         // get selected course
-        $selectedCourse = Course::where('courseCode', '=', $input['courseCode'])->get();
+        $selectedCourse = Course::find($input['courseCode']);
         if(count($selectedCourse) > 0)
         {
-            $data['courseCode'] = $selectedCourse[0]->courseCode;
-            $data['courseName'] = $selectedCourse[0]->courseName;
+            $data['courseCode'] = $selectedCourse->courseCode;
+            $data['courseName'] = $selectedCourse->courseName;
         }
         else
         {

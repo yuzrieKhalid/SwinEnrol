@@ -72,8 +72,9 @@ class ManagePlannerController extends Controller
         for($n = 0; $n < $data['size']; $n++)
         {
             $count[$n] = UnitTerm::where([
-                    ['year', '=', $year],
-                    ['term', '=', $semester],
+                    ['year', '=', $input['year']],
+                    ['term', '=', $input['term']],
+                    ['courseCode', '=', $input['courseCode']],
                     ['enrolmentTerm', '=', $n]
                 ])->count();
         }
@@ -98,11 +99,11 @@ class ManagePlannerController extends Controller
         $data['semester'] = $input['term'];
 
         // get selected course
-        $selectedCourse = Course::where('courseCode', '=', $input['courseCode'])->get();
+        $selectedCourse = Course::find($input['courseCode']);
         if(count($selectedCourse) > 0)
         {
-            $data['courseCode'] = $selectedCourse[0]->courseCode;
-            $data['courseName'] = $selectedCourse[0]->courseName;
+            $data['courseCode'] = $selectedCourse->courseCode;
+            $data['courseName'] = $selectedCourse->courseName;
         }
         else
         {

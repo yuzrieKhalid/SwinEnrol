@@ -40,7 +40,7 @@
                             <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
                             @elseif($unit->status == 'pending')
                             <!-- Waiting to be approved (Phase 2) -->
-                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
+                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
                             @else
                             <!-- Is currently taken -->
                             <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>

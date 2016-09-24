@@ -22,4 +22,9 @@ class Unit extends Model
 	{
 		return $this->hasMany('App\EnrolmentUnits', 'unitCode');
 	}
+
+    public function requisite()
+    {
+        return $this->hasMany('App\Requisite', 'unitCode');
+    }
 }

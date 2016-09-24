@@ -17,9 +17,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3315',
                 'unitName' => 'Languages in Software Development',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -33,9 +30,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3158',
                 'unitName' => 'Software Engineering Project A',
-                'prerequisite' => 'HIT3315',
-                'corequisite' => 'MGT10001',
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -49,9 +43,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3310',
                 'unitName' => 'Software Architecture and Design',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -65,9 +56,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1234',
                 'unitName' => 'Internet Technologies',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => 'HIT1235',
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -81,9 +69,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1235',
                 'unitName' => 'Web Programming',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => 'HIT1234',
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -97,9 +82,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT10001',
                 'unitName' => 'Introduction to Management',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -113,9 +95,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10007',
                 'unitName' => 'Management Accounting',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -129,9 +108,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10008',
                 'unitName' => 'Management Accounting B',
-                'prerequisite' => 'ACC10007',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -145,9 +121,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'UNI20',
                 'unitName' => 'A Unit With Many MinimumCompletedUnits',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '20',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -161,9 +134,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'UNI2',
                 'unitName' => 'A Unit With Few MinimumCompletedUnits',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '2',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -175,13 +145,8 @@ class UnitTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitCode' => 'INFO',
-                'unitName' => 'A Unit With Information',
                 'unitCode' => 'COR30',
                 'unitName' => 'A Unit With Corequisite',
-                'prerequisite' => NULL,
-                'corequisite' => 'COR01',
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -195,9 +160,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COR01',
                 'unitName' => 'Unit Taken With Corequisite',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -211,9 +173,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'SHO27',
                 'unitName' => 'Short Semester Unit',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -227,9 +186,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FO1',
                 'unitName' => 'Foundation Unit 1',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -243,9 +199,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FO2',
                 'unitName' => 'Foundation Unit 2',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -259,9 +212,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1312',
                 'unitName' => 'Computer and Logic Essentials',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -275,9 +225,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2080',
                 'unitName' => 'Introduction to Programming',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -291,9 +238,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2120',
                 'unitName' => 'Data Communications and Security',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -307,9 +251,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1402',
                 'unitName' => 'Database Analysis and Design',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -323,9 +264,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1307',
                 'unitName' => 'Internet Technologies',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -339,9 +277,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3172',
                 'unitName' => 'Object-Oriented Programming in C++',
-                'prerequisite' => 'HIT3181',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -355,9 +290,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3181',
                 'unitName' => 'Technical Software Development',
-                'prerequisite' => 'HIT2080',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -371,9 +303,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3309',
                 'unitName' => 'Software Project Practices and Management',
-                'prerequisite' => 'HIT3181',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -387,9 +316,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2312',
                 'unitName' => 'Computer Systems',
-                'prerequisite' => 'HIT1312',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -403,9 +329,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2308',
                 'unitName' => 'Software Development Practices',
-                'prerequisite' => 'HIT3181',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -419,9 +342,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2316',
                 'unitName' => 'Usability',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -435,9 +355,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3044',
                 'unitName' => 'Professional Issues in IT',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '12',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -451,9 +368,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3311',
                 'unitName' => 'Software Deployment and Evolution',
-                'prerequisite' => 'HIT3309',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -467,9 +381,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3258',
                 'unitName' => 'Software Engineering Project B',
-                'prerequisite' => 'HIT3158',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -483,9 +394,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3002',
                 'unitName' => 'Introduction to Artificial Intelligence',
-                'prerequisite' => 'HIT3172',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -499,9 +407,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3037',
                 'unitName' => 'Programming in Java',
-                'prerequisite' => 'HIT3172',
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -515,9 +420,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COS20007',
                 'unitName' => 'OBJECT-ORIENTED PROGRAMMING',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
@@ -531,9 +433,6 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1401',
                 'unitName' => 'Introduction to Business Information Systems',
-                'prerequisite' => NULL,
-                'corequisite' => NULL,
-                'antirequisite' => NULL,
                 'minimumCompletedUnits' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,

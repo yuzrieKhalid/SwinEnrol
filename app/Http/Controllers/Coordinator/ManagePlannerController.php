@@ -11,6 +11,7 @@ use App\UnitTerm;
 use App\Unit;
 use App\Course;
 use App\Config;
+use App\Requisite;
 
 use Carbon\Carbon;
 
@@ -33,15 +34,17 @@ class ManagePlannerController extends Controller
      */
     public function create(Request $request)
     {
+        // get input from request
         $input = $request->only([
             'year',
             'term',
             'courseCode'
         ]);
 
-        $year = Config::find('year')->value;
-        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value; // get enrolment year
+        $semester = Config::find('semester')->value; // get enrolment semester
 
+        // set to default value on first load
         if($input['year'] == 0)
         {
             $input['year'] = $year;
@@ -54,7 +57,7 @@ class ManagePlannerController extends Controller
         if($input['courseCode'] == '')
             $input['courseCode'] = 'I047';
 
-        $data = [];
+        // get study planner
         $units = UnitTerm::with('unit', 'unit_type', 'course')
             ->where([
                 ['unitType', '=', 'study_planner'],
@@ -64,6 +67,32 @@ class ManagePlannerController extends Controller
             ])
             ->get();
         $data['termUnits'] = $units;
+
+        // get requisites
+        $requisites = Requisite::all();
+
+        // sort requisites
+        $termUnits = $data['termUnits'];
+        foreach($termUnits as $unit)
+        {
+            foreach($requisites as $requisite)
+            {
+                if($requisite->unitCode == $unit->unitCode)
+                {
+                    // prerequisite
+                    if($requisite->type == 'prerequisite')
+                        $data['requisite'][$unit->unitCode]['prerequisite'] = $requisite->requisite;
+
+                    // corequisite
+                    if($requisite->type == 'corequisite')
+                        $data['requisite'][$unit->unitCode]['corequisite'] = $requisite->requisite;
+
+                    // antirequisite
+                    if($requisite->type == 'antirequisite')
+                        $data['requisite'][$unit->unitCode]['antirequisite'] = $requisite->requisite;
+                }
+            }
+        }
 
         // get semester size
         $data['size'] = Config::find('semesterLength')->value;

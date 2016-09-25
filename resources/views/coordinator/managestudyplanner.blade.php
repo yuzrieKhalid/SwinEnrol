@@ -10,7 +10,7 @@
         <div class="row">
             <!-- Reserve 3 space for navigation column -->
             @include('coordinator.menu')
-            
+
             <div class="col-md-9">
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -84,7 +84,10 @@
                                         <col width="125">
                                         <thead>
                                             <th>Unit Code</th>
-                                            <th colspan="2">Unit Title</th>
+                                            <th>Unit Title</th>
+                                            <th>Pre-requisite</th>
+                                            <th>Co-requisite</th>
+                                            <th colspan="2">Anti-requisite</th>
                                         </thead>
                                         {{-- Fetch data for study planner --}}
                                         @foreach ($termUnits as $unit)
@@ -92,6 +95,9 @@
                                                 <tr>
                                                     <td>{{ $unit->unitCode }}</td>
                                                     <td>{{ $unit->unit->unitName }}</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) {{ $requisite[$unit->unitCode]['prerequisite'] }} @else None @endif</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) {{ $requisite[$unit->unitCode]['corequisite'] }} @else None @endif</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) {{ $requisite[$unit->unitCode]['antirequisite'] }} @else None @endif</td>
                                                     <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                                                 </tr>
                                             @endif
@@ -100,7 +106,6 @@
                                 @endif
                             @endfor
                         @endif
-
                     </div>
                 </div> <!-- end .panel -->
             </div>

@@ -125,13 +125,13 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // ********** Unit Approval Testing **********
             [
                 'studentID' => '4304373',
-                'unitCode' => 'HIT1234',
+                'unitCode' => 'ACC10007',
                 'year' => 2015,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
-                'status' => 'confirmed',
-                'result' => 65.00,
-                'grade' => 'pass',
+                'status' => 'dropped',
+                'result' => 0.00,
+                'grade' => 'fail',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -149,20 +149,32 @@ class EnrolmentUnitsTableSeeder extends Seeder
             ],
             [
                 'studentID' => '4304373',
-                'unitCode' => 'ACC10007',
+                'unitCode' => 'MGT10001',
                 'year' => 2015,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
-                'status' => 'dropped',
-                'result' => 0.00,
-                'grade' => 'fail',
+                'status' => 'confirmed',
+                'result' => 65.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'COMP',
+                'year' => 2015,
+                'term' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 65.00,
+                'grade' => 'pass',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             // success scenario
             [
                 'studentID' => '4304373',
-                'unitCode' => 'MGT10001',
+                'unitCode' => 'GEN0',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -174,7 +186,7 @@ class EnrolmentUnitsTableSeeder extends Seeder
             ],
             [
                 'studentID' => '4304373',
-                'unitCode' => 'UNI2',
+                'unitCode' => 'PRE0',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -186,7 +198,19 @@ class EnrolmentUnitsTableSeeder extends Seeder
             ],
             [
                 'studentID' => '4304373',
-                'unitCode' => 'HIT3158',
+                'unitCode' => 'COR0',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'ANTI0',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -199,7 +223,7 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // already completed
             [
                 'studentID' => '4304373',
-                'unitCode' => 'HIT1234',
+                'unitCode' => 'COMP',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -212,7 +236,7 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // prerequisite
             [
                 'studentID' => '4304373',
-                'unitCode' => 'ACC10008',
+                'unitCode' => 'PRE1',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -225,7 +249,7 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // antirequisite
             [
                 'studentID' => '4304373',
-                'unitCode' => 'HIT1235',
+                'unitCode' => 'ANTI1',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',
@@ -251,7 +275,7 @@ class EnrolmentUnitsTableSeeder extends Seeder
             // corequisite
             [
                 'studentID' => '4304373',
-                'unitCode' => 'COR30',
+                'unitCode' => 'COR1',
                 'year' => 2016,
                 'term' => 'Semester 1',
                 'semesterLength' => 'long',

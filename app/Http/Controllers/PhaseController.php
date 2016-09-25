@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Config;
 use App\EnrolmentUnits;
+use App\Requisite;
+use App\Unit;
 
 class PhaseController extends Controller
 {
@@ -19,12 +21,12 @@ class PhaseController extends Controller
     public function unitApprove()
     {
         // get config setting
-        $data['status'] = $status = true;
-        $data['year'] = $year = Config::find('year')->value;
-        $data['term'] = $term = Config::find('semester')->value;
-        $data['phase'] = $phase = Config::find('enrolmentPhase')->value;
-        $data['failed'] = ''; // for debug
-        $data['success'] = ''; // for debug
+        $status = true;
+        $year = Config::find('year')->value;
+        $term = Config::find('semester')->value;
+        $phase = Config::find('enrolmentPhase')->value;
+        $success = [];
+        $failed = [];
 
         // check if short/long semester
         if($phase == '2')
@@ -57,13 +59,16 @@ class PhaseController extends Controller
             $units = [];
             foreach($pending as $unit)
             {
-                if($unit['unit']->corequisite == "")
+                $requisites = Requisite::where('unitCode', '=', $unit->unitCode)
+                ->where('type', '=', 'corequisite')
+                ->get();
+                if(count($requisites) > 0)
                 {
-                    array_unshift($units, $unit);
+                    $units[] = $unit;
                 }
                 else
                 {
-                    array_push($units, $unit);
+                    array_unshift($units, $unit);
                 }
             }
 
@@ -85,28 +90,43 @@ class PhaseController extends Controller
                 }
 
                 // prerequisite
-                if($unit['unit']->prerequisite != '')
+                $prerequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+                ->where('type', '=', 'prerequisite')
+                ->get();
+                if(count($prerequisites) > 0)
                 {
-                    // check if prerequisite is passed
-                    foreach($completed as $completedUnit)
+                    // check if prerequisites are passed
+                    $count = 0;
+                    foreach($prerequisites as $prerequisite)
                     {
-                        $status = false;
-                        if($completedUnit->unitCode == $unit['unit']->prerequisite && $completedUnit->grade == 'pass')
+                        foreach($completed as $completedUnit)
                         {
-                            $status = true;
-                            break;
+                            if($completedUnit->unitCode == $prerequisite->requisite)
+                            {
+                                $count++;
+                            }
                         }
                     }
+                    if($count != count($prerequisites))
+                        $status = false;
                 }
 
-                // antirequisite
-                $antirequisite = EnrolmentUnits::where('studentID', '=', $student->studentID)
-                ->where('unitCode', '=', $unit['unit']->antirequisite)
-                ->where('grade', '=', 'pass')
+                // get antirequisites
+                $antirequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+                ->where('type', '=', 'antirequisite')
                 ->get();
-                if(count($antirequisite) > 0)
+
+                if(count($antirequisites) > 0)
                 {
-                    $status = false;
+                    // check antirequisites
+                    foreach($antirequisites as $antirequisite)
+                    {
+                        foreach($completed as $completedUnit)
+                        {
+                            if($antirequisite->requisite == $completedUnit->unitCode)
+                                $status = false;
+                        }
+                    }
                 }
 
                 // minimumCompletedUnits
@@ -116,17 +136,31 @@ class PhaseController extends Controller
                 }
 
                 // corequisite
-                if($unit['unit']->corequisite != '')
+                $corequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+                ->where('type', '=', 'corequisite')
+                ->get();
+                if(count($corequisites) > 0)
                 {
-                    $corequisite = EnrolmentUnits::where('studentID', '=', $student->studentID)
-                    ->where('unitCode', '=', $unit['unit']->corequisite)
-                    ->where('status', '=', 'confirmed')
-                    ->get();
-
-                    if(count($corequisite) < 1)
+                    $count = 0;
+                    foreach($corequisites as $corequisite)
                     {
-                        $status = false;
+                        foreach($success as $approved)
+                        {
+                            if($approved == $corequisite->requisite)
+                            {
+                                $count++;
+                            }
+                        }
+                        foreach($completed as $completedUnit)
+                        {
+                            if($completedUnit->unitCode == $corequisite->unitCode)
+                            {
+                                $count++;
+                            }
+                        }
                     }
+                    if($count != count($corequisites))
+                        $status = false;
                 }
 
                 if($status == true)
@@ -138,7 +172,7 @@ class PhaseController extends Controller
                     ->where('semesterLength', '=', $length)
                     ->update(['status' => 'confirmed']);
 
-                    $data['success'] = $data['success'].$unit->unitCode.' '; // for debug
+                    $success[] = $unit->unitCode;
                 }
                 else
                 {
@@ -149,10 +183,18 @@ class PhaseController extends Controller
                     ->where('semesterLength', '=', $length)
                     ->update(['status' => 'dropped']);
 
-                    $data['failed'] = $data['failed'].$unit->unitCode.' '; // for debug
+                    $failed[] = $unit->unitCode;
                 }
             }
         }
+
+        // debug
+        $data['status'] = $status;
+        $data['year'] = $year;
+        $data['term'] = $term;
+        $data['phase'] = $phase;
+        $data['success'] = $success;
+        $data['failed'] = $failed;
 
         // return response()->json($data); // for debug
         return $data;
@@ -248,6 +290,8 @@ class PhaseController extends Controller
         }
 
         $phase->save();
+
+        // debug
         $data['phase'] = $phase->value;
         $data['year'] = $year->value;
         $data['term'] = $semester->value;

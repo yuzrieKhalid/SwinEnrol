@@ -80,6 +80,8 @@
                                         <th>Unit Code</th>
                                         <th>Unit Title</th>
                                         <th>Pre-requisite</th>
+                                        <th>Co-requisite</th>
+                                        <th>Anti-requisite</th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
                                     @foreach ($termUnits as $unit)
@@ -87,7 +89,9 @@
                                             <tr>
                                                 <td>{{ $unit->unitCode }}</td>
                                                 <td>{{ $unit->unit->unitName }}</td>
-                                                <td>{{ $unit['unit']->prerequisite }}</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) {{ $requisite[$unit->unitCode]['prerequisite'] }} @else None @endif</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) {{ $requisite[$unit->unitCode]['corequisite'] }} @else None @endif</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) {{ $requisite[$unit->unitCode]['antirequisite'] }} @else None @endif</td>
                                             </tr>
                                         @endif
                                     @endforeach

@@ -66,8 +66,8 @@
                                             <div class="modal-body">
                                                 <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                 <div class="form-group">
-                                                    <label class="control-label" for="reasonD">Reason: </label>
-                                                    <textarea class="form-control custom-control" id="reasonD" rows="3" style="resize:none"></textarea>
+                                                    <label class="control-label">Reason: </label>
+                                                    <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                 </div>
                                                 <p>IMPORTANT INFORMATION</p>
                                                 <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -77,7 +77,8 @@
                                             </div>
 
                                             <div class="panel-footer">
-                                                <button type="submit" class="submit btn btn-danger" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                                <button type="button" class="adjustment_submit btn btn-danger" id="{{ $unit->unitCode }}" data-method="PUT" data-status="pending_drop"
+                                                    data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                                     Submit
                                                 </button>
                                             </div>
@@ -192,8 +193,8 @@
                                                     <div class="modal-body">
                                                         <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="reasonD">Reason: </label>
-                                                            <textarea class="form-control custom-control reason-for-add" rows="3" style="resize:none"></textarea>
+                                                            <label class="control-label">Reason: </label>
+                                                            <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                         </div>
                                                         <p>IMPORTANT INFORMATION</p>
                                                         <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -203,8 +204,8 @@
                                                     </div>
 
                                                     <div class="panel-footer">
-                                                        <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-success" data-method="POST"
-                                                            data-url="{{ route('student.manageunits.store') }}" data-length="long" data-phase="{{ $phase->value }}">
+                                                        <button type="button" id="{{ $unit->unitCode }}" class="adjustment_submit btn btn-success" data-method="PUT"
+                                                            data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="long" data-status="pending_add">
                                                             Submit
                                                         </button>
                                                     </div>
@@ -228,9 +229,15 @@
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
                                         <td>
+                                            @if($phase->value == 3)
+                                            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-add">
+                                                <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
+                                            </button>
+                                            @else
                                             <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
                                                 <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                             </button>
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -245,8 +252,8 @@
                                                     <div class="modal-body">
                                                         <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="reasonD">Reason: </label>
-                                                            <textarea class="form-control custom-control reason-for-add" rows="3" style="resize:none"></textarea>
+                                                            <label class="control-label">Reason: </label>
+                                                            <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                         </div>
                                                         <p>IMPORTANT INFORMATION</p>
                                                         <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -256,8 +263,8 @@
                                                     </div>
 
                                                     <div class="panel-footer">
-                                                        <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-success" data-method="POST"
-                                                            data-url="{{ route('student.manageunits.store') }}" data-length="long" data-phase="{{ $phase->value }}">
+                                                        <button type="button" id="{{ $unit->unitCode }}" class="adjustment_submit btn btn-success" data-method="PUT"
+                                                            data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="short" data-status="pending_add">
                                                             Submit
                                                         </button>
                                                     </div>
@@ -285,7 +292,7 @@
         return $('meta[name=_token]').attr('content')
     }
 
-    // when clicking the '+' button
+    // when clicking the '+' or 'x' button on phase 1
     $('.submit').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
@@ -302,6 +309,36 @@
         }).done(function(data) {
             // for all methods POST and DELETE included
             window.location.reload()
+        })
+    })
+
+    // when clicking the 'Submit' button on phase 3 or phase 6
+    $('.adjustment_submit').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        let pendingstatus = $(this).data('status')
+        let adjustmentreason = $(this).parent().parent().find('.modal-body').find('.form-group').find('.reason').val()
+
+        console.log(adjustmentreason)
+
+        if (adjustmentreason == 'undefined' || adjustmentreason == '') {
+            adjustmentreason = 'No reason was given'
+        }
+
+        data = {
+            _token: getToken(),
+            unitCode: $(this).attr('id'),
+            enrolmentTerm: $(this).data('length'),
+            reason: adjustmentreason,
+            status: pendingstatus
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            // window.location.reload()
         })
     })
 }) ()

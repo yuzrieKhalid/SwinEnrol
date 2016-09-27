@@ -20,8 +20,10 @@ class CreateRequisiteTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('unitCode')->references('unitCode')->on('unit');
-            $table->foreign('requisite')->references('unitCode')->on('unit');
+            $table->foreign('unitCode')->references('unitCode')->on('unit')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('requisite')->references('unitCode')->on('unit')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

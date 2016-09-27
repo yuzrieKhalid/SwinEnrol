@@ -24,7 +24,8 @@ class CreateStudentTable extends Migration
             $table->timestamps();
 
             $table->primary('studentID');
-            $table->foreign('courseCode')->references('courseCode')->on('course');
+            $table->foreign('courseCode')->references('courseCode')->on('course')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

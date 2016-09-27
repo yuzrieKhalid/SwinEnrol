@@ -19,6 +19,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" name="cForm" role="form" action="{{ url('/student/contactcoordinator') }}" onsubmit="return validateForm()" method="POST">
 
+                        {{--
                         <hr>
                         <div class="studentPersonalDetails">
                             <h4>PERSONAL DETAILS</h4>
@@ -84,6 +85,7 @@
                                     </div>
                                 </div>
                         </div>
+                        --}}
                         <hr>
 
                         <div class="studentIssue">
@@ -106,6 +108,7 @@
                                         <option value="course_transfer">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="leave_of_absence">Application for Leave of Absence</option>
+                                        <option value="preclusion">Application for Unit Preclusion</option>
                                     </select>
                                 </div>
                             </div>
@@ -242,6 +245,58 @@
                                     </div>
                                 </div>
                                 @endforeach
+
+                                <div class="form-group">
+                                    <!-- Dual Qualification? -->
+                                    <label class="control-label col-sm-5">Are you an international student holding a student visa?<span class="help-block">Leave the box empty if "No"</span></label>
+                                    <label class="radio-inline"><input type="checkbox" name="isForeigner" id="isForeigner" checked> YES</label>
+                                </div>
+
+                                <div class="hidden isInternational">
+                                    <label class="control-label">International Student Officer Name</label>
+                                    <input class="form-control iso_name" type="text" value="">
+                                    <hr>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered applicationTable">
+                                        <tr>
+                                            <th>Teaching Period</th>
+                                            <th>Year</th>
+                                        </tr>
+                                        <tr class="tr_template">
+                                            <td><input class="form-control teachingPeriod" type="text" value=""></td>
+                                            <td><input class="form-control year" type="text" value="2016"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <!-- Reason for Withdrawal -->
+                                <label class="control-label">Reasons for Leave Of Absence:</label>
+                                <textarea class="form-control reasonForLOA" rows="3"></textarea>
+
+                                <!-- Conditions -->
+                                <h4>Conditions</h4>
+                                <p>
+                                    1. For domestic students the last date to lodge an application for leave of absence without a Financial Penalty is by close of business on the Unit of Study Census Date
+                                    OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment /
+                                    Invoice).
+                                </p>
+                                <p>
+                                    2. Refunds are subject to the return of your University ID card, fee receipt, and any other University property or materials you may have in your possession.
+                                </p>
+                                <p>
+                                    3. No refund of fees will be made when a student withdraws from a unit of study after close business of the Unit of Study Census Date.
+                                </p>
+                                <p>
+                                    4. Before applying for leave of absence students are advised to read the 'Deferral and Leave of Absence' policies and regulations on
+                                    Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
+                                </p>
+                            </div>
+
+                            <!-- Case: Preclusion -->
+                            <div class="hidden" id="preclusion">
+                                <h3>APPLICATION FOR UNIT PRECLUSION</h3>
 
                                 <div class="form-group">
                                     <!-- Dual Qualification? -->

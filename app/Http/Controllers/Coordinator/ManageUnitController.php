@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Unit;
 use App\Course;
+use App\Requisite;
 
 class ManageUnitController extends Controller
 {
@@ -66,12 +67,10 @@ class ManageUnitController extends Controller
             'unitInfo'
         ]);
 
+        // create and store unit
         $unit = new Unit;
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->prerequisite = $input['prerequisite'];
-        $unit->antirequisite = $input['antirequisite'];
-        $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
         $unit->maxStudentCount = (int) $input['maxStudentCount'];
         $unit->lectureGroupCount = $input['lectureGroupCount'];
@@ -80,6 +79,48 @@ class ManageUnitController extends Controller
         $unit->tutorialDuration = $input['tutorialDuration'];
         $unit->unitInfo = $input['unitInfo'];
         $unit->save();
+
+        // create and store prerequisites
+        if(count($input['prerequisite']) > 0)
+        {
+            foreach($input['prerequisite'] as $prerequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $prerequisite;
+                $requisite->type = 'prerequisite';
+                $requisite->conjunction = 'AND';
+                $requisite->save();
+            }
+        }
+
+        // create and store corequisites
+        if(count($input['corequisite']) > 0)
+        {
+            foreach($input['corequisite'] as $corequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $corequisite;
+                $requisite->type = 'corequisite';
+                $requisite->conjunction = 'OR';
+                $requisite->save();
+            }
+        }
+
+        // create and store antirequisites
+        if(count($input['antirequisite']) > 0)
+        {
+            foreach($input['antirequisite'] as $antirequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $antirequisite;
+                $requisite->type = 'antirequisite';
+                $requisite->conjunction = 'OR';
+                $requisite->save();
+            }
+        }
 
         return response()->json($unit);
     }
@@ -107,17 +148,22 @@ class ManageUnitController extends Controller
         $unit = Unit::findOrFail($id);
         $units = Unit::all();
 
-        // used first() instead of get() because it is guaranteed to only come up with only one unique unit
-        $prerequisite = Unit::where('unitCode', '=', $unit->prerequisite)->first();
-        $corequisite = Unit::where('unitCode', '=', $unit->corequisite)->first();
-        $antirequisite = Unit::where('unitCode', '=', $unit->antirequisite)->first();
-
         $data['unit'] = $unit;
         $data['units'] = $units;
 
-        $data['prerequisite'] = $prerequisite;
-        $data['corequisite'] = $corequisite;
-        $data['antirequisite'] = $antirequisite;
+        // get requisites
+        $requisites = Requisite::where('unitCode', '=', $unit->unitCode)->get();
+
+        // sort requisites
+        foreach($requisites as $requisite)
+        {
+            if($requisite->type == 'prerequisite')
+                $data['prerequisites'][] = $requisite;
+            if($requisite->type == 'corequisite')
+                $data['corequisites'][] = $requisite;
+            if($requisite->type == 'antirequisite')
+                $data['antirequisites'][] = $requisite;
+        }
 
         // extract data from unit information JSON
         $unitInfo = json_decode($unit->unitInfo);
@@ -128,7 +174,7 @@ class ManageUnitController extends Controller
         $tutors_count = $unitInfo[2]->tutors_count;
 
         $data['convenor'] = $convenor;
-        $data['maxStudents'] = $unit->maxStudents;
+        $data['maxStudents'] = $unit->maxStudentCount;
         $data['lectureDuration'] = $unit->lectureDuration;
         $data['lectureGroupCount'] = $unit->lectureGroupCount;
         $data['lecturers'] = $lecturers;
@@ -169,9 +215,6 @@ class ManageUnitController extends Controller
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->prerequisite = $input['prerequisite'];
-        $unit->antirequisite = $input['antirequisite'];
-        $unit->corequisite = $input['corequisite'];
         $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
         $unit->maxStudentCount = (int) $input['maxStudentCount'];
         $unit->lectureGroupCount = $input['lectureGroupCount'];
@@ -180,6 +223,51 @@ class ManageUnitController extends Controller
         $unit->tutorialDuration = $input['tutorialDuration'];
         $unit->unitInfo = $input['unitInfo'];
         $unit->save();
+
+        // drop old requisites
+        Requisite::where('unitCode', '=', $id)->delete();
+
+        // create and store prerequisites
+        if(count($input['prerequisite']) > 0)
+        {
+            foreach($input['prerequisite'] as $prerequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $prerequisite;
+                $requisite->type = 'prerequisite';
+                $requisite->conjunction = 'AND';
+                $requisite->save();
+            }
+        }
+
+        // create and store corequisites
+        if(count($input['corequisite']) > 0)
+        {
+            foreach($input['corequisite'] as $corequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $corequisite;
+                $requisite->type = 'corequisite';
+                $requisite->conjunction = 'OR';
+                $requisite->save();
+            }
+        }
+
+        // create and store antirequisites
+        if(count($input['antirequisite']) > 0)
+        {
+            foreach($input['antirequisite'] as $antirequisite)
+            {
+                $requisite = new Requisite;
+                $requisite->unitCode = $input['unitCode'];
+                $requisite->requisite = $antirequisite;
+                $requisite->type = 'antirequisite';
+                $requisite->conjunction = 'OR';
+                $requisite->save();
+            }
+        }
 
         return response()->json($unit);
     }

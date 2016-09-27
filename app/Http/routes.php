@@ -29,19 +29,24 @@ Route::group([
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.approve',
-        'uses' => 'Admin\ResolveIssueController@update'
-    ]);
-    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.approve',
-        'uses' => 'Admin\ResolveIssueController@update'
-    ]);
-    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.disapprove',
-        'uses' => 'Admin\ResolveIssueController@destroy'
-    ]);
-    Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
-    Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@create');
+         'as' => 'admin.resolveissue.approve',
+         'uses' => 'Admin\ResolveIssueController@update'
+       ]);
+     Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+         'as' => 'admin.resolveissue.approve',
+         'uses' => 'Admin\ResolveIssueController@update'
+       ]);
+     Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+         'as' => 'admin.resolveissue.disapprove',
+         'uses' => 'Admin\ResolveIssueController@destroy'
+       ]);
+     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    //  Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
+    //  Route::get('enrolmentstatus/index2', [
+    //      'as' => 'admin.enrolmentstatus.create',
+    //      'uses' => 'Admin\EnrolmentStatusStudent@create'
+    //    ]);
+    Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');
@@ -50,40 +55,12 @@ Route::group([
     'prefix' => 'coordinator',
     'middleware' => 'web',
 ], function() {
-    Route::get('/url', [
-        'as' => 'coordinator.home.index',
-        'uses' => 'Coordinator\HomeController@data'
-    ]);
     Route::get('/', 'Coordinator\HomeController@index');
     Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
-
-    // Route::get('resolveenrolmentissues/{studentID}/{issueID}', 'Coordinator\ResolveIssueController@update');
-    Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'coordinator.resolveenrolmentissues.approve',
-        'uses' => 'Coordinator\ResolveIssueController@update'
-    ]);
-    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'coordinator.resolveenrolmentissues.approve',
-        'uses' => 'Coordinator\ResolveIssueController@update'
-    ]);
-    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'coordinator.resolveenrolmentissues.disapprove',
-        'uses' => 'Coordinator\ResolveIssueController@destroy'
-    ]);
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
-
-    Route::put('enrolmentamendment/{studentID}/unit/{unitCode}', [
-        'as' => 'coordinator.enrolmentamendment.approve',
-        'uses' => 'Coordinator\EnrolmentAmendmentController@update'
-    ]);
-    Route::delete('enrolmentamendment/{studentID}/unit/{unitCode}', [
-        'as' => 'coordinator.enrolmentamendment.disapprove',
-        'uses' => 'Coordinator\EnrolmentAmendmentController@destroy'
-    ]);
-    Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
 });
 
 // Student
@@ -99,7 +76,6 @@ Route::group([
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
     Route::resource('manageunits', 'Student\ManageUnitController');
-    Route::post('articulate', ['as' => 'student.articulate', 'uses' => 'Student\ManageUnitController@articulate']);
 });
 
 Route::group([

@@ -80,6 +80,12 @@
                                         <th>Unit Code</th>
                                         <th>Unit Title</th>
                                         <th>Pre-requisite</th>
+                                        <th>
+                                          Co-requisite
+                                        </th>
+                                        <th>
+                                          Anti-Requisite
+                                        </th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
                                     @foreach ($termUnits as $unit)
@@ -88,6 +94,8 @@
                                                 <td>{{ $unit->unitCode }}</td>
                                                 <td>{{ $unit->unit->unitName }}</td>
                                                 <td>{{ $unit['unit']->prerequisite }}</td>
+                                                <td>{{ $unit['unit']->corequisite }}</td>
+                                                <td>{{ $unit['unit']->antirequisite }}</td>
                                             </tr>
                                         @endif
                                     @endforeach

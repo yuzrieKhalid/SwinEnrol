@@ -14,6 +14,7 @@ class UnitTermTableSeeder extends Seeder
     {
         // *************** Study Planner ***************
         DB::table('unit_term')->insert([
+
             // Year 1 Sem 1
             [
                 'unitType' => 'study_planner',
@@ -231,19 +232,32 @@ class UnitTermTableSeeder extends Seeder
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],
-            [
-                'unitType' => 'unit_listing',
-                'unitCode' => 'HIT1312',
-                'year' => 2016,
-                'term' => 'Semester 1',
-                'enrolmentTerm' => 'long',
-                'courseCode' => 'I047',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitType' => 'unit_listing',
+              ],
+
+            // *************** Unit Listing ***************
+      [
+				'unitType' => 'unit_listing',
+				'unitCode' => 'HIT3315',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => 'long',
+
+        'courseCode' => 'I047',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+        ],
+        [
+        'unitType' => 'unit_listing',
+        'unitCode' => 'HIT1312',
+        'year' => 2016,
+        'term' => 'Semester 1',
+        'enrolmentTerm' => 'long',
+        'courseCode' => 'I047',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+        ],
+        [
+        'unitType' => 'unit_listing',
                 'unitCode' => 'HIT2080',
                 'year' => 2016,
                 'term' => 'Semester 1',

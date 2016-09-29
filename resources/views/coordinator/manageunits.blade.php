@@ -80,50 +80,112 @@
                                         <label class="control-label">Unit Code:</label>
                                         <input type="text" class="form-control" id="unitCode">
                                     </div>
+                                </div>
 
-                                    <div class="form-group"> <!-- unitName -->
-                                        <label class="control-label">Unit Name:</label>
-                                        <input type="text" class="form-control" id="unitName">
-                                    </div>
-
+                                <div class="col-md-6">
                                     <div class="form-group"> <!-- minimumCompletedUnits -->
                                         <label class="control-label">Minimum Completed Units:</label>
                                         <input class="numbers" type="text" value="0" id="minimumCompletedUnits">
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="prerequisite">Prerequisite</label>
-                                        <select class="form-control" name="prerequisite">
-                                            <option value="None">None</option>
-                                            @foreach($units as $unit)
-                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="corequisite">Corequisite</label>
-                                        <select class="form-control" name="corequisite">
-                                            <option value="None">None</option>
-                                            @foreach($units as $unit)
-                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="antirequisite">Antirequisite</label>
-                                        <select class="form-control" name="antirequisite">
-                                            <option value="None">None</option>
-                                            @foreach($units as $unit)
-                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
-                                            @endforeach
-                                        </select>
+                                <div class="col-md-12">
+                                    <div class="form-group"> <!-- unitName -->
+                                        <label class="control-label">Unit Name:</label>
+                                        <input type="text" class="form-control" id="unitName">
                                     </div>
                                 </div>
                             </div> <!-- end .row -->
+                            <hr>
+
+                            <!-- Prerequisite -->
+                            <div class="row form-group">
+                                <div class="col-md-11">
+                                    <label>Prerequisite</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <button id="addPrerequisite" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </div>
+                            <div class="prerequisites">
+                                <div class="row hidden prerequisite_template">
+                                    <div class="col-md-11">
+                                        <div class="form-group prerequisite">
+                                            <select class="form-control" name="prerequisite[]">
+                                                <option value="None">Select one</option>
+                                                @foreach($units as $unit)
+                                                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Corequisite -->
+                            <div class="row form-group">
+                                <div class="col-md-11">
+                                    <label>Corequisite</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <button id="addCorequisite" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </div>
+                            <div class="corequisites">
+                                <div class="row hidden corequisite_template">
+                                    <div class="col-md-11">
+                                        <div class="form-group corequisite">
+                                            <select class="form-control" name="corequisite[]">
+                                                <option value="None">Select one</option>
+                                                @foreach($units as $unit)
+                                                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Antirequisite -->
+                            <div class="row form-group">
+                                <div class="col-md-11">
+                                    <label>Antirequisite</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <button id="addAntirequisite" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </div>
+                            <div class="antirequisites">
+                                <div class="row hidden antirequisite_template">
+                                    <div class="col-md-11">
+                                        <div class="form-group antirequisite">
+                                            <select class="form-control" name="antirequisite[]">
+                                                <option value="None">Select one</option>
+                                                @foreach($units as $unit)
+                                                <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
 
                             <div class="row">
@@ -260,6 +322,95 @@
         return unitInfo
     }
 
+    // get prerequisite information
+    let getPrerequisite = function() {
+        // get the number of requisites
+        let requisite_count = $('.prerequisite').length - 1
+
+        // get the values in each selection
+        let requisite_inputs = $('select[name^=prerequisite]').map(function(id, element) { return $(element).val() }).get()
+
+        // get the array without the first hidden element
+        let requisite = []
+        for (let i = 0; i < requisite_count; i++) { requisite[i] = requisite_inputs[i+1] }
+
+        // create json string and return
+        return requisite
+    }
+
+    // get corequisite information
+    let getCorequisite = function() {
+        // get the number of requisites
+        let requisite_count = $('.corequisite').length - 1
+
+        // get the values in each selection
+        let requisite_inputs = $('select[name^=corequisite]').map(function(id, element)  { return $(element).val() }).get()
+
+        // get the array without the first hidden element
+        let requisite = []
+        for (let i = 0; i < requisite_count; i++) { requisite[i] = requisite_inputs[i+1] }
+
+        // create json string and return
+        return requisite
+    }
+
+    // get antirequisite information
+    let getAntirequisite = function() {
+        // get the number of requisites
+        let requisite_count = $('.antirequisite').length - 1
+
+        // get the values in each selection
+        let requisite_inputs = $('select[name^=antirequisite]').map(function(id, element)  { return $(element).val() }).get()
+
+        // get the array without the first hidden element
+        let requisite = []
+        for (let i = 0; i < requisite_count; i++) { requisite[i] = requisite_inputs[i+1] }
+
+        // create json string and return
+        return requisite
+    }
+
+    // add prerequisite
+    $('#addPrerequisite').click(function() {
+        let newRequisiteTextbox = $('.prerequisites').find('.prerequisite_template').clone()
+        newRequisiteTextbox.removeClass('prerequisite_template')
+        newRequisiteTextbox.removeClass('hidden')
+        newRequisiteTextbox.addClass('input_prerequisite')
+
+        $('.prerequisites').append(newRequisiteTextbox)
+    })
+
+    // add corequisite
+    $('#addCorequisite').click(function() {
+        let newRequisiteTextbox = $('.corequisites').find('.corequisite_template').clone()
+        newRequisiteTextbox.removeClass('corequisite_template')
+        newRequisiteTextbox.removeClass('hidden')
+        newRequisiteTextbox.addClass('input_corequisite')
+
+        $('.corequisites').append(newRequisiteTextbox)
+    })
+
+    // add antirequisite
+    $('#addAntirequisite').click(function() {
+        let newRequisiteTextbox = $('.antirequisites').find('.antirequisite_template').clone()
+        newRequisiteTextbox.removeClass('antirequisite_template')
+        newRequisiteTextbox.removeClass('hidden')
+        newRequisiteTextbox.addClass('input_antirequisite')
+
+        $('.antirequisites').append(newRequisiteTextbox)
+    })
+
+    // remove requisite selection when pressing the x button
+    $('.prerequisites').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+    $('.corequisites').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+    $('.antirequisites').on('click', '.remove_input', function() {
+        $(this).parent().parent().parent().remove()
+    })
+
     // cleanly remove all three parents when pressing the x button
     //        <button>   <span>   <div>
     $('.col_lecture').on('click', '.remove_input', function() {
@@ -361,11 +512,11 @@
             _token: getToken(),
             unitCode: $('#unitCode').val(),
             unitName: $('#unitName').val(),
-            prerequisite: $('select[name=prerequisite]').val(),
-            corequisite: $('select[name=corequisite]').val(),
-            antirequisite: $('select[name=antirequisite]').val(),
+            prerequisite: getPrerequisite(),
+            corequisite: getCorequisite(),
+            antirequisite: getAntirequisite(),
             minimumCompletedUnits: $('#minimumCompletedUnits').val(),
-            maxStudents: $('#maxStudents').val(),
+            maxStudentCount: $('#maxStudents').val(),
             lectureDuration: $('#lectureDuration').val(),
             lectureGroupCount: $('#lectureGroups').val(),
             tutorialDuration: $('#tutorialDuration').val(),
@@ -373,14 +524,57 @@
             unitInfo: getUnitInformation()
         }
 
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data
-        }).done(function(data) {
-            addUnit(data)
-            window.location.reload()
+        let inputCheck = '';
+        let prerequisite = []
+        let corequisite = []
+        let antirequisite = []
+
+        // check unit code
+        if(data['unitCode'] == '')
+            inputCheck += 'Please enter a Unit Code.';
+
+        // check if requisites are set
+        data['prerequisite'].forEach(function(unit){
+            if(prerequisite.indexOf(unit) >= 0)
+                inputCheck += '\nPrerequisite has a duplicate unit. (' + unit + ')';
+
+            prerequisite.push(unit)
+
+            if(unit == 'None')
+                inputCheck += '\nPrerequisite has unselected units.';
         })
+        data['corequisite'].forEach(function(unit){
+            if(corequisite.indexOf(unit) >= 0)
+                inputCheck += '\nCorequisite has a duplicate unit. (' + unit + ')';
+
+            corequisite.push(unit)
+
+            if(unit == 'None')
+                inputCheck += '\nCorequisite has unselected units.';
+        })
+        data['antirequisite'].forEach(function(unit){
+            if(antirequisite.indexOf(unit) >= 0)
+                inputCheck += '\nAntirequisite has a duplicate unit. (' + unit + ')';
+
+            antirequisite.push(unit)
+
+            if(unit == 'None')
+                inputCheck += '\nAntirequisite has unselected units.';
+        })
+
+        if(method == 'POST' && inputCheck != '')
+            alert(inputCheck)
+        else
+        {
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data
+            }).done(function(data) {
+                addUnit(data)
+                window.location.reload()
+            })
+        }
     })
     // data.forEach is not a function
     getUnits()

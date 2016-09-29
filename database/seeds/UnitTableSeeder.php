@@ -285,7 +285,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -298,7 +298,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -311,7 +311,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -324,7 +324,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -337,7 +337,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -350,7 +350,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -363,7 +363,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -376,7 +376,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -389,7 +389,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -402,7 +402,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -415,7 +415,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -428,7 +428,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -441,7 +441,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -454,7 +454,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -467,7 +467,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -480,7 +480,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -493,7 +493,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -506,7 +506,7 @@ class UnitTableSeeder extends Seeder
                 'lectureDuration' => '2h',
                 'tutorialGroupCount' => 10,
                 'tutorialDuration' => '2h',
-                'unitInfo' => '',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

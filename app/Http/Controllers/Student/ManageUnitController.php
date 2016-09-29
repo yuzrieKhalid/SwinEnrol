@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use App\Config;
 use App\Course;
 use App\UnitTerm;
+use App\StudentEnrolmentIssues;
 
 // student's unit operation is different. it should only add units to student's info
 
@@ -162,7 +163,11 @@ class ManageUnitController extends Controller
             }
         }
 
+        $amendments = StudentEnrolmentIssues::where('studentID', '=', $user->username)
+                                            ->where('issueID', '=', 4)->get();
+
         return view ('student.manageunits', $data);
+        // return response()->json($amendments);
     }
 
     /**
@@ -263,7 +268,7 @@ class ManageUnitController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * adjustment_submit button onclick goes here
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -271,7 +276,22 @@ class ManageUnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->only([
+            'unitCode',
+            'enrolmentTerm',
+            'reason',
+            'status'
+        ]);
+
+        // for both case, create an amendment issue
+        $issue = new StudentEnrolmentIssues;
+        $issue->studentID = Auth::user()->username;
+        $issue->issueID = 4; // amendment issue
+        $issue->status = $input['status'];
+        $issue->submissionData = $input['reason'];  // borrow this field as the reason
+        $issue->attachmentData = $input['unitCode'];// borrow this field as the unitCode
+        $issue->save();
+
     }
 
     /**

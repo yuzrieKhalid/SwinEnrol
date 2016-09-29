@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 
 use App\StudentEnrolmentIssues;
 use App\EnrolmentUnits;
+use App\Requisite;
 use App\Unit;
+use App\Config;
 
 class EnrolmentAmendmentController extends Controller
 {
@@ -20,8 +22,7 @@ class EnrolmentAmendmentController extends Controller
      */
     public function index()
     {
-        $amendment = EnrolmentUnits::with('unit', 'student')
-                        ->where('status', '=', 'pending')->get();
+        $amendment = StudentEnrolmentIssues::where('issueID', '=', 4)->get();
 
         return response()->json($amendment);
     }
@@ -35,12 +36,20 @@ class EnrolmentAmendmentController extends Controller
     {
         $data = [];
 
-        $amendment = EnrolmentUnits::with('unit', 'student')
-                        ->where('status', '=', 'pending')->get();
+        $amendments = StudentEnrolmentIssues::with('student')
+                    ->where('issueID', '=', 4)
+                    ->where('status', '=', 'pending_add')
+                    ->orwhere('status', '=', 'pending_drop')
+                    ->get();
+        $units = Unit::all();
+        $requisites = Requisite::all();
 
-        $data['amendment'] = $amendment;
+        $data['amendments'] = $amendments;
+        $data['units'] = $units;
+        $data['requisites'] = $requisites;
 
         return view ('coordinator.enrolmentamendment', $data);
+        // return response()->json($requisites)
     }
 
     /**
@@ -77,7 +86,7 @@ class EnrolmentAmendmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * When Approve button is clicked for pending_add and pending_drop
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $studentID
@@ -86,10 +95,44 @@ class EnrolmentAmendmentController extends Controller
      */
     public function update(Request $request, $studentID, $unitCode)
     {
-        $new_enrolment = EnrolmentUnits::where('studentID', '=', $studentID)
-                            ->where('unitCode', '=', $unitCode)
-                            ->update(['status' => 'confirmed']);
-        return response()->json($new_enrolment);
+        $input = $request->only([
+            'status'
+        ]);
+
+        // approve the request
+        if ($input['status'] == 'pending_add') {
+            $amendmentissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                            ->where('issueID', '=', 4)
+                            ->where('attachmentData', '=', $unitCode)
+                            ->update(['status' => 'approved']);
+
+            $enrolmentunit = new EnrolmentUnits;
+            $enrolmentunit->studentID = $studentID;
+            $enrolmentunit->unitCode = $unitCode;
+            $enrolmentunit->year = Config::find('year')->value;
+            $enrolmentunit->term  = Config::find('semester')->value;
+            $enrolmentunit->status = 'confirmed';
+            $enrolmentunit->grade   = 'ungraded';
+            $enrolmentunit->save();
+
+            return response()->json($enrolmentunit);
+
+        } else {
+
+            $amendmentissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                            ->where('issueID', '=', 4)
+                            ->where('attachmentData', '=', $unitCode)
+                            ->update(['status' => 'approved']);
+
+            $enrolmentunit = EnrolmentUnits::where('studentID', '=', $studentID)
+                                            ->where('unitCode', '=', $unitCode)
+                                            ->update(['status' => 'dropped']);
+
+            return response()->json($enrolmentunit);
+        }
+
+        // TODO: notify the students
+        // ...
     }
 
     /**
@@ -100,10 +143,15 @@ class EnrolmentAmendmentController extends Controller
      */
     public function destroy($studentID, $unitCode)
     {
-        $new_enrolment = EnrolmentUnits::where('studentID', '=', $studentID)
-                            ->where('unitCode', '=', $unitCode)
-                            ->update(['status' => 'dropped']);
+        // disapprove the request
+        $amendmentissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                        ->where('issueID', '=', 4)
+                        ->where('attachmentData', '=', $unitCode)
+                        ->update(['status' => 'disapproved']);
 
-        return response()->json($new_enrolment);
+        // TODO: notify the students
+        // ...
+
+        return response()->json($amendmentissue);
     }
 }

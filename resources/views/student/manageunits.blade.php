@@ -316,11 +316,9 @@
     $('.adjustment_submit').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
+
         let pendingstatus = $(this).data('status')
         let adjustmentreason = $(this).parent().parent().find('.modal-body').find('.form-group').find('.reason').val()
-
-        console.log(adjustmentreason)
-
         if (adjustmentreason == 'undefined' || adjustmentreason == '') {
             adjustmentreason = 'No reason was given'
         }
@@ -338,7 +336,7 @@
             'method': method,
             'data': data
         }).done(function(data) {
-            // window.location.reload()
+            window.location.reload()
         })
     })
 }) ()

@@ -29,9 +29,9 @@
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
-                            <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) {{ $requisite[$unit->unitCode]['prerequisite'] }} @else None @endif</td>
-                            <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) {{ $requisite[$unit->unitCode]['corequisite'] }} @else None @endif</td>
-                            <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) {{ $requisite[$unit->unitCode]['antirequisite'] }} @else None @endif</td>
+                            <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) @if(count($requisite[$unit->unitCode]['prerequisite']) > 0) {{ $requisite[$unit->unitCode]['prerequisite'][0] }} @if(count($requisite[$unit->unitCode]['prerequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                            <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) @if(count($requisite[$unit->unitCode]['corequisite']) > 0) {{ $requisite[$unit->unitCode]['corequisite'][0] }} @if(count($requisite[$unit->unitCode]['corequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['corequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['corequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                            <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) @if(count($requisite[$unit->unitCode]['antirequisite']) > 0) {{ $requisite[$unit->unitCode]['antirequisite'][0] }} @if(count($requisite[$unit->unitCode]['antirequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['antirequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['antirequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
                         </tr>
                         @endforeach
                     </table>

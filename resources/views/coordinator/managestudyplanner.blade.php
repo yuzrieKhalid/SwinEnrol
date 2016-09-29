@@ -200,8 +200,6 @@
             window.location.reload()
         })
     })
-    // data.forEach is not a function
-    // getUnits()
 })()
 </script>
 @stop

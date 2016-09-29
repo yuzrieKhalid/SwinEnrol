@@ -142,7 +142,7 @@
             'method': method,
             'data': data
         }).done(function() {
-            // window.location.reload()
+            window.location.reload()
         })
     }) // approve
 

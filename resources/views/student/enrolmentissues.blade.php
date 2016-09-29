@@ -496,8 +496,9 @@ $('.datepicker').datepicker({
             'data': data,
             enctype: 'multipart/form-data'
         }).done(function(data) {
+            window.location.reload()
             // console.log(issueID);
-            console.log("SubmissionData: " + submissionData);
+            // console.log("SubmissionData: " + submissionData);
             // console.log("AttachmentData: " + attachmentData);
         })
     })

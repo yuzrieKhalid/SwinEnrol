@@ -23,21 +23,22 @@ class CourseTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'courseCode' => 'E456',
-                'courseName' => 'Engineering',
+                'courseCode' => 'BA-BUSFIN3',
+                'courseName' => 'Bachelor of Business (Finance)',
                 'graduationRequirements' => 'None',
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'courseCode' => 'B123',
-                'courseName' => 'Business',
+                'courseCode' => 'SK401',
+                'courseName' => 'Bachelor of Engineering (Chemical) (Honours)',
                 'graduationRequirements' => 'None',
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            // etc
             [
                 'courseCode' => 'FICT',
                 'courseName' => 'Foundation (ICT)',

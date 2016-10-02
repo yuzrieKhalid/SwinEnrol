@@ -15,6 +15,7 @@ use App\Student;
 use App\Course;
 use App\Units;
 use App\EnrolmentUnits;
+use App\Config;
 
 class ResolveIssueController extends Controller
 {
@@ -68,7 +69,21 @@ class ResolveIssueController extends Controller
      */
     public function show($id)
     {
-        //
+        $history = EnrolmentUnits::with('unit')
+            ->where('studentID', '=', $id)
+            ->where('status', '=', 'confirmed')->get();
+            // ^ maybe check grade instead of status
+        $data['history'] = $history;
+
+        $current = EnrolmentUnits::with('unit')
+            ->where([
+                ['studentID', '=', $id],
+                ['year', '=', Config::find('year')->value],
+                ['term', '=', Config::find('semester')->value],
+            ])->get();
+        $data['current'] = $current;
+
+        return response()->json($data);
     }
 
     /**
@@ -112,7 +127,7 @@ class ResolveIssueController extends Controller
                                                 ->where('status', '=', 'pending')
                                                 ->update(['status' => 'approved']);
 
-        } else {
+        } else if ($issueID == '2') {
 
             $input = $request->only([
                 'exemptionUnitCode',
@@ -135,6 +150,35 @@ class ResolveIssueController extends Controller
                                                 ->where('status', '=', 'pending')
                                                 ->update(['status' => 'approved']);
 
+        } else if ($issueID == '5') {
+
+            $input = $request->only([
+                'preclusionUnit',
+                'prerequisiteUnit'
+            ]);
+
+            // update student enrolment units for the selected preclusion and its prerequisite
+            $preclusionUnit = EnrolmentUnits::where('studentID', $studentID)
+                                            ->where('unitCode', '=', $input['preclusionUnit'])
+                                            ->update([
+                                                'year' => Config::find('year')->value,
+                                                'term' => Config::find('semester')->value,
+                                                'status' => 'confirmed'
+                                            ]);
+
+            $prerequisiteUnit = EnrolmentUnits::where('studentID', $studentID)
+                                            ->where('unitCode', '=', $input['prerequisiteUnit'])
+                                            ->update([
+                                                'year' => Config::find('year')->value,
+                                                'term' => Config::find('semester')->value,
+                                                'status' => 'confirmed'
+                                            ]);
+
+            // update the issue
+            $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
+                                                ->where('issueID', '=', $issueID)
+                                                ->where('status', '=', 'pending')
+                                                ->update(['status' => 'approved']);
         }
 
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)

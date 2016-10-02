@@ -14,6 +14,7 @@ use App\Student;
 use App\EnrolmentIssues;
 use App\StudentEnrolmentIssues;
 use App\UnitTerm;
+use App\Unit;
 use App\Config;
 
 class EnrolmentIssuesController extends Controller
@@ -54,7 +55,10 @@ class EnrolmentIssuesController extends Controller
         ->where('term', '=', Config::find('semester')->value)
         ->get();
 
+        $data['units'] = Unit::with('requisite')->get();
+
         return view ('student.enrolmentissues', $data);
+        // return response()->json($data['units']);
     }
 
     /**

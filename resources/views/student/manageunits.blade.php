@@ -307,8 +307,15 @@
             'method': method,
             'data': data
         }).done(function(data) {
-            // for all methods POST and DELETE included
-            window.location.reload()
+            if (method == "POST") {
+                if(data == 'ok')
+                    window.location.reload()
+                else
+                    alert(data)
+            } else {
+                console.log('It is of unknown method')
+                window.location.reload()
+            }
         })
     })
 

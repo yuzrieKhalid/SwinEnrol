@@ -81,18 +81,19 @@ class ManagePlannerController extends Controller
                 {
                     // prerequisite
                     if($requisite->type == 'prerequisite')
-                        $data['requisite'][$unit->unitCode]['prerequisite'] = $requisite->requisite;
+                        $data['requisite'][$unit->unitCode]['prerequisite'][] = $requisite->requisite;
 
                     // corequisite
                     if($requisite->type == 'corequisite')
-                        $data['requisite'][$unit->unitCode]['corequisite'] = $requisite->requisite;
+                        $data['requisite'][$unit->unitCode]['corequisite'][] = $requisite->requisite;
 
                     // antirequisite
                     if($requisite->type == 'antirequisite')
-                        $data['requisite'][$unit->unitCode]['antirequisite'] = $requisite->requisite;
+                        $data['requisite'][$unit->unitCode]['antirequisite'][] = $requisite->requisite;
                 }
             }
         }
+        // return response()->json($data);
 
         // get semester size
         $data['size'] = Config::find('semesterLength')->value;

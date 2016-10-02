@@ -212,7 +212,7 @@ class ManageUnitController extends Controller
         ->where('status', '=', 'pending')
         ->count();
 
-        if($unitCount <= 4)
+        if($unitCount < 4)
         {
             $unit = new EnrolmentUnits;
             $unit->studentID = Auth::user()->username;
@@ -227,7 +227,7 @@ class ManageUnitController extends Controller
         }
         else
         {
-            return "Cannot enrol more than 5 units.";
+            return "Cannot enrol more than 4 units.";
         }
 
         return "ok";
@@ -283,15 +283,41 @@ class ManageUnitController extends Controller
             'status'
         ]);
 
-        // for both case, create an amendment issue
-        $issue = new StudentEnrolmentIssues;
-        $issue->studentID = Auth::user()->username;
-        $issue->issueID = 4; // amendment issue
-        $issue->status = $input['status'];
-        $issue->submissionData = $input['reason'];  // borrow this field as the reason
-        $issue->attachmentData = $input['unitCode'];// borrow this field as the unitCode
-        $issue->save();
+        $unitCount = EnrolmentUnits::where('studentID', '=', Auth::user()->username)
+        ->where('year', '=', Config::find('year')->value)
+        ->where('term', '=', Config::find('semester')->value)
+        ->where('semesterLength', '=', $input['enrolmentTerm'])
+        ->where('status', '=', 'pending')
+        ->count();
 
+        if($unitCount < 4)
+        {
+            $unit = new EnrolmentUnits;
+            $unit->studentID = Auth::user()->username;
+            $unit->unitCode = $input['unitCode'];
+            $unit->year = Config::find('year')->value;
+            $unit->term = Config::find('semester')->value;
+            $unit->semesterLength = $input['enrolmentTerm'];
+            $unit->status = $input['status'];
+            $unit->result = 0.00;
+            $unit->grade = 'ungraded';
+            $unit->save();
+
+            // create an amendment issue
+            $issue = new StudentEnrolmentIssues;
+            $issue->studentID = Auth::user()->username;
+            $issue->issueID = 4; // amendment issue
+            $issue->status = $input['status'];
+            $issue->submissionData = $input['reason'];  // borrow this field as the reason
+            $issue->attachmentData = $input['unitCode'];// borrow this field as the unitCode
+            $issue->save();
+        }
+        else
+        {
+            return "Cannot enrol more than 4 units.";
+        }
+
+        return "ok";
     }
 
     /**

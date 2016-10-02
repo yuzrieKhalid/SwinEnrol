@@ -498,6 +498,424 @@ class RequisiteTableSeeder extends Seeder
                 'conjunction' => 'AND',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            // Design (Graphic)
+            [
+                'unitCode' => 'HDCOM121',
+                'requisite' => 'HDCOM111',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM121',
+                'requisite' => 'HDCOM112',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM122',
+                'requisite' => 'HDCOM111',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM122',
+                'requisite' => 'HDCOM112',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM211',
+                'requisite' => 'HDCOM122',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM211',
+                'requisite' => 'HDCOM121',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM212',
+                'requisite' => 'HDCOM111',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM212',
+                'requisite' => 'HDCOM112',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM212',
+                'requisite' => 'HDC002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM212',
+                'requisite' => 'HDCOM121',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM221',
+                'requisite' => 'HDCOM112',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM221',
+                'requisite' => 'HDCOM121',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM221',
+                'requisite' => 'HDCOM211',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'requisite' => 'HDC001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'requisite' => 'HDC004',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'requisite' => 'HDC002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'requisite' => 'HDC003',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM311',
+                'requisite' => 'HDC002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM311',
+                'requisite' => 'HDCOM211',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM311',
+                'requisite' => 'HDC005',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM312',
+                'requisite' => 'HDCOM211',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM312',
+                'requisite' => 'HDCOM212',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM312',
+                'requisite' => 'HDCOM221',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM321',
+                'requisite' => 'HDCOM211',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM321',
+                'requisite' => 'HDC005',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM321',
+                'requisite' => 'HDCOM312',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'requisite' => 'HDCOM211',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'requisite' => 'HDCOM221',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'requisite' => 'HDC005',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'requisite' => 'HDCOM312',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Science (Biotechnology)
+            [
+                'unitCode' => 'BCH20002',
+                'requisite' => 'BIO10003',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH20002',
+                'requisite' => 'CHE10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO20002',
+                'requisite' => 'BIO10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH20001',
+                'requisite' => 'CHE10002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH20001',
+                'requisite' => 'BCH20002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO20001',
+                'requisite' => 'BIO20002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30001',
+                'requisite' => 'BIO20002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30001',
+                'requisite' => 'BCH20001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30001',
+                'requisite' => 'BIO20001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30004',
+                'requisite' => 'BCH20002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30004',
+                'requisite' => 'BCH20001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH30003',
+                'requisite' => 'BCH20002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH30003',
+                'requisite' => 'BCH20001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'requisite' => 'CHE10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'requisite' => 'BIO10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'requisite' => 'CHE10002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'requisite' => 'BIO10003',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES2210',
+                'requisite' => 'BIO10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES3405',
+                'requisite' => 'CHE10002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10005',
+                'requisite' => 'CHE10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE20006',
+                'requisite' => 'CHE10002',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PEH20002',
+                'requisite' => 'CHE10001',
+                'type' => 'prerequisite',
+                'conjunction' => 'AND',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

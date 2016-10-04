@@ -18,7 +18,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COMP',
                 'unitName' => 'Completed Unit',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -31,7 +31,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'GEN0',
                 'unitName' => 'Generic Unit',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -44,7 +44,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'GEN1',
                 'unitName' => 'Generic Unit (Fail)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -57,7 +57,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'PRE0',
                 'unitName' => 'Prerequisite of Completed Unit (Success)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -70,7 +70,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'PRE1',
                 'unitName' => 'Unit With Prerequisite (Fail)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -83,7 +83,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COR0',
                 'unitName' => 'Unit With Corequisite (Success)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -96,7 +96,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COR1',
                 'unitName' => 'Unit With Corequisite (Fail)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -109,7 +109,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ANTI0',
                 'unitName' => 'Antirequisite Unit 1 (Success)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -122,7 +122,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ANTI1',
                 'unitName' => 'Antirequisite Unit 2 (Fail)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -134,8 +134,8 @@ class UnitTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'UNI20',
-                'unitName' => 'A Unit With Many MinimumCompletedUnits (Fail)',
-                'minimumCompletedUnits' => '20',
+                'unitName' => 'A Unit With Many creditPoints (Fail)',
+                'creditPoints' => '20',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -147,8 +147,8 @@ class UnitTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'UNI2',
-                'unitName' => 'A Unit With Few MinimumCompletedUnits (Success)',
-                'minimumCompletedUnits' => '2',
+                'unitName' => 'A Unit With Few creditPoints (Success)',
+                'creditPoints' => '2',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -161,7 +161,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'SHO27',
                 'unitName' => 'Short Semester Unit',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -174,7 +174,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FO1',
                 'unitName' => 'Foundation Unit 1',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -187,7 +187,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FO2',
                 'unitName' => 'Foundation Unit 2',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -201,7 +201,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3315',
                 'unitName' => 'Languages in Software Development',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -214,7 +214,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3158',
                 'unitName' => 'Software Engineering Project A',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -227,7 +227,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3310',
                 'unitName' => 'Software Architecture and Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -240,7 +240,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1312',
                 'unitName' => 'Computer and Logic Essentials',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -253,7 +253,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2080',
                 'unitName' => 'Introduction to Programming',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -266,7 +266,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2120',
                 'unitName' => 'Data Communications and Security',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -279,7 +279,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1402',
                 'unitName' => 'Database Analysis and Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -292,7 +292,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1307',
                 'unitName' => 'Internet Technologies',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -305,7 +305,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3172',
                 'unitName' => 'Object-Oriented Programming in C++',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -318,7 +318,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3181',
                 'unitName' => 'Technical Software Development',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -331,7 +331,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3309',
                 'unitName' => 'Software Project Practices and Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -344,7 +344,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2312',
                 'unitName' => 'Computer Systems',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -357,7 +357,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2308',
                 'unitName' => 'Software Development Practices',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -370,7 +370,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT2316',
                 'unitName' => 'Usability',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -383,7 +383,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3044',
                 'unitName' => 'Professional Issues in IT',
-                'minimumCompletedUnits' => '12',
+                'creditPoints' => '12',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -396,7 +396,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3311',
                 'unitName' => 'Software Deployment and Evolution',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -409,7 +409,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3258',
                 'unitName' => 'Software Engineering Project B',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -422,7 +422,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3002',
                 'unitName' => 'Introduction to Artificial Intelligence',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -435,7 +435,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3037',
                 'unitName' => 'Programming in Java',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -448,7 +448,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COS20007',
                 'unitName' => 'OBJECT-ORIENTED PROGRAMMING',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -461,7 +461,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT1401',
                 'unitName' => 'Introduction to Business Information Systems',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -475,7 +475,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT10001',
                 'unitName' => 'Introduction to Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -488,7 +488,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'LAW10004',
                 'unitName' => 'Introduction to Business Law',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -501,7 +501,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COM10007',
                 'unitName' => 'Professional Communication Practice',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -514,7 +514,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ECO10002',
                 'unitName' => 'Microeconomics',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -527,7 +527,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10007',
                 'unitName' => 'Financial Information for Decision Making',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -540,7 +540,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ECO10003',
                 'unitName' => 'Macroeconomics',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -553,7 +553,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN10002',
                 'unitName' => 'Financial Statistics',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -566,7 +566,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN20012',
                 'unitName' => 'Financial Markets',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -579,7 +579,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN20014',
                 'unitName' => 'Financial Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -592,7 +592,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN20013',
                 'unitName' => 'Monetary Policy and Risk Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -605,7 +605,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BUS30010',
                 'unitName' => 'Integrative Business Practice',
-                'minimumCompletedUnits' => '16',
+                'creditPoints' => '16',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -618,7 +618,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN30014',
                 'unitName' => 'Financial Risk Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -631,7 +631,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN30016',
                 'unitName' => 'Management of Investment Portfolios',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -644,7 +644,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BUS30009',
                 'unitName' => 'Industry Consulting Project',
-                'minimumCompletedUnits' => '20',
+                'creditPoints' => '20',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -657,7 +657,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN30015',
                 'unitName' => 'International Finance',
-                'minimumCompletedUnits' => '16',
+                'creditPoints' => '16',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -670,7 +670,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ENT30010',
                 'unitName' => 'Contemporary Issues in Entrepreneurship and Innovation',
-                'minimumCompletedUnits' => '16',
+                'creditPoints' => '16',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -684,7 +684,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC10008',
                 'unitName' => 'Financial Information Systems',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -697,7 +697,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC20007',
                 'unitName' => 'Management Accounting for Planning & Control',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -710,7 +710,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'LAW20004',
                 'unitName' => 'Company Law',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -723,7 +723,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC30005',
                 'unitName' => 'Taxation',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -737,7 +737,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT10002',
                 'unitName' => 'Critical Thinking in Management',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -750,7 +750,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ORG20003',
                 'unitName' => 'Organisational Behaviour',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -763,7 +763,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ORG20002',
                 'unitName' => 'Business and Society',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -776,7 +776,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT30005',
                 'unitName' => 'Strategic Planning in Dynamic Environments',
-                'minimumCompletedUnits' => '15',
+                'creditPoints' => '15',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -789,7 +789,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ORG30003',
                 'unitName' => 'Sustainable Organisational Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -802,7 +802,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ORG30002',
                 'unitName' => 'Leadership in Context',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -815,7 +815,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ACC20014',
                 'unitName' => 'Management Decision Making',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -828,7 +828,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MKT10007',
                 'unitName' => 'Fundamentals of Marketing',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -842,7 +842,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'CVE10002',
                 'unitName' => 'Professional Engineering',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -855,7 +855,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MEE10001',
                 'unitName' => 'Materials and Processes',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -868,7 +868,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'CHE10001',
                 'unitName' => 'Chemistry 1',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -881,7 +881,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MTH10006',
                 'unitName' => 'Engineering Mathematics 1',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -894,7 +894,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC1221',
                 'unitName' => 'Engineering Project',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -907,7 +907,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'PHY10001',
                 'unitName' => 'Energy and Motion',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -920,7 +920,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'CHE10002',
                 'unitName' => 'Chemistry 2',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -933,7 +933,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MTH10007',
                 'unitName' => 'Engineering Mathematics 2',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -946,7 +946,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'EEE10001',
                 'unitName' => 'Electronic Systems',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -959,7 +959,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC2411',
                 'unitName' => 'Chemical Engineering Thermodynamics',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -972,7 +972,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC2421',
                 'unitName' => 'Fluid Mechanics C',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -985,7 +985,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC2322',
                 'unitName' => 'Engineering Materials and Characterisation',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -998,7 +998,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MEE20002',
                 'unitName' => 'Computer Aided Engineering (Mechanical)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1011,7 +1011,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC2311',
                 'unitName' => 'Introduction to Chemical Engineering Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1024,7 +1024,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MTH20007',
                 'unitName' => 'Engineering Mathematics 3A',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1037,7 +1037,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3521',
                 'unitName' => 'Process Heat Transfer',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1050,7 +1050,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3651',
                 'unitName' => 'Transport Phenomena',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1063,7 +1063,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3514',
                 'unitName' => 'Multiphase Processes',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1076,7 +1076,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC2412',
                 'unitName' => 'Safe and Sustainable Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1089,7 +1089,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MME30001',
                 'unitName' => 'Engineering Management 1',
-                'minimumCompletedUnits' => '8',
+                'creditPoints' => '8',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1102,7 +1102,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3622',
                 'unitName' => 'Reaction Engineering',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1115,7 +1115,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3523',
                 'unitName' => 'Process Modelling and Optimisation',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1128,7 +1128,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3512',
                 'unitName' => 'Process Control and Measurements',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1141,7 +1141,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4842',
                 'unitName' => 'Environmental Engineering',
-                'minimumCompletedUnits' => '20',
+                'creditPoints' => '20',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1154,7 +1154,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4771',
                 'unitName' => 'Final Year Research Project 1 (Chemical)',
-                'minimumCompletedUnits' => '22',
+                'creditPoints' => '22',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1167,7 +1167,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4745',
                 'unitName' => 'Advanced Reaction Engineering',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1180,7 +1180,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC3612',
                 'unitName' => 'Chemical Engineering Computations',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1193,7 +1193,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4722',
                 'unitName' => 'Process Mass Transfer',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1206,7 +1206,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4873',
                 'unitName' => 'Final Year Research Project 2 (Chemical)',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1219,7 +1219,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4746',
                 'unitName' => 'Advanced Separation Process',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1232,7 +1232,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4824',
                 'unitName' => 'Process Plant Design',
-                'minimumCompletedUnits' => '22',
+                'creditPoints' => '22',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1245,7 +1245,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MME40001',
                 'unitName' => 'Engineering Management 2',
-                'minimumCompletedUnits' => '8',
+                'creditPoints' => '8',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1259,7 +1259,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDC001',
                 'unitName' => '20th Century Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1272,7 +1272,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDC002',
                 'unitName' => 'Methods of Investigation',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1285,7 +1285,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDC003',
                 'unitName' => 'Design Studio',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1298,7 +1298,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDC004',
                 'unitName' => 'Digital Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1311,7 +1311,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM111',
                 'unitName' => 'Introduction to Communication Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1324,7 +1324,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM112',
                 'unitName' => 'Typography',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1337,7 +1337,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM121',
                 'unitName' => 'Form & Structure for Communication Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1350,7 +1350,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM122',
                 'unitName' => 'Photography in Communication Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1363,7 +1363,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM211',
                 'unitName' => 'Typography for Publication',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1376,7 +1376,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM212',
                 'unitName' => 'Package Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1389,7 +1389,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM221',
                 'unitName' => 'Branding and Identity',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1402,7 +1402,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDC005',
                 'unitName' => 'Contemporary Design Issues',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1415,7 +1415,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM311',
                 'unitName' => 'Communication Design Strategy',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1428,7 +1428,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM312',
                 'unitName' => 'Design for Production',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1441,7 +1441,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM321',
                 'unitName' => 'Publication Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1454,7 +1454,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HDCOM322',
                 'unitName' => 'Information and Interface Design',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1468,7 +1468,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO10001',
                 'unitName' => 'Concepts of Biology',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1481,7 +1481,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ICT10007',
                 'unitName' => 'Introduction to e-Science',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1494,7 +1494,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO10003',
                 'unitName' => 'Concepts of Biotechnology',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1507,7 +1507,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BCH20002',
                 'unitName' => 'Introduction to Biochemistry',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1520,7 +1520,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO20002',
                 'unitName' => 'The Microbial World',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1533,7 +1533,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COM20002',
                 'unitName' => 'Communication for Scientists',
-                'minimumCompletedUnits' => '8',
+                'creditPoints' => '8',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1546,7 +1546,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BCH20001',
                 'unitName' => 'Biochemistry of Genes and Proteins',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1559,7 +1559,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO20001',
                 'unitName' => 'Microbes in the Environment',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1572,7 +1572,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO30001',
                 'unitName' => 'Biotechnology Research Project',
-                'minimumCompletedUnits' => '10',
+                'creditPoints' => '10',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1585,7 +1585,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO30004',
                 'unitName' => 'Molecular Biotechnology',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1598,7 +1598,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MTH00004',
                 'unitName' => 'Foundation Mathematics',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1611,7 +1611,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BCH30003',
                 'unitName' => 'Advanced Biochemistry',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1624,7 +1624,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ENV30001',
                 'unitName' => 'Environmental Biology',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1637,7 +1637,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'NPS30002',
                 'unitName' => 'Research Skills in Science',
-                'minimumCompletedUnits' => '12',
+                'creditPoints' => '12',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1650,7 +1650,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES2205',
                 'unitName' => 'Aquatic Biotechnology',
-                'minimumCompletedUnits' => '12',
+                'creditPoints' => '12',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1663,7 +1663,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES2210',
                 'unitName' => 'Industrial Microbiology',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1676,7 +1676,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES3405',
                 'unitName' => 'Natural Products',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1689,7 +1689,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES3410',
                 'unitName' => 'Project Development and Evaluation',
-                'minimumCompletedUnits' => '12',
+                'creditPoints' => '12',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1703,7 +1703,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'CHE10005',
                 'unitName' => 'Consumer Chemistry',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1716,7 +1716,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'CHE20006',
                 'unitName' => 'Analytical and Forensic Chemistry',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1729,7 +1729,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'PEH20002',
                 'unitName' => 'Food Science',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1742,7 +1742,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'PEH20005',
                 'unitName' => 'Communicable Disease Control',
-                'minimumCompletedUnits' => '0',
+                'creditPoints' => '0',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',

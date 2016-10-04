@@ -4,23 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UnitType extends Model
+class GraduationRequirements extends Model
 {
-    // table properties
-    protected $table = 'unit_type';
-
-    // relation
-    public function study_planner()
-    {
-        return $this->hasMany('App\StudyPlanner', 'unitCode');
-    }
+    // table proerties
+    protected $table = 'graduation_requirements';
 
     // inverse relation
-    public function unit()
-	{
-		return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
-	}
-
     public function course()
     {
         return $this->belongsTo('App\Course', 'courseCode', 'courseCode');

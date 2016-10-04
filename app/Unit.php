@@ -13,18 +13,23 @@ class Unit extends Model
     public $incrementing = false;
 
     // relation
-    public function unit_term()
-	{
-		return $this->hasMany('App\UnitTerm', 'unitCode');
-	}
-
 	public function enrolment_units()
 	{
 		return $this->hasMany('App\EnrolmentUnits', 'unitCode');
 	}
 
+    public function unit_listing()
+	{
+		return $this->hasMany('App\UnitListing', 'unitCode');
+	}
+
     public function requisite()
     {
         return $this->hasMany('App\Requisite', 'unitCode');
+    }
+
+    public function unit_type()
+    {
+        return $this->hasMany('App\UnitType', 'unitCode');
     }
 }

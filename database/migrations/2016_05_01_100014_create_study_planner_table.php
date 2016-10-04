@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnrolmentUnitsTable extends Migration
+class CreateStudyPlannerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,22 +12,21 @@ class CreateEnrolmentUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('enrolment_units', function (Blueprint $table)
-        {
-            $table->string('studentID');
+        Schema::create('study_planner', function (Blueprint $table) {
             $table->string('unitCode');
+            $table->string('courseCode');
+            $table->string('typeId');
             $table->integer('year')->unsigned();
             $table->string('semester');
-            $table->string('semesterLength');
-            $table->string('status');
-            $table->decimal('result', 5, 2);
-            $table->string('grade');
+            $table->integer('enrolmentTerm')->unsigned();
 
             $table->timestamps();
 
-            $table->foreign('studentID')->references('studentID')->on('student')
+            $table->foreign('unitCode')->references('unitCode')->on('unit_type')
             ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('unitCode')->references('unitCode')->on('unit')
+            $table->foreign('courseCode')->references('courseCode')->on('unit_type')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('typeId')->references('typeId')->on('unit_type')
             ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -39,6 +38,6 @@ class CreateEnrolmentUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('enrolment_units');
+        Schema::drop('study_planner');
     }
 }

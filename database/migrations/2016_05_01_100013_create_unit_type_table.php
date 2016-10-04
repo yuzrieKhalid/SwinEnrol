@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTermTable extends Migration
+class CreateUnitTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,22 +12,19 @@ class CreateUnitTermTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_term', function (Blueprint $table) {
-            $table->string('unitType');
+        Schema::create('unit_type', function(Blueprint $table) {
             $table->string('unitCode');
             $table->string('courseCode');
-            $table->integer('year')->unsigned();
-            $table->string('term');
-            $table->string('enrolmentTerm');
+            $table->string('typeId');
 
-            $table->foreign('unitType')->references('unitType')->on('unit_type')
-            ->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
+
             $table->foreign('unitCode')->references('unitCode')->on('unit')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('courseCode')->references('courseCode')->on('course')
             ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
+            $table->foreign('typeId')->references('typeId')->on('type')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -38,6 +35,6 @@ class CreateUnitTermTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unit_term');
+        Schema::drop('unit_type');
     }
 }

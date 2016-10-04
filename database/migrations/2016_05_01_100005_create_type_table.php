@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTypeTable extends Migration
+class CreateTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateUnitTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_type', function(Blueprint $table) {
-            $table->string('unitType');
-            $table->string('typeName');
-
-            $table->primary('unitType');
-
+        Schema::create('type', function (Blueprint $table) {
+            $table->string('typeId');
             $table->timestamps();
+
+            $table->primary('typeId');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateUnitTypeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('unit_type');
+        Schema::drop('type');
     }
 }

@@ -16,7 +16,8 @@ class CreateCourseTable extends Migration
         {
             $table->string('courseCode');
             $table->string('courseName');
-            $table->string('graduationRequirements');
+            $table->integer('semestersPerYear')->unsigned();
+            $table->integer('semesterCount')->unsigned();
             $table->string('studyLevel');
 
             $table->primary('courseCode');

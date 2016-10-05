@@ -15,7 +15,7 @@ class CreateStudyPlannerTable extends Migration
         Schema::create('study_planner', function (Blueprint $table) {
             $table->string('unitCode');
             $table->string('courseCode');
-            $table->string('typeId');
+            $table->string('unitType');
             $table->integer('year')->unsigned();
             $table->string('semester');
             $table->integer('enrolmentTerm')->unsigned();

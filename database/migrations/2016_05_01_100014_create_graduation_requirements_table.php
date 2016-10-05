@@ -14,14 +14,14 @@ class CreateGraduationRequirementsTable extends Migration
     {
         Schema::create('graduation_requirements', function (Blueprint $table) {
             $table->string('courseCode');
-            $table->string('typeId');
+            $table->string('unitType');
             $table->integer('unitCount')->unsigned();
 
             $table->timestamps();
 
             $table->foreign('courseCode')->references('courseCode')->on('course')
             ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('typeId')->references('typeId')->on('type')
+            $table->foreign('unitType')->references('unitType')->on('unit_type')
             ->onDelete('cascade')->onUpdate('cascade');
         });
     }

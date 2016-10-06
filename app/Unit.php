@@ -28,8 +28,8 @@ class Unit extends Model
         return $this->hasMany('App\Requisite', 'unitCode');
     }
 
-    public function unit_type()
+    public function study_planner()
     {
-        return $this->hasMany('App\UnitType', 'unitCode');
+        return $this->hasMany('App\StudyPlanner', 'unitCode');
     }
 }

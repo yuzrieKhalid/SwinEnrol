@@ -8,26 +8,17 @@ class UnitType extends Model
 {
     // table properties
     protected $table = 'unit_type';
+    protected $primaryKey = 'unitType';
+    public $incrementing = false;
 
     // relation
     public function study_planner()
     {
-        return $this->hasMany('App\StudyPlanner', 'unitCode');
+        return $this->hasMany('App\StudyPlanner', 'unitType');
     }
 
-    // inverse relation
-    public function unit()
-	{
-		return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
-	}
-
-    public function course()
+    public function graduation_requirements()
     {
-        return $this->belongsTo('App\Course', 'courseCode', 'courseCode');
-    }
-
-    public function type()
-    {
-        return $this->belongsTo('App\Type', 'typeId', 'typeId');
+        return $this->hasMany('App\GraduationRequirements', 'unitType');
     }
 }

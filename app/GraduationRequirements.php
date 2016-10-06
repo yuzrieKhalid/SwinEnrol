@@ -17,6 +17,6 @@ class GraduationRequirements extends Model
 
     public function type()
     {
-        return $this->belongsTo('App\Type', 'typeId', 'typeId');
+        return $this->belongsTo('App\UnitType', 'unitType', 'unitType');
     }
 }

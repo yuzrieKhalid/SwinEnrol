@@ -12,7 +12,7 @@ class CourseCoordinator extends Model
     // inverse relation
     public function users()
     {
-        return $this->belongsTo('App\User', 'id', 'id');
+        return $this->belongsTo('App\User', 'username', 'username');
     }
 
     public function course()

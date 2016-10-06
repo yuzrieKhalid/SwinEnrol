@@ -13,9 +13,9 @@ class Course extends Model
     public $incrementing = false;
 
     // relation
-    public function unit_type()
+    public function study_planner()
 	{
-		return $this->hasMany('App\UnitType', 'courseCode');
+		return $this->hasMany('App\StudyPlanner', 'courseCode');
 	}
 
     public function student()

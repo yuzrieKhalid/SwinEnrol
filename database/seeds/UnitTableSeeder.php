@@ -135,7 +135,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'UNI20',
                 'unitName' => 'A Unit With Many creditPoints (Fail)',
-                'creditPoints' => '20',
+                'creditPoints' => '250',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -148,7 +148,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'UNI2',
                 'unitName' => 'A Unit With Few creditPoints (Success)',
-                'creditPoints' => '2',
+                'creditPoints' => '25',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -383,7 +383,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HIT3044',
                 'unitName' => 'Professional Issues in IT',
-                'creditPoints' => '12',
+                'creditPoints' => '150',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -605,7 +605,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BUS30010',
                 'unitName' => 'Integrative Business Practice',
-                'creditPoints' => '16',
+                'creditPoints' => '200',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -644,7 +644,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BUS30009',
                 'unitName' => 'Industry Consulting Project',
-                'creditPoints' => '20',
+                'creditPoints' => '250',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -657,7 +657,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'FIN30015',
                 'unitName' => 'International Finance',
-                'creditPoints' => '16',
+                'creditPoints' => '200',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -670,7 +670,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'ENT30010',
                 'unitName' => 'Contemporary Issues in Entrepreneurship and Innovation',
-                'creditPoints' => '16',
+                'creditPoints' => '200',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -776,7 +776,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MGT30005',
                 'unitName' => 'Strategic Planning in Dynamic Environments',
-                'creditPoints' => '15',
+                'creditPoints' => '200',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1089,7 +1089,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MME30001',
                 'unitName' => 'Engineering Management 1',
-                'creditPoints' => '8',
+                'creditPoints' => '100',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1141,7 +1141,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4842',
                 'unitName' => 'Environmental Engineering',
-                'creditPoints' => '20',
+                'creditPoints' => '250',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1154,7 +1154,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4771',
                 'unitName' => 'Final Year Research Project 1 (Chemical)',
-                'creditPoints' => '22',
+                'creditPoints' => '275',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1232,7 +1232,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HEC4824',
                 'unitName' => 'Process Plant Design',
-                'creditPoints' => '22',
+                'creditPoints' => '275',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1245,7 +1245,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'MME40001',
                 'unitName' => 'Engineering Management 2',
-                'creditPoints' => '8',
+                'creditPoints' => '100',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1533,7 +1533,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'COM20002',
                 'unitName' => 'Communication for Scientists',
-                'creditPoints' => '8',
+                'creditPoints' => '100',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1572,7 +1572,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'BIO30001',
                 'unitName' => 'Biotechnology Research Project',
-                'creditPoints' => '10',
+                'creditPoints' => '125',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1637,7 +1637,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'NPS30002',
                 'unitName' => 'Research Skills in Science',
-                'creditPoints' => '12',
+                'creditPoints' => '150',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1650,7 +1650,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES2205',
                 'unitName' => 'Aquatic Biotechnology',
-                'creditPoints' => '12',
+                'creditPoints' => '150',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',
@@ -1689,7 +1689,7 @@ class UnitTableSeeder extends Seeder
             [
                 'unitCode' => 'HES3410',
                 'unitName' => 'Project Development and Evaluation',
-                'creditPoints' => '12',
+                'creditPoints' => '150',
                 'maxStudentCount' => 100,
                 'lectureGroupCount' => 10,
                 'lectureDuration' => '2h',

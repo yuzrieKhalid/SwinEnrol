@@ -15,40 +15,78 @@ class UnitListingTableSeeder extends Seeder
         //
         DB::table('unit_listing')->insert([
             [
+                'unitCode' => 'HIT1401',
                 'year' => 2016,
-                'term' => '2',
-                'unitCode' => 'HIT3315',
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'HIT1312',
                 'year' => 2016,
-                'term' => '2',
-                'unitCode' => 'HIT3158',
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'HIT2080',
                 'year' => 2016,
-                'term' => '2',
-                'unitCode' => 'MGT10001',
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'HIT1307',
                 'year' => 2016,
-                'term' => '4',
-                'unitCode' => 'HIT3158',
+                'semester' => 'Semester 2',
+                'semesterLength' => 'short',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'HIT2120',
                 'year' => 2016,
-                'term' => '4',
-                'unitCode' => 'ACC10007',
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]
+            ],
+            [
+                'unitCode' => 'HIT3181',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+                'unitCode' => 'HIT1402',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            // *************** Foundation Units ***************
+            [
+				'unitCode' => 'FO1',
+				'year' => 2016,
+				'semester' => 'Semester 1',
+				'semesterLength' => 'long',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			],
+            [
+				'unitCode' => 'FO2',
+				'year' => 2016,
+				'semester' => 'Semester 1',
+				'semesterLength' => 'long',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now()
+			]
         ]);
     }
 }

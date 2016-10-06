@@ -18,10 +18,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UnitTypeTableSeeder::class);
         $this->call(EnrolmentIssuesTableSeeder::class);
         $this->call(UnitTableSeeder::class);
-        $this->call(UnitTermTableSeeder::class);
+        $this->call(RequisiteTableSeeder::class);
         $this->call(StudentEnrolmentIssuesTableSeeder::class);
         $this->call(EnrolmentUnitsTableSeeder::class);
         $this->call(ConfigTableSeeder::class);
-        $this->call(RequisiteTableSeeder::class);
+        $this->call(UnitListingTableSeeder::class);
+        $this->call(StudyPlannerTableSeeder::class);
+        $this->call(GraduationRequirementsTableSeeder::class);
+        $this->call(CourseCoordinatorTableSeeder::class);
     }
 }

@@ -13,12 +13,12 @@ class CreateCourseCoordinatorTable extends Migration
     public function up()
     {
         Schema::create('course_coordinator', function (Blueprint $table) {
-            $table->integer('id')->unsigned();
+            $table->string('username');
             $table->string('courseCode');
 
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('users')
+            $table->foreign('username')->references('username')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('courseCode')->references('courseCode')->on('course')
             ->onDelete('cascade')->onUpdate('cascade');

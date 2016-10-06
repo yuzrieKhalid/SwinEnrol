@@ -1,49 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Super;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Auth;
-use App\Student;
-use App\Unit;
-use App\EnrolmentUnits;
-use App\Config;
-use App\StudentEnrolmentIssues;
-
-class HomeController extends Controller
+class ManagCourseController extends Controller
 {
-    public function index() {
-
-      $data = [];
-
-      $user = Auth::user();
-
-      $student = Student::where([['studentID', '=', '$user->username'],
-      ['year','=', $user->year],
-      ['term','=',$user->term],
-      ])->get();
-
-      $data['student'] = $student;
-      $data['phase'] = Config::find('enrolmentPhase');
-      $enrolled = EnrolmentUnits::with('unit')
-          ->where([
-            ['studentID', '=', $user->username],
-              ['year', '=', Config::find('year')->value],
-              ['term', '=', Config::find('semester')->value],
-          ])->get();
-      $data['enrolled'] = $enrolled;
-
-      $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                      ->where('status', '=', 'approved')->get();
-
-      $data['issues'] = $issues;
-
-      return view ('student.student', $data);
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+        return view ('super.managecourse');
     }
 
     /**
@@ -53,7 +27,12 @@ class HomeController extends Controller
      */
     public function create()
     {
-    //
+        //$data = [];
+        // $units = Unit::get();
+        //
+        // $data['units'] = $units;
+        //
+        // return view ('super.managecourse', $data);
     }
 
     /**
@@ -76,13 +55,6 @@ class HomeController extends Controller
     public function show($id)
     {
         //
-        $data = [];
-        $info = Student::find($id);
-
-        $data['studentInfo'] = $info;
-
-        return view ('student.student', $data);
-
     }
 
     /**

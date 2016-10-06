@@ -157,33 +157,6 @@ class PhaseController extends Controller
         // return response()->json($data); // for debug
         return $data;
     }
-
-    // /**
-    //  * Finalizes units in the current enrolment
-    //  *
-    //  * @return json string with status
-    //  */
-    // public function unitLock()
-    // {
-    //     // get config setting
-    //     $phase = Config::find('enrolmentPhase')->value;
-    //     $year = Config::find('year')->value;
-    //     $semester = Config::find('semester')->value;
-    //
-    //     // check if short/long semester
-    //     if($phase == '2')
-    //         $length = 'short';
-    //     else
-    //         $length = 'long';
-    //
-    //     // update all pending units
-    //     EnrolmentUnits::where('unitCode', '=', $unit->unitCode)
-    //     ->where('year', '=', $year)
-    //     ->where('term', '=', $term)
-    //     ->where('semesterLength', '=', $length)
-    //     ->update(['status' => 'confirmed']);
-    // }
-
     /**
      * Checks for event to change enrolment phase
      *

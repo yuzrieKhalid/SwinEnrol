@@ -60,7 +60,6 @@ class ManageStudentController extends Controller
             'surname',
             'givenName',
             'courseCode',
-            'paymentStatus'
         ]);
 
         // create new student
@@ -69,12 +68,11 @@ class ManageStudentController extends Controller
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->courseCode = $input['courseCode'];
-        $student->paymentStatus = $input['paymentStatus'];
 
         // adds the student to the User table too
         $user = new User;
         $user->username = $student->studentID;
-        $user->password = bcrypt('newstudent');
+        $user->password = bcrypt($student->studentID);
         $user->permissionLevel = 'student';
 
         // save into database
@@ -146,6 +144,22 @@ class ManageStudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
         return response()->json($student);
+    }
+
+    public function downloadExcel($type)
+    {
+        $data = Student::get()->toArray();
+
+        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+
+        $excel->sheet('mySheet', function($sheet)use($data)
+          {
+            $sheet->fromArray($data);
+          });
+
+        })->download($type);
+        return view ('admin.managestudents');
+
     }
 
     /**

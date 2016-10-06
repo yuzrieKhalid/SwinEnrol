@@ -30,4 +30,38 @@ class EnrolmentHistoryController extends Controller
 
         return view('student.enrolmenthistory', $data);
     }
+
+    public function downloadExcel($type)
+    {
+        if($type == 'csv'){
+
+          $data = Student::get()->toArray();
+
+          return Excel::create('demo_example', function($excel) use ($data) {
+          $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+              $sheet->fromArray($data);
+              header('Content-Encoding: UTF-8');
+              header('Content-type: text/csv; charset=UTF-8');
+              header('Content-Disposition: attachment; filename=itsolutionstuff_example.csv');
+              echo "\xEF\xBB\xBF";
+            });
+
+          })->download($type);
+        }
+
+        else
+        {
+          $data = Student::get()->toArray();
+          return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+          $excel->sheet('mySheet', function($sheet) use ($data)
+          {
+            $sheet->fromArray($data);
+          });
+
+        })->download($type);
+
+       }
+   }
+
 }

@@ -65,13 +65,58 @@
         <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="from-group panel-heading">
-                    <h1>Current Enrolment</h1>
+                    <h1>Current Enrolment
+                      <span class="pull-right">
+                          <a class="btn btn-default" data-toggle="collapse" title="Study Planner" href="#collapseExample"
+                           aria-expanded="false" aria-controls="collapseExample" role="button">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                      </span>
+                    </h1>
                 </div>
 
+
+
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-block">
+                    <!-- Anim pariatur cliche reprehenderit,
+                    enim eiusmod high life accusamus terry richardson ad squid.
+                    Nihil anim keffiyeh helvetica, craft beer labore wes
+                    anderson cred nesciunt sapiente ea proident. -->
+
+                    <!-- ==================== -->
+
+                    <!-- <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3>Study Planner</h3>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h1>Study Planner</h1>
+                            </div>
+
+                          </div> <!-- end .panel -->
+                    </div>
+
+                    <!-- ============== -->
+                  </div>
+              </div>
+
                 <div class="panel-body">
+                  @include('student.phaseNotification')
+                  <!-- <div class="col-md-6"> -->
                     <h2>
-                        <small>Long Semester</small>
+                        <small>Long Semester
+
+                        </small>
+
                     </h2>
+                    <!-- </div> -->
+
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
@@ -164,10 +209,10 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h1>Add Units
-                            <span class="pull-right">
+                            <!-- <span class="pull-right">
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                            </span>
+                            </span> -->
                         </h1>
                     </div>
 
@@ -235,7 +280,11 @@
 @stop
 
 @section ('extra_js')
-
+<script>
+(function() {
+      $('[data-toggle="collapse"]').tooltip();
+}) ()
+</script>
 
 <script>
 // TODO: implement the '+' button
@@ -300,16 +349,6 @@
                 window.location.reload()
             }
         })
-
-        // $('#rA').modal('show');
-
-        // @if(Session::has('error'))
-        //   alert("{{Session::get('error')}}");
-        // @endif
-
-        // $(document).on("click", "remove" , function() {
-        //     $(this).parent().remove();
-        // });
     })
 }) ()
 </script>

@@ -123,6 +123,10 @@
                             </table>
                         </div>
                     </div>
+
+                    <a href="{{ route('admin.managestudents.downloadExcel') }}">
+                      <button class="btn btn-success">Download Excel xls</button></a>
+
                 </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
 

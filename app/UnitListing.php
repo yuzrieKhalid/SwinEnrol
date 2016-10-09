@@ -12,6 +12,6 @@ class UnitListing extends Model
     // inverse relation
     public function unit()
     {
-        $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
+        return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
     }
 }

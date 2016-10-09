@@ -13,7 +13,7 @@ use App\Course;
 use App\Student;
 use App\EnrolmentIssues;
 use App\StudentEnrolmentIssues;
-use App\UnitTerm;
+use App\UnitListing;
 use App\Unit;
 use App\Config;
 
@@ -50,15 +50,14 @@ class EnrolmentIssuesController extends Controller
         $data['next2year'] = $next2year;
 
         // get current enrolment units
-        $data['termUnits'] = UnitTerm::where('unitType', '=', 'unit_listing')
+        $data['semesterUnits'] = UnitListing::with('unit')
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
         $data['units'] = Unit::with('requisite')->get();
 
         return view ('student.enrolmentissues', $data);
-        // return response()->json($data['units']);
     }
 
     /**

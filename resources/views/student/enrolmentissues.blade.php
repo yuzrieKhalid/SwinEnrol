@@ -237,7 +237,7 @@
                                     <div class="col-sm-10">
                                         <select class="form-control selectedForPreclusion">
                                             <option value="none"></option>
-                                            @foreach($termUnits as $unit)
+                                            @foreach($semesterUnits as $unit)
                                             <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>
                                             @endforeach
                                         </select>

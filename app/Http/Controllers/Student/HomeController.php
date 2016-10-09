@@ -27,7 +27,7 @@ class HomeController extends Controller
             ->where([
                 ['studentID', '=', $user->username],
                 ['year', '=', Config::find('year')->value],
-                ['term', '=', Config::find('semester')->value],
+                ['semester', '=', Config::find('semester')->value],
             ])->get();
         $data['enrolled'] = $enrolled;
 

@@ -15,7 +15,7 @@ use DB;
 use Carbon\Carbon;
 use App\Config;
 use App\Course;
-use App\UnitTerm;
+use App\UnitListing;
 use App\StudentEnrolmentIssues;
 
 // student's unit operation is different. it should only add units to student's info
@@ -63,8 +63,8 @@ class ManageUnitController extends Controller
         {
             $data['courses'] = Course::where('studyLevel', '=', 'degree')->get();
 
-            // get all units in current course
-            $courseUnits = UnitTerm::with('course')
+            // get all units in current course - according to study planner
+            $courseUnits = StudyPlanner::with('course')
             ->where('courseCode', '=', $student->courseCode)
             ->get();
 
@@ -101,7 +101,7 @@ class ManageUnitController extends Controller
         $enrolled = EnrolmentUnits::with('unit')
         ->where('studentID', '=', $user->username)
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
         // sort enrolled units into long/short semesters
@@ -115,20 +115,19 @@ class ManageUnitController extends Controller
                 array_push($data['enrolledShort'], $unit);
         }
 
-        // get all current units
-        $allUnits = UnitTerm::with('course')
-        ->with('unit')
-        ->where('unitType', '=', 'unit_listing')
+        // get all current units - according to UnitListing -- this does not filter studyLevel
+        $allUnits = UnitListing::with('unit')
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
         // filter units according to level of study
+        // for now unable to filter through level of study yet
         $units = [];
         foreach($allUnits as $unit)
         {
-            if($unit['course']->studyLevel == $course->studyLevel)
-                array_push($units, $unit);
+            // if($unit['course']->studyLevel == $course->studyLevel)
+            array_push($units, $unit);
         }
         $data['units'] = $units;
 
@@ -138,7 +137,7 @@ class ManageUnitController extends Controller
         $data['shortSemester'] = [];
         foreach($units as $unit)
         {
-            if($unit->enrolmentTerm == 'long')
+            if($unit->semesterLength == 'long')
             {
                 foreach($data['enrolledLong'] as $enrolledUnit)
                 {
@@ -207,7 +206,7 @@ class ManageUnitController extends Controller
 
         $unitCount = EnrolmentUnits::where('studentID', '=', $user->username)
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->where('semesterLength', '=', $input['enrolmentTerm'])
         ->where('status', '=', 'pending')
         ->count();
@@ -218,7 +217,7 @@ class ManageUnitController extends Controller
             $unit->studentID = Auth::user()->username;
             $unit->unitCode = $input['unitCode'];
             $unit->year = Config::find('year')->value;
-            $unit->term = Config::find('semester')->value;
+            $unit->semester = Config::find('semester')->value;
             $unit->semesterLength = $input['enrolmentTerm'];
             $unit->status = 'pending';
             $unit->result = 0.00;
@@ -248,7 +247,7 @@ class ManageUnitController extends Controller
         $units = DB::table('enrolment_units')
             ->join('unit', 'unit.unitCode', '=', 'enrolment_units.unitCode')
             ->select('enrolment_units.*', 'unit.unitName')
-            // ->where('studentID', '=', $studentID) // need to check for current term too
+            // ->where('studentID', '=', $studentID) // need to check for current semester too
             ->findOrFail($id);
 
         $data['units'] = $units;
@@ -285,7 +284,7 @@ class ManageUnitController extends Controller
 
         $unitCount = EnrolmentUnits::where('studentID', '=', Auth::user()->username)
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->where('semesterLength', '=', $input['enrolmentTerm'])
         ->where('status', '=', 'pending')
         ->count();
@@ -296,7 +295,7 @@ class ManageUnitController extends Controller
             $unit->studentID = Auth::user()->username;
             $unit->unitCode = $input['unitCode'];
             $unit->year = Config::find('year')->value;
-            $unit->term = Config::find('semester')->value;
+            $unit->semester = Config::find('semester')->value;
             $unit->semesterLength = $input['enrolmentTerm'];
             $unit->status = $input['status'];
             $unit->result = 0.00;
@@ -337,7 +336,7 @@ class ManageUnitController extends Controller
         $unit = EnrolmentUnits::where('unitCode', '=', $input['unitCode'])
         ->where('studentID', '=', Auth::user()->username)
         ->where('year', '=', Config::find('year')->value)
-        ->where('term', '=', Config::find('semester')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->where('semesterLength', '=', $input['enrolmentTerm'])
         ->delete();
 

@@ -299,7 +299,7 @@
         data = {
             _token: getToken(),
             unitCode: $(this).attr('id'),
-            enrolmentTerm: $(this).data('length')
+            semesterLength: $(this).data('length')
         }
 
         $.ajax({
@@ -333,7 +333,7 @@
         data = {
             _token: getToken(),
             unitCode: $(this).attr('id'),
-            enrolmentTerm: $(this).data('length'),
+            semesterLength: $(this).data('length'),
             reason: adjustmentreason,
             status: pendingstatus
         }

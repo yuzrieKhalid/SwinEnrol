@@ -17,7 +17,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'I047',
                 'courseName' => 'Bachelor of Computer Science',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 3,
+                'semesterCount' => 7,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -25,7 +26,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'BA-BUSFIN3',
                 'courseName' => 'Bachelor of Business (Finance)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 2,
+                'semesterCount' => 6,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -33,7 +35,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'SK401',
                 'courseName' => 'Bachelor of Engineering (Chemical) (Honours)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 2,
+                'semesterCount' => 8,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -41,7 +44,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'BA-MULGD',
                 'courseName' => 'Bachelor of Design (Graphic Design)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 3,
+                'semesterCount' => 9,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -49,7 +53,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'BA-SCBIO2',
                 'courseName' => 'Bachelor of Science (Biotechnology)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 3,
+                'semesterCount' => 9,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -58,7 +63,8 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'FICT',
                 'courseName' => 'Foundation (ICT)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 2,
+                'semesterCount' => 2,
                 'studyLevel' => 'Foundation',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

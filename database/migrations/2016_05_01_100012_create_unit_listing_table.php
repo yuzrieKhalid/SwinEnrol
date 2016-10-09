@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequisiteTable extends Migration
+class CreateUnitListingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,15 @@ class CreateRequisiteTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisite', function (Blueprint $table) {
+        Schema::create('unit_listing', function (Blueprint $table) {
             $table->string('unitCode');
-            $table->string('requisite');
-            $table->string('type');
-            $table->string('conjunction');
+            $table->integer('year')->unsigned();
+            $table->string('semester');
+            $table->string('semesterLength');
 
             $table->timestamps();
 
             $table->foreign('unitCode')->references('unitCode')->on('unit')
-            ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('requisite')->references('unitCode')->on('unit')
             ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -34,6 +32,6 @@ class CreateRequisiteTable extends Migration
      */
     public function down()
     {
-        Schema::drop('requisite');
+        Schema::drop('unit_listing');
     }
 }

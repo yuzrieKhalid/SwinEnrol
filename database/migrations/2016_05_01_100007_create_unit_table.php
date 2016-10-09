@@ -16,16 +16,17 @@ class CreateUnitTable extends Migration
         {
             $table->string('unitCode');
             $table->string('unitName');
-            $table->integer('minimumCompletedUnits')->unsigned();
+            $table->decimal('creditPoints', 5, 2);
             $table->integer('maxStudentCount')->unsigned();
             $table->integer('lectureGroupCount')->unsigned();
             $table->string('lectureDuration');
             $table->integer('tutorialGroupCount')->unsigned();
             $table->string('tutorialDuration');
             $table->string('unitInfo');
-            $table->primary('unitCode');
 
             $table->timestamps();
+
+            $table->primary('unitCode');
         });
     }
 

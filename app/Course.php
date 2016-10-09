@@ -13,13 +13,23 @@ class Course extends Model
     public $incrementing = false;
 
     // relation
-    public function unit()
+    public function study_planner()
 	{
-		return $this->hasMany('App\UnitTerm', 'courseCode');
+		return $this->hasMany('App\StudyPlanner', 'courseCode');
 	}
 
-    public function unit_term()
+    public function student()
     {
         return $this->hasMany('App\Student', 'courseCode');
+    }
+
+    public function course_coordinator()
+    {
+        return $this->hasMany('App\CourseCoordinator', 'courseCode');
+    }
+
+    public function graduation_requirements()
+    {
+        return $this->hasMany('App\GraduationRequirements', 'courseCode');
     }
 }

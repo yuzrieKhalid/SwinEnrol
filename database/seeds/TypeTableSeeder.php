@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 
-class UnitTypeTableSeeder extends Seeder
+class TypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,32 +12,32 @@ class UnitTypeTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('unit_type')->insert([
+        DB::table('type')->insert([
             [
-                'unitType' => 'Core',
+                'typeId' => 'Core',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitType' => 'Major',
+                'typeId' => 'Major',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitType' => 'Co-Major',
+                'typeId' => 'Co-Major',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitType' => 'Minor',
+                'typeId' => 'Minor',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'unitType' => 'Elective',
+                'typeId' => 'Elective',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]
-		]);
+        ]);
     }
 }

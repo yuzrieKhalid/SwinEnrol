@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
-use App\UnitTerm;
+use App\StudyPlanner;
 use App\Course;
 use App\Student;
 use App\Config;
@@ -23,7 +23,7 @@ class ViewPlannerController extends Controller
         // get input from request
         $input = $request->only([
             'year',
-            'term',
+            'semester',
             'courseCode'
         ]);
 
@@ -40,30 +40,29 @@ class ViewPlannerController extends Controller
         }
 
         // default to student's intake semester
-        if($input['term'] == '')
-            $input['term'] = $student->term;
+        if($input['semester'] == '')
+            $input['semester'] = $student->term;
 
         // default to student's course
         if($input['courseCode'] == '')
             $input['courseCode'] = $student->courseCode;
 
         // get student's study planner
-        $units = UnitTerm::with('unit', 'unit_type', 'course')
+        $units = StudyPlanner::with('unit', 'course')
             ->where([
-                ['unitType', '=', 'study_planner'],
                 ['year', '=', $input['year']],
-                ['term', '=', $input['term']],
+                ['semester', '=', $input['semester']],
                 ['courseCode', '=', $input['courseCode']]
             ])
             ->get();
-        $data['termUnits'] = $units;
+        $data['semesterUnits'] = $units;
 
         // get requisites
         $requisites = Requisite::all();
 
         // sort requisites
-        $termUnits = $data['termUnits'];
-        foreach($termUnits as $unit)
+        $semesterUnits = $data['semesterUnits'];
+        foreach($semesterUnits as $unit)
         {
             foreach($requisites as $requisite)
             {
@@ -90,9 +89,9 @@ class ViewPlannerController extends Controller
         // get semester unit count
         for($n = 0; $n < $data['size']; $n++)
         {
-            $count[$n] = UnitTerm::where([
+            $count[$n] = StudyPlanner::where([
                     ['year', '=', $input['year']],
-                    ['term', '=', $input['term']],
+                    ['semester', '=', $input['semester']],
                     ['courseCode', '=', $input['courseCode']],
                     ['enrolmentTerm', '=', $n]
                 ])->count();
@@ -100,6 +99,7 @@ class ViewPlannerController extends Controller
         $data['count'] = $count;
 
         // generate year/semester strings
+        // this term is to not semester, its a custom string to indicate the semester
         for($n = 0; $n < $data['size']; $n++)
             $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
         $data['term'] = $term;
@@ -111,7 +111,7 @@ class ViewPlannerController extends Controller
         $data['year'] = $input['year'];
 
         // get semester
-        $data['semester'] = $input['term'];
+        $data['semester'] = $input['semester'];
 
         // get selected course
         $selectedCourse = Course::find($input['courseCode']);

@@ -30,7 +30,7 @@
 
                         <!-- Semester Selection -->
                         <div class="form-group">
-                            <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                            <select class="form-control" name="semester" id="semester" onchange="this.form.submit()">
                                 @if($semester == "Semester 1")
                                     <option value="Semester 1" selected>Semester 1</li>
                                 @else
@@ -68,7 +68,7 @@
                     <!-- end Planner selection form -->
 
                     {{-- generate semester/unit list --}}
-                    @if(count($termUnits) > 0)
+                    @if(count($semesterUnits) > 0)
                         @for($n = 0; $n < $size; $n++)
                             @if($count[$n] > 0)
                                 <h2>
@@ -84,7 +84,7 @@
                                         <th>Anti-requisite</th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
-                                    @foreach ($termUnits as $unit)
+                                    @foreach ($semesterUnits as $unit)
                                         @if($n == $unit->enrolmentTerm)
                                             <tr>
                                                 <td>{{ $unit->unitCode }}</td>

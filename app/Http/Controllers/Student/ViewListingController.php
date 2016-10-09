@@ -34,9 +34,9 @@ class ViewListingController extends Controller
         $data['semesterUnits'] = [];
         foreach($units as $unit)
         {
-            // no way to check which course does the listing belongs to --> so cannot perform sorting
-            // if($unit['course']->studyLevel == $studyLevel)
-            array_push($data['semesterUnits'], $unit);
+            // filter units according to level of study
+            if($unit['unit']->studyLevel == $studyLevel)
+                array_push($data['semesterUnits'], $unit);
         }
 
         // get requisites
@@ -76,8 +76,8 @@ class ViewListingController extends Controller
         $data['semesterUnitsShort'] = [];
         foreach($units as $unit)
         {
-            // if($unit['course']->studyLevel == $studyLevel)
-            array_push($data['semesterUnitsShort'], $unit);
+            if($unit['unit']->studyLevel == $studyLevel)
+                array_push($data['semesterUnitsShort'], $unit);
         }
 
         // get requisites

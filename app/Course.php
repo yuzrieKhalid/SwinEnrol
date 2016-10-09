@@ -32,4 +32,10 @@ class Course extends Model
     {
         return $this->hasMany('App\GraduationRequirements', 'courseCode');
     }
+
+    // inverse relation
+    public function study_level()
+    {
+        return $this->belongsTo('App\StudyLevel', 'studyLevel', 'studyLevel');
+    }
 }

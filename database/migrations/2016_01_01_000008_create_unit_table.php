@@ -23,10 +23,13 @@ class CreateUnitTable extends Migration
             $table->integer('tutorialGroupCount')->unsigned();
             $table->string('tutorialDuration');
             $table->string('unitInfo');
+            $table->string('studyLevel');
 
             $table->timestamps();
 
             $table->primary('unitCode');
+            $table->foreign('studyLevel')->references('studyLevel')->on('study_level')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

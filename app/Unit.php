@@ -32,4 +32,10 @@ class Unit extends Model
     {
         return $this->hasMany('App\StudyPlanner', 'unitCode');
     }
+
+    // inverse relation
+    public function study_level()
+    {
+        return $this->belongsTo('App\StudyLevel', 'studyLevel', 'studyLevel');
+    }
 }

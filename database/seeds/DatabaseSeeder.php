@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // swinenrol
         $this->call(UsersTableSeeder::class);
         $this->call(EnrolmentDatesTableSeeder::class);
+        $this->call(StudyLevelTableSeeder::class);
         $this->call(CourseTableSeeder::class);
         $this->call(StudentTableSeeder::class);
         $this->call(UnitTypeTableSeeder::class);

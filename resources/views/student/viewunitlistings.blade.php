@@ -25,7 +25,7 @@
                             <th>Anti-requisite</th>
                         </thead>
                         {{-- Fetch data for unit listing (long semester) --}}
-                        @foreach ($termUnits as $unit)
+                        @foreach ($semesterUnits as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
@@ -48,7 +48,7 @@
                             <th>Anti-requisite</th>
                         </thead>
                         {{-- Fetch data for unit listing (short semester) --}}
-                        @foreach ($termUnitsShort as $unit)
+                        @foreach ($semesterUnitsShort as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>

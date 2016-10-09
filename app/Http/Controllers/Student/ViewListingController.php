@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
-use App\UnitTerm;
+use App\UnitListing;
 use App\Config;
 use App\Course;
 use App\Student;
@@ -24,27 +24,27 @@ class ViewListingController extends Controller
         $studyLevel = Course::find(Student::find(Auth::user()->username)->courseCode)->studyLevel; // get student level of study
 
         // get long semester unit listing
-        $units = UnitTerm::with('unit', 'unit_type', 'course')
-            ->where('unitType', '=', 'unit_listing')
+        $units = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'long')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'long')
             ->get();
 
         // return units that match study level
-        $data['termUnits'] = [];
+        $data['semesterUnits'] = [];
         foreach($units as $unit)
         {
-            if($unit['course']->studyLevel == $studyLevel)
-                array_push($data['termUnits'], $unit);
+            // no way to check which course does the listing belongs to --> so cannot perform sorting
+            // if($unit['course']->studyLevel == $studyLevel)
+            array_push($data['semesterUnits'], $unit);
         }
 
         // get requisites
         $requisites = Requisite::all();
 
         // sort requisites
-        $termUnits = $data['termUnits'];
-        foreach($termUnits as $unit)
+        $semesterUnits = $data['semesterUnits'];
+        foreach($semesterUnits as $unit)
         {
             foreach($requisites as $requisite)
             {
@@ -66,23 +66,22 @@ class ViewListingController extends Controller
         }
 
         // get short semester unit listing
-        $units = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'unit_listing')
+        $units = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'short')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'short')
             ->get();
 
         // return units that match study level
-        $data['termUnitsShort'] = [];
+        $data['semesterUnitsShort'] = [];
         foreach($units as $unit)
         {
-            if($unit['course']->studyLevel == $studyLevel)
-                array_push($data['termUnitsShort'], $unit);
+            // if($unit['course']->studyLevel == $studyLevel)
+            array_push($data['semesterUnitsShort'], $unit);
         }
 
         // get requisites
-        foreach($data['termUnitsShort'] as $unit)
+        foreach($data['semesterUnitsShort'] as $unit)
         {
             $requisites[$unit->unitCode] = Requisite::where('unitCode', '=', $unit->unitCode)->get();
             if(count($requisites[$unit->unitCode]) > 0)

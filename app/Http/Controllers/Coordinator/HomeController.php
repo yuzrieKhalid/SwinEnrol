@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Config;
-use App\UnitTerm;
+use App\UnitListing;
 use App\Unit;
 use App\Student;
 
@@ -24,10 +24,7 @@ class HomeController extends Controller
         $year = Config::find('year')->value;
         $data['year'] = $year;
 
-        // TODO: currently don't have a way to check coordinator's courseCode
-        $course = UnitTerm::where('courseCode', '=', 'I047')->get();
-        $data['course'] = $course;
-
+        // TODO: filter through coordinator's course
         // incomplete: how to check for coordinator's coursecode, for now, hardcode 'I047'
         $student_count = Student::where('courseCode', '=', 'I047')->count();
         $data['student_count'] = $student_count;
@@ -45,25 +42,23 @@ class HomeController extends Controller
         $year = Config::find('year')->value;
 
         // to display unit listing based on long/short semester
-        $termUnits = [];
+        $semesterUnits = [];
         if ($semester == 'Semester 1' || $semester == 'Semester 2') {
             // for long semester
-            $termUnits = UnitTerm::with('unit')
-            ->where('unitType', '=', 'unit_listing')
+            $semesterUnits = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'long')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'long')
             ->get();
         } else {
             // for short semester
-            $termUnits = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'unit_listing')
+            $semesterUnits = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'short')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'short')
             ->get();
         }
-        $data['termUnits'] = $termUnits;
+        $data['semesterUnits'] = $semesterUnits;
 
         // incomplete: how to check for coordinator's coursecode, for now, hardcode 'I047'
         $student_count = Student::where('courseCode', '=', 'I047')->count();

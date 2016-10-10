@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Unit;
 use App\Course;
 use App\Requisite;
+use App\StudyLevel;
 
 class ManageUnitController extends Controller
 {
@@ -21,12 +22,6 @@ class ManageUnitController extends Controller
     public function index()
     {
         return response()->json(Unit::all());
-        // $data = [];
-        // $units = Unit::all();
-        //
-        // $data['units'] = $units;
-        //
-        // return view ('coordinator.manageunits', $data);
     }
 
     /**
@@ -40,6 +35,7 @@ class ManageUnitController extends Controller
         $units = Unit::get();
 
         $data['units'] = $units;
+        $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);
     }
@@ -58,26 +54,28 @@ class ManageUnitController extends Controller
             'prerequisite',
             'corequisite',
             'antirequisite',
-            'minimumCompletedUnits',
+            'creditPoints',
             'maxStudentCount',
             'lectureGroupCount',
             'lectureDuration',
             'tutorialGroupCount',
             'tutorialDuration',
-            'unitInfo'
+            'unitInfo',
+            'studyLevel'
         ]);
 
         // create and store unit
         $unit = new Unit;
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
+        $unit->creditPoints = $input['creditPoints'];
         $unit->maxStudentCount = (int) $input['maxStudentCount'];
         $unit->lectureGroupCount = $input['lectureGroupCount'];
         $unit->lectureDuration = $input['lectureDuration'];
         $unit->tutorialGroupCount = (int) $input['tutorialGroupCount'];
         $unit->tutorialDuration = $input['tutorialDuration'];
         $unit->unitInfo = $input['unitInfo'];
+        $unit->studyLevel = $input['studyLevel'];
         $unit->save();
 
         // create and store prerequisites
@@ -184,6 +182,8 @@ class ManageUnitController extends Controller
         $data['tutors'] = $tutors;
         $data['tutors_count'] = $tutors_count;
 
+        $data['studyLevels'] = StudyLevel::all();
+
         return view ('coordinator.manageunits_edit', $data);
         // return response()->json($unitInfo);
     }
@@ -203,25 +203,27 @@ class ManageUnitController extends Controller
             'prerequisite',
             'corequisite',
             'antirequisite',
-            'minimumCompletedUnits',
+            'creditPoints',
             'maxStudentCount',
             'lectureGroupCount',
             'lectureDuration',
             'tutorialGroupCount',
             'tutorialDuration',
-            'unitInfo'
+            'unitInfo',
+            'studyLevel'
         ]);
 
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
-        $unit->minimumCompletedUnits = (int) $input['minimumCompletedUnits'];
+        $unit->creditPoints = $input['creditPoints'];
         $unit->maxStudentCount = (int) $input['maxStudentCount'];
         $unit->lectureGroupCount = $input['lectureGroupCount'];
         $unit->lectureDuration = $input['lectureDuration'];
         $unit->tutorialGroupCount = (int) $input['tutorialGroupCount'];
         $unit->tutorialDuration = $input['tutorialDuration'];
         $unit->unitInfo = $input['unitInfo'];
+        $unit->studyLevel = $input['studyLevel'];
         $unit->save();
 
         // drop old requisites

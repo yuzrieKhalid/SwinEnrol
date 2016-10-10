@@ -22,10 +22,21 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group"> <!-- minimumCompletedUnits -->
-                        <label class="control-label">Minimum Completed Units:</label>
-                        <input class="numbers" type="text" id="minimumCompletedUnits" value="{{ $unit->minimumCompletedUnits }}">
+                <div class="col-md-3">
+                    <div class="form-group"> <!-- creditPoints -->
+                        <label class="control-label">Credit Points:</label>
+                        <input class="creditPoints" type="text" value="0" id="creditPoints">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group"> <!-- studyLevel -->
+                        <label class="control-label">Study Level:</label>
+                        <select class="form-control" name="studyLevel" id="studyLevel">
+                            @foreach($studyLevels as $studyLevel)
+                                <option value="{{ $studyLevel->studyLevel }}">{{ $studyLevel->studyLevel }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -494,41 +505,17 @@
         step: 0.5,                      // adds 0.5 every increase/decrease
         postfix: 'HOURS'                // adds HOURS at the end of the input
     })
+    $(".creditPoints").TouchSpin({
+        verticalbuttons: true,          // type of up and down buttons
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999,                      // maximum number can be added
+        decimals: 1,                    // add decimal point
+        step: 0.5                       // adds 0.5 every increase/decrease
+    })
 
     // Get CSRF token
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
-    }
-
-    // Adds a task to the task well
-    let addUnit = function(unit) {
-        if ($('#units_table').find('.tr_template') == true) {
-            let tr_template = $('#units_table').find('.tr_template').clone()
-            tr_template.removeClass('hidden')
-            tr_template.removeClass('tr_template')
-
-            let unitEdit = tr_template.children('.td_unitEdit').html()
-            unitEdit = unitEdit.replace("id", unit.unitCode)
-            let unitDelete = tr_template.children('.td_unitDelete').html()
-            unitDelete = unitDelete.replace("id", unit.unitCode)
-
-            tr_template.children('.td_unitCode').html(unit.unitCode)
-            tr_template.children('.td_unitName').html(unit.unitName)
-            tr_template.children('.td_unitEdit').html(`${unitEdit}`)
-            tr_template.children('.td_unitDelete').html(`${unitDelete}`)
-
-            $('#units_table').append(tr_template)
-        }
-    }
-
-    // Get all tasks as a list
-    let getUnits = function() {
-        let url = $('#units_table').data('url')
-        $.get(url, function(data) {
-            data.forEach(function(unit) {
-                addUnit(unit);
-            })
-        })
     }
 
     $('.submit').click(function(){
@@ -547,6 +534,7 @@
             lectureGroupCount: $('#lectureGroups').val(),
             tutorialDuration: $('#tutorialDuration').val(),
             tutorialGroupCount: $('#tutorialGroups').val(),
+            studyLevel: $('#studyLevel').val(),
             unitInfo: getUnitInformation()
         }
 
@@ -597,13 +585,10 @@
                 'method': method,
                 'data': data
             }).done(function(data) {
-                addUnit(data)
                 window.location.reload()
             })
         }
     })
-    // data.forEach is not a function
-    getUnits()
 })()
 </script>
 @stop

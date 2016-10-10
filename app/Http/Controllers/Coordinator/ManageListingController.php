@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\UnitListing;
-use App\UnitTerm;
 use App\Unit;
 use App\Config;
 
@@ -26,11 +25,10 @@ class ManageListingController extends Controller
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
-        $unitterm = UnitTerm::with('unit')
-            ->where('unitType', '=', 'unit_listing')
+        $unitterm = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'long')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'long')
             ->get();
 
         return response()->json($unitterm);
@@ -47,18 +45,16 @@ class ManageListingController extends Controller
         $year = Config::find('year')->value;
 
         $data = [];
-        $data['termUnits'] = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'unit_listing')
+        $data['semesterUnits'] = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'long')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'long')
             ->get();
 
-        $data['termUnitsShort'] = UnitTerm::with('unit', 'unit_type')
-            ->where('unitType', '=', 'unit_listing')
+        $data['semesterUnitsShort'] = UnitListing::with('unit')
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', 'short')
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', 'short')
             ->get();
 
         $data['units'] = Unit::all();
@@ -76,19 +72,17 @@ class ManageListingController extends Controller
     {
         $input = $request->only([
             'unitCode',
-            'enrolmentTerm'
+            'semesterLength'
         ]);
 
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
-        $unit = new UnitTerm;
-        $unit->unitType = 'unit_listing';
+        $unit = new UnitListing;
         $unit->unitCode = $input['unitCode'];
         $unit->year = $year;
-        $unit->term = $semester;
-        $unit->enrolmentTerm = $input['enrolmentTerm'];
-        $unit->courseCode = 'I047'; // todo: get from coordinator
+        $unit->semester = $semester;
+        $unit->semesterLength = $input['semesterLength'];
 
         $unit->save();
         return response()->json($unit);
@@ -127,11 +121,11 @@ class ManageListingController extends Controller
     {
         $input = $request->only([
             'unitCode',
-            'enrolmentTerm'
+            'semesterLength'
         ]);
 
         // not working (because it's not necessary)
-        $unitlisting = UnitTerm::findOrFail($id);
+        $unitlisting = UnitListing::findOrFail($id);
         $unitlisting->unitCode = $input['unitCode'];
 
         $unitlisting->save();
@@ -148,17 +142,16 @@ class ManageListingController extends Controller
     {
         $input = $request->only([
             'unitCode',
-            'enrolmentTerm'
+            'semesterLength'
         ]);
 
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
-        $unitlisting = UnitTerm::where('unitCode', '=', $input['unitCode'])
+        $unitlisting = UnitListing::where('unitCode', '=', $input['unitCode'])
             ->where('year', '=', $year)
-            ->where('term', '=', $semester)
-            ->where('enrolmentTerm', '=', $input['enrolmentTerm'])
-            ->where('courseCode', '=', 'I047') // todo: get from coordinator
+            ->where('semester', '=', $semester)
+            ->where('semesterLength', '=', $input['semesterLength'])
             ->delete();
 
         return response()->json($unitlisting);

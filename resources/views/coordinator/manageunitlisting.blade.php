@@ -29,11 +29,16 @@
                             <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addLong"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (long semester) --}}
-                        @foreach ($termUnits as $unit)
+                        @foreach ($semesterUnits as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
-                            <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $unit->enrolmentTerm }}" data-method="DELETE" data-url="{{ route('coordinator.manageunitlisting.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                            <td>
+                                <a id="submit" data-unit-code="{{ $unit->unitCode }}" data-semester-length="{{ $unit->semesterLength }}"
+                                    data-method="DELETE" data-url="{{ route('coordinator.manageunitlisting.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button">
+                                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -48,11 +53,16 @@
                             <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addShort"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (short semester) --}}
-                        @foreach ($termUnitsShort as $unit)
+                        @foreach ($semesterUnitsShort as $unit)
                         <tr>
                             <td>{{ $unit->unitCode }}</td>
                             <td>{{ $unit->unit->unitName }}</td>
-                            <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $unit->enrolmentTerm }}" data-method="DELETE" data-url="{{ route('coordinator.manageunitlisting.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                            <td>
+                                <a id="submit" data-unit-code="{{ $unit->unitCode }}" data-semester-length="{{ $unit->semesterLength }}"
+                                    data-method="DELETE" data-url="{{ route('coordinator.manageunitlisting.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button">
+                                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -84,9 +94,9 @@
                             </div>
 
                             <div class="form-group hidden">
-                                <label class="control-label col-sm-2" for="enrolmentTerm">Term:</label>
+                                <label class="control-label col-sm-2" for="semesterLength">Semester Length:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="enrolmentTerm" disabled value="0">
+                                    <input type="text" class="form-control" id="semesterLength" disabled value="0">
                                 </div>
                             </div>
                         </form>
@@ -103,30 +113,8 @@
 @stop
 
 @section('extra_js')
-<script>
-// Sariful's part
-$(document$).ready(function(){
-    $('.nav-menu-bt').click(function() {
-        $('.navbar').css('-webkit-transform', 'translate(0,0)');
-        console.log('Pressed');
-    });
-});
-
-// ------ css ------
-.navbar{
-  position: fixed;
-  height:100%;
-  width:20%;
-  overflow: hidden;
-  background-color: #48a770;
-
-  -webkit-transform: translate(-100,0);
-}
-
-</script>
 
 <script>
-// Yuzrie's part
 (function() {
     // Get CSRF token
     let getToken = function() {
@@ -141,15 +129,15 @@ $(document$).ready(function(){
             data = {
                 _token: getToken(),
                 unitCode: $('select[name=unitCode]').val(),
-                enrolmentTerm: $('#enrolmentTerm').val(),
+                semesterLength: $('#semesterLength').val(),
             }
         }
         if(method == "DELETE")
         {
             data = {
                 _token: getToken(),
-                unitCode: $(this).data('unitCode'),
-                enrolmentTerm: $(this).data('enrolmentTerm'),
+                unitCode: $(this).data('unit-code'),
+                semesterLength: $(this).data('semester-length'),
             }
         }
 
@@ -165,11 +153,11 @@ $(document$).ready(function(){
     })
 
     $('#addLong').click(function(){
-        $('#enrolmentTerm').val('long')
+        $('#semesterLength').val('long')
     })
 
     $('#addShort').click(function(){
-        $('#enrolmentTerm').val('short')
+        $('#semesterLength').val('short')
     })
 
 })()

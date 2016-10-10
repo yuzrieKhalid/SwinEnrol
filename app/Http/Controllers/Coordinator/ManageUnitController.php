@@ -238,7 +238,7 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $prerequisite;
                 $requisite->type = 'prerequisite';
-                $requisite->conjunction = 'AND';
+                $requisite->index = '0';
                 $requisite->save();
             }
         }
@@ -252,7 +252,7 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $corequisite;
                 $requisite->type = 'corequisite';
-                $requisite->conjunction = 'OR';
+                $requisite->index = '0';
                 $requisite->save();
             }
         }
@@ -266,7 +266,7 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $antirequisite;
                 $requisite->type = 'antirequisite';
-                $requisite->conjunction = 'OR';
+                $requisite->index = '0';
                 $requisite->save();
             }
         }

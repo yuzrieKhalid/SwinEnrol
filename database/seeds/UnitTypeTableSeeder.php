@@ -14,18 +14,31 @@ class UnitTypeTableSeeder extends Seeder
     {
         //
         DB::table('unit_type')->insert([
-			[
-				'unitType' => 'study_planner',
-				'typeName' => 'Study Planner',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			],
-			[
-				'unitType' => 'unit_listing',
-				'typeName' => 'Unit Listing',
-				'created_at' => Carbon::now(),
-				'updated_at' => Carbon::now()
-			]
+            [
+                'unitType' => 'Core',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitType' => 'Major',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitType' => 'Co-Major',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitType' => 'Minor',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitType' => 'Elective',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
 		]);
     }
 }

@@ -18,72 +18,6 @@
 
                 <div class="panel-body">
                     <form class="form-horizontal" name="cForm" role="form" action="{{ url('/student/contactcoordinator') }}" onsubmit="return validateForm()" method="POST">
-
-                        <hr>
-                        <div class="studentPersonalDetails">
-                            <h4>PERSONAL DETAILS</h4>
-                                <div class="form-group">
-                                    <!-- Title -->
-                                    <label class="control-label col-sm-2" for="name">Title:</label>
-                                    <div class="col-sm-1">
-                                        <select>
-                                            <option value="Dr">Dr</option>
-                                            <option value="Mr">Mr</option>
-                                            <option value="Mrs">Mrs</option>
-                                            <option value="Ms">Ms</option>
-                                            <option value="Mdm">Mdm</option>
-                                        </select>
-                                    </div>
-                                    <!-- Student ID -->
-                                    <label class="control-label col-sm-2" for="name">Student ID:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="1000001" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- Surname -->
-                                    <label class="control-label col-sm-2" for="name">Surname:</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="Doe" disabled>
-                                    </div>
-                                    <!-- Given Name -->
-                                    <label class="control-label col-sm-2" for="name">Given Name:</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="John" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- Program Code and Title -->
-                                    <label class="control-label col-sm-2" for="name">Program Code:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="IO47" disabled>
-                                    </div>
-                                    <label class="control-label col-sm-2" for="name">Program Title:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Bachelor in Computer Science" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- Country -->
-                                    <label class="control-label col-sm-2" for="name">Country:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" placeholder="Malaysia" disabled>
-                                    </div>
-                                    <!-- State -->
-                                    <label class="control-label col-sm-1" for="name">State:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="Sarawak" disabled>
-                                    </div>
-                                    <!-- Postcode -->
-                                    <label class="control-label col-sm-1" for="name">Postcode:</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder="96100" disabled>
-                                    </div>
-                                </div>
-                        </div>
                         <hr>
 
                         <div class="studentIssue">
@@ -106,6 +40,7 @@
                                         <option value="course_transfer">Internal Course Transfer</option>
                                         <option value="exemption">Application for Advanced Standing (Exemptions)</option>
                                         <option value="leave_of_absence">Application for Leave of Absence</option>
+                                        <option value="preclusion">Application for Unit Preclusion</option>
                                     </select>
                                 </div>
                             </div>
@@ -291,6 +226,53 @@
                                 </p>
                             </div>
 
+                            <!-- Case: Preclusion -->
+                            <div class="hidden" id="preclusion">
+                                <h3>APPLICATION FOR UNIT PRECLUSION</h3>
+
+                                <h4>SELECT UNIT</h4>
+                                <div class="form-group">
+                                    {{-- preclusion --}}
+                                    <label class="control-label col-sm-2">Preclusion Unit:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control selectedForPreclusion">
+                                            <option value="none"></option>
+                                            @foreach($semesterUnits as $unit)
+                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{-- preclusion --}}
+                                    <label class="control-label col-sm-2">Prerequisite Unit:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control selectedPrerequisite">
+                                            <option value="none"></option>
+                                            @foreach($units as $unit)
+                                                @if(!empty($unit->requisite))
+                                                    <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unitName }}</span></option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Reason for Preclusion -->
+                                <label class="control-label">REASON FOR PRECLUSION:</label>
+                                <textarea class="form-control reasonForPreclusion" rows="3"></textarea>
+
+                                <!-- Conditions -->
+                                <h4>Conditions</h4>
+                                <p>
+                                    1. You may only apply for this if you failed <strong>ONE</strong> prerequisite to the selected unit.
+                                </p>
+                                <p>
+                                    2. Before submitting the form, you must remember to enrol the failed prerequisite along with the selected unit.
+                                </p>
+                            </div>
+
                         </div> <!-- end #studentIssue -->
                     </form>
                 </div>
@@ -421,6 +403,21 @@ $('.datepicker').datepicker({
             attachmentData = null
             issueID = 3
 
+        } else if (option == 'preclusion') {
+
+
+            let json_preclusion = {}
+
+            json_preclusion["selectedForPreclusion"] = $('.selectedForPreclusion').val()
+            json_preclusion["selectedPrerequisite"] = $('.selectedPrerequisite').val()
+            json_preclusion["reasonForPreclusion"] = $('.reasonForPreclusion').val()
+
+            submissionData = JSON.stringify(json_preclusion)
+            attachmentData = null
+            issueID = 5
+
+            console.log(json_preclusion)
+
         } else {
             console.log("Something is wrong, this shouldn't occur");
         }
@@ -441,19 +438,9 @@ $('.datepicker').datepicker({
             'data': data,
             enctype: 'multipart/form-data'
         }).done(function(data) {
-            // console.log(issueID);
-            console.log("SubmissionData: " + submissionData);
-            // console.log("AttachmentData: " + attachmentData);
+            // window.location.reload()
         })
     })
 }) ()
 </script>
-
-<!-- <script>
-
-$('[data-toggle=confirmation]').confirmation({
-  rootSelector: '[data-toggle=confirmation]',
-  // other options
-});
-</script> -->
 @stop

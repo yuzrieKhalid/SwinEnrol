@@ -17,31 +17,54 @@ class CourseTableSeeder extends Seeder
             [
                 'courseCode' => 'I047',
                 'courseName' => 'Bachelor of Computer Science',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 3,
+                'semesterCount' => 7,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'courseCode' => 'E456',
-                'courseName' => 'Engineering',
-                'graduationRequirements' => 'None',
+                'courseCode' => 'BA-BUSFIN3',
+                'courseName' => 'Bachelor of Business (Finance)',
+                'semestersPerYear' => 2,
+                'semesterCount' => 6,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'courseCode' => 'B123',
-                'courseName' => 'Business',
-                'graduationRequirements' => 'None',
+                'courseCode' => 'SK401',
+                'courseName' => 'Bachelor of Engineering (Chemical) (Honours)',
+                'semestersPerYear' => 2,
+                'semesterCount' => 8,
                 'studyLevel' => 'Degree',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'courseCode' => 'BA-MULGD',
+                'courseName' => 'Bachelor of Design (Graphic Design)',
+                'semestersPerYear' => 3,
+                'semesterCount' => 9,
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'courseCode' => 'BA-SCBIO2',
+                'courseName' => 'Bachelor of Science (Biotechnology)',
+                'semestersPerYear' => 3,
+                'semesterCount' => 9,
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // etc
             [
                 'courseCode' => 'FICT',
                 'courseName' => 'Foundation (ICT)',
-                'graduationRequirements' => 'None',
+                'semestersPerYear' => 2,
+                'semesterCount' => 2,
                 'studyLevel' => 'Foundation',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

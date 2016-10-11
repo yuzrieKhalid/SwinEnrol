@@ -72,28 +72,6 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
-                            Student Status List
-                        </div>
-                        <div class="panel-body">
-                            <table class="table">
-                                <thead>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <!-- <th>Result</th> -->
-                                    <th>Payment Status</th>
-                                </thead>
-                                @foreach ($students as $student)
-                                <tr>
-                                    <td>{{ $student->studentID }}</td>
-                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
-                                    <td>{{ $student->paymentStatus }}</td> <!-- Payment Status -->
-                                </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
                             Student List
                         </div>
                         <div class="panel-body">
@@ -156,10 +134,12 @@
                                     <input type="text" class="form-control" id="givenName" placeholder="John">
                                 </div>
 
-                                <!-- <div class="form-group">
-                                    <label>Email:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="example.com">
-                                </div> -->
+                                <div class="form-group">
+                                    <label>Date of Birth:</label>
+                                    <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yymmdd" data-viewMode="years">
+                                        <input type="text" class="input-sm form-control" id="dateOfBirth" name="dateOfBirth"/>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Course Code:</label>
@@ -203,27 +183,21 @@
                                         <td class="firstname">Firstname</td>
                                         <td class="coursecode">Course Code</td>
                                     </tr>
-
-
-                                  </table>
-                          </div> <!-- end. modal-content-->
+                                </table>
+                              </div> <!-- end. modal-content-->
                         </form>
 
 
 
                       </div> <!-- end modal-body -->
-                            <div classhttps://drive.google.com/drive/folders/0ByJ2lkm_aQwMZFZnR2ZBWkRoaFk="modal-footer">
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-success pull-right" id="import"
                                     data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
-                                    Import</button>
-
-                          </div> <!-- end. modal-content-->
-
+                                    Import
+                                </button>
+                            </div> <!-- end. modal-content-->
                     </div> <!-- end. modal-content-->
                 </div> <!-- end .modal-dialog -->
-
-
-
 
             <div class="modal fade" id="processDataForStatus" role="dialog">
                 <div class="modal-dialog modal-lg">
@@ -241,13 +215,11 @@
                                         <th>Surname</th>
                                         <th>Firstname</th>
                                         <th>Course Code</th>
-                                        <th>Payment Status</th>
                                         <tr class="tr_template hidden">
                                             <td class="id">Student ID</td>
                                             <td class="surname">Surname</td>
                                             <td class="firstname">Firstname</td>
                                             <td class="coursecode">Course Code</td>
-                                            <td class="paymentstatus">Payment Status</td>
                                         </tr>
                                     </thead>
                                 </table>
@@ -255,7 +227,7 @@
                       </form>
 
                   </div> <!-- end. modal-content-->
-                  <div classhttps://drive.google.com/drive/folders/0ByJ2lkm_aQwMZFZnR2ZBWkRoaFk="modal-footer">
+                  <div class="modal-footer">
                       <button type="button" class="btn btn-success pull-right" id="import"
                           data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
                           Import</button>
@@ -269,7 +241,6 @@
 
 @section('extra_js')
 <script src="{{ asset('js/xlsx.min.js') }}"></script>
-
 <script>
 (function() {
     // Get CSRF token
@@ -288,7 +259,7 @@
             surname: $('#surname').val(),
             givenName: $('#givenName').val(),
             courseCode: $('#courseCode').val(),
-            paymentStatus: $('#paymentStatus').val()
+            dateOfBirth: $('#dateOfBirth').val()
           }
         $.ajax({
             'url': url,

@@ -10,7 +10,7 @@
         <div class="row">
             <!-- Reserve 3 space for navigation column -->
             @include('coordinator.menu')
-            
+
             <div class="col-md-9">
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -36,7 +36,7 @@
 
                             <!-- Semester Selection -->
                             <div class="form-group">
-                                <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                                <select class="form-control" name="semester" id="semester" onchange="this.form.submit()">
                                     @if($semester == "Semester 1")
                                         <option value="Semester 1" selected>Semester 1</li>
                                     @else
@@ -74,7 +74,7 @@
                         <!-- end Planner selection form -->
 
                         {{-- generate semester/unit list --}}
-                        @if(count($termUnits) > 0)
+                        @if(count($semesterUnits) > 0)
                             @for($n = 0; $n < $size; $n++)
                                 @if($count[$n] > 0)
                                     <h2>
@@ -84,14 +84,20 @@
                                         <col width="125">
                                         <thead>
                                             <th>Unit Code</th>
-                                            <th colspan="2">Unit Title</th>
+                                            <th>Unit Title</th>
+                                            <th>Pre-requisite</th>
+                                            <th>Co-requisite</th>
+                                            <th colspan="2">Anti-requisite</th>
                                         </thead>
                                         {{-- Fetch data for study planner --}}
-                                        @foreach ($termUnits as $unit)
+                                        @foreach ($semesterUnits as $unit)
                                             @if($n == $unit->enrolmentTerm)
                                                 <tr>
                                                     <td>{{ $unit->unitCode }}</td>
                                                     <td>{{ $unit->unit->unitName }}</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) @if(count($requisite[$unit->unitCode]['prerequisite']) > 0) {{ $requisite[$unit->unitCode]['prerequisite'][0] }} @if(count($requisite[$unit->unitCode]['prerequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) @if(count($requisite[$unit->unitCode]['corequisite']) > 0) {{ $requisite[$unit->unitCode]['corequisite'][0] }} @if(count($requisite[$unit->unitCode]['corequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['corequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['corequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                    <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) @if(count($requisite[$unit->unitCode]['antirequisite']) > 0) {{ $requisite[$unit->unitCode]['antirequisite'][0] }} @if(count($requisite[$unit->unitCode]['antirequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['antirequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['antirequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
                                                     <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
                                                 </tr>
                                             @endif
@@ -100,7 +106,6 @@
                                 @endif
                             @endfor
                         @endif
-
                     </div>
                 </div> <!-- end .panel -->
             </div>
@@ -140,6 +145,18 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <!-- Type selection -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="enrolmentTerm">Unit Type:</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="unitType" id="unitType">
+                                            @foreach($types as $type)
+                                                <option value="{{ $type->unitType }}">{{ $type->unitType }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -171,8 +188,9 @@
                 unitCode: $('select[name=unitCode]').val(),
                 enrolmentTerm: $('select[name=enrolmentTerm]').val(),
                 year: $('#year').val(),
-                term: $('#term').val(),
-                courseCode: $('#courseCode').val()
+                semester: $('#semester').val(),
+                courseCode: $('#courseCode').val(),
+                unitType: $('#unitType').val()
             }
         }
         if(method == "DELETE")
@@ -182,8 +200,9 @@
                 unitCode: $(this).data('unitCode'),
                 enrolmentTerm: $(this).data('enrolmentTerm'),
                 year: $('#year').val(),
-                term: $('#term').val(),
-                courseCode: $('#courseCode').val()
+                semester: $('#semester').val(),
+                courseCode: $('#courseCode').val(),
+                unitType: $('#unitType').val()
             }
         }
 
@@ -195,8 +214,6 @@
             window.location.reload()
         })
     })
-    // data.forEach is not a function
-    // getUnits()
 })()
 </script>
 @stop

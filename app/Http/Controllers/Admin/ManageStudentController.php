@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Student;
 use App\User;
+use App\Config;
 
 class ManageStudentController extends Controller
 {
@@ -40,9 +41,6 @@ class ManageStudentController extends Controller
      */
     public function create()
     {
-        // maybe its better to create a new view to add student?
-        // otherwise, it feels weird to have both landing page and create page
-        // on the same view. As a User, I feel weird
         return view ('admin.managestudents');
     }
 
@@ -60,6 +58,8 @@ class ManageStudentController extends Controller
             'surname',
             'givenName',
             'courseCode',
+            'dateOfBirth'
+
         ]);
 
         // create new student
@@ -69,17 +69,21 @@ class ManageStudentController extends Controller
         $student->givenName = $input['givenName'];
         $student->courseCode = $input['courseCode'];
 
+        $student->year = Carbon::now()->year;
+        $student->term = Config::findOrFail('semester')->value;;
+
+
         // adds the student to the User table too
         $user = new User;
         $user->username = $student->studentID;
-        $user->password = bcrypt($student->studentID);
-        $user->permissionLevel = 'student';
+        $user->password = bcrypt($input['dateOfBirth']);
+        $user->permissionLevel = '1';
 
         // save into database
         $student->save();
         $user->save();
 
-        return response()->json($student);
+        return response()->json($user);
     }
 
     /**
@@ -118,7 +122,6 @@ class ManageStudentController extends Controller
             'surname',
             'givenName',
             'courseCode',
-            'paymentStatus'
         ]);
 
         // find student and update
@@ -127,7 +130,6 @@ class ManageStudentController extends Controller
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->courseCode = $input['courseCode'];
-        $student->paymentStatus = $input['paymentStatus'];
 
         $student->save();
         return response()->json($student);
@@ -184,7 +186,6 @@ class ManageStudentController extends Controller
                 $student->surname = $value['surname'];
                 $student->givenName = $value['firstname'];
                 $student->courseCode = $value['coursecode'];
-                $student->paymentStatus = $value['paymentstatus'];
                 $student->save();
             }
         }

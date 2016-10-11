@@ -94,6 +94,7 @@ Route::group([
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
     Route::resource('managestudent', 'Super\ManageStudent');
     Route::resource('managecourse', 'Super\ManagCourseController');
+    Route::resource('manageunittype', 'Super\ManageUnitType');
 });
 
 Route::get('/phase', 'PhaseController@phaseTrigger');

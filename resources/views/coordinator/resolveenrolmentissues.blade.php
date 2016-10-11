@@ -81,14 +81,63 @@
                                                     <p>Exemption Year: <span class="text-success exemptionYear">[2018]</span></p>
                                                     <p class="attachmentData">Attachment: <a href="#">iCATS Results Slip.pdf</a></p>
                                                 </div>
-                                            </div>
+
+                                                <div class="issue_3 hidden">
+                                                    <p>Student ID: <span class="text-warning studentID">4318595</span></p>
+                                                    <p>Issue : <span class="text-warning issue">[Preclusion]</span></p>
+                                                    <p>Status: <span class="text-warning status">Pending</span></p>
+
+                                                    <h3>Special Case: Preclusion</h3>
+                                                    <p>Selected Unit for Preclusion: <span class="text-success preclusionUnit">[HIT 1302] [Introduction to Business Information System]</span></p>
+                                                    <p>Prerequisite of Selected Unit: <span class="text-success prerequisiteUnit">[HIT 1301] [Introduction to a System]</span></p>
+                                                    <p>Reason for Preclusion: <span class="text-success reasonForPreclusion">[Reason]</span></p>
+
+                                                    <h3>Student Enrolment Status</h3>
+                                                    <button class="btn btn-primary display-enrolment-status" data-id="" data-show="{{ route('coordinator.resolveenrolmentissues.show', 'stdID') }}">Show Student Enrolment Status</button>
+
+                                                    <div class="student-enrolment-status hidden">
+                                                        <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
+                                                            <!-- On press will make one of them hiddden -->
+                                                            <a class="btn btn-default" href=".current-enrolment-table" data-toggle="tab" role="button">Current Enrolment</a>
+                                                            <a class="btn btn-default" href=".completed-units-table" data-toggle="tab" role="button">Completed Units</a>
+                                                        </div>
+
+                                                        <div id="content" class="tab-content">
+                                                            <div class="tab-pane fade active in current-enrolment-table">
+                                                                <table class="table table-bordered table-striped current_enrolment_table">
+                                                                <h4>Current Enrolment</h4>
+                                                                    <thead>
+                                                                        <th>Unit Code</th>
+                                                                        <th colspan="2">Unit Name</th>
+                                                                    </thead>
+                                                                    <tr class="tr_template_current hidden">
+                                                                        <td class="td_unitCode"></td>
+                                                                        <td class="td_unitName"></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="tab-pane fade completed-units-table">
+                                                                <h4>Completed Units</h4>
+                                                                <table class="table table-bordered table-striped completed_table">
+                                                                    <thead>
+                                                                        <th>Unit Code</th>
+                                                                        <th colspan="2">Unit Name</th>
+                                                                    </thead>
+                                                                    <tr class="tr_template_completed hidden">
+                                                                        <td class="td_unitCode"></td>
+                                                                        <td class="td_unitName"></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+
+                                                        </div> <!-- end .tab-content -->
+                                                    </div> <!-- end .student-enrolment-status-->
+                                                </div> <!-- end .issue_3 -->
+                                            </div> <!-- end .modal-body -->
 
                                             <!-- footer -->
                                             <div class="modal-footer">
-                                                <a type="button" class="btn btn-primary test" data-method="PUT" data-stdid="" data-issid="" data-first="" data-second=""
-                                                    href="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
-                                                    Approve
-                                                </a>
                                                 <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid="" data-first="" data-second=""
                                                     data-url="{{ route('coordinator.resolveenrolmentissues.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Approve
@@ -119,6 +168,62 @@
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
     }
+
+    // 4. Get Student Enrolment Information
+    $(document).delegate(".display-enrolment-status", "click", function(){
+        // for the url for show
+        let show = $(this).data('show')
+        // for parameter
+        let studentID = $(this).data('id')
+        // for keeping track
+        let button = $(this)
+
+        // update the id
+        show = show.replace('stdID', studentID)
+
+
+        // on click
+        $(this).parent().find('.student-enrolment-status').removeClass('hidden')
+        $(this).addClass('hidden')
+
+        let populateCurrentTable = function(data) {
+            let current_enrolment_template = button.parent().find('.tr_template_current').clone()
+
+            current_enrolment_template.removeClass('hidden')
+            current_enrolment_template.removeClass('tr_template_current')
+
+            current_enrolment_template.children('.td_unitCode').html(data.unitCode)
+            current_enrolment_template.children('.td_unitName').html(data.unit.unitName)
+
+            button.parent().find('.current_enrolment_table').append(current_enrolment_template)
+        }
+
+        let populateCompletedTable = function(data) {
+            let completed_template = button.parent().find('.tr_template_completed').clone()
+
+            completed_template.removeClass('hidden')
+            completed_template.removeClass('tr_template_completed')
+
+            completed_template.children('.td_unitCode').html(data.unitCode)
+            completed_template.children('.td_unitName').html(data.unit.unitName)
+
+            button.parent().find('.completed_table').append(completed_template)
+        }
+
+        // get the student's enrolment history and status
+        let getEnrolmentInformation = function() {
+            $.get(show, function(data) {
+                data.current.forEach(function(enrolment) {
+                    populateCurrentTable(enrolment)
+                })
+
+                data.history.forEach(function(enrolment) {
+                    populateCompletedTable(enrolment)
+                })
+            })
+        }
+        getEnrolmentInformation()
+    })
 
     // 3 Adding submissionData appropriately
     // 3.1 Internal Course Transfer
@@ -158,8 +263,6 @@
         modal_template.find('.modal-footer').children('.submit').attr('data-second', submissionData.toProgramYear)
 
         $('#modal_placeholder').append(modal_template)
-
-        console.log(modal_template.find('.modal-footer').children('.submit').data('url'));
     }
 
     // 3.2 Advanced Standing (Exemption)
@@ -201,6 +304,43 @@
         $('#modal_placeholder').append(modal_template)
     }
 
+    // 3.3 Special Case: Preclusion
+    let addModalData_3 = function(issue) {
+        // parsing the JSON Object
+        let submissionData = JSON.parse(issue.submissionData)
+
+        // cloning and populating the data
+        let modal_template = $('#modal_placeholder').find('.modal_template').clone()
+        modal_template.find('.issue_3').removeClass('hidden')
+        modal_template.removeClass('modal_template')
+        modal_template.attr('id', issue.studentID + '_' + issue.issueID)
+
+        modal_template.find('.studentID').html(issue.studentID)
+        modal_template.find('.issue').html(issue.enrolment_issues.issueType)
+        modal_template.find('.status').html(issue.status)
+
+        modal_template.find('.preclusionUnit').html(submissionData.selectedForPreclusion)
+        modal_template.find('.prerequisiteUnit').html(submissionData.selectedPrerequisite)
+        modal_template.find('.reasonForPreclusion').html(submissionData.reasonForPreclusion)
+        modal_template.find('.display-enrolment-status').attr('data-id', issue.studentID)
+
+        // replace the id to be passed into the route
+        let route = modal_template.find('.modal-footer').children('.submit').data('url')
+        route = route.replace('stdID', issue.studentID)
+        route = route.replace('issID', issue.issueID)
+
+        // replace the original data-url with the replaced stdID and issID
+        modal_template.find('.modal-footer').children('.submit').attr('data-url', route)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
+        modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
+
+        modal_template.find('.modal-footer').children('.submit').attr('data-first', modal_template.find('.preclusionUnit').html())
+        modal_template.find('.modal-footer').children('.submit').attr('data-second', modal_template.find('.prerequisiteUnit').html())
+
+        $('#modal_placeholder').append(modal_template)
+    }
+
     // 2. Populate the table `student_enrolment_issues_table`
     let addData = function(issue) {
         let tr_template = $('#student_enrolment_issues_table').find('.tr_template').clone()
@@ -220,6 +360,8 @@
             addModalData_1(issue)
         } else if (issue.issueID == 2) {
             addModalData_2(issue)
+        } else if (issue.issueID == 5) {
+            addModalData_3(issue)
         } else {
             console.log("Something is wrong, this shouldn't occur");
         }
@@ -246,8 +388,8 @@
         let stdid = $(this).data('stdid')
 
         // for the data to be passed
-        let code  = $(this).data('first')
-        let year = $(this).data('second')
+        let first  = $(this).data('first')
+        let second = $(this).data('second')
 
         // contains all the data to be passed
         let data = []
@@ -261,16 +403,24 @@
             // case: course transfer
             data = {
                 '_token': getToken(),
-                'proposedProgramCode': code,
-                'proposedIntakeYear': year
+                'proposedProgramCode': first,
+                'proposedIntakeYear': second
             }
         // endif
         } else if (issid == 2) {
             // case: exemption
             data = {
                 '_token': getToken(),
-                'exemptionUnitCode': code,
-                'exemptionYear': year
+                'exemptionUnitCode': first,
+                'exemptionYear': second
+            }
+        // endif
+        } else if (issid == 5) {
+            // case: exemption
+            data = {
+                '_token': getToken(),
+                'preclusionUnit': first,
+                'prerequisiteUnit': second
             }
         // endif
         }

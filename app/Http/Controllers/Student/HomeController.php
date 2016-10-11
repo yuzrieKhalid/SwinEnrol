@@ -83,7 +83,6 @@ class HomeController extends Controller
         $data['studentIn'] = $studentIn;
 
         return view ('student.student',$data);
-
     }
 
     /**
@@ -106,7 +105,14 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $enrolled = EnrolmentUnits::with('unit')
+            ->where([
+                ['studentID', '=', $user->username],
+                ['year', '=', Config::find('year')->value],
+                ['semester', '=', Config::find('semester')->value],
+            ])->get();
+        $data['enrolled'] = $enrolled;
     }
 
     /**

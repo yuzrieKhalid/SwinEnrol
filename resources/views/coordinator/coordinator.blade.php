@@ -70,7 +70,7 @@
         let url = $('#homeIndexTable').data('url')
         $.get(url, function(objectdata) {
             student_count = objectdata['student_count']
-            objectdata['termUnits'].forEach(function(data) {
+            objectdata['semesterUnits'].forEach(function(data) {
                 addData(data)
             })
         })

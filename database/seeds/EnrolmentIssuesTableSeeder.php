@@ -31,6 +31,18 @@ class EnrolmentIssuesTableSeeder extends Seeder
                 'issueType' => 'Leave of Absence',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 4,
+                'issueType' => 'Amendment',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 5,
+                'issueType' => 'Special Case (Preclusion)',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

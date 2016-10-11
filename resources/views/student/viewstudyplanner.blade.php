@@ -30,7 +30,7 @@
 
                         <!-- Semester Selection -->
                         <div class="form-group">
-                            <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                            <select class="form-control" name="semester" id="semester" onchange="this.form.submit()">
                                 @if($semester == "Semester 1")
                                     <option value="Semester 1" selected>Semester 1</li>
                                 @else
@@ -68,7 +68,7 @@
                     <!-- end Planner selection form -->
 
                     {{-- generate semester/unit list --}}
-                    @if(count($termUnits) > 0)
+                    @if(count($semesterUnits) > 0)
                         @for($n = 0; $n < $size; $n++)
                             @if($count[$n] > 0)
                                 <h2>
@@ -80,22 +80,18 @@
                                         <th>Unit Code</th>
                                         <th>Unit Title</th>
                                         <th>Pre-requisite</th>
-                                        <th>
-                                          Co-requisite
-                                        </th>
-                                        <th>
-                                          Anti-Requisite
-                                        </th>
+                                        <th>Co-requisite</th>
+                                        <th>Anti-requisite</th>
                                     </thead>
                                     {{-- Fetch data for study planner --}}
-                                    @foreach ($termUnits as $unit)
+                                    @foreach ($semesterUnits as $unit)
                                         @if($n == $unit->enrolmentTerm)
                                             <tr>
                                                 <td>{{ $unit->unitCode }}</td>
                                                 <td>{{ $unit->unit->unitName }}</td>
-                                                <td>{{ $unit['unit']->prerequisite }}</td>
-                                                <td>{{ $unit['unit']->corequisite }}</td>
-                                                <td>{{ $unit['unit']->antirequisite }}</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) @if(count($requisite[$unit->unitCode]['prerequisite']) > 0) {{ $requisite[$unit->unitCode]['prerequisite'][0] }} @if(count($requisite[$unit->unitCode]['prerequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) @if(count($requisite[$unit->unitCode]['corequisite']) > 0) {{ $requisite[$unit->unitCode]['corequisite'][0] }} @if(count($requisite[$unit->unitCode]['corequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['corequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['corequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) @if(count($requisite[$unit->unitCode]['antirequisite']) > 0) {{ $requisite[$unit->unitCode]['antirequisite'][0] }} @if(count($requisite[$unit->unitCode]['antirequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['antirequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['antirequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
                                             </tr>
                                         @endif
                                     @endforeach

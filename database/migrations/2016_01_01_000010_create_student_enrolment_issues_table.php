@@ -22,8 +22,10 @@ class CreateStudentEnrolmentIssuesTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('studentID')->references('studentID')->on('student');
-            $table->foreign('issueID')->references('id')->on('enrolment_issues');
+            $table->foreign('studentID')->references('studentID')->on('student')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('issueID')->references('id')->on('enrolment_issues')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

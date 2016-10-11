@@ -6,15 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnitType extends Model
 {
+    // table properties
     protected $table = 'unit_type';
-
-    // primary key
     protected $primaryKey = 'unitType';
-	public $increments = false;
+    public $incrementing = false;
 
     // relation
-    public function unit_term()
-	{
-		return $this->hasMany('App\UnitTerm', 'unitType');
-	}
+    public function study_planner()
+    {
+        return $this->hasMany('App\StudyPlanner', 'unitType');
+    }
+
+    public function graduation_requirements()
+    {
+        return $this->hasMany('App\GraduationRequirements', 'unitType');
+    }
 }

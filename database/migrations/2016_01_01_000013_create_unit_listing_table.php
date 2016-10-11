@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnrolmentUnitsTable extends Migration
+class CreateUnitListingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,14 @@ class CreateEnrolmentUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('enrolment_units', function (Blueprint $table)
-        {
-            $table->string('studentID');
+        Schema::create('unit_listing', function (Blueprint $table) {
             $table->string('unitCode');
             $table->integer('year')->unsigned();
-            $table->string('term');
+            $table->string('semester');
             $table->string('semesterLength');
-            $table->string('status');
-            $table->decimal('result', 5, 2);
-            $table->string('grade');
 
             $table->timestamps();
 
-            $table->foreign('studentID')->references('studentID')->on('student');
             $table->foreign('unitCode')->references('unitCode')->on('unit')
             ->onDelete('cascade')->onUpdate('cascade');
         });
@@ -38,6 +32,6 @@ class CreateEnrolmentUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('enrolment_units');
+        Schema::drop('unit_listing');
     }
 }

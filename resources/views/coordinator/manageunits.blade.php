@@ -22,7 +22,7 @@
                             <th>Unit ID</th>
                             <th>Unit Name</th>
                             <th></th>
-                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" title="Add New Unit" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                         </thead>
                         @foreach($units as $unit)
                         @if(isset($unit))

@@ -78,7 +78,7 @@ Route::group([
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
     Route::resource('manageunits', 'Student\ManageUnitController');
-    // Route::post('manageunits', 'Student\ManageUnitController@index2');
+    Route::post('manageunits', 'Student\ManageUnitController@index2');
 });
 
 Route::group([
@@ -93,7 +93,7 @@ Route::group([
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
     Route::resource('managestudent', 'Super\ManageStudent');
-    Route::get('managecourse', 'Super\ManagCourseController@index');
+    Route::resource('managecourse', 'Super\ManagCourseController');
 });
 
 Route::get('/phase', 'PhaseController@phaseTrigger');

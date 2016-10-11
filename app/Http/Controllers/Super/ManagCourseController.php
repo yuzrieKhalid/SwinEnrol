@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Unit;
+use App\Course;
+
+
 class ManagCourseController extends Controller
 {
     /**
@@ -17,7 +21,7 @@ class ManagCourseController extends Controller
     public function index()
     {
         //
-        return view ('super.managecourse');
+        return response()->json(Course::all());
     }
 
     /**
@@ -27,12 +31,12 @@ class ManagCourseController extends Controller
      */
     public function create()
     {
-        //$data = [];
-        // $units = Unit::get();
-        //
-        // $data['units'] = $units;
-        //
-        // return view ('super.managecourse', $data);
+          $data = [];
+          $courses = Course::get();
+
+          $data['courses'] = $courses;
+
+          return view ('super.managecourse', $data);
     }
 
     /**
@@ -43,7 +47,17 @@ class ManagCourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $input = $request->only([
+          'courseCode',
+          'courseName'
+      ]);
+
+      $course = new Course;
+      $course->courseCode = $input['courseCode'];
+      $course->courseName = $input['courseName'];
+      $course->save();
+
+      return response()->json($course);
     }
 
     /**
@@ -54,7 +68,7 @@ class ManagCourseController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -65,7 +79,12 @@ class ManagCourseController extends Controller
      */
     public function edit($id)
     {
-        //
+      $data = [];
+      $course = Course::findOrFail($id);
+      //$course = Course::all();
+      $data['courses'] = $course;
+      return view ('super.managecourse_edit', $data);
+
     }
 
     /**
@@ -77,7 +96,17 @@ class ManagCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $input = $request->only([
+          'courseCode',
+          'courseName'
+      ]);
+
+      $course = Course::findOrFail($id);
+      $course->courseCode = $input['courseCode'];
+      $course->courseName = $input['courseName'];
+      $course->save();
+
+      return response()->json($course);
     }
 
     /**
@@ -88,6 +117,9 @@ class ManagCourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $course = Course::findOrFail($id);
+      $course->delete();
+
+      return response()->json($course);
     }
 }

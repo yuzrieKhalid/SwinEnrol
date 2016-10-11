@@ -76,7 +76,7 @@
 
 
 
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample" data-url="{{ route('student.manageunits.studyPlanner') }}">
                   <div class="card card-block">
                     <!-- Anim pariatur cliche reprehenderit,
                     enim eiusmod high life accusamus terry richardson ad squid.
@@ -84,23 +84,102 @@
                     anderson cred nesciunt sapiente ea proident. -->
 
                     <!-- ==================== -->
-
-                    <!-- <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3>Study Planner</h3>
+                    <!-- ************** -->
+                    <div class="panel-body">
+                        <!-- Planner selection form -->
+                        <!-- <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}"> -->
+                        <!-- <form class="form-inline" method="POST" action="{{ route('student.manageunits.studyPlanner') }}"> -->
+                            <!-- Year Selection -->
+                            <!-- <div class="form-group">
+                                <select class="form-control" name="year" id="year" onchange="this.form.submit()">
+                                    @for($n = $currentYear - 5; $n < $currentYear + 1; $n++)
+                                        @if($n == $year)
+                                            <option value="{{ $n }}" selected>{{ $n }}</option>
+                                        @else
+                                            <option value="{{ $n }}">{{ $n }}</option>
+                                        @endif
+                                    @endfor
+                                </select>
                             </div>
-                        </div>
-                    </div> -->
 
-                    <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h1>Study Planner</h1>
+                            <!-- Semester Selection -->
+                            <!-- <div class="form-group">
+                                <select class="form-control" name="term" id="term" onchange="this.form.submit()">
+                                    @if($semester == "Semester 1")
+                                        <option value="Semester 1" selected>Semester 1</li>
+                                    @else
+                                        <option value="Semester 1">Semester 1</li>
+                                    @endif
+
+                                    @if($semester == "Semester 2")
+                                        <option value="Semester 2" selected>Semester 2</li>
+                                    @else
+                                        <option value="Semester 2">Semester 2</li>
+                                    @endif
+                                </select>
+                            </div> -->
+
+                            <!-- Course Selection -->
+                            <!-- <div class="form-group">
+                                <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
+                                    @foreach($courses as $course)
+                                        @if($course->courseCode == $courseCode)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                        @endif
+                                    @endforeach
+
+                                    @foreach($courses as $course)
+                                        @if($course->courseCode != $courseCode)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </div>
+                        </form>  -->
+                        <!-- end Planner selection form -->
 
-                          </div> <!-- end .panel -->
+                        {{-- generate semester/unit list --}}
+                        @if(count($termUnits) > 0)
+                            @for($n = 0; $n < $size; $n++)
+                                @if($count[$n] > 0)
+                                    <h2>
+                                        <small>{{ $term[$n] }}</small>
+                                    </h2>
+                                    <table class="table">
+                                        <col width="125">
+                                        <thead>
+                                            <th>Unit Code</th>
+                                            <th>Unit Title</th>
+                                            <th>Pre-requisite</th>
+                                            <th>
+                                              Co-requisite
+                                            </th>
+                                            <th>
+                                              Anti-Requisite
+                                            </th>
+                                        </thead>
+                                        {{-- Fetch data for study planner --}}
+                                        @foreach ($termUnits as $unit)
+                                            @if($n == $unit->enrolmentTerm)
+                                                <tr>
+                                                    <td>{{ $unit->unitCode }}</td>
+                                                    <td>{{ $unit->unit->unitName }}</td>
+                                                    <td>{{ $unit['unit']->prerequisite }}</td>
+                                                    <td>{{ $unit['unit']->corequisite }}</td>
+                                                    <td>{{ $unit['unit']->antirequisite }}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </table>
+                                @endif
+                            @endfor
+                        @endif
                     </div>
+                    <!-- ************* -->
+
 
                     <!-- ============== -->
                   </div>
@@ -110,10 +189,7 @@
                   @include('student.phaseNotification')
                   <!-- <div class="col-md-6"> -->
                     <h2>
-                        <small>Long Semester
-
-                        </small>
-
+                        <small>Long Semester</small>
                     </h2>
                     <!-- </div> -->
 
@@ -147,7 +223,7 @@
                                 @endif
                                 @if($phase->value == 1 || $phase->value == 6 || $phase->value == 7)
                                 <td>
-                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                       <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -190,7 +266,7 @@
                                 @endif
                                 @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
                                 <td>
-                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                       <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -242,7 +318,7 @@
                                             <td>{{ $unit->unitCode }}</td>
                                             <td>{{ $unit->unit->unitName }}</td>
                                             <td>
-                                                <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="long">
+                                                <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-toggle="tooltip" title="Add Unit" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="long">
                                                     <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                 </button>
                                             </td>
@@ -263,7 +339,7 @@
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
                                         <td>
-                                            <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
+                                            <button type="submit" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Add Unit" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
                                                 <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                             </button>
                                         </td>

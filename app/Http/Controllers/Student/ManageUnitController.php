@@ -44,7 +44,7 @@ class ManageUnitController extends Controller
         return response()->json($data);
     }
 
-    public function index2(Request $request)
+    public function studyPlanner(Request $request)
     {
         $input = $request->only([
             'year',

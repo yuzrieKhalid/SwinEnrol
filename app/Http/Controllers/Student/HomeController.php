@@ -27,6 +27,7 @@ class HomeController extends Controller
       ['term','=',$user->term],
       ])->get();
 
+
       $data['student'] = $student;
       $data['phase'] = Config::find('enrolmentPhase');
       $enrolled = EnrolmentUnits::with('unit')
@@ -77,11 +78,11 @@ class HomeController extends Controller
     {
         //
         $data = [];
-        $info = Student::find($id);
 
-        $data['studentInfo'] = $info;
+        $studentIn = Student::findOrFail($id);
+        $data['studentIn'] = $studentIn;
 
-        return view ('student.student', $data);
+        return view ('student.student',$data);
 
     }
 

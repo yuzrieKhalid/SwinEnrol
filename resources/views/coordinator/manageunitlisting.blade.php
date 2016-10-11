@@ -26,7 +26,7 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
-                            <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addLong"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
+                            <th><a class="pull-right" data-toggle="modal" title="Add Unit" data-target="#addUnit" role="button" id="addLong"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (long semester) --}}
                         @foreach ($termUnits as $unit)
@@ -45,7 +45,7 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
-                            <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addShort"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
+                            <th><a class="pull-right" data-toggle="modal" title="Add Unit" data-target="#addUnit" role="button" id="addShort"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (short semester) --}}
                         @foreach ($termUnitsShort as $unit)

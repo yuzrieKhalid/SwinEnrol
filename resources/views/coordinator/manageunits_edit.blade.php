@@ -38,7 +38,8 @@
                         <select class="form-control" name="prerequisite">
                             <!-- check if there's a prerequisite/corequisite/antirequisite to show -->
                             @if($prerequisite !== null)
-                                <option value="{{ $prerequisite->unitCode }}">{{ $prerequisite->unitCode }} {{ $prerequisite->unitName }}</option>
+                                <option value="{{ $prerequisite->unitCode }}">
+                                  {{ $prerequisite->unitCode }} {{ $prerequisite->unitName }}</option>
                             @else
                                 <option value="None">None</option>
                             @endif
@@ -128,7 +129,8 @@
                         <div class="input-group">
                             <input class="form-control" type="text" name="input_lecturer[]">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button type="button" class="btn btn-danger remove_input">
+                                  <span class="glyphicon glyphicon-remove"></span></button>
                             </span>
                         </div>
                     </div>

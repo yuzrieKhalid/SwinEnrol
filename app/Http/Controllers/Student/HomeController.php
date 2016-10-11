@@ -23,8 +23,8 @@ class HomeController extends Controller
       $user = Auth::user();
 
       $student = Student::where([['studentID', '=', '$user->username'],
-      ['year','=', $user->year],
-      ['term','=',$user->term],
+      ['year','=', Config::find('year')->value],
+      ['term','=',Config::find('semester')->value],
       ])->get();
 
 
@@ -34,7 +34,7 @@ class HomeController extends Controller
           ->where([
             ['studentID', '=', $user->username],
               ['year', '=', Config::find('year')->value],
-              ['term', '=', Config::find('semester')->value],
+              ['semester', '=', Config::find('semester')->value],
           ])->get();
       $data['enrolled'] = $enrolled;
 

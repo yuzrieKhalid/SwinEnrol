@@ -56,12 +56,39 @@ Route::group([
     'prefix' => 'coordinator',
     'middleware' => 'web',
 ], function() {
+    Route::get('/url', [
+        'as' => 'coordinator.home.index',
+        'uses' => 'Coordinator\HomeController@data'
+    ]);
     Route::get('/', 'Coordinator\HomeController@index');
     Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
+
+    Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.approve',
+        'uses' => 'Coordinator\ResolveIssueController@update'
+    ]);
+    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.approve',
+        'uses' => 'Coordinator\ResolveIssueController@update'
+    ]);
+    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+        'as' => 'coordinator.resolveenrolmentissues.disapprove',
+        'uses' => 'Coordinator\ResolveIssueController@destroy'
+    ]);
     Route::resource('resolveenrolmentissues', 'Coordinator\ResolveIssueController');
+
+    Route::put('enrolmentamendment/{studentID}/unit/{unitCode}', [
+        'as' => 'coordinator.enrolmentamendment.approve',
+        'uses' => 'Coordinator\EnrolmentAmendmentController@update'
+    ]);
+    Route::delete('enrolmentamendment/{studentID}/unit/{unitCode}', [
+        'as' => 'coordinator.enrolmentamendment.disapprove',
+        'uses' => 'Coordinator\EnrolmentAmendmentController@destroy'
+    ]);
+    Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
 });
 
 // Student

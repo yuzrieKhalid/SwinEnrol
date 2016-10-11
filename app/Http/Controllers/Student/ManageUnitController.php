@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use App\Config;
 use App\Course;
 use App\UnitListing;
+use App\StudyPlanner;
 use App\StudentEnrolmentIssues;
 
 // student's unit operation is different. it should only add units to student's info

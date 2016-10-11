@@ -60,11 +60,11 @@
                             <div class="modal-body">
                               <div class="form-group">
                                   <label class="control-label">Course Code:</label>
-                                  <input type="text" class="form-control" id="coruseCode">
+                                  <input type="text" class="form-control" id="courseCode">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Course Name:</label>
-                                  <input type="text" class="form-control" id="coruseName">
+                                  <input type="text" class="form-control" id="courseName">
                               </div>
                               <!-- <div class="form-group">
                                   <label class="control-label">Semester:</label>

@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\Config;
 use App\UnitListing;
 use App\Unit;
 use App\Student;
+use App\Course;
 
 class HomeController extends Controller
 {
@@ -24,9 +26,13 @@ class HomeController extends Controller
         $year = Config::find('year')->value;
         $data['year'] = $year;
 
-        // TODO: filter through coordinator's course
-        // incomplete: how to check for coordinator's coursecode, for now, hardcode 'I047'
-        $student_count = Student::where('courseCode', '=', 'I047')->count();
+        // get coordinator's course from the username
+        $course = Course::findOrFail(Auth::user()->username);
+        $data['courseCode'] = $course->courseCode;
+        $data['courseName'] = $course->courseName;
+
+        // count student
+        $student_count = Student::where('courseCode', '=', Auth::user()->username)->count();
         $data['student_count'] = $student_count;
 
         // data inside information will be retrieved from JS
@@ -42,6 +48,7 @@ class HomeController extends Controller
         $year = Config::find('year')->value;
 
         // to display unit listing based on long/short semester
+        // currently cannot get only for the specific course from the unit listing
         $semesterUnits = [];
         if ($semester == 'Semester 1' || $semester == 'Semester 2') {
             // for long semester
@@ -60,8 +67,7 @@ class HomeController extends Controller
         }
         $data['semesterUnits'] = $semesterUnits;
 
-        // incomplete: how to check for coordinator's coursecode, for now, hardcode 'I047'
-        $student_count = Student::where('courseCode', '=', 'I047')->count();
+        $student_count = Student::where('courseCode', '=', Auth::user()->username)->count();
         $data['student_count'] = $student_count;
 
         // data inside information will be retrieved from JS

@@ -10,6 +10,7 @@ use App\Config;
 use App\EnrolmentUnits;
 use App\Requisite;
 use App\Unit;
+use App\Student; // for testing
 
 class PhaseController extends Controller
 {
@@ -23,7 +24,7 @@ class PhaseController extends Controller
         // get config setting
         $status = true;
         $year = Config::find('year')->value;
-        $term = Config::find('semester')->value;
+        $semester = Config::find('semester')->value;
         $phase = Config::find('enrolmentPhase')->value;
         $success = [];
         $failed = [];
@@ -38,7 +39,7 @@ class PhaseController extends Controller
         $data['students'] = $students = EnrolmentUnits::distinct()
             ->select('studentID')
             ->where('year', '=', $year)
-            ->where('term', '=', $term)
+            ->where('semester', '=', $semester)
             ->where('semesterLength', '=', $length)
             ->where('status', '=', 'pending')
             ->get();
@@ -50,7 +51,7 @@ class PhaseController extends Controller
             $pending = EnrolmentUnits::with('unit')
             ->where('studentID', '=', $student->studentID)
             ->where('year', '=', $year)
-            ->where('term', '=', $term)
+            ->where('semester', '=', $semester)
             ->where('semesterLength', '=', $length)
             ->where('status', '=', 'pending')
             ->get();
@@ -72,6 +73,7 @@ class PhaseController extends Controller
                 }
             }
 
+            // get student's completed units
             $completed = EnrolmentUnits::where('studentID', '=', $student->studentID)
             ->where('grade', '=', 'pass')
             ->get();
@@ -90,26 +92,8 @@ class PhaseController extends Controller
                 }
 
                 // prerequisite
-                $prerequisites = Requisite::where('unitCode', '=', $unit->unitCode)
-                ->where('type', '=', 'prerequisite')
-                ->get();
-                if(count($prerequisites) > 0)
-                {
-                    // check if prerequisites are passed
-                    $count = 0;
-                    foreach($prerequisites as $prerequisite)
-                    {
-                        foreach($completed as $completedUnit)
-                        {
-                            if($completedUnit->unitCode == $prerequisite->requisite)
-                            {
-                                $count++;
-                            }
-                        }
-                    }
-                    if($count != count($prerequisites))
-                        $status = false;
-                }
+                if(!$this->prerequisiteCheck($unit, $completed))
+                    $status = false;
 
                 // get antirequisites
                 $antirequisites = Requisite::where('unitCode', '=', $unit->unitCode)
@@ -130,7 +114,7 @@ class PhaseController extends Controller
                 }
 
                 // minimumCompletedUnits
-                if($unit['unit']->minimumCompletedUnits > count($completed))
+                if($unit['unit']->creditPoints > count($completed) * 12.5)
                 {
                     $status = false;
                 }
@@ -168,7 +152,7 @@ class PhaseController extends Controller
                     EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
-                    ->where('term', '=', $term)
+                    ->where('semester', '=', $semester)
                     ->where('semesterLength', '=', $length)
                     ->update(['status' => 'confirmed']);
 
@@ -179,7 +163,7 @@ class PhaseController extends Controller
                     EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
-                    ->where('term', '=', $term)
+                    ->where('semester', '=', $semester)
                     ->where('semesterLength', '=', $length)
                     ->update(['status' => 'dropped']);
 
@@ -191,13 +175,103 @@ class PhaseController extends Controller
         // debug
         $data['status'] = $status;
         $data['year'] = $year;
-        $data['term'] = $term;
+        $data['semester'] = $semester;
         $data['phase'] = $phase;
         $data['success'] = $success;
         $data['failed'] = $failed;
 
         // return response()->json($data); // for debug
         return $data;
+    }
+
+    /**
+     * Test harness for testing unit approval
+     *
+     * @return json string with status
+     */
+    public function unitCheck()
+    {
+        // get config setting
+        $status = true;
+        $year = 2016;
+        $semester = 'Semester 1';
+        $length = 'long';
+
+        // get student
+        $student = Student::find('4304373');
+
+        // get student's completed units
+        $completed = EnrolmentUnits::where('studentID', '=', $student->studentID)
+        ->where('grade', '=', 'pass')
+        ->get();
+
+        // get unit
+        $unit = Unit::find('PRE11');
+
+        $data = $this->prerequisiteCheck($unit, $completed);
+
+        return response()->json($data);
+    }
+
+    /**
+     * Checks if the unit's prerequisites are met
+     * Returns true if there are no prerequisites or if prerequisite conditions are met
+     *
+     * @return boolean with status
+     */
+    public function prerequisiteCheck($unit, $completed)
+    {
+        $status = true;
+
+        // get all prerequisites
+        $prerequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+        ->where('type', 'LIKE', 'prerequisite%')
+        ->get();
+
+        // check if prerequisites exists
+        if(count($prerequisites) > 0)
+        {
+            // sort prerequisites into array by index
+            $array = [];
+            foreach($prerequisites as $prerequisite)
+            {
+                $prerequisite->type = explode(' ', $prerequisite->type); // split type into array
+                $array[$prerequisite->index][] = $prerequisite;
+            }
+
+            // check prerequisites
+            for($i = 0; $i < count($array); $i++)
+            {
+                $count = 0; // count to check number of prerequisites
+
+                // count completed prerequisites in array
+                foreach($array[$i] as $prerequisite)
+                {
+                    foreach($completed as $completedUnit)
+                    {
+                        // increment if unit is completed
+                        if($prerequisite->requisite == $completedUnit->unitCode)
+                            $count++;
+                    }
+                }
+
+                // check if prerequisite is a group
+                if(count($array[$i][0]['type']) > 1)
+                {
+                    // if minimum units not completed set status to false
+                    if($count < $array[$i][0]['type'][1])
+                        $status = false;
+                }
+                else
+                {
+                    // if no units completed set status to false
+                    if($count == 0)
+                        $status = false;
+                }
+            }
+        }
+
+        return $status;
     }
 
     // /**
@@ -221,7 +295,7 @@ class PhaseController extends Controller
     //     // update all pending units
     //     EnrolmentUnits::where('unitCode', '=', $unit->unitCode)
     //     ->where('year', '=', $year)
-    //     ->where('term', '=', $term)
+    //     ->where('semester', '=', $semester)
     //     ->where('semesterLength', '=', $length)
     //     ->update(['status' => 'confirmed']);
     // }
@@ -294,7 +368,7 @@ class PhaseController extends Controller
         // debug
         $data['phase'] = $phase->value;
         $data['year'] = $year->value;
-        $data['term'] = $semester->value;
+        $data['semester'] = $semester->value;
         $data['approval'] = $approval;
 
     return response()->json($data);

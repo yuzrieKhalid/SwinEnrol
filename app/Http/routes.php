@@ -119,6 +119,7 @@ Route::group([
 
 Route::get('/phase', 'PhaseController@phaseTrigger');
 Route::get('/unit', 'PhaseController@unitApprove');
+Route::get('/unitCheck', 'PhaseController@unitCheck');
 
 /*
 Route::group([

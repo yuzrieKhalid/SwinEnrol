@@ -22,6 +22,21 @@ class GraduationRequirementsTableSeeder extends Seeder
                 'courseCode' => 'I047',
                 'unitType' => 'Elective',
                 'unitCount' => '4',
+            ],
+            [
+                'courseCode' => 'I047',
+                'unitType' => 'Major',
+                'unitCount' => '8',
+            ],
+            [
+                'courseCode' => 'I047',
+                'unitType' => 'Minor',
+                'unitCount' => '4',
+            ],
+            [
+                'courseCode' => 'I047',
+                'unitType' => 'Co-Major',
+                'unitCount' => '8',
             ]
         ]);
     }

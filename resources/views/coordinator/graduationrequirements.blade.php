@@ -17,6 +17,31 @@
                 </div>
 
                 <div class="panel-body">
+                    {{-- give status if update successful or fail --}}
+                    {{--
+                    @if(isset($status))
+                        @if($status == true)
+                            <div class="panel panel-success">
+                                <div class="panel-heading">Successfully updated configuration!</div>
+                            </div>
+                        @endif
+                        @if($status == false)
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">Failed to update configuration.</div>
+                            </div>
+                        @endif
+                    @endif
+                     --}}
+
+                    {{-- unit types: Core --}}
+
+                    {{-- unit types: Elective --}}
+
+                    {{-- unit types: Major --}}
+
+                    {{-- unit types: Minor --}}
+
+                    {{-- unit types: Co-Major --}}
 
                 </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
@@ -40,7 +65,11 @@
         let url = $(this).data('url')
         let data = {
             '_token': getToken(),
-            'unitCode': $('#selectedUnit').val()
+            'core': $('#core').val(),
+            'elective': $('#elective').val(),
+            'major': $('#major').val(),
+            'minor': $('#minor').val(),
+            'co-major': $('#co-major').val()
         }
 
         $.ajax({

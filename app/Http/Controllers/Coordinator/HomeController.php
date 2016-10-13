@@ -18,8 +18,13 @@ use App\CoordinatorUnits;
 
 class HomeController extends Controller
 {
-    // refer to data() for the table population
-    public function index() {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $data = [];
 
         $semester = Config::find('semester')->value;
@@ -41,8 +46,12 @@ class HomeController extends Controller
         $planner_units = StudyPlanner::with('unit')->where('courseCode', '=', $courseCode)->get();
         $data['planner_units'] = $planner_units;
 
+        // get units from coordinator_units
+        $coordinator_units = CoordinatorUnits::with('unit')->where('username', '=', Auth::user()->username)->get();
+        $data['coordinator_units'] = $coordinator_units;
+
         // count student
-        $student_count = Student::where('courseCode', '=', Auth::user()->username)->count();
+        $student_count = Student::where('courseCode', '=', $courseCode)->count();
         $data['student_count'] = $student_count;
 
         // data inside information will be retrieved from JS
@@ -51,38 +60,82 @@ class HomeController extends Controller
         // return response()->json($termUnits);
     }
 
-    public function data() {
-        $data = [];
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-        $semester = Config::find('semester')->value;
-        $year = Config::find('year')->value;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $input = $request->only([
+            'username',
+            'unitCode'
+        ]);
 
-        // to display unit listing based on long/short semester
-        // currently cannot get only for the specific course from the unit listing
-        $semesterUnits = [];
-        if ($semester == 'Semester 1' || $semester == 'Semester 2') {
-            // for long semester
-            $semesterUnits = UnitListing::with('unit')
-            ->where('year', '=', $year)
-            ->where('semester', '=', $semester)
-            ->where('semesterLength', '=', 'long')
-            ->get();
-        } else {
-            // for short semester
-            $semesterUnits = UnitListing::with('unit')
-            ->where('year', '=', $year)
-            ->where('semester', '=', $semester)
-            ->where('semesterLength', '=', 'short')
-            ->get();
-        }
-        $data['semesterUnits'] = $semesterUnits;
+        $coordinator_unit = new CoordinatorUnits;
+        $coordinator_unit->username = Auth::user()->username;
+        $coordinator_unit->unitCode = $input['unitCode'];
+        $coordinator_unit->save();
 
-        $student_count = Student::where('courseCode', '=', Auth::user()->username)->count();
-        $data['student_count'] = $student_count;
+        return response()->json($coordinator_unit);
+    }
 
-        // data inside information will be retrieved from JS
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-        // return view ('coordinator.coordinator', $data);
-        return response()->json($data);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($unitCode)
+    {
+        $coordinator_units = CoordinatorUnits::where('unitCode', '=', $unitCode);
+        $coordinator_units->delete();
+
+        return response()->json($unitCode);
     }
 }

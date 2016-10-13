@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('extra_head')
+<meta name="_token" content="{{ csrf_token() }}" />
+@stop
+
 @section('content')
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-left">
@@ -14,40 +18,51 @@
 
                 <div class="panel-body">
                     <h2>
-                        <small class="text-success">Unit Listing : {{ $semester }} {{ $year }}</small>
+                        <small class="text-success">Select a unit to track</small>
                     </h2>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-11">
-                                <select class="form-control" name="units">
+                                <select class="form-control" id="selectedUnit">
                                     @foreach($planner_units as $unit)
                                         <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-success submit"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button class="btn btn-success submit"
+                                    data-method="POST" data-url="{{ route('coordinator.home.store') }}">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered" data-url="{{ route('coordinator.home.index') }}" id="homeIndexTable">
+                        <table class="table table-striped">
                             <thead>
                                 <th>Unit Code</th>
-                                <th>Unit Title</th>
-                                <th>Enrolled</th>
-                                <th>Max. Space</th>
+                                <th>Unit Name</th>
+                                <th>Enrolled / Size</th>
                                 <th>Lecture Groups</th>
                                 <th>Tutorial Groups</th>
+                                <th></th>
                             </thead>
-                            <tr class="hidden tr_template">
-                                <td class="unitCode"></td>
-                                <td class="unitTitle"></td>
-                                <td class="enrolledStudents"></td>
-                                <td class="maxStudents"></td>
-                                <td class="lectureGroupCount"></td>
-                                <td class="tutorialGroupCount"></td>
-                            </tr>
+                            <tbody>
+                                @foreach($coordinator_units as $unit)
+                                <tr>
+                                    <td>{{ $unit->unitCode }}</td>
+                                    <td>{{ $unit->unit->unitName }}</td>
+                                    <td>{{ $student_count }} / {{ $unit->unit->maxStudentCount }}</td>
+                                    <td>{{ $unit->unit->lectureGroupCount }}</td>
+                                    <td>{{ $unit->unit->tutorialGroupCount }}</td>
+                                    <td>
+                                        <a id="submit" data-method="DELETE" data-url="{{ route('coordinator.home.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button">
+                                            <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div> <!-- end .table-reponsive -->
                 </div> <!-- end .panel-body -->
@@ -61,35 +76,28 @@
 @section('extra_js')
 <script>
 (function() {
-    // 2. Populate the table
-    let addData = function(data) {
-        // cloning and populating table data
-        let tr_template = $('#homeIndexTable').find('.tr_template').clone()
-        tr_template.removeClass('hidden')
-        tr_template.removeClass('tr_template')
-
-        tr_template.children('.unitCode').html(data.unitCode)
-        tr_template.children('.unitTitle').html(data.unit.unitName)
-        tr_template.children('.enrolledStudents').html("_ /" + student_count)
-        tr_template.children('.maxStudents').html(data.unit.maxStudentCount)
-        tr_template.children('.lectureGroupCount').html(data.unit.lectureGroupCount)
-        tr_template.children('.tutorialGroupCount').html(data.unit.tutorialGroupCount)
-
-        $('#homeIndexTable').append(tr_template)
+    // Get CSRF token
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
     }
 
-    // 1. fetch submissionData from the Controller and decode them
-    let student_count = 0
-    let getInformationData = function() {
-        let url = $('#homeIndexTable').data('url')
-        $.get(url, function(objectdata) {
-            student_count = objectdata['student_count']
-            objectdata['semesterUnits'].forEach(function(data) {
-                addData(data)
-            })
+    $('.submit').click(function() {
+        // AJAX Parameters
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        let data = {
+            '_token': getToken(),
+            'unitCode': $('#selectedUnit').val()
+        }
+
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data
+        }).done(function(data) {
+            window.location.reload()
         })
-    }
-    getInformationData()
+    })
 })()
 </script>
 @stop

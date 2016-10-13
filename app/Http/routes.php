@@ -50,11 +50,23 @@ Route::group([
     'prefix' => 'coordinator',
     'middleware' => 'web',
 ], function() {
-    Route::get('/url', [
+    Route::get('/', [
         'as' => 'coordinator.home.index',
-        'uses' => 'Coordinator\HomeController@data'
+        'uses' => 'Coordinator\HomeController@index'
     ]);
-    Route::get('/', 'Coordinator\HomeController@index');
+    Route::post('/', [
+        'as' => 'coordinator.home.store',
+        'uses' => 'Coordinator\HomeController@store'
+    ]);
+    Route::put('/{unitCode}', [
+        'as' => 'coordinator.home.update',
+        'uses' => 'Coordinator\HomeController@update'
+    ]);
+    Route::delete('/{unitCode}', [
+        'as' => 'coordinator.home.destroy',
+        'uses' => 'Coordinator\HomeController@destroy'
+    ]);
+
     Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');

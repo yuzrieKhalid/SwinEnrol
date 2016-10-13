@@ -19,7 +19,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 1',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -28,7 +27,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 1',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -37,7 +35,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 1',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -46,7 +43,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 2',
                 'semesterLength' => 'short',
-                'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -55,7 +51,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 2',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -64,7 +59,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 2',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -73,7 +67,6 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 2',
                 'semesterLength' => 'long',
-                'courseCode' => 'I047',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -83,7 +76,6 @@ class UnitListingTableSeeder extends Seeder
 				'year' => 2016,
 				'semester' => 'Semester 1',
 				'semesterLength' => 'long',
-                'courseCode' => 'FICT',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			],
@@ -92,7 +84,6 @@ class UnitListingTableSeeder extends Seeder
 				'year' => 2016,
 				'semester' => 'Semester 1',
 				'semesterLength' => 'long',
-                'courseCode' => 'FICT',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now()
 			]

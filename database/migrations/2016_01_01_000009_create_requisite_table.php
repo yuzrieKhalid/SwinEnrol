@@ -16,7 +16,7 @@ class CreateRequisiteTable extends Migration
             $table->string('unitCode');
             $table->string('requisite');
             $table->string('type');
-            $table->string('index');
+            $table->integer('index')->unsigned();
 
             $table->timestamps();
 

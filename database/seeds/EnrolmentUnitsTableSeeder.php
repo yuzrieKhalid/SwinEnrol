@@ -171,6 +171,42 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'COMPA',
+                'year' => 2015,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 65.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'COMPB',
+                'year' => 2015,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 65.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'COMPC',
+                'year' => 2015,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'confirmed',
+                'result' => 65.00,
+                'grade' => 'pass',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
             // success scenario
             [
                 'studentID' => '4304373',
@@ -220,6 +256,30 @@ class EnrolmentUnitsTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'PRE10',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'PRG0',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
             // already completed
             [
                 'studentID' => '4304373',
@@ -237,6 +297,32 @@ class EnrolmentUnitsTableSeeder extends Seeder
             [
                 'studentID' => '4304373',
                 'unitCode' => 'PRE1',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // multi prerequisite
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'PRE11',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'semesterLength' => 'long',
+                'status' => 'pending',
+                'result' => 0.00,
+                'grade' => 'ungraded',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // prerequisite group
+            [
+                'studentID' => '4304373',
+                'unitCode' => 'PRG1',
                 'year' => 2016,
                 'semester' => 'Semester 1',
                 'semesterLength' => 'long',

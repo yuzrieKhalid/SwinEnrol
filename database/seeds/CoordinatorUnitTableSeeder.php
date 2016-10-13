@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
-class CourseCoordinatorTableSeeder extends Seeder
+class CoordinatorUnitTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +13,12 @@ class CourseCoordinatorTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('course_coordinator')->insert([
+        DB::table('coordinator_units')->insert([
             [
                 'username' => 'coordinator_cs',
-                'courseCode' => 'I047',
-                'name' => 'Sim Kwan Hua'
+                'unitCode' => 'HIT3315',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

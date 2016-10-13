@@ -17,6 +17,16 @@ class CourseCoordinatorTableSeeder extends Seeder
                 'username' => 'coordinator_cs',
                 'courseCode' => 'I047',
                 'name' => 'Sim Kwan Hua'
+            ],
+            [
+                'username' => 'coordinator_fi',
+                'courseCode' => 'BA-BUSFIN3',
+                'name' => 'Finance Coordinator'
+            ],
+            [
+                'username' => 'coordinator_de',
+                'courseCode' => 'BA-MULGD',
+                'name' => 'Design Coordinator'
             ]
         ]);
     }

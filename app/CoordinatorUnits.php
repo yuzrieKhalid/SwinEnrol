@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UnitListing extends Model
+class CoordinatorUnits extends Model
 {
-    // table properties
-    protected $table = 'unit_listing';
+    protected $table = "coordinator_units";
 
     // inverse relation
     public function unit()
@@ -15,8 +14,8 @@ class UnitListing extends Model
         return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
     }
 
-    public function course()
+    public function users()
     {
-        return $this->belongsTo('App\Unit', 'unitCode', 'unitCode');
+        return $this->belongsTo('App\User', 'username', 'username');
     }
 }

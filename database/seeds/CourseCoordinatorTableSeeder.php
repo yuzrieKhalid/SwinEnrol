@@ -16,6 +16,7 @@ class CourseCoordinatorTableSeeder extends Seeder
             [
                 'username' => 'coordinator',
                 'courseCode' => 'I047',
+                'name' => 'Sim Kwan Hua'
             ]
         ]);
     }

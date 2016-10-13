@@ -15,6 +15,7 @@ class CreateCourseCoordinatorTable extends Migration
         Schema::create('course_coordinator', function (Blueprint $table) {
             $table->string('username');
             $table->string('courseCode');
+            $table->string('name');
 
             $table->timestamps();
 

@@ -23,4 +23,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // relation
+    public function coordinator_units()
+    {
+        return $this->hasMany('App\CoordinatorUnits', 'username');
+    }
+
+    public function course_coordinator()
+    {
+        return $this->hasMany('App\CourseCoordinator', 'username');
+    }
 }

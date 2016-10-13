@@ -33,6 +33,11 @@ class Unit extends Model
         return $this->hasMany('App\StudyPlanner', 'unitCode');
     }
 
+    public function coordinator_units()
+    {
+        return $this->hasMany('App\CoordinatorUnits', 'unitCode');
+    }
+
     // inverse relation
     public function study_level()
     {

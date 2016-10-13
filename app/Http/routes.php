@@ -96,6 +96,7 @@ Route::group([
         'uses' => 'Coordinator\EnrolmentAmendmentController@destroy'
     ]);
     Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
+    Route::resource('graduationrequirements', 'Coordinator\GraduationRequirementsController');
 });
 
 // Student

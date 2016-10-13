@@ -6,6 +6,7 @@
         <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item @if(Request::is('coordinator/manageunits*')) active @endif">Manage Units</a>
         <a href="{{ url('/coordinator/enrolmentamendment/create') }}" class="list-group-item @if(Request::is('coordinator/enrolmentamendment*')) active @endif">Resolve Enrolment Amendement</a>
         <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item @if(Request::is('coordinator/resolveenrolmentissues*')) active @endif">Resolve Enrolment Issues</a>
+        <a href="{{ url('/coordinator/graduationrequirements/create') }}" class="list-group-item @if(Request::is('coordinator/graduationrequirements*')) active @endif">Graduation Requirement</a>
     </div>
 </div>
 

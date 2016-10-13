@@ -9,10 +9,12 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Config;
-use App\UnitListing;
+use App\StudyPlanner;
 use App\Unit;
 use App\Student;
 use App\Course;
+use App\CourseCoordinator;
+use App\CoordinatorUnits;
 
 class HomeController extends Controller
 {
@@ -27,9 +29,17 @@ class HomeController extends Controller
         $data['year'] = $year;
 
         // get coordinator's course from the username
-        $course = Course::findOrFail(Auth::user()->username);
-        $data['courseCode'] = $course->courseCode;
-        $data['courseName'] = $course->courseName;
+        // get coordinator's course from the course_coordinator table
+        $course_coordinator = CourseCoordinator::with('course')
+            ->where('username', '=', Auth::user()->username)->first();
+        $courseCode = $course_coordinator->courseCode;
+        $courseName = $course_coordinator->course->courseName;
+        $data['courseCode'] = $courseCode;
+        $data['courseName'] = $courseName;
+
+        // get units from study planner
+        $planner_units = StudyPlanner::with('unit')->where('courseCode', '=', $courseCode)->get();
+        $data['planner_units'] = $planner_units;
 
         // count student
         $student_count = Student::where('courseCode', '=', Auth::user()->username)->count();

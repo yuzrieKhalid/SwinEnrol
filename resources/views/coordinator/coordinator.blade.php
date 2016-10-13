@@ -16,6 +16,20 @@
                     <h2>
                         <small class="text-success">Unit Listing : {{ $semester }} {{ $year }}</small>
                     </h2>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <select class="form-control" name="units">
+                                    @foreach($planner_units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-success submit"><span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" data-url="{{ route('coordinator.home.index') }}" id="homeIndexTable">
                             <thead>

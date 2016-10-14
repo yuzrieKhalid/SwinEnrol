@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        @include('admin.menu')
+        <!-- @include('admin.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <!-- To be fixed -->
             <p class="pull-left visible-xs">
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>

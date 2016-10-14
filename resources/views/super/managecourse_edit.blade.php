@@ -21,12 +21,27 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Course Code</label>
-                        <input type="text" class="form-control" id="unitCode" value="{{ $courses->courseCode }}">
+                        <input type="text" class="form-control" id="courseCode" value="{{ $courses->courseCode }}">
                     </div>
 
                     <div class="form-group"> <!-- unitName -->
                         <label class="control-label">Course Name:</label>
-                        <input type="text" class="form-control" id="unitName" value="{{ $courses->courseName }}">
+                        <input type="text" class="form-control" id="courseName" value="{{ $courses->courseName }}">
+                    </div>
+
+                    <div class="form-group"> <!-- unitName -->
+                        <label class="control-label">Semseter (Per Year):</label>
+                        <input type="text" class="form-control" id="semestersPerYear" value="{{ $courses->semestersPerYear }}">
+                    </div>
+
+                    <div class="form-group"> <!-- unitName -->
+                        <label class="control-label">Semester (Total):</label>
+                        <input type="text" class="form-control" id="semesterCount" value="{{ $courses->semesterCount }}">
+                    </div>
+
+                    <div class="form-group"> <!-- unitName -->
+                        <label class="control-label">Study Level:</label>
+                        <input type="text" class="form-control" id="studyLevel" value="{{ $courses->studyLevel }}">
                     </div>
 
 
@@ -96,6 +111,9 @@
           _token: getToken(),
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
+          courseName: $('#semestersPerYear').val(),
+          courseName: $('#semesterCount').val(),
+          courseName: $('#studyLevel').val(),
       }
       $.ajax({
           'url': url,

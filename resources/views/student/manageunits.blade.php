@@ -8,130 +8,34 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
+        <!-- @include('student.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="from-group panel-heading">
                     <h1>Current Enrolment
                       <span class="pull-right">
                           <a class="btn btn-default" data-toggle="collapse" title="Study Planner" href="#collapseExample"
                            aria-expanded="false" aria-controls="collapseExample" role="button">
-                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
                       </span>
                     </h1>
                 </div>
+                <div class="collapse" id="collapseExample">
 
 
-
-                <div class="collapse" id="collapseExample" data-url="{{ route('student.manageunits.studyPlanner') }}">
-                  <div class="card card-block">
-                    <!-- Anim pariatur cliche reprehenderit,
-                    enim eiusmod high life accusamus terry richardson ad squid.
-                    Nihil anim keffiyeh helvetica, craft beer labore wes
-                    anderson cred nesciunt sapiente ea proident. -->
-
-                    <!-- ==================== -->
-                    <!-- ************** -->
-                    <div class="panel-body">
-                        <!-- Planner selection form -->
-                        <!-- <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}"> -->
-                        <!-- <form class="form-inline" method="POST" action="{{ route('student.manageunits.studyPlanner') }}"> -->
-                            <!-- Year Selection -->
-                            <!-- <div class="form-group">
-                                <select class="form-control" name="year" id="year" onchange="this.form.submit()">
-                                    @for($n = $currentYear - 5; $n < $currentYear + 1; $n++)
-                                        @if($n == $year)
-                                            <option value="{{ $n }}" selected>{{ $n }}</option>
-                                        @else
-                                            <option value="{{ $n }}">{{ $n }}</option>
-                                        @endif
-                                    @endfor
-                                </select>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h1>Study Planner</h1>
                             </div>
 
-                            <!-- Semester Selection -->
-                            <!-- <div class="form-group">
-                                <select class="form-control" name="term" id="term" onchange="this.form.submit()">
-                                    @if($semester == "Semester 1")
-                                        <option value="Semester 1" selected>Semester 1</li>
-                                    @else
-                                        <option value="Semester 1">Semester 1</li>
-                                    @endif
-
-                                    @if($semester == "Semester 2")
-                                        <option value="Semester 2" selected>Semester 2</li>
-                                    @else
-                                        <option value="Semester 2">Semester 2</li>
-                                    @endif
-                                </select>
-                            </div> -->
-
-                            <!-- Course Selection -->
-                            <!-- <div class="form-group">
-                                <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
-                                    @foreach($courses as $course)
-                                        @if($course->courseCode == $courseCode)
-                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
-                                        @endif
-                                    @endforeach
-
-                                    @foreach($courses as $course)
-                                        @if($course->courseCode != $courseCode)
-                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            </div>
-                        </form>  -->
-                        <!-- end Planner selection form -->
-
-                        {{-- generate semester/unit list --}}
-                        @if(count($termUnits) > 0)
-                            @for($n = 0; $n < $size; $n++)
-                                @if($count[$n] > 0)
-                                    <h2>
-                                        <small>{{ $term[$n] }}</small>
-                                    </h2>
-                                    <table class="table">
-                                        <col width="125">
-                                        <thead>
-                                            <th>Unit Code</th>
-                                            <th>Unit Title</th>
-                                            <th>Pre-requisite</th>
-                                            <th>
-                                              Co-requisite
-                                            </th>
-                                            <th>
-                                              Anti-Requisite
-                                            </th>
-                                        </thead>
-                                        {{-- Fetch data for study planner --}}
-                                        @foreach ($termUnits as $unit)
-                                            @if($n == $unit->enrolmentTerm)
-                                                <tr>
-                                                    <td>{{ $unit->unitCode }}</td>
-                                                    <td>{{ $unit->unit->unitName }}</td>
-                                                    <td>{{ $unit['unit']->prerequisite }}</td>
-                                                    <td>{{ $unit['unit']->corequisite }}</td>
-                                                    <td>{{ $unit['unit']->antirequisite }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </table>
-                                @endif
-                            @endfor
-                        @endif
+                          </div> <!-- end .panel -->
                     </div>
-                    <!-- ************* -->
-
 
                     <!-- ============== -->
                   </div>
-              </div>
+
 
                 <div class="panel-body">
                   @include('student.phaseNotification')

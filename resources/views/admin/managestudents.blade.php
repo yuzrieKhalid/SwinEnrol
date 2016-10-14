@@ -8,9 +8,9 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        @include('admin.menu')
+        <!-- @include('admin.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Students</h1>
@@ -102,8 +102,8 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('admin.managestudents.downloadExcel') }}">
-                      <button class="btn btn-success">Download Excel xls</button></a>
+                    <a href="{{ url('/managestudents/downloadExcel/XLSX') }}">
+                      <button class="btn btn-success">Download Excel</button></a>
 
                 </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->

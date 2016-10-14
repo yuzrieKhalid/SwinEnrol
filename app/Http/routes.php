@@ -26,7 +26,7 @@ Route::group([
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
-    Route::get('managestudents/downloadExcel', 'ManageStudentController@downloadExcel');
+    Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
@@ -98,14 +98,15 @@ Route::group([
 ], function() {
     Route::resource('/', 'Student\HomeController');
     Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
-    Route::get('enrolmenthistory/downloadExcel/{type}', 'Student\EnrolmentHistoryController@downloadExcel');
+    //Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@downloadExcel');
+    Route::get('enrolmenthistory/downloadExcel/{id}', 'Student\EnrolmentHistoryController@downloadExcel');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
     Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
     Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
     Route::resource('manageunits', 'Student\ManageUnitController');
-    Route::post('manageunits', 'Student\ManageUnitController@index2');
+    Route::post('articulate', ['as' => 'student.articulate', 'uses' => 'Student\ManageUnitController@articulate']);
 });
 
 Route::group([

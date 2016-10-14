@@ -160,7 +160,6 @@ class ManageStudentController extends Controller
           });
 
         })->download($type);
-        return view ('admin.managestudents');
 
     }
 

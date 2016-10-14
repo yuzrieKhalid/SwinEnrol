@@ -8,8 +8,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('super.menu')
-            <div class="col-md-9">
+            <!-- @include('super.menu') -->
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1>Manage Course</h1>
@@ -60,20 +60,24 @@
                             <div class="modal-body">
                               <div class="form-group">
                                   <label class="control-label">Course Code:</label>
-                                  <input type="text" class="form-control" id="courseCode">
+                                  <input class="form-control" id="courseCode">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Course Name:</label>
-                                  <input type="text" class="form-control" id="courseName">
+                                  <input class="form-control" id="courseName">
                               </div>
-                              <!-- <div class="form-group">
-                                  <label class="control-label">Semester:</label>
-                                  <input type="text" class="form-control" id="semesterLevel">
+                              <div class="form-group">
+                                  <label class="control-label">Semester Per Year:</label>
+                                  <input class="form-control" id="semestersPerYear">
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label">Semester Per Count:</label>
+                                  <input class="form-control" id="semesterCount">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Study Level:</label>
-                                  <input type="text" class="form-control" id="studyLevel">
-                              </div> -->
+                                  <input class="form-control" id="studyLevel">
+                              </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="submit btn btn-default" id="submit"
@@ -134,6 +138,9 @@
           _token: getToken(),
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
+          courseName: $('#semestersPerYear').val(),
+          courseName: $('#semesterCount').val(),
+          courseName: $('#studyLevel').val()
       }
       $.ajax({
           'url': url,

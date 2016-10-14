@@ -18,9 +18,15 @@
                 <div class="panel-body">
                     <h3>{{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->year }}}</h3>
 
+                    @foreach($enrolled as $st)
                     <p>
-                      $student->year
+                      {{ $st->semester }}
                     </p>
+                    <p>
+                      {{ $st->year }}
+                    </p>
+
+                    @endforeach
 
                   @include('student.phaseNotification')
 

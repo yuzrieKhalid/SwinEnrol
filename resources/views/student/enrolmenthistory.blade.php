@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
+        <!-- @include('student.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Enrolment History</h1>
@@ -45,11 +45,8 @@
                         </table>
 
 
-
-                          <a href="{{ URL::to('downloadExcel/xlsx') }}">
-                            <button class="btn btn-success">Download Excel xlsx</button></a>
-                          
-
+                          <a href="{{ url('/enrolmenthistory/downloadExcel/xlsx') }}">
+                            <button class="btn btn-success">Download Unit List</button></a>
                     </div>
 
                     <!-- Exempted Units -> only for students who applied for exemption -->
@@ -86,6 +83,16 @@
 <script>
 (function() {
       $('[data-toggle="tooltip"]').tooltip();
+
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    })
+  })
+
 }) ()
 </script>
 

@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-left">
             <!-- Reserve 3 space for navigation column -->
-        @include('coordinator.menu')
+        <!-- @include('coordinator.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Home</h1>
@@ -29,7 +29,7 @@
                             <tr class="hidden tr_template">
                                 <td class="unitCode"></td>
                                 <td class="unitTitle"></td>
-                                <td class="enrolledStudents"></td>
+                                <td class="enrolledStudents">  {{ count($student_count) }}</td>
                                 <td class="maxStudents"></td>
                                 <td class="lectureGroupCount"></td>
                                 <td class="tutorialGroupCount"></td>

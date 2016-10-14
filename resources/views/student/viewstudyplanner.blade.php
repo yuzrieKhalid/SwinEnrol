@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
+        <!-- @include('student.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Study Planner</h1>

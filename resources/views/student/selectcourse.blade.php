@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @include('student.menu')
-        <div class="col-md-9">
+        <!-- @include('student.menu') -->
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Articulation</h1>

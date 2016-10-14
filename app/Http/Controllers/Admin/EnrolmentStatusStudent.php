@@ -26,7 +26,8 @@ class EnrolmentStatusStudent extends Controller
       // $data['enrolled'] = $enrolled;
       // return view('admin.enrolmentstatus', $data);
       $data = [];
-      $studentID = Student::all();
+      // $studentID = Student::all();
+      $studentID = Student::get();
       $data['studentID']= $studentID;
       $enrolled = EnrolmentUnits::with('student')->where('status','=', 'pending')->get();
       $data['enrolled'] = $enrolled;
@@ -103,7 +104,7 @@ class EnrolmentStatusStudent extends Controller
        * @param  int  $id
        * @return \Illuminate\Http\Response
        */
-      public function update(Request $request, $studentID, $issueID)
+      public function update(Request $request)
       {
         //
       }
@@ -114,7 +115,7 @@ class EnrolmentStatusStudent extends Controller
        * @param  int  $id
        * @return \Illuminate\Http\Response
        */
-      public function destroy($studentID, $issueID)
+      public function destroy($studentID)
       {
           //
       }

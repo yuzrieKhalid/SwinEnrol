@@ -8,9 +8,9 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-left">
         <!-- Reserve 3 space for navigation column -->
-        @include('admin.menu')
+        <!-- @include('admin.menu') -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Resolve Issues</h1>

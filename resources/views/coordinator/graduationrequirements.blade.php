@@ -18,7 +18,6 @@
 
                 <div class="panel-body">
                     {{-- give status if update successful or fail --}}
-                    {{--
                     @if(isset($status))
                         @if($status == true)
                             <div class="panel panel-success">
@@ -31,55 +30,112 @@
                             </div>
                         @endif
                     @endif
-                     --}}
 
-                    {{-- unit types: Core --}}
+                    <form class="form-horizontal" method="POST" action="{{ route('coordinator.graduationrequirements.store') }}">
 
-                    {{-- unit types: Elective --}}
+                        {{-- unit types: Core --}}
+                        @if(isset($error['core']))
+                        <div class="form-group has-error">
+                        @else
+                        <div class="form-group">
+                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 control-label">Core</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="core" value="{{ $core }}">
+                                    @if(isset($error['core']))
+                                        <span id="helpBlock2" class="help-block">{{ $error['core'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div> <!-- end .form-group / has-error -->
 
-                    {{-- unit types: Major --}}
+                        {{-- unit types: Elective --}}
+                        @if(isset($error['elective']))
+                        <div class="form-group has-error">
+                        @else
+                        <div class="form-group">
+                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 control-label">Elective</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="elective" value="{{ $elective }}">
+                                    @if(isset($error['elective']))
+                                        <span id="helpBlock2" class="help-block">{{ $error['elective'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div> <!-- end .form-group / has-error -->
 
-                    {{-- unit types: Minor --}}
+                        {{-- unit types: Major --}}
+                        @if(isset($error['major']))
+                        <div class="form-group has-error">
+                        @else
+                        <div class="form-group">
+                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 control-label">Major</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="major" value="{{ $major }}">
+                                    @if(isset($error['major']))
+                                        <span id="helpBlock2" class="help-block">{{ $error['major'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div> <!-- end .form-group / has-error -->
 
-                    {{-- unit types: Co-Major --}}
+                        {{-- unit types: Minor --}}
+                        @if(isset($error['minor']))
+                        <div class="form-group has-error">
+                        @else
+                        <div class="form-group">
+                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 control-label">Minor</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="minor" value="{{ $minor }}">
+                                    @if(isset($error['minor']))
+                                        <span id="helpBlock2" class="help-block">{{ $error['minor'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div> <!-- end .form-group / has-error -->
 
+                        {{-- unit types: co_major --}}
+                        @if(isset($error['co_major']))
+                        <div class="form-group has-error">
+                        @else
+                        <div class="form-group">
+                        @endif
+                            <div class="row">
+                                <label class="col-sm-2 control-label">Co-major</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="co_major" value="{{ $co_major }}">
+                                    @if(isset($error['co_major']))
+                                        <span id="helpBlock2" class="help-block">{{ $error['co_major'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div> <!-- end .form-group / has-error -->
+
+                        <input class="hidden" name="user" value="{{ $user->username }}">
+                        {!! csrf_field() !!}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <button type="submit" class="btn btn-primary btn-block submit" data-user="{{ $user->username }}"
+                                    data-method="POST" data-url="{{ route('coordinator.graduationrequirements.store') }}">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
-
         </div>
     </div>
 </div>
 @stop
 
 @section('extra_js')
-<script>
-(function() {
-    // Get CSRF token
-    let getToken = function() {
-        return $('meta[name=_token]').attr('content')
-    }
-
-    $('.submit').click(function() {
-        // AJAX Parameters
-        let method = $(this).data('method')
-        let url = $(this).data('url')
-        let data = {
-            '_token': getToken(),
-            'core': $('#core').val(),
-            'elective': $('#elective').val(),
-            'major': $('#major').val(),
-            'minor': $('#minor').val(),
-            'co-major': $('#co-major').val()
-        }
-
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data
-        }).done(function(data) {
-            window.location.reload()
-        })
-    })
-})()
-</script>
 @stop

@@ -9,6 +9,10 @@ class GraduationRequirements extends Model
     // table proerties
     protected $table = 'graduation_requirements';
 
+    protected $fillable = [
+        'courseCode', 'unitType', 'unitCount'
+    ];
+
     // inverse relation
     public function course()
     {

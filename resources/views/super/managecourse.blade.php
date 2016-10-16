@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('extra_head')
-    <!-- remember csrf token needs middleware -->
-    <meta name="_token" content="{{ csrf_token() }}"/>
+<meta name="_token" content="{{ csrf_token() }}"/>
 @stop
 
 @section('content')
@@ -11,7 +10,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>Manage Course</h1>
+                        <h3>Manage Course</h3>
                     </div>
                     <div class="panel-body">
                       <table class="table" id="course_table" data-url="{{ route('super.managecourse.index') }}">

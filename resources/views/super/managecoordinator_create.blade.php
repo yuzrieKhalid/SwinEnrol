@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h1>Add Coordinator</h1>
+                        <h3>Add Coordinator</h3>
                     </div>
                     <div class="panel-body">
                         @if(isset($user))

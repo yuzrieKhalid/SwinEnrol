@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1>Study Planner</h1>
+                    <h3>Study Planner</h3>
                 </div>
 
                 <div class="panel-body">

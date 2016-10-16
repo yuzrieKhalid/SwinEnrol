@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h1>Manage Unit Types</h1>
+                        <h3>Manage Unit Types</h3>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">

@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Approved Issues</h1>
+                    <h3>Approved Issues</h3>
                 </div>
 
                 <div class="panel-body">

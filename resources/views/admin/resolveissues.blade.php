@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Resolve Issues</h1>
+                    <h3>Resolve Issues</h3>
                 </div>
 
                 <div class="panel-body">

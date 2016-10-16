@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1>Unit Listings</h1>
+                    <h3>Unit Listings</h3>
                 </div>
 
                 <div class="panel-body">

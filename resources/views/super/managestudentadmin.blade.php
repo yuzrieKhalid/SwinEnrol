@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h1>Manage Student Admin</h1>
+                        <h3>Manage Student Admin</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table" id="user_table">

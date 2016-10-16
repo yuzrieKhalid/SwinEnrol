@@ -7,12 +7,11 @@
 
 @section('content')
 <div class="container">
-    <!-- <div class="row"> -->
      <div class="row">
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h1>Manage Unit Listings</h1>
+                    <h3>Manage Unit Listings</h3>
                 </div>
 
                 <div class="panel-body">

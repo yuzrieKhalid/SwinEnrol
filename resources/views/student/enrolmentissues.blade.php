@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1>Other Enrolment Issues</h1>
+                    <h3>Enrolment Issues</h3>
                 </div>
 
                 <div class="panel-body">
@@ -22,8 +22,6 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Course Coordinator: </label>
                                 <div class="dropdown col-sm-10">
-                                    <!-- populate this from database -->
-                                    <!-- only list out coordinators from the course -->
                                     <select class="form-control">
                                         <option value="khsim">Sim Kwan Hua (khsim@swinburne.edu.my)</option>
                                     </select>

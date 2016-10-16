@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('extra_head')
-<meta name="_token" content="{{ csrf_token() }}" />
+    <meta name="_token" content="{{ csrf_token() }}" />
 @stop
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h1>Resolve Enrolment Issues</h1>
+                    <h3>Resolve Enrolment Issues</h3>
                 </div>
 
                 <div class="panel-body">

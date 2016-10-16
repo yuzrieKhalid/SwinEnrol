@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h1>Add Student Admin</h1>
+                        <h3>Add Student Admin</h3>
                     </div>
                     <div class="panel-body">
                         @if(isset($user))
@@ -20,20 +20,6 @@
                             @if(isset($user))
                                 <input type="hidden" name="_method" value="PUT">
                             @endif
-
-                            <!-- <div class="form-group{{ $errors->has('permissionLevel') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Permission Level</label>
-
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="permissionLevel" value="{{ old('permissionLevel') }}">
-
-                                    @if ($errors->has('permissionLevel'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('permissionLevel') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div> -->
 
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Username</label>
@@ -52,20 +38,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <!-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
-
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}">
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div> -->
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Password</label>

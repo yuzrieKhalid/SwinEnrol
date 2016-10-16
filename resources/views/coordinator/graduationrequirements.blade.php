@@ -7,10 +7,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h1>Graduation Requirements</h1>
+                    <h3>Graduation Requirements</h3>
                 </div>
 
                 <div class="panel-body">

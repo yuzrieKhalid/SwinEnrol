@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1>Enrolment History</h1>
+                    <h3>Enrolment History</h3>
                 </div>
                 <div class="panel-body">
 

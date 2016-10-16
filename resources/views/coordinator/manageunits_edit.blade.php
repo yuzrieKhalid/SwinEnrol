@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('extra_head')
-    <!-- remember csrf token needs middleware -->
     <meta name="_token" content="{{ csrf_token() }}"/>
 @stop
 
@@ -9,9 +8,9 @@
 <div class="container">
     <div class="panel panel-success">
         <div class="panel-heading">
-            <h2>Update Unit Information <br>
+            <h3>Update Unit Information <br>
                 <small>[ {{ $unit->unitCode }} {{ $unit->unitName }} ]</small>
-            </h2>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="row">

@@ -10,9 +10,9 @@
   <div class="col-md-9">
     <div class="panel panel-success">
           <div class="panel-heading">
-              <h2>Update Course Information <br>
+              <h3>Update Course Information <br>
                   <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>
-              </h2>
+              </h3>
           </div>
           <div class="panel-body">
               <div class="row">

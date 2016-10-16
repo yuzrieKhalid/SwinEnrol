@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1>Manage Students</h1>
+                    <h3>Manage Students</h3>
                 </div>
 
                 <div class="panel-body">

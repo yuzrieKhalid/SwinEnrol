@@ -169,7 +169,7 @@ class ManageUnitController extends Controller
         }
 
         // variable for for loop
-        // $data['i'] = 0;
+        $data['i'] = 0;
 
         // get prerequisite highest index
         $data['index'] = Requisite::where('unitCode', '=', $unit->unitCode)->max('index');

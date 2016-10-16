@@ -105,7 +105,11 @@ class ManageStudentController extends Controller
      */
     public function edit($id)
     {
-        return view ('admin.managestudents', ['admin.managestudents' => Student::findOrFail($id)]);
+        $data = [];
+
+        $data['student'] = Student::findOrFail($id);
+
+        return view ('admin.managestudent_edit', $data);
     }
 
     /**
@@ -119,9 +123,10 @@ class ManageStudentController extends Controller
     {
         $input = $request->only([
             'studentID',
-            'surname',
             'givenName',
+            'surname',
             'courseCode',
+            'password'
         ]);
 
         // find student and update
@@ -130,8 +135,14 @@ class ManageStudentController extends Controller
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->courseCode = $input['courseCode'];
-
         $student->save();
+
+        $user = User::findOrFail($id);
+        $user->username = $input['studentID'];
+        $user->password = bcrypt($input['password']);
+        $user->permissionLevel = '1';
+        $user->save();
+
         return response()->json($student);
     }
 
@@ -145,6 +156,7 @@ class ManageStudentController extends Controller
     {
         $student = Student::findOrFail($id);
         $student->delete();
+
         return response()->json($student);
     }
 

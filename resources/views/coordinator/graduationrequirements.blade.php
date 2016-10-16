@@ -39,14 +39,12 @@
                         @else
                         <div class="form-group">
                         @endif
-                            <div class="row">
-                                <label class="col-sm-2 control-label">Core</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="core" value="{{ $core }}">
-                                    @if(isset($error['core']))
-                                        <span id="helpBlock2" class="help-block">{{ $error['core'] }}</span>
-                                    @endif
-                                </div>
+                            <label class="col-sm-2 control-label">Core</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control numbers" name="core" value="{{ $core }}">
+                                @if(isset($error['core']))
+                                    <span id="helpBlock2" class="help-block">{{ $error['core'] }}</span>
+                                @endif
                             </div>
                         </div> <!-- end .form-group / has-error -->
 
@@ -56,14 +54,12 @@
                         @else
                         <div class="form-group">
                         @endif
-                            <div class="row">
-                                <label class="col-sm-2 control-label">Elective</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="elective" value="{{ $elective }}">
-                                    @if(isset($error['elective']))
-                                        <span id="helpBlock2" class="help-block">{{ $error['elective'] }}</span>
-                                    @endif
-                                </div>
+                            <label class="col-sm-2 control-label">Elective</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control numbers" name="elective" value="{{ $elective }}">
+                                @if(isset($error['elective']))
+                                    <span id="helpBlock2" class="help-block">{{ $error['elective'] }}</span>
+                                @endif
                             </div>
                         </div> <!-- end .form-group / has-error -->
 
@@ -73,14 +69,12 @@
                         @else
                         <div class="form-group">
                         @endif
-                            <div class="row">
-                                <label class="col-sm-2 control-label">Major</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="major" value="{{ $major }}">
-                                    @if(isset($error['major']))
-                                        <span id="helpBlock2" class="help-block">{{ $error['major'] }}</span>
-                                    @endif
-                                </div>
+                            <label class="col-sm-2 control-label">Major</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control numbers" name="major" value="{{ $major }}">
+                                @if(isset($error['major']))
+                                    <span id="helpBlock2" class="help-block">{{ $error['major'] }}</span>
+                                @endif
                             </div>
                         </div> <!-- end .form-group / has-error -->
 
@@ -90,14 +84,12 @@
                         @else
                         <div class="form-group">
                         @endif
-                            <div class="row">
-                                <label class="col-sm-2 control-label">Minor</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="minor" value="{{ $minor }}">
-                                    @if(isset($error['minor']))
-                                        <span id="helpBlock2" class="help-block">{{ $error['minor'] }}</span>
-                                    @endif
-                                </div>
+                            <label class="col-sm-2 control-label">Minor</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control numbers" name="minor" value="{{ $minor }}">
+                                @if(isset($error['minor']))
+                                    <span id="helpBlock2" class="help-block">{{ $error['minor'] }}</span>
+                                @endif
                             </div>
                         </div> <!-- end .form-group / has-error -->
 
@@ -107,14 +99,12 @@
                         @else
                         <div class="form-group">
                         @endif
-                            <div class="row">
-                                <label class="col-sm-2 control-label">Co-major</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="co_major" value="{{ $co_major }}">
-                                    @if(isset($error['co_major']))
-                                        <span id="helpBlock2" class="help-block">{{ $error['co_major'] }}</span>
-                                    @endif
-                                </div>
+                            <label class="col-sm-2 control-label">Co-major</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control numbers" name="co_major" value="{{ $co_major }}">
+                                @if(isset($error['co_major']))
+                                    <span id="helpBlock2" class="help-block">{{ $error['co_major'] }}</span>
+                                @endif
                             </div>
                         </div> <!-- end .form-group / has-error -->
 
@@ -138,4 +128,14 @@
 @stop
 
 @section('extra_js')
+<script>
+(function() {
+    // prettify the numbers column
+    $(".numbers").TouchSpin({
+        verticalbuttons: true,          // type of up and down buttons
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999                       // maximum number can be added
+    })
+}) ()
+</script>
 @stop

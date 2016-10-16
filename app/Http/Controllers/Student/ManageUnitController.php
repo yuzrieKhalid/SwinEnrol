@@ -18,6 +18,7 @@ use App\Course;
 use App\UnitListing;
 use App\StudyPlanner;
 use App\StudentEnrolmentIssues;
+use App\Requisite;
 
 // student's unit operation is different. it should only add units to student's info
 
@@ -44,91 +45,6 @@ class ManageUnitController extends Controller
         $data['units'] = $units;
 
         return response()->json($data);
-    }
-
-    public function studyPlanner(Request $request)
-    {
-        $input = $request->only([
-            'year',
-            'term',
-            'courseCode'
-        ]);
-
-        $year = Config::find('year')->value;
-        $semester = Config::find('semester')->value;
-
-        //$user = Auth::user();
-        $student = Student::find($user->username);;
-
-        if($input['year'] == 0)
-        {
-            $input['year'] = $year;
-        }
-
-        // default to current semester
-        if($input['term'] == '')
-            $input['term'] = $semester;
-
-        // default to student's course
-        if($input['courseCode'] == '')
-            $input['courseCode'] = $student->courseCode;
-
-        $data = [];
-        $units = UnitTerm::with('unit', 'unit_type', 'course')
-            ->where([
-                ['unitType', '=', 'study_planner'],
-                ['year', '=', $input['year']],
-                ['term', '=', $input['term']],
-                ['courseCode', '=', $input['courseCode']]
-            ])
-            ->get();
-        $data['termUnits'] = $units;
-
-        // get semester size
-        $data['size'] = Config::find('semesterLength')->value;
-
-        // get semester unit count
-        for($n = 0; $n < $data['size']; $n++)
-        {
-            $count[$n] = UnitTerm::where([
-                    ['year', '=', $year], // todo: get from user
-                    ['term', '=', $semester], // todo: get from user
-                    ['enrolmentTerm', '=', $n]
-                ])->count();
-        }
-        $data['count'] = $count;
-
-        // generate year/semester strings
-        for($n = 0; $n < $data['size']; $n++)
-            $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
-        $data['term'] = $term;
-
-        // get current year
-        $data['currentYear'] = Carbon::now()->year;
-
-        // get year
-        $data['year'] = $input['year'];
-
-        // get semester
-        $data['semester'] = $input['term'];
-
-        // get selected course
-        $selectedCourse = Course::where('courseCode', '=', $input['courseCode'])->get();
-        if(count($selectedCourse) > 0)
-        {
-            $data['courseCode'] = $selectedCourse[0]->courseCode;
-            $data['courseName'] = $selectedCourse[0]->courseName;
-        }
-        else
-        {
-            $data['courseCode'] = '';
-            $data['courseName'] = '';
-        }
-
-        // get all courses
-        $data['courses'] = Course::all();
-
-        return view ('student.manageunits', $data);
     }
 
     /**
@@ -250,8 +166,58 @@ class ManageUnitController extends Controller
         $amendments = StudentEnrolmentIssues::where('studentID', '=', $user->username)
                                             ->where('issueID', '=', 4)->get();
 
+        // Mini - Study Planner
+        $data['year'] = $student->year;
+        $data['term'] = $student->term;
+        $data['planner'] = StudyPlanner::with('unit', 'course')
+        ->where([
+            ['year', '=', $data['year']],
+            ['semester', '=', $data['term']],
+            ['courseCode', '=', $student->courseCode]
+        ])
+        ->get();
+
+        // get requisites
+        $requisites = Requisite::all();
+
+        // sort requisites
+        $semesterUnits = $data['planner'];
+        foreach($semesterUnits as $unit)
+        {
+            foreach($requisites as $requisite)
+            {
+                if($requisite->unitCode == $unit->unitCode)
+                {
+                    // only show prerequisite
+                    if($requisite->type == 'prerequisite')
+                        $data['requisite'][$unit->unitCode]['prerequisite'][] = $requisite->requisite;
+                }
+            }
+        }
+
+        // get semester size
+        $data['size'] = Config::find('semesterLength')->value;
+
+        // get semester unit count
+        for($n = 0; $n < $data['size']; $n++)
+        {
+            $count[$n] = StudyPlanner::where([
+                    [ 'year', '=', $data['year'] ],
+                    [ 'semester', '=', $data['term'] ],
+                    [ 'courseCode', '=', $student->courseCode ],
+                    [ 'enrolmentTerm', '=', $n ]
+                ])->count();
+        }
+        $data['count'] = $count;
+
+        // generate year/semester strings
+        // this term is to not semester, its a custom string to indicate the semester
+        for($n = 0; $n < $data['size']; $n++)
+            $term[$n] = 'Year ' . (1 + (($n - $n % 3) / 3)) . ' Semester ' . (1 + $n % 3);
+        $data['semesters'] = $term;
+
         return view ('student.manageunits', $data);
-        // return response()->json($amendments);
+        // return response()->json($data);
     }
 
     /**

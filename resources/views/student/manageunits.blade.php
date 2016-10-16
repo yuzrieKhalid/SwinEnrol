@@ -1,41 +1,20 @@
 @extends('layouts.app')
 
-<!-- @section('extra_head')
+@section('extra_head')
     <meta name="_token" content="{{ csrf_token() }}"/>
-@stop -->
+@stop
 
 @section('content')
 <div class="container">
+    @include('student.phaseNotification')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="from-group panel-heading">
-                    <h1>Current Enrolment
-                      <span class="pull-right">
-                          <a class="btn btn-default" data-toggle="collapse" title="Study Planner" href="#collapseExample"
-                           aria-expanded="false" aria-controls="collapseExample" role="button">
-                          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                      </span>
-                    </h1>
+                    <h3>Current Enrolment</h3>
                 </div>
-                <div class="collapse" id="collapseExample">
-
-
-                    <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h1>Study Planner</h1>
-                            </div>
-
-                          </div> <!-- end .panel -->
-                    </div>
-
-                    <!-- ============== -->
-                  </div>
-
 
                 <div class="panel-body">
-                  @include('student.phaseNotification')
                   <!-- <div class="col-md-6"> -->
                     <h2>
                         <small>Long Semester</small>
@@ -159,12 +138,12 @@
             @if($phase->value == 1 || $phase->value == 3 || $phase->value == 6)
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1>Add Units
+                        <h3>Add Units
                             <!-- <span class="pull-right">
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                             </span> -->
-                        </h1>
+                        </h3>
                     </div>
 
                     <div class="panel-body">
@@ -300,10 +279,56 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div> <!-- end .panel -->
             @endif
+        </div> <!-- end .col-md-6 -->
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3>Study Planner {{ $year }} {{ $term }} Intake</h3>
+                </div>
+
+                <div class="panel-body">
+                    @if(count($planner) > 0)
+                        @for($n = 0; $n < $size; $n++)
+                            @if($count[$n] > 0)
+                                <h2>
+                                    <small>{{ $semesters[$n] }}</small>
+                                </h2>
+                                <table class="table">
+                                    <col width="125">
+                                    <thead>
+                                        <th>Unit Code</th>
+                                        <th>Unit Title</th>
+                                        <th>Pre-requisite</th>
+                                    </thead>
+                                    {{-- Fetch data for study planner --}}
+                                    @foreach ($planner as $unit)
+                                        @if($n == $unit->enrolmentTerm)
+                                            <tr>
+                                                <td>{{ $unit->unitCode }}</td>
+                                                <td>{{ $unit->unit->unitName }}</td>
+                                                <td>@if(isset($requisite[$unit->unitCode]['prerequisite']))
+                                                    @if(count($requisite[$unit->unitCode]['prerequisite']) > 0)
+                                                        {{ $requisite[$unit->unitCode]['prerequisite'][0] }}
+                                                        @if(count($requisite[$unit->unitCode]['prerequisite']) > 1)
+                                                            @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }}
+                                                            @endfor
+                                                        @endif
+                                                    @endif
+                                                    @else -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </table>
+                            @endif
+                        @endfor
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

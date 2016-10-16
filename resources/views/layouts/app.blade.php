@@ -8,8 +8,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('resources/assets/sass/app.scss') }}"> -->
-
+    <link rel="shortcut icon" href="{{ asset('image/swinburne-logo.jpg') }}" />
 
     @yield('extra_head')
 </head>
@@ -30,8 +29,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-
-                    Swinburne Student Enrolment System
+                    <img class="navbar-logo" src="{{ asset('image/logo.png') }}" style="float:left"/>
                 </a>
             </div>
 
@@ -50,8 +48,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->username }} <span class="caret"></span>
-                                <!--  -->
-                                <!--  -->
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -96,12 +92,6 @@
 
                                 @endif
 
-
-
-
-
-
-                                <!--  -->
                             </ul>
                         </li>
                     @endif

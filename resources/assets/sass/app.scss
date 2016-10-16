@@ -2,6 +2,11 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 $font-family-sans-serif: 'Lato', sans-serif;
 
+// variables
+$navbar-logo-height: 40px;
+$login-logo-width: 1000px;
+
+
 // import bootstrap sass from node
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -30,4 +35,15 @@ $font-family-sans-serif: 'Lato', sans-serif;
 
 html, body {
   overflow-x: hidden;
+}
+
+// navbar-brand - swinburne logo
+.navbar-logo {
+    height: $navbar-logo-height;
+    margin-top: -10px;
+}
+
+// logo at login page
+.login-logo {
+    width: $login-logo-width;
 }

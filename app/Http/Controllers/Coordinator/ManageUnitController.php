@@ -157,13 +157,24 @@ class ManageUnitController extends Controller
         // sort requisites
         foreach($requisites as $requisite)
         {
-            if($requisite->type == 'prerequisite')
-                $data['prerequisites'][] = $requisite;
             if($requisite->type == 'corequisite')
                 $data['corequisites'][] = $requisite;
             if($requisite->type == 'antirequisite')
                 $data['antirequisites'][] = $requisite;
+            else
+            {
+                $requisite->type = explode(' ', $requisite->type); // split type into array
+                $data['prerequisites'][$requisite->index][] = $requisite;
+            }
         }
+
+        // variable for for loop
+        // $data['i'] = 0;
+
+        // get prerequisite highest index
+        $data['index'] = Requisite::where('unitCode', '=', $unit->unitCode)->max('index');
+
+        // return response()->json($data['prerequisites']);
 
         // extract data from unit information JSON
         $unitInfo = json_decode($unit->unitInfo);

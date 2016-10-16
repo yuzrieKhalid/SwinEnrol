@@ -40,51 +40,109 @@
 
             <!-- Prerequisite -->
             <div class="row form-group">
-                <div class="col-md-11">
-                    <label>Prerequisite</label>
-                </div>
-                <div class="col-md-1">
-                    <button id="addPrerequisite" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                <div class="col-md-12">
+                    <label>Prerequisite</label><button id="addPrerequisiteGroup" type="button" class="btn btn-default pull-right">Add Group</button>
                 </div>
             </div>
-            <div class="prerequisites">
-                <div class="row hidden prerequisite_template">
-                    <div class="col-md-11">
-                        <div class="form-group prerequisite">
-                            <select class="form-control" name="prerequisite[]">
-                                <option value="None">Select one</option>
-                                @foreach($units as $requisiteUnit)
-                                <option value="{{ $requisiteUnit->unitCode }}">{{ $requisiteUnit->unitCode }} {{ $requisiteUnit->unitName }}</option>
-                                @endforeach
-                            </select>
+            <div class="prerequisite_groups">
+                <div class="panel panel-default panel-body  prerequisite_group_template">
+                    <div class="prerequisites">
+                        <div class="row form-group">
+                            <div class="col-md-11">
+                                <label>Prerequisite Group</label>
+                                <button type="button" class="btn btn-danger remove_group">Remove Group</button>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default addPrerequisite"><span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                        <hr>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="prerequisiteGroupCount">Minimum Units to Complete:</label>
+                                <input type="text" class="form-control" id="prerequisiteGroupCount">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row  prerequisite_template">
+                            <div class="col-md-11">
+                                <div class="form-group prerequisite">
+                                    <select class="form-control" name="prerequisite[]">
+                                        <option value="None">Select one</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 @if(isset($prerequisites))
-                @foreach($prerequisites as $prerequisite)
-                <div class="row input_prerequisite">
-                    <div class="col-md-11">
-                        <div class="form-group prerequisite">
-                            <select class="form-control" name="prerequisite[]">
-                                <option value="None">Select one</option>
-                                @foreach($units as $requisiteUnit)
-                                <option value="{{ $requisiteUnit->unitCode }}" @if($prerequisite->requisite == $requisiteUnit->unitCode) selected @endif>{{ $requisiteUnit->unitCode }} {{ $requisiteUnit->unitName }}</option>
-                                @endforeach
-                            </select>
+                @for($i = 0; $i < count($prerequisites); $i++)
+                <div class="panel panel-default panel-body prerequisite_group">
+                    <div class="prerequisites">
+                        <div class="row form-group">
+                            <div class="col-md-11">
+                                <label>Prerequisite Group</label>
+                                <button type="button" class="btn btn-danger remove_group">Remove Group</button>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default addPrerequisite"><span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                        <hr>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="prerequisiteGroupCount">Minimum Units to Complete:</label>
+                                <input type="text" class="form-control" id="prerequisiteGroupCount">
+                            </div>
                         </div>
+                        <hr>
+                        <div class="row hidden prerequisite_template">
+                            <div class="col-md-11">
+                                <div class="form-group prerequisite">
+                                    <select class="form-control" name="prerequisite[]">
+                                        <option value="None">Select one</option>
+                                        @foreach($units as $unit)
+                                        <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach($prerequisites[i] as $prerequisite)
+                        <div class="row input_prerequisite">
+                            <div class="col-md-11">
+                                <div class="form-group prerequisite">
+                                    <select class="form-control" name="prerequisite[]">
+                                        <option value="None">Select one</option>
+                                        @foreach($units as $requisiteUnit)
+                                        <option value="{{ $requisiteUnit->unitCode }}" @if($prerequisite->requisite == $requisiteUnit->unitCode) selected @endif>{{ $requisiteUnit->unitCode }} {{ $requisiteUnit->unitName }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
+                @endfor
                 @endif
             </div>
             <hr>

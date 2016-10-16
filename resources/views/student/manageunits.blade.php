@@ -9,7 +9,7 @@
     @include('student.phaseNotification')
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <div class="from-group panel-heading">
                     <h3>Current Enrolment</h3>
                 </div>
@@ -284,7 +284,7 @@
         </div> <!-- end .col-md-6 -->
 
         <div class="col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3>Study Planner {{ $year }} {{ $term }} Intake</h3>
                 </div>

@@ -14,7 +14,7 @@
     @yield('extra_head')
 </head>
 
-<body id="app-layout">
+<body background="{{ asset('image/background.jpg') }}" id="app-layout">
     @if(!Auth::guest())
     <nav class="navbar navbar-default navbar-offcanvas-touch navbar-offcanvas-fade">
         <div class="container">

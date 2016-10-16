@@ -94,6 +94,7 @@
                         </div>
                     </div>
                 </div>
+
                 @if(isset($prerequisites))
                 @for($i = 0; $i < count($prerequisites); $i++)
                 <div class="panel panel-default panel-body prerequisite_group">
@@ -297,7 +298,8 @@
                         <div class="input-group">
                             <input class="form-control" type="text" name="input_lecturer[]">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-danger remove_input"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button type="button" class="btn btn-danger remove_input">
+                                  <span class="glyphicon glyphicon-remove"></span></button>
                             </span>
                         </div>
                     </div>

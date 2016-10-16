@@ -8,11 +8,8 @@
 @section('content')
 <div class="container">
     <!-- <div class="row"> -->
-     <div class="row row-offcanvas row-offcanvas-left">
-        <!-- Reserve 3 space for navigation column -->
-         @include('coordinator.menu')
-
-        <div class="col-md-9">
+     <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Unit Listings</h1>
@@ -26,7 +23,7 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
-                            <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addLong"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
+                            <th><a class="pull-right" data-toggle="modal" title="Add Unit" data-target="#addUnit" role="button" id="addLong"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (long semester) --}}
                         @foreach ($semesterUnits as $unit)
@@ -50,7 +47,7 @@
                         <thead>
                             <th>Unit Code</th>
                             <th>Unit Title</th>
-                            <th><a class="pull-right" data-toggle="modal" data-target="#addUnit" role="button" id="addShort"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
+                            <th><a class="pull-right" data-toggle="modal" title="Add Unit" data-target="#addUnit" role="button" id="addShort"><span class="btn-default glyphicon glyphicon-plus" aria-hidden="true"></span></a></th>
                         </thead>
                         {{-- Fetch data for unit listing (short semester) --}}
                         @foreach ($semesterUnitsShort as $unit)

@@ -7,10 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Reserve 3 space for navigation column -->
-        @include('admin.menu')
-
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Manage Students</h1>
@@ -101,6 +98,10 @@
                             </table>
                         </div>
                     </div>
+
+                    <a href="{{ url('/managestudents/downloadExcel/XLSX') }}">
+                      <button class="btn btn-success">Download Excel</button></a>
+
                 </div> <!-- end .panel-body -->
             </div> <!-- end .panel -->
 

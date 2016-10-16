@@ -2,16 +2,12 @@
 
 @section('extra_head')
     <meta name="_token" content="{{ csrf_token() }}"/>
-    <link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
 @stop
 
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Reserve 3 space for navigation column -->
-        @include('admin.menu')
-
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1>Enrolment Dates</h1>

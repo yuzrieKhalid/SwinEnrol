@@ -1106,19 +1106,32 @@ class UnitTermTableSeeder extends Seeder
                 'courseCode' => 'I047',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ],
-            [
-                'unitType' => 'unit_listing',
-                'unitCode' => 'HIT1312',
-                'year' => 2016,
-                'term' => 'Semester 1',
-                'enrolmentTerm' => 'long',
-                'courseCode' => 'I047',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitType' => 'unit_listing',
+              ],
+
+            // *************** Unit Listing ***************
+      [
+				'unitType' => 'unit_listing',
+				'unitCode' => 'HIT3315',
+				'year' => 2016,
+				'term' => 'Semester 1',
+				'enrolmentTerm' => 'long',
+
+        'courseCode' => 'I047',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+        ],
+        [
+        'unitType' => 'unit_listing',
+        'unitCode' => 'HIT1312',
+        'year' => 2016,
+        'term' => 'Semester 1',
+        'enrolmentTerm' => 'long',
+        'courseCode' => 'I047',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+        ],
+        [
+        'unitType' => 'unit_listing',
                 'unitCode' => 'HIT2080',
                 'year' => 2016,
                 'term' => 'Semester 1',

@@ -6,11 +6,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row row-offcanvas row-offcanvas-left">
-        <!-- Reserve 3 space for navigation column -->
-        @include('coordinator.menu')
-
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Resolve Enrolment Amendment</h1>

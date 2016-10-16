@@ -6,11 +6,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row row-offcanvas row-offcanvas-left">
-        <!-- Reserve 3 space for navigation column -->
-        @include('coordinator.menu')
-
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h1>Manage Units</h1>
@@ -22,7 +19,7 @@
                             <th>Unit ID</th>
                             <th>Unit Name</th>
                             <th></th>
-                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" title="Add New Unit" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                         </thead>
                         @foreach($units as $unit)
                         @if(isset($unit))

@@ -3,10 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
-
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Study Planner</h1>
@@ -14,7 +11,7 @@
 
                 <div class="panel-body">
                     <!-- Planner selection form -->
-                    <form class="form-inline" method="POST" action="{{ url('student/viewstudyplanner') }}">
+                    <form class="form-inline" method="POST" action="{{ url('student/managestudents.index2') }}">
                         <!-- Year Selection -->
                         <div class="form-group">
                             <select class="form-control" name="year" id="year" onchange="this.form.submit()">

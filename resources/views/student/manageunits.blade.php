@@ -7,19 +7,41 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
-
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="from-group panel-heading">
-                    <h1>Current Enrolment</h1>
+                    <h1>Current Enrolment
+                      <span class="pull-right">
+                          <a class="btn btn-default" data-toggle="collapse" title="Study Planner" href="#collapseExample"
+                           aria-expanded="false" aria-controls="collapseExample" role="button">
+                          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                      </span>
+                    </h1>
                 </div>
+                <div class="collapse" id="collapseExample">
+
+
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h1>Study Planner</h1>
+                            </div>
+
+                          </div> <!-- end .panel -->
+                    </div>
+
+                    <!-- ============== -->
+                  </div>
+
 
                 <div class="panel-body">
+                  @include('student.phaseNotification')
+                  <!-- <div class="col-md-6"> -->
                     <h2>
                         <small>Long Semester</small>
                     </h2>
+                    <!-- </div> -->
+
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
@@ -44,7 +66,8 @@
                                 @endif
                                 @if($phase->value == 1)
                                 <td>
-                                    <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                    <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit"
+                                        data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                         <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -118,7 +141,7 @@
                                 @endif
                                 @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
                                 <td>
-                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
                                       <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -137,10 +160,10 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h1>Add Units
-                            <span class="pull-right">
+                            <!-- <span class="pull-right">
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                            </span>
+                            </span> -->
                         </h1>
                     </div>
 
@@ -233,7 +256,8 @@
                                                     <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                 </button>
                                                 @else
-                                                <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
+                                                <button type="submit" id="{{ $unit->unitCode }}" class="submit btn btn-sm" data-toggle="tooltip" title="Add Unit"
+                                                    data-method="POST" data-url="{{ route('student.manageunits.store') }}" data-length="short">
                                                     <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                 </button>
                                                 @endif
@@ -288,6 +312,8 @@
 @section ('extra_js')
 <script>
 (function() {
+    // tooltip
+    $('[data-toggle="collapse"]').tooltip();
 
     // csrf token
     let getToken = function() {

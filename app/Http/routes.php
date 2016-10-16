@@ -26,22 +26,28 @@ Route::group([
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
+    Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.approve',
-        'uses' => 'Admin\ResolveIssueController@update'
-    ]);
-    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.approve',
-        'uses' => 'Admin\ResolveIssueController@update'
-    ]);
-    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
-        'as' => 'admin.resolveissue.disapprove',
-        'uses' => 'Admin\ResolveIssueController@destroy'
-    ]);
-    Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
-    Route::get('enrolmentstatus', 'Admin\EnrolmentStatusStudent@create');
+         'as' => 'admin.resolveissue.approve',
+         'uses' => 'Admin\ResolveIssueController@update'
+       ]);
+     Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+         'as' => 'admin.resolveissue.approve',
+         'uses' => 'Admin\ResolveIssueController@update'
+       ]);
+     Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+         'as' => 'admin.resolveissue.disapprove',
+         'uses' => 'Admin\ResolveIssueController@destroy'
+       ]);
+     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    //  Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
+    //  Route::get('enrolmentstatus/index2', [
+    //      'as' => 'admin.enrolmentstatus.create',
+    //      'uses' => 'Admin\EnrolmentStatusStudent@create'
+    //    ]);
+    Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 
 // Route::resource('manageunits', 'Coordinator\ManageUnitController');
@@ -72,7 +78,6 @@ Route::group([
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');
     Route::resource('manageunits', 'Coordinator\ManageUnitController');
 
-    // Route::get('resolveenrolmentissues/{studentID}/{issueID}', 'Coordinator\ResolveIssueController@update');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
         'as' => 'coordinator.resolveenrolmentissues.approve',
         'uses' => 'Coordinator\ResolveIssueController@update'
@@ -104,8 +109,10 @@ Route::group([
     'prefix' => 'student',
     'middleware' => ['web', 'auth'],
 ], function() {
-    Route::get('/', 'Student\HomeController@index');
+    Route::resource('/', 'Student\HomeController');
     Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
+    //Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@downloadExcel');
+    Route::get('enrolmenthistory/downloadExcel/{id}', 'Student\EnrolmentHistoryController@downloadExcel');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
@@ -127,6 +134,7 @@ Route::group([
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
     Route::resource('managestudent', 'Super\ManageStudent');
+    Route::resource('managecourse', 'Super\ManagCourseController');
     Route::resource('manageunittype', 'Super\ManageUnitType');
 });
 

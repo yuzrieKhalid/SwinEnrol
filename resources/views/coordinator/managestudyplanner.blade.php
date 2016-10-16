@@ -8,10 +8,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <!-- Reserve 3 space for navigation column -->
-            @include('coordinator.menu')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <h1>Study Planner</h1>

@@ -3,10 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <!-- Reserve 3 space for navigation column -->
-        @include('student.menu')
-
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h1>Enrolment History</h1>
@@ -31,18 +28,22 @@
                                         <td>{{ $unit->unit->unitName }}</td>
                                         @if($unit->status == 'confirmed')
                                             <!-- Has already passed -->
-                                            <td><span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
                                         @elseif($unit->status == 'pending')
                                             <!-- Waiting to be approved (Phase 2) -->
-                                            <td><span class="glyphicon glyphicon glyphicon-alert" aria-hidden="true"></span></td>
+                                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pendding" aria-hidden="true"></span></td>
                                         @else
                                             <!-- Is currently taken -->
-                                            <td><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                            <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
                                         @endif
                                     </tr>
                                 @endforeach
                             @endif
                         </table>
+
+
+                          <a href="{{ url('/enrolmenthistory/downloadExcel/xlsx') }}">
+                            <button class="btn btn-success">Download Unit List</button></a>
                     </div>
 
                     <!-- Exempted Units -> only for students who applied for exemption -->
@@ -67,10 +68,29 @@
                         </table>
                     </div>
 
+
                 </div>
             </div> <!-- end .panel -->
         </div>
     </div>
 
 </div>
+@stop
+@section ('extra_js')
+<script>
+(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    })
+  })
+
+}) ()
+</script>
+
 @stop

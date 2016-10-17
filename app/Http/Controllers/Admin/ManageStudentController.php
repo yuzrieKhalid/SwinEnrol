@@ -129,6 +129,13 @@ class ManageStudentController extends Controller
             'password'
         ]);
 
+        // find in User table
+        $user = User::where('username', '=', $id)->update([
+            'username' => $input['studentID'],
+            'password' => bcrypt($input['password']),
+            'permissionLevel' => 1
+        ]);
+
         // find student and update
         $student = Student::findOrFail($id);
         $student->studentID = $input['studentID'];
@@ -137,13 +144,7 @@ class ManageStudentController extends Controller
         $student->courseCode = $input['courseCode'];
         $student->save();
 
-        $user = User::findOrFail($id);
-        $user->username = $input['studentID'];
-        $user->password = bcrypt($input['password']);
-        $user->permissionLevel = '1';
-        $user->save();
-
-        return response()->json($student);
+        return response()->json($user);
     }
 
     /**

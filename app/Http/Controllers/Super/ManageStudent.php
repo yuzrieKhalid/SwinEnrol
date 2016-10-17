@@ -100,7 +100,7 @@ class ManageStudent extends Controller
         ->where('username', '=', $id)
         ->update([
             'username' => $input['username'],
-            'password' => $input['password']
+            'password' => bcrypt($input['password'])
         ]);
 
         return redirect('super/managestudent');

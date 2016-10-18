@@ -81,14 +81,27 @@ class ManageUnitController extends Controller
         // create and store prerequisites
         if(count($input['prerequisite']) > 0)
         {
-            foreach($input['prerequisite'] as $prerequisite)
+            $index = 0; // index for prerequisites
+            // loop through prerequisite group
+            foreach($input['prerequisite_groups'] as $prerequisiteGroup)
             {
-                $requisite = new Requisite;
-                $requisite->unitCode = $input['unitCode'];
-                $requisite->requisite = $prerequisite;
-                $requisite->type = 'prerequisite';
-                $requisite->conjunction = 'AND';
-                $requisite->save();
+                // loop through prerequisites in group
+                foreach($prerequisiteGroup as $prerequisite)
+                {
+                    // create new prerequisite
+                    $requisite = new Requisite;
+                    $requisite->unitCode = $input['unitCode'];
+                    $requisite->requisite = $prerequisite->requisite;
+                    $type = $prerequisite->type[0];
+                    // join prerequisite type with unit count if exists
+                    if(count($prerequisite->type) > 1)
+                        $type = $type.' '.$prerequisite->type[1];
+                    $requisite->type = $type;
+                    $requisite->index = $index;
+                    $requisite->save();
+                }
+
+                $index++; // increment index
             }
         }
 
@@ -101,7 +114,6 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $corequisite;
                 $requisite->type = 'corequisite';
-                $requisite->conjunction = 'OR';
                 $requisite->save();
             }
         }
@@ -115,7 +127,6 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $antirequisite;
                 $requisite->type = 'antirequisite';
-                $requisite->conjunction = 'OR';
                 $requisite->save();
             }
         }
@@ -172,7 +183,7 @@ class ManageUnitController extends Controller
         // get prerequisite highest index
         $data['index'] = Requisite::where('unitCode', '=', $unit->unitCode)->max('index');
 
-        // return response()->json($data['prerequisites']);
+        return response()->json($data['prerequisites']);
 
         // extract data from unit information JSON
         $unitInfo = json_decode($unit->unitInfo);
@@ -211,7 +222,7 @@ class ManageUnitController extends Controller
         $input = $request->only([
             'unitCode',
             'unitName',
-            'prerequisite',
+            'prerequisite_groups',
             'corequisite',
             'antirequisite',
             'creditPoints',
@@ -224,6 +235,7 @@ class ManageUnitController extends Controller
             'studyLevel'
         ]);
 
+        // update unit details
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
@@ -243,14 +255,27 @@ class ManageUnitController extends Controller
         // create and store prerequisites
         if(count($input['prerequisite']) > 0)
         {
-            foreach($input['prerequisite'] as $prerequisite)
+            $index = 0; // index for prerequisites
+            // loop through prerequisite group
+            foreach($input['prerequisite_groups'] as $prerequisiteGroup)
             {
-                $requisite = new Requisite;
-                $requisite->unitCode = $input['unitCode'];
-                $requisite->requisite = $prerequisite;
-                $requisite->type = 'prerequisite';
-                $requisite->index = '0';
-                $requisite->save();
+                // loop through prerequisites in group
+                foreach($prerequisiteGroup as $prerequisite)
+                {
+                    // create new prerequisite
+                    $requisite = new Requisite;
+                    $requisite->unitCode = $input['unitCode'];
+                    $requisite->requisite = $prerequisite->requisite;
+                    $type = $prerequisite->type[0];
+                    // join prerequisite type with unit count if exists
+                    if(count($prerequisite->type) > 1)
+                        $type = $type.' '.$prerequisite->type[1];
+                    $requisite->type = $type;
+                    $requisite->index = $index;
+                    $requisite->save();
+                }
+
+                $index++; // increment index
             }
         }
 
@@ -263,7 +288,6 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $corequisite;
                 $requisite->type = 'corequisite';
-                $requisite->index = '0';
                 $requisite->save();
             }
         }
@@ -277,7 +301,6 @@ class ManageUnitController extends Controller
                 $requisite->unitCode = $input['unitCode'];
                 $requisite->requisite = $antirequisite;
                 $requisite->type = 'antirequisite';
-                $requisite->index = '0';
                 $requisite->save();
             }
         }

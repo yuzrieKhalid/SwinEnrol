@@ -13,6 +13,7 @@ use App\Unit;
 use App\EnrolmentUnits;
 use App\Config;
 use App\StudentEnrolmentIssues;
+use App\Course;
 
 class HomeController extends Controller
 {
@@ -22,19 +23,28 @@ class HomeController extends Controller
 
       $user = Auth::user();
 
-      $student = Student::where([['studentID', '=', '$user->username'],
-      ['year','=', Config::find('year')->value],
-      ['term','=',Config::find('semester')->value],
-      ])->get();
+      // $student = Student::where([['studentID', '=', $user->username],
+      // ['year','=', Config::find('year')->value],
+      // ['term','=',Config::find('semester')->value],
+      // ])->get();
 
+      $student = Student::findOrFail($user->username);
+      $data['student'] = $student;
+      $course = Course::first($user->courseCode);
+      $data['course'] = $course;
+
+      // $course = Course::where('courseCode', '=', $user->courseCode)->first()->courseCode;
+
+
+      // $data['year'] = Student::where('studentID', '=', '$user->username')->first()->year;
 
       $data['student'] = $student;
       $data['phase'] = Config::find('enrolmentPhase');
       $enrolled = EnrolmentUnits::with('unit')
           ->where([
             ['studentID', '=', $user->username],
-              ['year', '=', Config::find('year')->value],
-              ['semester', '=', Config::find('semester')->value],
+            ['year', '=', Config::find('year')->value],
+            ['semester', '=', Config::find('semester')->value],
           ])->get();
       $data['enrolled'] = $enrolled;
 

@@ -34,4 +34,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\CourseCoordinator', 'username');
     }
+    /**
+     * Check if this user belongs to a role
+     *
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return $this->hasMany('App\CourseCoordinator', 'username');
+    }
 }

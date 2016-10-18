@@ -10,7 +10,7 @@
                     </div>
                     <div class="panel-body">
                         @if(isset($user))
-                            <form class="form-horizontal" role="form" method="POST" action="/super/managecoordinator/{{ $user[0]->username }}">
+                            <form class="form-horizontal" role="form" method="POST" action="/super/managecoordinator/{{ $user }}">
                         @else
                             <form class="form-horizontal" role="form" method="POST" action="{{ route('super.managecoordinator.store') }}">
                         @endif
@@ -21,63 +21,67 @@
                                 <input type="hidden" name="_method" value="PUT">
                             @endif
 
-                            <!-- <div class="form-group{{ $errors->has('permissionLevel') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Permission Level</label>
 
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="permissionLevel" value="{{ old('permissionLevel') }}">
-
-                                    @if ($errors->has('permissionLevel'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('permissionLevel') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div> -->
-
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">Username</label>
-
                                 <div class="col-md-6">
                                     @if(isset($user))
-                                        <input type="text" class="form-control" name="username" value="{{ $user[0]->username }}">
+                                        <input type="text" class="form-control" name="username" value="{{ $user }}">
                                     @else
                                         <input type="text" class="form-control" name="username" value="">
-                                    @endif
-
-                                    @if ($errors->has('username'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
-
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Course Coordinator Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}">
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
+                                    @if(isset($name))
+                                        <input type="text" class="form-control" name="name" value="{{ $name }}">
+                                    @else
+                                        <input type="text" class="form-control" name="name" value="">
                                     @endif
                                 </div>
-                            </div> -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Assign Course Code</label>
+                                <div class="col-md-6">
+                                  <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
+                                    @foreach($course as $course)
+                                        @if($course->courseCode == $courseCode)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }}</option>
+                                        @endif
+                                    @endforeach
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
+                                @foreach($courses as $course)
+                                    @if($course->courseCode == $courseCode)
+                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                    @endif
+                                @endforeach
+
+                                @foreach($courses as $course)
+                                    @if($course->courseCode != $courseCode)
+                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
+                                    @endif
+                                @endforeach
+                            </select>
+
+
+
+
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">Password</label>
-
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
 
@@ -97,7 +101,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         Save
                                     </button>
                                     <a class="btn btn-danger" href="{{ url('/super/managecoordinator') }}" role="button">Cancel</a>

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Student;
 use App\User;
 use App\Config;
+use Excel;
 
 class ManageStudentController extends Controller
 {
@@ -128,7 +129,6 @@ class ManageStudentController extends Controller
             'courseCode',
             'password'
         ]);
-
         // find student and update
         $student = Student::findOrFail($id);
         $student->studentID = $input['studentID'];
@@ -144,6 +144,8 @@ class ManageStudentController extends Controller
         $user->save();
 
         return response()->json($student);
+
+
     }
 
     /**
@@ -163,11 +165,8 @@ class ManageStudentController extends Controller
     public function downloadExcel($type)
     {
         $data = Student::get()->toArray();
-
         return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
-
-        $excel->sheet('mySheet', function($sheet)use($data)
-          {
+        $excel->sheet('mySheet', function($sheet)use($data){
             $sheet->fromArray($data);
           });
 

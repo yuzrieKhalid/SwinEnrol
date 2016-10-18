@@ -9,7 +9,6 @@
                     <h3>Enrolment History</h3>
                 </div>
                 <div class="panel-body">
-
                     <!-- Completed Units Table -->
                     <div class="table-responsive">
                         <table class="table">
@@ -80,16 +79,6 @@
 <script>
 (function() {
       $('[data-toggle="tooltip"]').tooltip();
-
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    })
-  })
-
 }) ()
 </script>
 

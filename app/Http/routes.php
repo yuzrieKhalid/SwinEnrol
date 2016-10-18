@@ -111,8 +111,7 @@ Route::group([
 ], function() {
     Route::resource('/', 'Student\HomeController');
     Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
-    //Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@downloadExcel');
-    Route::get('enrolmenthistory/downloadExcel/{id}', 'Student\EnrolmentHistoryController@downloadExcel');
+    Route::get('enrolmenthistory/xlsx', 'Student\EnrolmentHistoryController@downloadExcel');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');

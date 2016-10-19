@@ -16,35 +16,34 @@ use App\StudentEnrolmentIssues;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        $data = [];
 
-      $data = [];
+        $user = Auth::user();
 
-      $user = Auth::user();
+        // $student = Student::where([
+        //     ['studentID', '=', '$user->username'],
+        //     ['year','=', Config::find('year')->value],
+        //     ['term','=',Config::find('semester')->value],
+        // ])->get();
 
-      $student = Student::where([['studentID', '=', '$user->username'],
-      ['year','=', Config::find('year')->value],
-      ['term','=',Config::find('semester')->value],
-      ])->get();
+        $student = Student::findOrFail($user->username);
 
-
-      $data['student'] = $student;
-      $data['phase'] = Config::find('enrolmentPhase');
-      $enrolled = EnrolmentUnits::with('unit')
-          ->where([
+        $data['student'] = $student;
+        $data['phase'] = Config::find('enrolmentPhase');
+        $enrolled = EnrolmentUnits::with('unit')->where([
             ['studentID', '=', $user->username],
-              ['year', '=', Config::find('year')->value],
-              ['semester', '=', Config::find('semester')->value],
-          ])->get();
-      $data['enrolled'] = $enrolled;
+            ['year', '=', Config::find('year')->value],
+            ['semester', '=', Config::find('semester')->value],
+        ])->get();
+        $data['enrolled'] = $enrolled;
 
-      $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
+        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
                                       ->where('status', '=', 'approved')->get();
 
-      $data['issues'] = $issues;
-
-      return view ('student.student', $data);
-
+        $data['issues'] = $issues;
+        return view ('student.student', $data);
     }
 
     /**

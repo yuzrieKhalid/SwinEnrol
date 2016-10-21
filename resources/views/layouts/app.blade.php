@@ -29,11 +29,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-
-                    <img class="navbar-logo" src="{{ asset('image/logo.png') }}" style="float:left"/>
-
-                    Swinburne Student Enrolment System
-
+                    <img class="navbar-logo" title="Swinburne Student Enrolment System" src="{{ asset('image/logo.png') }}" style="float:left"/>
                 </a>
             </div>
 
@@ -55,51 +51,75 @@
                             </a>
 
 
-                            <!-- <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a> -->
-
                             <ul class="dropdown-menu" role="menu">
+                              <li><a title="Log Out" href="{{ url('/logout') }}">Log Out</a></li>
                                 @if(Auth::user()->permissionLevel == '3')
-                                <li><a href="{{ url('/admin') }}" class="list-group-item @if(Request::is('admin')) active @endif">Home</a></li>
-                                <li><a href="{{ url('/admin/managestudents') }}" class="list-group-item @if(Request::is('admin/managestudents*')) active @endif">Manage Students</a></li>
-                                <li><a href="{{ url('/admin/setenrolmentdates/create') }}" class="list-group-item @if(Request::is('admin/setenrolmentdates*')) active @endif">Set Enrolment Dates</a></li>
-                                <li><a href="{{ url('/admin/resolveissue/create') }}" class="list-group-item @if(Request::is('admin/resolveissue*')) active @endif">Resolve Leave of Absence</a></li>
-                                <li><a href="{{ url('/admin/approvedissues/create') }}" class="list-group-item @if(Request::is('admin/approvedissues*')) active @endif">Approved Issues</a></li>
-                                <li><a href="{{ url('/admin/enrolmentstatus') }}" class="list-group-item @if(Request::is('admin/enrolmentstatus*')) active @endif">Enrolment Status</a></li>
+                                <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a href="{{ url('/admin') }}">Home</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/admin/managestudents') }}">Manage Students</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/admin/setenrolmentdates/create') }}">Set Enrolment Dates</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/admin/resolveissue/create') }}">Resolve Leave of Absence</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/admin/approvedissues/create') }}">Approved Issues</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/admin/enrolmentstatus') }}">Enrolment Status</a></li>
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '1')
-                                <li><a href="{{ url('/student') }}" class="list-group-item @if(Request::is('student/student')) active @endif">Enrolment Status</a></li>
-                                <li><a href="{{ url('/student/enrolmenthistory') }}" class="list-group-item @if(Request::is('student/enrolmenthistory*')) active @endif">Enrolment History</a></li>
-                                <li><a href="{{ url('/student/manageunits/create') }}" class="list-group-item @if(Request::is('student/manageunits*')) active @endif">Manage Units</a></li>
-                                <li><a href="{{ url('/student/viewstudyplanner') }}" class="list-group-item @if(Request::is('student/viewstudyplanner*')) active @endif">View Study Planner</a></li>
-                                <li><a href="{{ url('/student/viewunitlistings') }}" class="list-group-item @if(Request::is('student/viewunitlistings*')) active @endif">View Unit Listings</a></li>
-                                <li><a href="{{ url('/student/enrolmentissues') }}" class="list-group-item @if(Request::is('student/enrolmentissues*')) active @endif">Other Enrolment Issues</a></li>
+                                <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a href="{{ url('/student') }}">Enrolment Status</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/student/enrolmenthistory') }}">Enrolment History</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/student/manageunits/create') }}">Manage Units</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/student/viewstudyplanner') }}">View Study Planner</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/student/viewunitlistings') }}">View Unit Listings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/student/enrolmentissues') }}">Other Enrolment Issues</a></li>
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '2')
-                                <a href="{{ url('/coordinator') }}" class="list-group-item @if(Request::is('coordinator')) active @endif">Home</a>
-                                <a href="{{ url('/coordinator/managestudyplanner/create') }}" class="list-group-item @if(Request::is('coordinator/managestudyplanner*')) active @endif">Manage Study Planner</a>
-                                <a href="{{ url('/coordinator/manageunitlisting/create') }}" class="list-group-item @if(Request::is('coordinator/manageunitlisting*')) active @endif">Manage Unit Listings</a>
-                                <a href="{{ url('/coordinator/manageunits/create') }}" class="list-group-item @if(Request::is('coordinator/manageunits*')) active @endif">Manage Units</a>
-                                <a href="{{ url('/coordinator/enrolmentamendment/create') }}" class="list-group-item @if(Request::is('coordinator/enrolmentamendment*')) active @endif">Resolve Enrolment Amendement</a>
-                                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}" class="list-group-item @if(Request::is('coordinator/resolveenrolmentissues*')) active @endif">Resolve Enrolment Issues</a>
+                                <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <a href="{{ url('/coordinator') }}">Home</a>
+                                <li class="divider"></li>
+                                <a href="{{ url('/coordinator/managestudyplanner/create') }}">Manage Study Planner</a>
+                                <li class="divider"></li>
+                                <a href="{{ url('/coordinator/manageunitlisting/create') }}">Manage Unit Listings</a>
+                                <li class="divider"></li>
+                                <a href="{{ url('/coordinator/manageunits/create') }}">Manage Units</a>
+                                <li class="divider"></li>
+                                <a href="{{ url('/coordinator/enrolmentamendment/create') }}">Resolve Enrolment Amendement</a>
+                                <li class="divider"></li>
+                                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}">Resolve Enrolment Issues</a>
                                 @endif
                                 @if(Auth::user()->permissionLevel == '4')
-                                <li><a href="{{ url('/super') }}" class="list-group-item @if(Request::is('super')) active @endif">Home</a></li>
-                                <li><a href="{{ url('/super/config') }}" class="list-group-item @if(Request::is('super/config*')) active @endif">Configuration</a>
-                                <li><a href="{{ url('/super/managecourse/create') }}" class="list-group-item @if(Request::is('super/managecourse/*')) active @endif">Manage Course</a></li>
-                                <li><a href="{{ url('/super/managestudentadmin') }}" class="list-group-item @if(Request::is('super/managestudentadmin*')) active @endif">Manage Student Administrators</a></li>
-                                <li><a href="{{ url('/super/managecoordinator') }}" class="list-group-item @if(Request::is('super/managecoordinator*')) active @endif">Manage Course Coordinators</a></li>
-                                <li><a href="{{ url('/super/managestudent') }}" class="list-group-item @if(Request::is('super/managestudent') || Request::is('super/managestudent/*'))) active @endif">Manage Students</a></li>
-                                <li><a href="{{ url('/super/manageunittype') }}" class="list-group-item @if(Request::is('super/manageunittype*')) active @endif">Manage Unit Types</a></li>
+                                <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super') }}">Home</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/config') }}">Configuration</a>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/managecourse/create') }}">Manage Course</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/managestudentadmin') }}">Manage Student Administrators</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/managecoordinator') }}">Manage Course Coordinators</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/managestudent') }}">Manage Students</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/super/manageunittype') }}">Manage Unit Types</a></li>
                                 @endif
 
                             </ul>
                         </li>
 
 
-                        <li><a title="Log Out" href="{{ url('/logout') }}"><span class="glyphicon glyphicon-off"></span></a></li>
+
                     @endif
                 </ul>
             </div>

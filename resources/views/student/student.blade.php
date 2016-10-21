@@ -11,14 +11,11 @@
                     <h3>Student Information</h3>
                 </div>
                 <div class="panel-body">
-                    <!-- <h3>ID: {{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->email }}} </h3> -->
                     <h4>Name: {{ $student->givenName }} {{ $student->surname }} </h4>
                     <h4>ID: {{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->email }}} </h4>
                     <h4>Term: {{ $student->term }}</h4>
                     <h4>Year: {{ $student->year }}</h4>
-                    <h4>Program: {{ $course->courseName }}</h4>
-
-
+                    <h4>Program: {{ $course->courseName }} ({{ $course->courseCode }})</h4>
                 </div>
             </div> <!-- end .panel -->
         </div>

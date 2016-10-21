@@ -34,7 +34,7 @@ $login-logo-width: 1000px;
 
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: visible;
 }
 
 
@@ -47,6 +47,11 @@ html, body {
 // logo at login page
 .login-logo {
     width: $login-logo-width;
+}
+
+.menu {
+	position: relative;
+	z-index: 1000;
 }
 
 @media screen and (max-width: 767px){
@@ -98,4 +103,3 @@ html, body {
   }
 
 }
->>>>>>> Stashed changes

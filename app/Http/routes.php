@@ -26,7 +26,7 @@ Route::group([
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
-    Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
+    // Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [

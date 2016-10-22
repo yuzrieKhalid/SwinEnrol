@@ -183,7 +183,7 @@ class ManageUnitController extends Controller
         // get prerequisite highest index
         $data['index'] = Requisite::where('unitCode', '=', $unit->unitCode)->max('index');
 
-        return response()->json($data['prerequisites']);
+        // return response()->json($data['prerequisites']);
 
         // extract data from unit information JSON
         $unitInfo = json_decode($unit->unitInfo);

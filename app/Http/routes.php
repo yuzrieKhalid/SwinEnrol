@@ -21,7 +21,7 @@ Route::group([
 // Student Admin
 Route::group([
     'prefix' => 'admin',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
@@ -54,7 +54,7 @@ Route::group([
 // Coordinator Views
 Route::group([
     'prefix' => 'coordinator',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', [
         'as' => 'coordinator.home.index',
@@ -124,7 +124,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'super',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Super\HomeController@index');
     Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');

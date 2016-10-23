@@ -13,9 +13,20 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'username' => '123456',
+        'email' => '123456@email.com',
+        'permissionLevel' => '1',
+        'password' => bcrypt('123456'),
+    ];
+});
+
+$factory->define(App\Student::class, function (Faker\Generator $faker) {
+    return [
+        'studentID' => '123456',
+        'courseCode' => 'I047',
+        'surname' => $faker->name,
+        'givenName' => $faker->name,
+        'year' => '2016',
+        'term' => 'Semester 1',
     ];
 });

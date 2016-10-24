@@ -9,7 +9,17 @@ use App\Student;
 
 class HomepageTest extends TestCase
 {
-    use DatabaseTransactions;
+    public function setUp()
+    {
+        parent::setUp();
+        Artisan::call('migrate');
+        Artisan::call('db:seed');
+    }
+
+    public function tearDown()
+    {
+        Artisan::call('migrate:rollback');
+    }
 
     /**
      * @test if a student user is authenticated
@@ -19,6 +29,9 @@ class HomepageTest extends TestCase
         // Sample user - student
         $user = factory(App\User::class)->create();
         $student = factory(App\Student::class)->create();
+
+        $eduversal = factory(App\StudentRecord::class)->create();
+        dd($eduversal);
 
         // - dd the variables to terminal
         // $data['user'] = $user;
@@ -35,5 +48,7 @@ class HomepageTest extends TestCase
 
         // - dd what the $this sees
         // dd($this);
+
+        $this->assertTrue(true);
     }
 }

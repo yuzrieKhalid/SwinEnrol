@@ -23,9 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\CoordinatorUnit::class, function (Faker\Generator $faker) {
     return [
         'username' => 'coordinator_cs',
-        'unitCode' => 'HIT3315',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'unitCode' => 'HIT3315'
     ];
 });
 
@@ -41,9 +39,7 @@ $factory->define(App\CourseCoordinator::class, function (Faker\Generator $faker)
 $factory->define(App\Config::class, function (Faker\Generator $faker) {
     return [
         'id' => 'enrolmentPhase',
-        'value' => '1',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'value' => '1'
     ];
 });
 
@@ -53,9 +49,7 @@ $factory->define(App\Course::class, function (Faker\Generator $faker) {
         'courseName' => 'Bachelor of Computer Science',
         'semestersPerYear' => 3,
         'semesterCount' => 7,
-        'studyLevel' => 'Degree',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'studyLevel' => 'Degree'
     ];
 });
 
@@ -68,9 +62,7 @@ $factory->define(App\EnrolmentDates::class, function (Faker\Generator $faker) {
         'reenrolmentCloseDate' => '2016-02-01',
         'shortCommence' => '2016-05-01',
         'longCommence' => '2016-06-15',
-        'examResultsRelease' => '2016-06-01',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'examResultsRelease' => '2016-06-01'
     ];
 });
 
@@ -78,8 +70,6 @@ $factory->define(App\EnrolmentIssues::class, function (Faker\Generator $faker) {
     return [
         'id' => 1,
         'issueType' => 'Course Transfer',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
     ];
 });
 
@@ -92,9 +82,7 @@ $factory->define(App\EnrolmentUnits::class, function (Faker\Generator $faker) {
         'semesterLength' => 'long',
         'status' => 'pending',
         'result' => 0.00,
-        'grade' => 'ungraded',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'grade' => 'ungraded'
     ];
 });
 
@@ -111,9 +99,7 @@ $factory->define(App\Requisite::class, function (Faker\Generator $faker) {
         'unitCode' => 'PRG0',
         'requisite' => 'COMPA',
         'type' => 'prerequisite 2',
-        'index' => 0,
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'index' => 0
     ];
 });
 
@@ -123,9 +109,7 @@ $factory->define(App\StudentEnrolmentIssues::class, function (Faker\Generator $f
         "issueID" => 1,
         "status" => "pending",
         "submissionData" => "{\"yearOfRequestedTransfer\":\"2016\",\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"fromProgramIntakeYear\":\"2016\",\"toProgramCode\":\"B123\",\"toProgramTitle\":\"Business\",\"toProgramYear\":\"2016\",\"toReasons\":\"Sample to go Business\"}",
-        "attachmentData" => "",
-        "created_at"=> Carbon::now(),
-        "updated_at"=> Carbon::now()
+        "attachmentData" => ""
     ];
 });
 
@@ -153,17 +137,13 @@ $factory->define(App\StudyPlanner::class, function (Faker\Generator $faker) {
         'unitType' => 'Core',
         'year' => 2016,
         'semester' => 'Semester 1',
-        'enrolmentTerm' => '0',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'enrolmentTerm' => '0'
     ];
 });
 
 $factory->define(App\Type::class, function (Faker\Generator $faker) {
     return [
-        'typeId' => 'Core',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'typeId' => 'Core'
     ];
 });
 
@@ -173,9 +153,7 @@ $factory->define(App\UnitListing::class, function (Faker\Generator $faker) {
             'unitCode' => 'HIT1401',
             'year' => 2016,
             'semester' => 'Semester 1',
-            'semesterLength' => 'long',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'semesterLength' => 'long'
         ],
     ];
 });
@@ -191,16 +169,33 @@ $factory->define(App\Unit::class, function (Faker\Generator $faker) {
         'tutorialGroupCount' => 10,
         'tutorialDuration' => '2h',
         'studyLevel' => 'Degree',
-        'unitInfo' => '[{"convenor":"Convenor"},{"lecturers":["Lecturer"],"lecturers_count":1},{"tutors":["Tutor"],"tutors_count":1}]',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+        'unitInfo' => '[{"convenor":"Convenor"},{"lecturers":["Lecturer"],"lecturers_count":1},{"tutors":["Tutor"],"tutors_count":1}]'
     ];
 });
 
 $factory->define(App\UnitType::class, function (Faker\Generator $faker) {
     return [
         'unitType' => 'Core',
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now()
+    ];
+});
+
+// eduversal
+$factory->define(App\ExamUnit::class, function (Faker\Generator $faker) {
+    return [
+        'studentID' => 'student',
+        'unitCode' => 'HIT1401',
+        'grade' => 'pass'
+    ];
+});
+
+$factory->define(App\StudentRecord::class, function (Faker\Generator $faker) {
+    return [
+        'studentID' => '4304373',
+        'surname' => 'Thomas Chew',
+        'givenName' => 'Jason',
+        'courseCode' => 'I047',
+        'year' => 2016,
+        'term' => 'Semester 1',
+        'paymentStatus' => 'paid'
     ];
 });

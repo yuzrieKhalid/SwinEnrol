@@ -19,7 +19,7 @@ class ManageUnitTest extends TestCase
         // Sample user - student
         // Sample data
         $this->visit('/student/manageunits/create');
-        
+
         // dd($this);
     }
 

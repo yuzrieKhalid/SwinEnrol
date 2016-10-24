@@ -85,7 +85,7 @@ $factory->define(App\EnrolmentIssues::class, function (Faker\Generator $faker) {
 
 $factory->define(App\EnrolmentUnits::class, function (Faker\Generator $faker) {
     return [
-        'studentID' => '4318595',
+        'studentID' => '123456',
         'unitCode' => 'HIT3158',
         'year' => 2016,
         'semester' => 'Semester 1',
@@ -119,7 +119,7 @@ $factory->define(App\Requisite::class, function (Faker\Generator $faker) {
 
 $factory->define(App\StudentEnrolmentIssues::class, function (Faker\Generator $faker) {
     return [
-        "studentID" => "4318595",
+        "studentID" => "123456",
         "issueID" => 1,
         "status" => "pending",
         "submissionData" => "{\"yearOfRequestedTransfer\":\"2016\",\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"fromProgramIntakeYear\":\"2016\",\"toProgramCode\":\"B123\",\"toProgramTitle\":\"Business\",\"toProgramYear\":\"2016\",\"toReasons\":\"Sample to go Business\"}",
@@ -191,7 +191,7 @@ $factory->define(App\Unit::class, function (Faker\Generator $faker) {
         'tutorialGroupCount' => 10,
         'tutorialDuration' => '2h',
         'studyLevel' => 'Degree',
-        'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+        'unitInfo' => '[{"convenor":"Convenor"},{"lecturers":["Lecturer"],"lecturers_count":1},{"tutors":["Tutor"],"tutors_count":1}]',
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ];

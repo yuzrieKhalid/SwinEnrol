@@ -13,7 +13,7 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'username' => '123456',
+        'username' => $faker->username,
         'email' => '123456@email.com',
         'permissionLevel' => '1',
         'password' => bcrypt('123456'),
@@ -30,8 +30,8 @@ $factory->define(App\CoordinatorUnit::class, function (Faker\Generator $faker) {
 $factory->define(App\CourseCoordinator::class, function (Faker\Generator $faker) {
     return [
         'username' => 'coordinator_cs',
-        'courseCode' => 'I047',
-        'name' => 'Sim Kwan Hua'
+        'courseCode' => $faker->postcode,
+        'name' => $faker->name
     ];
 });
 
@@ -45,8 +45,8 @@ $factory->define(App\Config::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Course::class, function (Faker\Generator $faker) {
     return [
-        'courseCode' => 'I047',
-        'courseName' => 'Bachelor of Computer Science',
+        'courseCode' => $faker->postcode,
+        'courseName' => $faker->name,
         'semestersPerYear' => 3,
         'semesterCount' => 7,
         'studyLevel' => 'Degree'

@@ -10,7 +10,7 @@ use App\Student;
 class HomepageTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -24,28 +24,60 @@ class HomepageTest extends TestCase
     }
 
     /**
-     * @test if a student user is authenticated
+     * Test if a student user is authenticated as a student
+     * 1. visits the login page
+     * 2. types in username and password
+     * 3. press Login button
+     * 4. See "Enrolment Status" heading, username, intake year
      */
-    public function testAuthenticated()
+    public function testAuthenticatedAsStudent()
     {
         // Sample user - student
-        $user = factory(App\User::class)->create();
-        $student = factory(App\Student::class)->create();
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '1',
+            'password' => bcrypt('123456'),
+        ]);
+        $student = factory(App\Student::class)->create([
+            'studentID' => $user->username
+        ]);
 
         // - dd the variables to terminal
         // $data['user'] = $user;
         // $data['student'] = $student;
         // dd($data);
 
-        $this->visit('/login')                      // sees the login page
-             ->type($user->username, 'username')    // types in username
-             ->type('123456', 'password')           // types in password
-             ->press('Login')                       // press Login button
-             ->see('Enrolment Status')              // able to see the Enrolment Status heading
-             ->see($user->username)
-             ->see($student->year);
+        $this->visit('/login')
+             ->type($user->username, 'username')
+             ->type('123456', 'password')
+             ->press('Login')
+             ->see($student->givenName);
 
         // - dd what the $this sees
         // dd($this);
+    }
+
+    /**
+     * Test if a student user is not authenticated as a student
+     * 1. visits the login page
+     * 2. types in username and password
+     * 3. press Login button
+     * 4. See error page
+     */
+    public function testNotAuthenticatedAsStudent()
+    {
+        // Sample user - student
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '3',
+            'password' => bcrypt('123456'),
+        ]);
+        $student = factory(App\Student::class)->create([
+            'studentID' => $user->username
+        ]);
+
+        $this->visit('/login')
+             ->type($user->username, 'username')
+             ->type('123456', 'password')
+             ->press('Login')
+             ->dontsee($student->givenName);
     }
 }

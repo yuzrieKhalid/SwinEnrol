@@ -45,6 +45,8 @@
                             <button class="btn btn-success">Download Unit List</button></a>
                     </div>
 
+                    
+
                     <!-- Exempted Units -> only for students who applied for exemption -->
                     <div class="table-responsive">
                         <table class="table">

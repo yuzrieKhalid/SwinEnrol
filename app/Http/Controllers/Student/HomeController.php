@@ -30,7 +30,7 @@ class HomeController extends Controller
 
       $student = Student::findOrFail($user->username);
       $data['student'] = $student;
-      $course = Course::first($user->courseCode);
+      $course = Course::where('courseCode', '=', $student->courseCode)->first();
       $data['course'] = $course;
 
       // $course = Course::where('courseCode', '=', $user->courseCode)->first()->courseCode;

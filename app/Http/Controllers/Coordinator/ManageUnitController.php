@@ -19,9 +19,18 @@ class ManageUnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Unit::all());
+        $unit = Unit::all();
+        $unitCode = $request->input('unitCode');
+
+        if(!empty($unitCode)){
+          $unit->where('unitCode', 'LIKE', '%'.$unitCode.'%')->get();
+        }
+
+
+        //$unit = Unit::all();
+        return response()->json($unit->toArray());
     }
 
     /**
@@ -38,6 +47,10 @@ class ManageUnitController extends Controller
         $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);
+    }
+    public function search()
+    {
+      //
     }
 
     /**

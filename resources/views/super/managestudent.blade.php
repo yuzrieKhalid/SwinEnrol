@@ -10,6 +10,17 @@
                     </div>
                     <div class="panel-body">
                         <table class="table" id="user_table">
+                          <!--  -->
+                          <div class="col-md-4">
+                            <form class="form" method="GET">
+                              <input type="text" class="form-control" id='student' name='student' placeholder="Search">
+                              <div class="input-group-btn">
+                                  <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                              </div>
+
+                            </form>
+                          </div>
+                          <!--  -->
                             <thead>
                                 <th>Username</th>
                                 <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managestudent/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>

@@ -55,8 +55,8 @@
                     </table>
                 </div> <!-- end .panel-body -->
                 <div class="panel-footer">
-                    <a href="{{ url('/managestudents/downloadExcel/XLSX') }}">
-                        <button class="btn btn-success">Download Excel</button>
+                    <a href="{{ url('/admin/managestudents/downloadExcel/XLSX') }}">
+                        <button class="btn btn-success">Export Student List</button>
                     </a>
                 </div>
             </div> <!-- end .panel -->

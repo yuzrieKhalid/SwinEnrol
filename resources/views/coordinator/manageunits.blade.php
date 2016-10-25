@@ -11,10 +11,26 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3>Manage Units</h3>
+
                 </div>
                 <div class="panel-body">
+                  <!-- <form class="" action="{{ route('coordinator.manageunits.index') }}" method="GET">
+
+                  </form> -->
+
+
                     <!-- the table needs and url to allow the ajax to fetch the data from the controller (which is the json array) -->
-                    <table class="table" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
+                    <table class="table student" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
+
+                      <div class="col-md-4">
+                        <form class="form" method="GET">
+                          <input type="text" class="form-control" id='unitCode' name='unitCode' placeholder="Search">
+                          <div class="input-group-btn">
+                              <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+
+                        </form>
+                      </div>
                         <thead>
                             <th>Unit ID</th>
                             <th>Unit Name</th>
@@ -301,6 +317,7 @@
 @stop
 
 @section('extra_js')
+
 <script>
 (function() {
     // get dynamic data from the more information section

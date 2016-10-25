@@ -16,11 +16,20 @@ class ManageStudent extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['users'] = User::where('permissionLevel', '=', 1)->get();
 
-        return view ('super.managestudent', $data);
+        $data = [];
+        $username = User::where('permissionLevel', '=', 1)->get();
+        $data['users'] = $username;
+
+        $student = $request->input('student');
+        $ser = $username->where('student', 'LIKE', '%'.$student.'%');
+        if(!empty($student))
+          return view ('super.managestudent', $data)->withDetails($ser);
+        else
+          return view ('super.managestudent', $data);
+
     }
 
     /**

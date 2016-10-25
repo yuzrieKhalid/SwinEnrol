@@ -26,7 +26,7 @@ Route::group([
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
-    Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
+    Route::get('managestudents/downloadExcel/{type}', 'Admin\ManageStudentController@downloadExcel');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
@@ -110,8 +110,7 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::resource('/', 'Student\HomeController');
-    Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
-    Route::get('enrolmenthistory/xlsx', 'Student\EnrolmentHistoryController@downloadExcel');
+    Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');  
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
@@ -128,7 +127,8 @@ Route::group([
     Route::get('/', 'Super\HomeController@index');
     Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');
     Route::get('managecoordinator', 'Super\ManageCoordinator@index');
-    Route::get('managestudent', 'Super\ManageStudent@index');
+    //Route::get('managestudent', 'Super\ManageStudent@index');
+    Route::get('managestudent',['as'=>'index','uses'=>'Super\ManageStudent@index']);
     Route::resource('config', 'Super\ConfigController');
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');

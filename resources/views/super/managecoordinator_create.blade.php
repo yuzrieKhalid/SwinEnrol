@@ -46,37 +46,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Assign Course Code</label>
                                 <div class="col-md-6">
-                                  <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
-                                    @foreach($course as $course)
-                                        @if($course->courseCode == $courseCode)
-                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }}</option>
-                                        @endif
-                                    @endforeach
-
-
-
-
-                                    </select>
+                                  @if(isset($name))
+                                      <input type="text" class="form-control" name="courseCode" value="{{ $courseCode }}">
+                                  @else
+                                      <input type="text" class="form-control" name="courseCode" value="">
+                                  @endif
                                 </div>
                             </div>
-
-
-                            <select class="form-control" name="courseCode" id="courseCode" onchange="this.form.submit()">
-                                @foreach($courses as $course)
-                                    @if($course->courseCode == $courseCode)
-                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
-                                    @endif
-                                @endforeach
-
-                                @foreach($courses as $course)
-                                    @if($course->courseCode != $courseCode)
-                                        <option value="{{ $course->courseCode }}">{{ $course->courseCode }} - {{ $course->courseName }}</li>
-                                    @endif
-                                @endforeach
-                            </select>
-
-
-
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Password</label>

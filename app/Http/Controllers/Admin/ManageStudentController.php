@@ -162,15 +162,15 @@ class ManageStudentController extends Controller
         return response()->json($student);
     }
 
-    public function downloadExcel($type)
+    public function downloadExcel()
     {
         $data = Student::get()->toArray();
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+        return Excel::create('Student_List', function($excel) use ($data) {
         $excel->sheet('mySheet', function($sheet)use($data){
             $sheet->fromArray($data);
           });
 
-        })->download($type);
+        })->export('xls');
 
     }
 

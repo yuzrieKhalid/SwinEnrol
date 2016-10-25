@@ -35,12 +35,12 @@ class EnrolmentHistoryController extends Controller
 
     public function downloadExcel()
     {
-          $export = EnrolmentUnits::select('studentID','unitCode')->get();
-          Excel::create('unit_list_student', function($excel) use ($export) {
-          $excel->sheet('mySheet', function($sheet) use ($export){
-            $sheet->fromArray($export);
+        $data = EnrolmentUnits::get()->toArray();
+          Excel::create('unit_list_student', function($excel) use ($data) {
+          $excel->sheet('mySheet', function($sheet) use ($data){
+            $sheet->fromArray($data);
           });
-        })->download('xlsx');
+        })->export('xls');
 
    }
 

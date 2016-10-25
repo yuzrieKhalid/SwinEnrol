@@ -32,10 +32,10 @@ class ManageCoordinator extends Controller
      */
     public function create()
     {
-        // $data = [];
-        // $course = Course::all();
-        // $data ['course'] = $course;
-        return view('super.managecoordinator_create';
+        $data = [];
+        $courses = Course::all();
+        $data ['courses'] = $courses;
+        return view('super.managecoordinator_create', $data);
     }
     /**
      * Store a newly created resource in storage.
@@ -89,6 +89,8 @@ class ManageCoordinator extends Controller
         $data['user'] = User::where('username', '=', $id)->first()->username;
         $data['name'] = CourseCoordinator::where('username', '=', $id)->first()->name;
         $data['courseCode'] = CourseCoordinator::where('username', '=', $id)->first()->courseCode;
+        $courses = Course::all();
+        $data ['courses'] = $courses;
 
         return view('super.managecoordinator_create', $data);
         // return response()->json($data);

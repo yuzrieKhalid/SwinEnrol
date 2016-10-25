@@ -53,6 +53,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                               <li><a title="Log Out" href="{{ url('/logout') }}">Log Out</a></li>
+                              <li class="divider"></li>
                                 @if(Auth::user()->permissionLevel == '3')
                                 <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li><a href="{{ url('/admin') }}">Home</a></li>
@@ -85,23 +86,23 @@
 
                                 @if(Auth::user()->permissionLevel == '2')
                                 <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                                <a href="{{ url('/coordinator') }}">Home</a>
+                                <li><a href="{{ url('/coordinator') }}">Home</a></li>
                                 <li class="divider"></li>
-                                <a href="{{ url('/coordinator/managestudyplanner/create') }}">Manage Study Planner</a>
+                                <li><a href="{{ url('/coordinator/managestudyplanner/create') }}">Manage Study Planner</a></li>
                                 <li class="divider"></li>
-                                <a href="{{ url('/coordinator/manageunitlisting/create') }}">Manage Unit Listings</a>
+                                <li><a href="{{ url('/coordinator/manageunitlisting/create') }}">Manage Unit Listings</a></li>
+                                <li><li class="divider"></li>
+                                <li><a href="{{ url('/coordinator/manageunits/create') }}">Manage Units</a></li>
                                 <li class="divider"></li>
-                                <a href="{{ url('/coordinator/manageunits/create') }}">Manage Units</a>
+                                <li><a href="{{ url('/coordinator/enrolmentamendment/create') }}">Resolve Enrolment Amendement</a></li>
                                 <li class="divider"></li>
-                                <a href="{{ url('/coordinator/enrolmentamendment/create') }}">Resolve Enrolment Amendement</a>
-                                <li class="divider"></li>
-                                <a href="{{ url('/coordinator/resolveenrolmentissues/create') }}">Resolve Enrolment Issues</a>
+                                <li><a href="{{ url('/coordinator/resolveenrolmentissues/create') }}">Resolve Enrolment Issues</a></li>
                                 @endif
                                 @if(Auth::user()->permissionLevel == '4')
                                 <li><a><b>Menu</b><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                                <li class="divider"></li>
+
                                 <li><a href="{{ url('/super') }}">Home</a></li>
-                                <li class="divider"></li>
+
                                 <li><a href="{{ url('/super/config') }}">Configuration</a>
                                 <li class="divider"></li>
                                 <li><a href="{{ url('/super/managecourse/create') }}">Manage Course</a></li>

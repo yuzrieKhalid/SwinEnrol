@@ -87,59 +87,75 @@
                         </div>
 
                         <div class="modal-body">
-                            <label class="control-label">Year:</label>
-                            <input class="form-control" type="number" id="year" value="{{ $year }}"/>
+                              <label class="control-label">Year:</label>
+                              <input class="form-control" type="number" id="year" name="year" value="{{ $year }}"/>
 
-                            <label class="control-label" for="studyLevel">Level:</label>
-                            <select class="form-control" name="level" id="level">
-                                <option value="Foundation">Foundation</option>
-                                <option value="Diploma">Diploma</option>
-                                <option value="Degree">Degree</option>
-                                <option value="MA (TESOL)">MA (TESOL)</option>
-                                <option value="MBA">MBA</option>
-                                <option value="Intensive English">Intensive English</option>
-                            </select>
+                              <label class="control-label" for="studyLevel">Level:</label>
+                              <select class="form-control" name="level" id="level">
+                                  <option value="Foundation">Foundation</option>
+                                  <option value="Diploma">Diploma</option>
+                                  <option value="Degree">Degree</option>
+                                  <option value="MA (TESOL)">MA (TESOL)</option>
+                                  <option value="MBA">MBA</option>
+                                  <option value="Intensive English">Intensive English</option>
+                              </select>
 
-                            <label class="control-label">Semester Term:</label>
-                            <select class="form-control" name="term" id="term">
-                                <option value="Semester 1">Semester 1</option>
-                                @if($semester == 'Semester 1')
-                                <option value="Semester 2" selected>Semester 2</option>
-                                @else
-                                <option value="Semester 2">Semester 2</option>
-                                @endif
-                            </select>
+                              <label class="control-label">Semester Term:</label>
+                              <select class="form-control" name="term" id="term" name="term">
+                                  <option value="Semester 1">Semester 1</option>
+                                  @if($semester == 'Semester 1')
+                                  <option value="Semester 2" selected>Semester 2</option>
+                                  @else
+                                  <option value="Semester 2">Semester 2</option>
+                                  @endif
+                              </select>
 
-                            <label>Enrolment Period</label>
-                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="input-sm form-control" id="reenrolmentCloseDate" name="start"/>
-                                <span class="input-group-addon">to</span>
-                                <input type="text" class="input-sm form-control" id="reenrolmentOpenDate" name="end"/>
-                            </div>
+                              <!--  -->
+                              <!--  -->
+                              <!--  -->
+                              <!--  -->
+                              <form id="eventForm" method="post" class="form-horizontal">
+                              <label>Enrolment Period</label>
+                              <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd" required>
+                                  <input type="text" class="input-sm form-control" id="reenrolmentCloseDate" name="reenrolmentCloseDate"/>
+                                  <span class="input-group-addon">to</span>
+                                  <input type="text" class="input-sm form-control" id="reenrolmentOpenDate" name="reenrolmentOpenDate"/>
+                                  <!-- <div class="error_msg">
+                                      Return date is earlier than departure date
+                                  </div> -->
+                              </div>
 
-                            <label>Short Semester Commencement</label>
-                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="input-sm form-control" id="shortCommence" name="adjust"/>
-                            </div>
+                              <label>Short Semester Commencement</label>
+                              <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                  <input type="text" class="input-sm form-control" id="shortCommence" name="shortCommence"/>
+                              </div>
 
-                            <label>Long Semester Commencement</label>
-                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="input-sm form-control" id="longCommence" name="adjust"/>
-                            </div>
+                              <label>Long Semester Commencement</label>
+                              <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                  <input type="text" class="input-sm form-control" id="longCommence" name="longCommence"/>
+                              </div>
 
-                            <label>Current Term Final Exams Result Release</label>
-                            <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="input-sm form-control" id="examResultsRelease" name="adjust"/>
-                            </div>
+                              <label>Current Term Final Exams Result Release</label>
+                              <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                  <input type="text" class="input-sm form-control" id="examResultsRelease" name="examResultsRelease"/>
+                              </div>
 
-                        </div>
+                          <!--  -->
+                          <!--  -->
+                          <!--  -->
+                          <!--  -->
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default create" id="openEnrolment"
-                                 data-method="POST" data-url="{{ route('admin.setenrolmentdates.store') }}">
-                                 Open
-                             </button>
-                        </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default create" id="openEnrolment"
+                                   data-method="POST" data-url="{{ route('admin.setenrolmentdates.store') }}">
+                                   Open
+                               </button>
+                          </div>
+                            </form>
+
+
+                          </div>
+
                     </div>
                 </div>
             </div>
@@ -147,17 +163,12 @@
         </div>
     </div>
 </div>
+
 @stop
 
 
 @section('extra_js')
-<script src="{{ asset('js/bootstrap-datepicker.min.js') }}">
-$('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    startDate: '-3d'
-});
 
-</script>
 
 <script>
 (function() {
@@ -165,6 +176,75 @@ $('.datepicker').datepicker({
     // Get CSRF token
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
+    }
+
+    let valid = function(){
+      $('.datepicker').datepicker({
+          format: 'yyyy-mm-dd',
+          startDate: '-3d'
+      }).on('changeDate', function(e){
+          $('#eventForm').formValidation('revalidateField', 'reenrolmentCloseDate','reenrolmentOpenDate','shortCommence','longCommence','examResultsRelease');
+    })
+      $('#eventForm').formValidation({
+            fields: {
+                reenrolmentCloseDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'yyyy-mm-dd',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                },
+                reenrolmentOpenDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'yyyy-mm-dd',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                },
+                shortCommence: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'yyyy-mm-dd',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                },
+                longCommence: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'yyyy-mm-dd',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                },
+                examResultsRelease: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The date is required'
+                        },
+                        date: {
+                            format: 'yyyy-mm-dd',
+                            message: 'The date is not a valid'
+                        }
+                    }
+                }
+            }
+      })
+
     }
 
     // only for opening new enrolment
@@ -180,7 +260,8 @@ $('.datepicker').datepicker({
             reenrolmentOpenDate: $('#reenrolmentOpenDate').val(),
             shortCommence: $('#shortCommence').val(),
             longCommence: $('#longCommence').val(),
-            examResultsRelease: $('#examResultsRelease').val()
+            examResultsRelease: $('#examResultsRelease').val(),
+
         }
 
         $.ajax({
@@ -265,6 +346,7 @@ $('.datepicker').datepicker({
             'data': data
         }).done(function(data) { window.location.reload() })
     })
+
 
 }) ()
 </script>

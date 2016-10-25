@@ -6,15 +6,46 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Config;
+use App\EnrolmentUnits;
 use App\Unit;
 use App\Requisite;
+use App\Student;
+
+use App\Http\Controllers\PhaseController;
 
 class Test extends Controller
 {
     public function test()
     {
-        return response()->json($this->showRequisites());
-        return response()->json($this->manageUnit());
+        return response()->json($this->requisiteCheck());
+        // return response()->json($this->showRequisites());
+        // return response()->json($this->manageUnit());
+    }
+
+    public function requisiteCheck()
+    {
+        $data = [];
+
+        // config data
+        $year = Config::find('year')->value;
+        $semester = Config::find('semester')->value;
+        $phase = Config::find('enrolmentPhase')->value;
+
+        // student data
+        $student = Student::find('4304373');
+
+        // student's completed unit data
+        $completed = EnrolmentUnits::select('unitCode')->where('studentID', '=', $student->studentID)
+        ->where('grade', '=', 'pass')
+        ->get();
+
+        // unit data
+        $unit = Unit::find('PRE1');
+
+        $data = PhaseController::completedUnitCheck($unit, $completed); // run test
+
+        return $completed;
     }
 
     public function manageUnit()

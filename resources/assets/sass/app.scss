@@ -37,7 +37,17 @@ html, body {
   overflow-x: visible;
 }
 
+.dropdown-menu {
+    li {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
 
+    .divider {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+}
 // navbar-brand - swinburne logo
 .navbar-logo {
     height: $navbar-logo-height;

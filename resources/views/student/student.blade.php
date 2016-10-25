@@ -11,11 +11,32 @@
                     <h3>Student Information</h3>
                 </div>
                 <div class="panel-body">
-                    <h4>Name: {{ $student->givenName }} {{ $student->surname }} </h4>
-                    <h4>ID: {{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->email }}} </h4>
-                    <h4>Term: {{ $student->term }}</h4>
-                    <h4>Year: {{ $student->year }}</h4>
-                    <h4>Program: {{ $course->courseName }} ({{ $course->courseCode }})</h4>
+                    <div class="table-responsive">
+                        <table class="table borderless-table">
+                            <tbody>
+                                <tr>
+                                    <td>NAME</td>
+                                    <td>{{ $student->givenName }} {{ $student->surname }}</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>{{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->email }}}</td>
+                                </tr>
+                                <tr>
+                                    <td>SEMESTER</td>
+                                    <td>{{ $student->term }}</td>
+                                </tr>
+                                <tr>
+                                    <td>YEAR</td>
+                                    <td>{{ $student->year }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PROGRAM</td>
+                                    <td>{{ $course->courseCode }} {{ $course->courseName }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div> <!-- end .panel -->
         </div>
@@ -25,9 +46,9 @@
                   <caption><h3>Enrolled Unit</h3></caption>
 
                 </div>
-                  @include('student.phaseNotification')
                 <div class="panel-body">
-                  <table class="table">
+                    @include('student.phaseNotification')
+                    <table class="table">
                       <thead>
                           <th>Unit Code</th>
                           <th>Unit Title</th>

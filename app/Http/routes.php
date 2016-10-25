@@ -26,7 +26,7 @@ Route::group([
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
-    // Route::get('managestudents/downloadExcel/{type}', 'ManageStudentController@downloadExcel');
+    Route::get('managestudents/downloadExcel/{type}', 'Admin\ManageStudentController@downloadExcel');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
@@ -42,15 +42,9 @@ Route::group([
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);
      Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
-    //  Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
-    //  Route::get('enrolmentstatus/index2', [
-    //      'as' => 'admin.enrolmentstatus.create',
-    //      'uses' => 'Admin\EnrolmentStatusStudent@create'
-    //    ]);
     Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 
-// Route::resource('manageunits', 'Coordinator\ManageUnitController');
 // Coordinator Views
 Route::group([
     'prefix' => 'coordinator',
@@ -111,8 +105,8 @@ Route::group([
 ], function() {
     Route::resource('/', 'Student\HomeController');
     Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
-    // Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@downloadExcel');
-    Route::get('enrolmenthistory/downloadExcel/{id}', 'Student\EnrolmentHistoryController@downloadExcel');
+    // Route::get('enrolmenthistory/downloadExcel/{id}', 'Student\EnrolmentHistoryController@downloadExcel');
+    Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
@@ -129,7 +123,7 @@ Route::group([
     Route::get('/', 'Super\HomeController@index');
     Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');
     Route::get('managecoordinator', 'Super\ManageCoordinator@index');
-    Route::get('managestudent', 'Super\ManageStudent@index');
+    Route::get('managestudent',['as'=>'index','uses'=>'Super\ManageStudent@index']);
     Route::resource('config', 'Super\ConfigController');
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
     Route::resource('managecoordinator', 'Super\ManageCoordinator');
@@ -142,39 +136,3 @@ Route::get('/phase', 'PhaseController@phaseTrigger');
 Route::get('/unit', 'PhaseController@unitApprove');
 Route::get('/unitCheck', 'PhaseController@unitCheck');
 Route::get('/test', 'Test@test');
-
-/*
-Route::group([
-    'middleware' => 'web'
-], function () {
-    Route::auth();
-
-    Route::get('/', 'HomeController@index');
-});
-
-Route::group([
-    'middleware' => ['web', 'auth'],
-], function(){
-    // Student Administrator Views
-    Route::get('/admin', 'StudentAdminController@index');
-    Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
-    Route::get('/admin/setenrolmentdates', 'StudentAdminController@view_setenrolmentdates');
-
-    // Coordinator Views
-    Route::get('/coordinator', 'CoordinatorController@index');
-    Route::get('/coordinator/managestudyplanner', 'CoordinatorController@view_managestudyplanner');
-    Route::get('/coordinator/manageunitlisting', 'CoordinatorController@view_manageunitlisting');
-    Route::get('/coordinator/manageunits', 'CoordinatorController@view_manageunits');
-    Route::get('/coordinator/resolveenrolmentissues', 'CoordinatorController@view_resolveenrolmentissues');
-
-    // Student
-    Route::get('/student', 'StudentController@index');
-    Route::get('/student/contactcoordinator', 'StudentController@view_contactcoordinator');
-    Route::get('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
-    Route::get('/student/manageunits', 'StudentController@view_manageunits');
-    Route::get('/student/viewstudyplanner', 'StudentController@view_viewstudyplanner');
-    Route::get('/student/viewunitlistings', 'StudentController@view_viewunitlistings');
-
-
-});
-*/

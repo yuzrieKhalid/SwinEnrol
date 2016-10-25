@@ -32,10 +32,9 @@ class ManagCourseController extends Controller
     public function create()
     {
           $data = [];
-          $courses = Course::get();
+          $courses = Course::all();
 
           $data['courses'] = $courses;
-
           return view ('super.managecourse', $data);
     }
 

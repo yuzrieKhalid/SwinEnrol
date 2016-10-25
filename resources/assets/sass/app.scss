@@ -34,8 +34,9 @@ $login-logo-width: 1000px;
 
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: visible;
 }
+
 
 // navbar-brand - swinburne logo
 .navbar-logo {
@@ -46,4 +47,60 @@ html, body {
 // logo at login page
 .login-logo {
     width: $login-logo-width;
+}
+
+
+.menu {
+	position: relative;
+	z-index: 1000;
+}
+
+@media screen and (max-width: 767px){
+.row-offcanvas{
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+}
+
+.row-offcanvas-right{
+    right: 0;
+}
+
+.row-offcanvas-left{
+    left: 0;
+}
+
+.row-offcanvas-right
+.sidebar-offcanvas{
+    right: -50%;
+}
+
+.row-offcanvas-left
+.sidebar-offcanvas{
+    left: -100%;
+}
+.row-offcanvas-left.sidebar-offcanvas.active{
+    left: 50%;
+}
+
+.row-offcanvas-right.active{
+    right: 50%;
+}
+
+.row-offcanvas-left.active{
+    left: 50%;
+}
+
+.sidebar-offcanvas{
+    position: absolute;
+    top: 0;
+    z-index:999;
+    background-color: #ffffff;
+
+  -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
 }

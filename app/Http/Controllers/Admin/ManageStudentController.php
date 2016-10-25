@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Student;
 use App\User;
 use App\Config;
+use Excel;
 
 class ManageStudentController extends Controller
 {
@@ -128,14 +129,7 @@ class ManageStudentController extends Controller
             'courseCode',
             'password'
         ]);
-
-        // find in User table
-        $user = User::where('username', '=', $id)->update([
-            'username' => $input['studentID'],
-            'password' => bcrypt($input['password']),
-            'permissionLevel' => 1
-        ]);
-
+        
         // find student and update
         $student = Student::findOrFail($id);
         $student->studentID = $input['studentID'];
@@ -144,7 +138,13 @@ class ManageStudentController extends Controller
         $student->courseCode = $input['courseCode'];
         $student->save();
 
-        return response()->json($user);
+        $user = User::findOrFail($id);
+        $user->username = $input['studentID'];
+        $user->password = bcrypt($input['password']);
+        $user->permissionLevel = '1';
+        $user->save();
+
+        return response()->json($student);
     }
 
     /**
@@ -161,18 +161,15 @@ class ManageStudentController extends Controller
         return response()->json($student);
     }
 
-    public function downloadExcel($type)
+    public function downloadExcel()
     {
         $data = Student::get()->toArray();
-
-        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
-
-        $excel->sheet('mySheet', function($sheet)use($data)
-          {
+        return Excel::create('Student_List', function($excel) use ($data) {
+        $excel->sheet('mySheet', function($sheet)use($data){
             $sheet->fromArray($data);
           });
 
-        })->download($type);
+        })->export('xls');
 
     }
 

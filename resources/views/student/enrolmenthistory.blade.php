@@ -9,7 +9,6 @@
                     <h3>Enrolment History</h3>
                 </div>
                 <div class="panel-body">
-
                     <!-- Completed Units Table -->
                     <div class="table-responsive">
                         <table class="table">
@@ -46,6 +45,8 @@
                             <button class="btn btn-success">Download Unit List</button></a>
                     </div>
 
+                    
+
                     <!-- Exempted Units -> only for students who applied for exemption -->
                     <div class="table-responsive">
                         <table class="table">
@@ -80,16 +81,6 @@
 <script>
 (function() {
       $('[data-toggle="tooltip"]').tooltip();
-
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    })
-  })
-
 }) ()
 </script>
 

@@ -8,7 +8,7 @@
                     <div class="panel-heading">
                         <h3>Home</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" height: "calc(100vh - 200px)" >
                         <p>Home Page</p>
                     </div>
                 </div>

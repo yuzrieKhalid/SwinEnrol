@@ -13,6 +13,7 @@ use App\Unit;
 use App\EnrolmentUnits;
 use App\Config;
 use App\StudentEnrolmentIssues;
+use App\Course;
 
 class HomeController extends Controller
 {
@@ -22,13 +23,10 @@ class HomeController extends Controller
 
         $user = Auth::user();
 
-        // $student = Student::where([
-        //     ['studentID', '=', '$user->username'],
-        //     ['year','=', Config::find('year')->value],
-        //     ['term','=',Config::find('semester')->value],
-        // ])->get();
-
         $student = Student::findOrFail($user->username);
+        $data['student'] = $student;
+        $course = Course::where('courseCode', '=', $student->courseCode)->first();
+        $data['course'] = $course;
 
         $data['student'] = $student;
         $data['phase'] = Config::find('enrolmentPhase');
@@ -40,7 +38,7 @@ class HomeController extends Controller
         $data['enrolled'] = $enrolled;
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                      ->where('status', '=', 'approved')->get();
+        ->where('status', '=', 'approved')->get();
 
         $data['issues'] = $issues;
         return view ('student.student', $data);

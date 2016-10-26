@@ -110,7 +110,7 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::resource('/', 'Student\HomeController');
-    Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');  
+    Route::get('enrolmenthistory', 'Student\EnrolmentHistoryController@index');
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');

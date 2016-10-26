@@ -562,9 +562,10 @@
             tr_template.children('.td_unitEdit').html(`${unitEdit}`)
             tr_template.children('.td_unitDelete').html(`${unitDelete}`)
 
-            $('#units_table').append(tr_template)
+            $('#units_table').append(tr_template)   
         }
     }
+
 
     // Get all tasks as a list
     let getUnits = function() {

@@ -22,14 +22,7 @@ class ManageUnitController extends Controller
     public function index(Request $request)
     {
         $unit = Unit::all();
-        $unitCode = $request->input('unitCode');
 
-        if(!empty($unitCode)){
-          $unit->where('unitCode', 'LIKE', '%'.$unitCode.'%')->get();
-        }
-
-
-        //$unit = Unit::all();
         return response()->json($unit->toArray());
     }
 
@@ -48,9 +41,15 @@ class ManageUnitController extends Controller
 
         return view ('coordinator.manageunits', $data);
     }
-    public function search()
+    public function search(Request $request)
     {
-      //
+      $unitCode = $request->only('unitCode');
+
+      if(!empty($unitCode)){
+        return $unit->where('unitCode', 'LIKE', '%'.$unitCode.'%')->get();
+      }
+
+      return false;
     }
 
     /**

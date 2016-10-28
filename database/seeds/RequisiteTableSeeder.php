@@ -15,134 +15,6 @@ class RequisiteTableSeeder extends Seeder
         DB::table('requisite')->insert([
             // test units
             [
-                'unitCode' => 'PRG0',
-                'requisite' => 'COMPA',
-                'type' => 'prerequisite 2',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG0',
-                'requisite' => 'COMPB',
-                'type' => 'prerequisite 2',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG0',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite 2',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG1',
-                'requisite' => 'COMP',
-                'type' => 'prerequisite 3',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG1',
-                'requisite' => 'COMPA',
-                'type' => 'prerequisite 3',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG1',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite 3',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRG1',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite 3',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE10',
-                'requisite' => 'COMP',
-                'type' => 'prerequisite',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE10',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE10',
-                'requisite' => 'COMPB',
-                'type' => 'prerequisite',
-                'index' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE10',
-                'requisite' => 'COMPC',
-                'type' => 'prerequisite',
-                'index' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE11',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE11',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite',
-                'index' => 0,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE11',
-                'requisite' => 'GEN1',
-                'type' => 'prerequisite',
-                'index' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE11',
-                'requisite' => 'COMPB',
-                'type' => 'prerequisite',
-                'index' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'unitCode' => 'PRE11',
-                'requisite' => 'COMPC',
-                'type' => 'prerequisite',
-                'index' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
                 'unitCode' => 'PRE0',
                 'requisite' => 'COMP',
                 'type' => 'prerequisite',
@@ -152,15 +24,167 @@ class RequisiteTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'PRE1',
-                'requisite' => 'GEN1',
+                'requisite' => 'INCOMP',
                 'type' => 'prerequisite',
                 'index' => 0,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'PRE10',
+                'requisite' => 'COMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE10',
+                'requisite' => 'COMPA',
+                'type' => 'prerequisite',
+                'index' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE10',
+                'requisite' => 'COMPB',
+                'type' => 'prerequisite',
+                'index' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE11',
+                'requisite' => 'COMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE11',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE11',
+                'requisite' => 'COMPB',
+                'type' => 'prerequisite',
+                'index' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE20',
+                'requisite' => 'COMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE20',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE20',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE21',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE21',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRE21',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG0',
+                'requisite' => 'COMPA',
+                'type' => 'prerequisite 2',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG0',
+                'requisite' => 'COMPB',
+                'type' => 'prerequisite 2',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG0',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite 2',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG1',
+                'requisite' => 'COMP',
+                'type' => 'prerequisite 3',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG1',
+                'requisite' => 'COMPA',
+                'type' => 'prerequisite 3',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG1',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite 3',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PRG1',
+                'requisite' => 'INCOMP',
+                'type' => 'prerequisite 3',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
                 'unitCode' => 'COR0',
-                'requisite' => 'GEN0',
+                'requisite' => 'PENDING',
                 'type' => 'corequisite',
                 'index' => 0,
                 'created_at' => Carbon::now(),
@@ -168,7 +192,39 @@ class RequisiteTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'COR1',
-                'requisite' => 'GEN1',
+                'requisite' => 'INCOMP',
+                'type' => 'corequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MCOR0',
+                'requisite' => 'COMP',
+                'type' => 'corequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MCOR0',
+                'requisite' => 'PENDING',
+                'type' => 'corequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MCOR1',
+                'requisite' => 'INCOMP',
+                'type' => 'corequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MCOR1',
+                'requisite' => 'PENDING',
                 'type' => 'corequisite',
                 'index' => 0,
                 'created_at' => Carbon::now(),
@@ -176,7 +232,7 @@ class RequisiteTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'ANTI0',
-                'requisite' => 'GEN1',
+                'requisite' => 'INCOMP',
                 'type' => 'antirequisite',
                 'index' => 0,
                 'created_at' => Carbon::now(),
@@ -184,6 +240,38 @@ class RequisiteTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'ANTI1',
+                'requisite' => 'PENDING',
+                'type' => 'antirequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MANTI0',
+                'requisite' => 'INCOMP',
+                'type' => 'antirequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MANTI0',
+                'requisite' => 'INCOMP',
+                'type' => 'antirequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MANTI1',
+                'requisite' => 'INCOMP',
+                'type' => 'antirequisite',
+                'index' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MANTI1',
                 'requisite' => 'COMP',
                 'type' => 'antirequisite',
                 'index' => 0,

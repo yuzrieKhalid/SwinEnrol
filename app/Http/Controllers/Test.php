@@ -33,7 +33,7 @@ class Test extends Controller
         $phase = Config::find('enrolmentPhase')->value;
 
         // student data
-        $student = Student::find('4304373');
+        $student = Student::find('test');
 
         // student's completed unit data
         $completed = EnrolmentUnits::select('unitCode')->where('studentID', '=', $student->studentID)
@@ -41,11 +41,12 @@ class Test extends Controller
         ->get();
 
         // unit data
-        $unit = Unit::find('PRE1');
+        $unit = Unit::find('CRP1');
+        $pendingUnit[] = Unit::find('PENDING');
 
-        $data = PhaseController::completedUnitCheck($unit, $completed); // run test
+        $data = PhaseController::creditPointsCheck($unit, $completed); // run test
 
-        return $completed;
+        return $data;
     }
 
     public function manageUnit()

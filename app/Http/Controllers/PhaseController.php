@@ -93,7 +93,7 @@ class PhaseController extends Controller
                     $status = false;
 
                 // check antirequisites
-                if(!$this->antirequisiteCheck($unit, $completed))
+                if(!$this->antirequisiteCheck($unit, $completed, $success))
                     $status = false;
 
                 // check credit points
@@ -259,14 +259,14 @@ class PhaseController extends Controller
                 // check current enrolment
                 foreach($approvedUnits as $approvedUnit)
                 {
-                    if($approvedUnit == $corequisite->requisite)
+                    if($approvedUnit->unitCode == $corequisite->requisite)
                         $count++; // incremenmt if unit is enrolled
                 }
 
                 // check completed units
                 foreach($completed as $completedUnit)
                 {
-                    if($completedUnit->unitCode == $corequisite->unitCode)
+                    if($completedUnit->unitCode == $corequisite->requisite)
                         $count++; // increment if unit is completed
                 }
             }
@@ -285,7 +285,7 @@ class PhaseController extends Controller
      *
      * @return boolean with status
      */
-    public static function antirequisiteCheck($unit, $completed)
+    public static function antirequisiteCheck($unit, $completed, $approvedUnits)
     {
         $status = true; // status for antirequisite validity
 
@@ -300,10 +300,19 @@ class PhaseController extends Controller
             // check each antirequisite
             foreach($antirequisites as $antirequisite)
             {
+                // check current enrolment
+                foreach($approvedUnits as $approvedUnit)
+                {
+                    // return false if antirequisite exists
+                    if($approvedUnit->unitCode == $antirequisite->requisite)
+                        $status = false;
+                }
+
+                // check completed units
                 foreach($completed as $completedUnit)
                 {
                     // return false if antirequisite exists
-                    if($antirequisite->requisite == $completedUnit->unitCode)
+                    if($completedUnit->unitCode == $antirequisite->requisite)
                         $status = false;
                 }
             }
@@ -323,7 +332,7 @@ class PhaseController extends Controller
         $status = true; // status for checking credit points validity
 
         // credit points
-        if($unit['unit']->creditPoints > count($completed) * 12.5)
+        if($unit->creditPoints > count($completed) * 12.5)
             $status = false; // false if credit points not met
 
         return $status;

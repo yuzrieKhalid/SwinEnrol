@@ -39,9 +39,26 @@ class HomeController extends Controller
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
         ->where('status', '=', 'approved')->get();
-
         $data['issues'] = $issues;
+
+        // get all the previous taken units (joined with Unit table)
+        $history = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        $data['history'] = $history;
+
+        $exempted = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('status', '=', 'exempted')->get();
+        $data['exempted'] = $exempted;
+
         return view ('student.student', $data);
+    }
+
+    public function downloadExcel()
+    {
+        $data = EnrolmentUnits::get()->toArray();
+          Excel::create('unit_list_student', function($excel) use ($data) {
+          $excel->sheet('mySheet', function($sheet) use ($data){
+            $sheet->fromArray($data);
+          });
+        })->export('xls');
     }
 
     /**

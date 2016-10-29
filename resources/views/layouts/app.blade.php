@@ -67,7 +67,6 @@
                                 @if(Auth::user()->permissionLevel == '1')
                                 <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/student') }}">Enrolment Status</a></li>
-                                <li><a href="{{ url('/student/enrolmenthistory') }}">Enrolment History</a></li>
                                 <li><a href="{{ url('/student/manageunits/create') }}">Manage Units</a></li>
                                 <li><a href="{{ url('/student/viewstudyplanner') }}">View Study Planner</a></li>
                                 <li><a href="{{ url('/student/viewunitlistings') }}">View Unit Listings</a></li>

@@ -54,7 +54,8 @@ class ManageUnitTest extends TestCase
             'status' => 'pending',
             'result' => 0.00,
             'grade' => 'ungraded'
-        ])->see('ok');
+        ])->see('ok')
+        ->dontsee("Cannot enrol more than 4 units.");
         // ^ see response
     }
 
@@ -127,7 +128,8 @@ class ManageUnitTest extends TestCase
             'status' => 'pending',
             'result' => 0.00,
             'grade' => 'ungraded'
-        ])->see("Cannot enrol more than 4 units.");
+        ])->see("Cannot enrol more than 4 units.")
+        ->dontsee('ok');
         // ^ see response
     }
 }

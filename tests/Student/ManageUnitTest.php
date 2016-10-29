@@ -173,4 +173,99 @@ class ManageUnitTest extends TestCase
         ->see('deleted');
         // ^ received the correct response
     }
+
+    /**
+     * Page Test
+     * A test to articulate a student to a degree course
+     * Condition: Articulation condition met
+     * Environment: Articulation condition met
+     *
+     * @return void
+     */
+    public function testArticulationToDegreeSuccessful()
+    {
+        // Sample user - student - course - and its dependencies
+        $course = factory(App\Course::class)->create(['studyLevel' => 'Foundation']);
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '1',
+            'password' => bcrypt('123456'),
+        ]);
+        $student = factory(App\Student::class)->create([
+            'studentID' => $user->username,
+            'courseCode' => $course->courseCode
+        ]);
+        $units = factory(App\Unit::class, 2)->create();
+        $studyplanner = factory(App\StudyPlanner::class)->create([
+            'unitCode' => $units[0]->unitCode,
+            'courseCode' => $course->courseCode
+        ], [
+            'unitCode' => $units[1]->unitCode,
+            'courseCode' => $course->courseCode
+        ]);
+        $enrolmentunits = factory(App\EnrolmentUnits::class)->create([
+            'studentID' => $student->studentID,
+            'unitCode' => $units[0]->unitCode,
+            'status' => 'confirmed',
+            'grade' => 'pass'
+        ], [
+            'studentID' => $student->studentID,
+            'unitCode' => $units[1]->unitCode,
+            'status' => 'confirmed',
+            'grade' => 'pass'
+        ]);
+
+        $this->actingAs($user);
+        $this->visit('/student/manageunits/create')
+             ->see('Articulation')
+             ->select('I047', 'courseCode')
+             ->press('Update')
+             ->see('Current Enrolment')
+             ->dontsee('Articulation');
+    }
+
+    /**
+     * Page Test
+     * A test to articulate a student to a degree course
+     * Condition: Articulation condition met
+     * Environment: Articulation condition not met
+     *
+     * @return void
+     */
+    public function testArticulationToDegreeFailed()
+    {
+        // Sample user - student - course - and its dependencies
+        $course = factory(App\Course::class)->create(['studyLevel' => 'Foundation']);
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '1',
+            'password' => bcrypt('123456'),
+        ]);
+        $student = factory(App\Student::class)->create([
+            'studentID' => $user->username,
+            'courseCode' => $course->courseCode
+        ]);
+        $units = factory(App\Unit::class, 2)->create();
+        $studyplanner = factory(App\StudyPlanner::class)->create([
+            'unitCode' => $units[0]->unitCode,
+            'courseCode' => $course->courseCode
+        ], [
+            'unitCode' => $units[1]->unitCode,
+            'courseCode' => $course->courseCode
+        ]);
+        $enrolmentunits = factory(App\EnrolmentUnits::class)->create([
+            'studentID' => $student->studentID,
+            'unitCode' => $units[0]->unitCode,
+            'status' => 'confirmed',
+            'grade' => 'failed'
+        ], [
+            'studentID' => $student->studentID,
+            'unitCode' => $units[1]->unitCode,
+            'status' => 'confirmed',
+            'grade' => 'pass'
+        ]);
+
+        $this->actingAs($user);
+        $this->visit('/student/manageunits/create')
+             ->see('Current Enrolment')
+             ->dontsee('Articulation');
+    }
 }

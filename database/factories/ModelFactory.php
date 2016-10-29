@@ -39,7 +39,7 @@ $factory->define(App\CourseCoordinator::class, function (Faker\Generator $faker)
 $factory->define(App\Config::class, function (Faker\Generator $faker) {
     return [
         'id' => 'enrolmentPhase',
-        'value' => '1'
+        'value' => '1',
     ];
 });
 
@@ -75,8 +75,8 @@ $factory->define(App\EnrolmentIssues::class, function (Faker\Generator $faker) {
 
 $factory->define(App\EnrolmentUnits::class, function (Faker\Generator $faker) {
     return [
-        'studentID' => '123456',
-        'unitCode' => 'HIT3158',
+        'studentID' => $faker->postcode,
+        'unitCode' => $faker->firstNameMale,
         'year' => 2016,
         'semester' => 'Semester 1',
         'semesterLength' => 'long',
@@ -115,7 +115,7 @@ $factory->define(App\StudentEnrolmentIssues::class, function (Faker\Generator $f
 
 $factory->define(App\Student::class, function (Faker\Generator $faker) {
     return [
-        'studentID' => '123456',
+        'studentID' => $faker->postcode,
         'courseCode' => 'I047',
         'surname' => $faker->name,
         'givenName' => $faker->name,
@@ -149,19 +149,17 @@ $factory->define(App\Type::class, function (Faker\Generator $faker) {
 
 $factory->define(App\UnitListing::class, function (Faker\Generator $faker) {
     return [
-        [
-            'unitCode' => 'HIT1401',
-            'year' => 2016,
-            'semester' => 'Semester 1',
-            'semesterLength' => 'long'
-        ],
+        'unitCode' => 'HIT1401',
+        'year' => 2016,
+        'semester' => 'Semester 1',
+        'semesterLength' => 'long'
     ];
 });
 
 $factory->define(App\Unit::class, function (Faker\Generator $faker) {
     return [
-        'unitCode' => 'HIT1402',
-        'unitName' => 'Database Analysis and Design',
+        'unitCode' => $faker->firstNameMale,
+        'unitName' => $faker->name,
         'creditPoints' => '0',
         'maxStudentCount' => 100,
         'lectureGroupCount' => 10,
@@ -182,17 +180,17 @@ $factory->define(App\UnitType::class, function (Faker\Generator $faker) {
 // eduversal
 $factory->define(App\ExamUnit::class, function (Faker\Generator $faker) {
     return [
-        'studentID' => 'student',
-        'unitCode' => 'HIT1401',
+        'studentID' => $faker->firstNameMale,
+        'unitCode' => $faker->postcode,
         'grade' => 'pass'
     ];
 });
 
 $factory->define(App\StudentRecord::class, function (Faker\Generator $faker) {
     return [
-        'studentID' => '4304373',
-        'surname' => 'Thomas Chew',
-        'givenName' => 'Jason',
+        'studentID' => $faker->postcode,
+        'surname' => $faker->name,
+        'givenName' => $faker->firstNameMale,
         'courseCode' => 'I047',
         'year' => 2016,
         'term' => 'Semester 1',

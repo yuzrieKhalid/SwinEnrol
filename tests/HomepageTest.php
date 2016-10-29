@@ -24,6 +24,7 @@ class HomepageTest extends TestCase
     }
 
     /**
+     * PAGE TEST
      * Test if a student user is authenticated as a student
      * 1. visits the login page
      * 2. types in username and password
@@ -57,6 +58,7 @@ class HomepageTest extends TestCase
     }
 
     /**
+        * PAGE TEST
      * Test if a student user is not authenticated as a student
      * 1. visits the login page
      * 2. types in username and password

@@ -22,6 +22,7 @@ class ManageUnitTest extends TestCase
 
     /**
      * JSON API Test
+     * SUCCESS TEST
      * A test to add unit during the enrolment
      * Condition: EnrolmentUnits has less than 4 records
      * Environment: EnrolmentUnits has 0 records
@@ -61,6 +62,7 @@ class ManageUnitTest extends TestCase
 
     /**
      * JSON API Test
+     * FAIL TEST
      * A test to add unit during the enrolment
      * Condition: EnrolmentUnits has less than 4 records
      * Environment: EnrolmentUnits is added 5 times
@@ -135,6 +137,7 @@ class ManageUnitTest extends TestCase
 
     /**
      * JSON API Test
+     * SUCCESS TEST
      * A test to remove unit from current enrolled list
      * Condition: EnrolmentUnits has more than 0 records
      * Environment: EnrolmentUnits has 1 record
@@ -176,6 +179,7 @@ class ManageUnitTest extends TestCase
 
     /**
      * Page Test
+     * SUCCESS TEST
      * A test to articulate a student to a degree course
      * Condition: Articulation condition met
      * Environment: Articulation condition met
@@ -225,6 +229,7 @@ class ManageUnitTest extends TestCase
 
     /**
      * Page Test
+     * FAIL TEST
      * A test to articulate a student to a degree course
      * Condition: Articulation condition met
      * Environment: Articulation condition not met

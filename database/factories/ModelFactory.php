@@ -132,8 +132,8 @@ $factory->define(App\StudyLevel::class, function (Faker\Generator $faker) {
 
 $factory->define(App\StudyPlanner::class, function (Faker\Generator $faker) {
     return [
-        'unitCode' => 'HIT1401',
-        'courseCode' => 'I047',
+        'unitCode' => $faker->postcode,
+        'courseCode' => $faker->postcode,
         'unitType' => 'Core',
         'year' => 2016,
         'semester' => 'Semester 1',

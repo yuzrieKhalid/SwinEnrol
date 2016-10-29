@@ -56,7 +56,7 @@ class ManageUnitTest extends TestCase
             'grade' => 'ungraded'
         ])->see('ok')
         ->dontsee("Cannot enrol more than 4 units.");
-        // ^ see response
+        // ^ received the correct response
     }
 
     /**
@@ -130,6 +130,47 @@ class ManageUnitTest extends TestCase
             'grade' => 'ungraded'
         ])->see("Cannot enrol more than 4 units.")
         ->dontsee('ok');
-        // ^ see response
+        // ^ received the correct response
+    }
+
+    /**
+     * JSON API Test
+     * A test to remove unit from current enrolled list
+     * Condition: EnrolmentUnits has more than 0 records
+     * Environment: EnrolmentUnits has 1 record
+     *
+     * @return void
+     */
+    public function testRemoveUnitFromExistingList()
+    {
+        // Sample user - student - course - and its dependencies
+        $course = factory(App\Course::class)->create();
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '1',
+            'password' => bcrypt('123456'),
+        ]);
+        $student = factory(App\Student::class)->create([
+            'studentID' => $user->username,
+            'courseCode' => $course->courseCode
+        ]);
+        $unit = factory(App\Unit::class)->create([
+            'unitCode' => 'abc123'
+        ]);
+
+        // authenticate
+        $this->actingAs($user);
+
+        $this->json('POST', 'student/manageunits', [
+            'studentID' => $student->studentID,
+            'unitCode' => 'abc123',
+            'year' => 2016,
+            'semester' => 'Semester 1',
+            'semesterLength' => 'long',
+            'status' => 'pending',
+            'result' => 0.00,
+            'grade' => 'ungraded'
+        ])->json('DELETE', 'student/manageunits/abc123')
+        ->see('deleted');
+        // ^ received the correct response
     }
 }

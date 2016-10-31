@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class Student_ViewStudyPlannerTest extends TestCase
+class Student_ViewUnitListingTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -23,13 +23,13 @@ class Student_ViewStudyPlannerTest extends TestCase
     /**
      * Page Test
      * SUCCESS TEST
-     * A test to view study planners
-     * Condition: Study Planner exists
-     * Environment: Study Planner populated
+     * A test to view unit listing for next semester
+     * Condition: Unit Listing exists
+     * Environment: Unit Listing is populated
      *
      * @return void
      */
-    public function testViewExistingStudyPlanner()
+    public function testViewExistingUnitListing()
     {
         // Sample user - student - course - and its dependencies
         $course = factory(App\Course::class)->create();
@@ -42,29 +42,28 @@ class Student_ViewStudyPlannerTest extends TestCase
             'courseCode' => $course->courseCode
         ]);
         $unit = factory(App\Unit::class)->create();
-        $studyplanner = factory(App\StudyPlanner::class)->create([
+        $unitlisting = factory(App\UnitListing::class)->create([
             'unitCode' => $unit->unitCode,
-            'courseCode' => $course->courseCode,
+            'semester' => 'Semester 2'
         ]);
 
         // authenticate
         $this->actingAs($user);
-        $this->visit('/student/viewstudyplanner')
-             ->see('Year 1 Semester 1')
-             ->see($unit->unitCode);
+        $this->visit('/student/viewunitlistings')
+             ->see($unitlisting->unitCode);
         // ^ received the correct response
     }
 
     /**
      * Page Test
      * FAIL TEST
-     * A test to view study planner
-     * Condition: Study Planner exists
-     * Environment: Study Planner is not populated
+     * A test to view unit listing for next semester
+     * Condition: Unit Listing exists
+     * Environment: Unit Listing is populated with the wrong semester
      *
      * @return void
      */
-    public function testViewNonExistingStudyPlanner()
+    public function testViewExistingUnitListingDifferentSemester()
     {
         // Sample user - student - course - and its dependencies
         $course = factory(App\Course::class)->create();
@@ -76,12 +75,16 @@ class Student_ViewStudyPlannerTest extends TestCase
             'studentID' => $user->username,
             'courseCode' => $course->courseCode
         ]);
-        $units = factory(App\Unit::class)->create();
+        $unit = factory(App\Unit::class)->create();
+        $unitlisting = factory(App\UnitListing::class)->create([
+            'unitCode' => $unit->unitCode,
+            'semester' => 'Semester 1'
+        ]);
 
         // authenticate
         $this->actingAs($user);
-        $this->visit('/student/viewstudyplanner')
-             ->dontsee('Year 1 Semester 1');
+        $this->visit('/student/viewunitlistings')
+             ->dontsee($unitlisting->unitCode);
         // ^ received the correct response
     }
 }

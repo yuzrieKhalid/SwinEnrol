@@ -149,7 +149,7 @@ $factory->define(App\Type::class, function (Faker\Generator $faker) {
 
 $factory->define(App\UnitListing::class, function (Faker\Generator $faker) {
     return [
-        'unitCode' => 'HIT1401',
+        'unitCode' => $faker->postcode,
         'year' => 2016,
         'semester' => 'Semester 1',
         'semesterLength' => 'long'

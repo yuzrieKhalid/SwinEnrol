@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\Unit;
 use App\Course;
 use App\Requisite;
 use App\StudyLevel;
+use App\StudyPlanner;
+use App\CourseCoordinator;
 
 class ManageUnitController extends Controller
 {
@@ -41,9 +44,25 @@ class ManageUnitController extends Controller
     public function create()
     {
         $data = [];
-        $units = Unit::get();
 
-        $data['units'] = $units;
+        $courseCode = CourseCoordinator::with('course')
+            ->where('username', '=', Auth::user()->username)
+            ->first()->courseCode;
+        $studyplanner = StudyPlanner::where('courseCode', '=', $courseCode)->get();
+        $allunits = Unit::get();
+
+        $courseunits = [];
+        foreach ($studyplanner as $planner_unit) {
+            foreach ($allunits as $unit) {
+                if ($unit->unitCode == $planner_unit->unitCode) {
+                    array_push($courseunits, $unit);
+                    break;
+                }
+            }
+        }
+
+        $data['studyplanner'] = $studyplanner;
+        $data['units'] = $courseunits;
         $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);

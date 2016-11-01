@@ -11,14 +11,8 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3>Manage Units</h3>
-
                 </div>
                 <div class="panel-body">
-                  <!-- <form class="" action="{{ route('coordinator.manageunits.index') }}" method="GET">
-
-                  </form> -->
-
-
                     <!-- the table needs and url to allow the ajax to fetch the data from the controller (which is the json array) -->
                     <table class="table student" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
 

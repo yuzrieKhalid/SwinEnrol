@@ -52,13 +52,10 @@ class HomepageTest extends TestCase
              ->type('123456', 'password')
              ->press('Login')
              ->see($student->givenName);
-
-        // - dd what the $this sees
-        // dd($this);
     }
 
     /**
-        * PAGE TEST
+     * PAGE TEST
      * Test if a student user is not authenticated as a student
      * 1. visits the login page
      * 2. types in username and password
@@ -81,5 +78,51 @@ class HomepageTest extends TestCase
              ->type('123456', 'password')
              ->press('Login')
              ->dontsee($student->givenName);
+    }
+
+    /**
+     * PAGE TEST
+     * Test if a Admin user is authenticated as a Admin
+     * 1. visits the login page
+     * 2. types in username and password
+     * 3. press Login button
+     * 4. See Admin Hompage
+     */
+    public function testAuthenticatedAsSuper()
+    {
+
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '4',
+            'password' => bcrypt('123456'),
+        ]);
+
+        $this->visit('/login')
+             ->type($user->username, 'username')
+             ->type('123456', 'password')
+             ->press('Login')
+             ->seePageIs('super');
+    }
+
+    /**
+     * PAGE TEST
+     * Test if a Admin user is authenticated as a Admin
+     * 1. visits the login page
+     * 2. types in username and password
+     * 3. press Login button
+     * 4. See Admin Hompage
+     */
+    public function testAuthenticatedAsAdmin()
+    {
+
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '3',
+            'password' => bcrypt('123456'),
+        ]);
+
+        $this->visit('/login')
+             ->type($user->username, 'username')
+             ->type('123456', 'password')
+             ->press('Login')
+             ->seePageIs('admin');
     }
 }

@@ -30,6 +30,7 @@
                                     <td class="td_username">{{ $user->username }}</td>
                                     <td>
                                         <div class="pull-right">
+                                            <a class="btn btn-default" href="{{ route('super.managestudent.edit', $user->username) }}" role="button">Edit</a>
                                             <button id="delete" class="btn btn-danger" data-toggle="modal" data-target="#delete_{{ $user->username }}">
                                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                             </button>
@@ -52,10 +53,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <form method="POST" action="{{ route('super.managestudent.destroy', $user->username) }}">
-                                                    <a class="btn btn-default" href="{{ route('super.managestudent.edit', $user->username) }}" role="button">Edit</a>
                                                     {!! csrf_field() !!}
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> DELETE</a>
                                                 </form>
                                                 <button class="btn btn-primary" data-dismiss="modal">CANCEL</button>
                                             </div>

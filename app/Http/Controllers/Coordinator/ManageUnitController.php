@@ -45,24 +45,10 @@ class ManageUnitController extends Controller
     {
         $data = [];
 
-        $courseCode = CourseCoordinator::with('course')
-            ->where('username', '=', Auth::user()->username)
-            ->first()->courseCode;
-        $studyplanner = StudyPlanner::where('courseCode', '=', $courseCode)->get();
-        $allunits = Unit::get();
+        $courseCode = Course::all();
+        $units = Unit::get();
 
-        $courseunits = [];
-        foreach ($studyplanner as $planner_unit) {
-            foreach ($allunits as $unit) {
-                if ($unit->unitCode == $planner_unit->unitCode) {
-                    array_push($courseunits, $unit);
-                    break;
-                }
-            }
-        }
-
-        $data['studyplanner'] = $studyplanner;
-        $data['units'] = $courseunits;
+        $data['units'] = $units;
         $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);

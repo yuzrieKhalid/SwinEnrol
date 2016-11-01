@@ -123,32 +123,49 @@
                                 </div>
                                 @endforeach
 
-                                <h4>Grounds Upon Which Exemption is Sought (Prior Study)</h4>
+                                <h4>Swinburne Unit (Exemption Sought)</h4>
                                 <div class="form-group">
                                     <!-- Unit Code-->
                                     <label class="control-label col-sm-2">Unit Code:</label>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control exemptionUnitCode">
-                                    </div>
-
-                                    <!-- Program Year-->
-                                    <label class="control-label col-sm-2">Year:</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" class="form-control exemptionUnitYear">
+                                        <input type="text" class="form-control exemptionUnitCodeSought">
                                     </div>
                                     <br><br>
 
                                     <!-- Unit Title-->
                                     <label class="control-label col-sm-2">Unit Title:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control exemptionUnitTitle">
+                                        <input type="text" class="form-control exemptionUnitTitleSought">
+                                    </div>
+                                    <br><br>
+                                </div>
+
+                                <h4>Grounds Upon Which Exemption is Sought (Prior Study)</h4>
+                                <div class="form-group">
+                                    <!-- Unit Code-->
+                                    <label class="control-label col-sm-2">Unit Code:</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control exemptionUnitCodePrior">
+                                    </div>
+
+                                    <!-- Program Year-->
+                                    <label class="control-label col-sm-2">Year:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control exemptionUnitYearPrior">
+                                    </div>
+                                    <br><br>
+
+                                    <!-- Unit Title-->
+                                    <label class="control-label col-sm-2">Unit Title:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control exemptionUnitTitlePrior">
                                     </div>
                                     <br><br>
 
                                     <!-- Attach Proof -->
                                     <label class="control-label col-sm-2">Attachment: </label>
                                     <div class="col-sm-10">
-                                        <input type="file" class="attachFile">
+                                        <input type="file" class="attachFilePrior">
                                     </div>
                                 </div>
                             </div>
@@ -185,18 +202,15 @@
                                     <hr>
                                 </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered applicationTable">
-                                        <tr>
-                                            <th>Teaching Period</th>
-                                            <th>Year</th>
-                                        </tr>
-                                        <tr class="tr_template">
-                                            <td><input class="form-control teachingPeriod" type="text" value=""></td>
-                                            <td><input class="form-control year" type="text" value="2016"></td>
-                                        </tr>
-                                    </table>
+                                <label>Teaching Period</label>
+                                {{-- <td><input class="form-control teachingPeriod" type="text" value=""></td>
+                                <td><input class="form-control year" type="text" value="2016"></td> --}}
+                                <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                    <input type="text" class="input-sm form-control" id="period_from_" value="" />
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" id="period_to_" value="" />
                                 </div>
+                                <br/>
 
                                 <!-- Reason for Withdrawal -->
                                 <label class="control-label">Reasons for Leave Of Absence:</label>

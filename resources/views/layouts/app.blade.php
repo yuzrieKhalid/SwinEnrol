@@ -61,7 +61,7 @@
                                 <li><a href="{{ url('/admin/setenrolmentdates/create') }}">Set Enrolment Dates</a></li>
                                 <li><a href="{{ url('/admin/resolveissue/create') }}">Resolve Leave of Absence</a></li>
                                 <li><a href="{{ url('/admin/approvedissues/create') }}">Approved Issues</a></li>
-                                <li><a href="{{ url('/admin/enrolmentstatus') }}">Enrolment Status</a></li>
+                                <li><a href="{{ url('/admin/enrolmentstatus/create') }}">Enrolment Status</a></li>
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '1')

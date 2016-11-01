@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
   <div class="col-md-9">
-    <div class="panel panel-success">
+    <div class="panel panel-warning">
           <div class="panel-heading">
               <h3>Update Course Information <br>
                   <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>

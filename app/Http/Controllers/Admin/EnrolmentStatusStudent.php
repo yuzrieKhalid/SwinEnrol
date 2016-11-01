@@ -16,109 +16,80 @@ use View;
 
 class EnrolmentStatusStudent extends Controller
 {
-
-    public function index() {
-
-      // $data = [];
-      //
-
-      // $enrolled = EnrolmentUnits::with('student','unit')->get();
-      // $data['enrolled'] = $enrolled;
-      // return view('admin.enrolmentstatus', $data);
-      $data = [];
-      // $studentID = Student::all();
-      $studentID = Student::get();
-      $data['studentID']= $studentID;
-      $enrolled = EnrolmentUnits::with('student')->where('status','=', 'pending')->get();
-      $data['enrolled'] = $enrolled;
-
-      //return response()->json($data);
-      return view('admin.enrolmentstatus', $data);
-
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $students = Student::with('enrolment_units', 'course')->get();
+        return response()->json($students);
     }
 
-     public function index2()
-      {
-        // $input = $request->only([
-        //     'studentID'
-        // ]);
-        // $data2 = [];
-        // $studentID = Student::all();
-        // $data2['studentID']= $studentID;
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        return view('admin.enrolmentstatus');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         //
-        // $enrolled2 = EnrolmentUnits::with('student','enrolment_units')
-        // ->where('studentID','=',$input['studentID'])->first();
-        // $data2['enrolled'] = $enrolled2;
+    }
 
-      }
-      public function create()
-      {
-        //$data = [];
-        // $studentID = Student::all();
-        // $data['studentID']= $studentID;
-        // $enrolled = EnrolmentUnits::all();
-        // $data['enrolled'] = $enrolled;
-
-        //return response()->json($data);
-        //return view('admin.enrolmentstatus', $data);
-      }
-
-      /**
-       * Store a newly created resource in storage.
-       *
-       * @param  \Illuminate\Http\Request  $request
-       * @return \Illuminate\Http\Response
-       */
-      public function store(Request $request)
-      {
-          //
-      }
-
-      /**
-       * Display the specified resource.
-       *
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
-      public function show($id)
-      {
-          //
-      }
-
-      /**
-       * Show the form for editing the specified resource.
-       *
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
-      public function edit($id)
-      {
-          //
-      }
-
-      /**
-       * Update the specified resource in storage.
-       *
-       * @param  \Illuminate\Http\Request  $request
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
-      public function update(Request $request)
-      {
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
         //
-      }
+    }
 
-      /**
-       * Remove the specified resource from storage.
-       *
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
-      public function destroy($studentID)
-      {
-          //
-      }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        //
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($studentID)
+    {
+        //
+    }
 }

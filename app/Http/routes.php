@@ -41,7 +41,8 @@ Route::group([
          'as' => 'admin.resolveissue.disapprove',
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);
-     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    Route::post('enrolmentstatus', 'Admin\EnrolmentStatusStudent@index');
     Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 

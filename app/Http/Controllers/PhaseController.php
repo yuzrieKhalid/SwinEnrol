@@ -19,7 +19,7 @@ class PhaseController extends Controller
      *
      * @return json string with status
      */
-    public function unitApprove()
+    public static function unitApprove()
     {
         // get config setting
         $status = true;
@@ -63,13 +63,15 @@ class PhaseController extends Controller
                 $requisites = Requisite::where('unitCode', '=', $unit->unitCode)
                 ->where('type', '=', 'corequisite')
                 ->get();
+
+                // check if corequisite exists
                 if(count($requisites) > 0)
                 {
-                    $units[] = $unit;
+                    $units[] = $unit; // push to end of array
                 }
                 else
                 {
-                    array_unshift($units, $unit);
+                    array_unshift($units, $unit); // push to front of array
                 }
             }
 
@@ -80,75 +82,31 @@ class PhaseController extends Controller
 
             foreach($pending as $unit)
             {
-                $status = true;
+                $status = true; // status for checking unit approval
 
                 // already completed
-                foreach($completed as $completedUnit)
-                {
-                    if($unit->unitCode == $completedUnit->unitCode)
-                    {
-                        $status = false;
-                    }
-                }
+                if(!$this->completedUnitCheck($unit, $completed))
+                    $status = false;
 
-                // prerequisite
+                // check prerequisites
                 if(!$this->prerequisiteCheck($unit, $completed))
                     $status = false;
 
-                // get antirequisites
-                $antirequisites = Requisite::where('unitCode', '=', $unit->unitCode)
-                ->where('type', '=', 'antirequisite')
-                ->get();
-
-                if(count($antirequisites) > 0)
-                {
-                    // check antirequisites
-                    foreach($antirequisites as $antirequisite)
-                    {
-                        foreach($completed as $completedUnit)
-                        {
-                            if($antirequisite->requisite == $completedUnit->unitCode)
-                                $status = false;
-                        }
-                    }
-                }
-
-                // minimumCompletedUnits
-                if($unit['unit']->creditPoints > count($completed) * 12.5)
-                {
+                // check antirequisites
+                if(!$this->antirequisiteCheck($unit, $completed))
                     $status = false;
-                }
 
-                // corequisite
-                $corequisites = Requisite::where('unitCode', '=', $unit->unitCode)
-                ->where('type', '=', 'corequisite')
-                ->get();
-                if(count($corequisites) > 0)
-                {
-                    $count = 0;
-                    foreach($corequisites as $corequisite)
-                    {
-                        foreach($success as $approved)
-                        {
-                            if($approved == $corequisite->requisite)
-                            {
-                                $count++;
-                            }
-                        }
-                        foreach($completed as $completedUnit)
-                        {
-                            if($completedUnit->unitCode == $corequisite->unitCode)
-                            {
-                                $count++;
-                            }
-                        }
-                    }
-                    if($count != count($corequisites))
-                        $status = false;
-                }
+                // check credit points
+                if(!$this->creditPointsCheck($unit, $completed))
+                    $status = false;
+
+                // check corequisite
+                if(!$this->corequisiteCheck($unit, $completed, $success))
+                    $status = false;
 
                 if($status == true)
                 {
+                    // approve unit
                     EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
@@ -160,6 +118,7 @@ class PhaseController extends Controller
                 }
                 else
                 {
+                    // disapprove unit
                     EnrolmentUnits::where('studentID', '=', $student->studentID)
                     ->where('unitCode', '=', $unit->unitCode)
                     ->where('year', '=', $year)
@@ -189,7 +148,7 @@ class PhaseController extends Controller
      *
      * @return json string with status
      */
-    public function unitCheck()
+    public static function unitCheck()
     {
         // get config setting
         $status = true;
@@ -219,11 +178,11 @@ class PhaseController extends Controller
      *
      * @return boolean with status
      */
-    public function prerequisiteCheck($unit, $completed)
+    public static function prerequisiteCheck($unit, $completed)
     {
-        $status = true;
+        $status = true; // status for prerequisite validity
 
-        // get all prerequisites
+        // get unit's prerequisites
         $prerequisites = Requisite::where('unitCode', '=', $unit->unitCode)
         ->where('type', 'LIKE', 'prerequisite%')
         ->get();
@@ -239,7 +198,7 @@ class PhaseController extends Controller
                 $array[$prerequisite->index][] = $prerequisite;
             }
 
-            // check prerequisites
+            // check prerequisites if exists
             for($i = 0; $i < count($array); $i++)
             {
                 $count = 0; // count to check number of prerequisites
@@ -269,6 +228,121 @@ class PhaseController extends Controller
                         $status = false;
                 }
             }
+        }
+
+        return $status;
+    }
+
+    /**
+     * Checks if the unit's corequisites are met
+     * Returns true if there are no corequisites or if corequisites conditions are met
+     *
+     * @return boolean with status
+     */
+    public static function corequisiteCheck($unit, $completed, $approvedUnits)
+    {
+        $status = true; // status for corequisite validity
+
+        // get unit's corequisites
+        $corequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+        ->where('type', '=', 'corequisite')
+        ->get();
+
+        // check corequisites if exists
+        if(count($corequisites) > 0)
+        {
+            $count = 0; // count for number of corequisites
+
+            // check each corequisite
+            foreach($corequisites as $corequisite)
+            {
+                // check current enrolment
+                foreach($approvedUnits as $approvedUnit)
+                {
+                    if($approvedUnit == $corequisite->requisite)
+                        $count++; // incremenmt if unit is enrolled
+                }
+
+                // check completed units
+                foreach($completed as $completedUnit)
+                {
+                    if($completedUnit->unitCode == $corequisite->unitCode)
+                        $count++; // increment if unit is completed
+                }
+            }
+
+            // return false if corequisites do not match
+            if($count != count($corequisites))
+                $status = false;
+        }
+
+        return $status;
+    }
+
+    /**
+     * Checks if the unit's antirequisites are met
+     * Returns true if there are no antirequisites or if antirequisites conditions are met
+     *
+     * @return boolean with status
+     */
+    public static function antirequisiteCheck($unit, $completed)
+    {
+        $status = true; // status for antirequisite validity
+
+        // get antirequisites
+        $antirequisites = Requisite::where('unitCode', '=', $unit->unitCode)
+        ->where('type', '=', 'antirequisite')
+        ->get();
+
+        // check antirequisites if exists
+        if(count($antirequisites) > 0)
+        {
+            // check each antirequisite
+            foreach($antirequisites as $antirequisite)
+            {
+                foreach($completed as $completedUnit)
+                {
+                    // return false if antirequisite exists
+                    if($antirequisite->requisite == $completedUnit->unitCode)
+                        $status = false;
+                }
+            }
+        }
+
+        return $status;
+    }
+
+    /**
+     * Checks if the unit's credit points are met
+     * Returns true if the unit's credit points requirement is equals or less than the student's current credit points
+     *
+     * @return boolean with status
+     */
+    public static function creditPointsCheck($unit, $completed)
+    {
+        $status = true; // status for checking credit points validity
+
+        // credit points
+        if($unit['unit']->creditPoints > count($completed) * 12.5)
+            $status = false; // false if credit points not met
+
+        return $status;
+    }
+
+    /**
+     * Checks if the unit is completed
+     * Returns true if the unit is not completed
+     *
+     * @return boolean with status
+     */
+    public static function completedUnitCheck($unit, $completed)
+    {
+        $status = true; // status for completed unit validity
+
+        foreach($completed as $completedUnit)
+        {
+            if($unit->unitCode == $completedUnit->unitCode)
+                $status = false;
         }
 
         return $status;
@@ -305,7 +379,7 @@ class PhaseController extends Controller
      *
      * @return json string with status
      */
-    public function phaseTrigger()
+    public static function phaseTrigger()
     {
         $approval = [];
         // get config setting

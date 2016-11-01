@@ -28,7 +28,6 @@
                   @include('student.phaseNotification')
                 <div class="panel-body">
                   <table class="table">
-
                       <thead>
                           <th>Unit Code</th>
                           <th>Unit Title</th>

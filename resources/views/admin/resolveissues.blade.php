@@ -25,7 +25,7 @@
                                         <th>Date</th>
                                     </thead>
 
-                                    <tr class="hidden tr_template clickable-row" data-toggle="modal" data-target="">
+                                    <tr class="hidden tr_template button" name="Show" data-toggle="modal" data-target="">
                                         <td class="td_studentID"></td>
                                         <td class="td_studentName"></td>
                                         <td class="td_issueType"></td>
@@ -66,21 +66,23 @@
                                                 </div>
                                             </div>
 
+                                            <form method="post">
                                             <!-- footer -->
                                             <div class="modal-footer">
                                                 <div class="hidden data-temporary">
                                                     <pre class="stdID">stdID</pre>
                                                     <pre class="issID">issID</pre>
                                                 </div>
-                                                <button type="button" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid=""
+                                                <button type="button" name="Approved" class="btn btn-success submit" data-method="PUT" data-stdid="" data-issid=""
                                                     data-url="{{ route('admin.resolveissue.approve', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Approve
                                                 </button>
-                                                <button type="button" class="btn btn-danger submit" data-method="DELETE"
+                                                <button type="button" name="Disapproved" class="btn btn-danger submit" data-method="DELETE"
                                                     data-url="{{ route('admin.resolveissue.disapprove', ['studentID' => 'stdID', 'issueID' => 'issID' ]) }}">
                                                     Disapprove
                                                 </button>
                                             </div>
+                                            </form>
                                         </div> <!-- .modal-content> -->
                                     </div> <!-- .modal-dialog -->
                                 </div> <!-- .modal_template-->

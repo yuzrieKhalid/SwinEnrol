@@ -21,7 +21,7 @@ Route::group([
 // Student Admin
 Route::group([
     'prefix' => 'admin',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
     Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
@@ -42,19 +42,13 @@ Route::group([
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);
      Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
-    //  Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
-    //  Route::get('enrolmentstatus/index2', [
-    //      'as' => 'admin.enrolmentstatus.create',
-    //      'uses' => 'Admin\EnrolmentStatusStudent@create'
-    //    ]);
     Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 
-// Route::resource('manageunits', 'Coordinator\ManageUnitController');
 // Coordinator Views
 Route::group([
     'prefix' => 'coordinator',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', [
         'as' => 'coordinator.home.index',
@@ -122,12 +116,11 @@ Route::group([
 
 Route::group([
     'prefix' => 'super',
-    'middleware' => 'web',
+    'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Super\HomeController@index');
     Route::get('managestudentadmin', 'Super\ManageStudentAdmin@index');
     Route::get('managecoordinator', 'Super\ManageCoordinator@index');
-    //Route::get('managestudent', 'Super\ManageStudent@index');
     Route::get('managestudent',['as'=>'index','uses'=>'Super\ManageStudent@index']);
     Route::resource('config', 'Super\ConfigController');
     Route::resource('managestudentadmin', 'Super\ManageStudentAdmin');
@@ -140,39 +133,4 @@ Route::group([
 Route::get('/phase', 'PhaseController@phaseTrigger');
 Route::get('/unit', 'PhaseController@unitApprove');
 Route::get('/unitCheck', 'PhaseController@unitCheck');
-
-/*
-Route::group([
-    'middleware' => 'web'
-], function () {
-    Route::auth();
-
-    Route::get('/', 'HomeController@index');
-});
-
-Route::group([
-    'middleware' => ['web', 'auth'],
-], function(){
-    // Student Administrator Views
-    Route::get('/admin', 'StudentAdminController@index');
-    Route::get('/admin/managestudents', 'StudentAdminController@view_managestudents');
-    Route::get('/admin/setenrolmentdates', 'StudentAdminController@view_setenrolmentdates');
-
-    // Coordinator Views
-    Route::get('/coordinator', 'CoordinatorController@index');
-    Route::get('/coordinator/managestudyplanner', 'CoordinatorController@view_managestudyplanner');
-    Route::get('/coordinator/manageunitlisting', 'CoordinatorController@view_manageunitlisting');
-    Route::get('/coordinator/manageunits', 'CoordinatorController@view_manageunits');
-    Route::get('/coordinator/resolveenrolmentissues', 'CoordinatorController@view_resolveenrolmentissues');
-
-    // Student
-    Route::get('/student', 'StudentController@index');
-    Route::get('/student/contactcoordinator', 'StudentController@view_contactcoordinator');
-    Route::get('/student/internalcoursetransfer', 'StudentController@view_internalcoursetransfer');
-    Route::get('/student/manageunits', 'StudentController@view_manageunits');
-    Route::get('/student/viewstudyplanner', 'StudentController@view_viewstudyplanner');
-    Route::get('/student/viewunitlistings', 'StudentController@view_viewunitlistings');
-
-
-});
-*/
+Route::get('/test', 'Test@test');

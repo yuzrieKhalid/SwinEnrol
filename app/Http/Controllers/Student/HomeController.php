@@ -17,44 +17,31 @@ use App\Course;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        $data = [];
 
-      $data = [];
+        $user = Auth::user();
 
-      $user = Auth::user();
+        $student = Student::findOrFail($user->username);
+        $data['student'] = $student;
+        $course = Course::where('courseCode', '=', $student->courseCode)->first();
+        $data['course'] = $course;
 
-      // $student = Student::where([['studentID', '=', $user->username],
-      // ['year','=', Config::find('year')->value],
-      // ['term','=',Config::find('semester')->value],
-      // ])->get();
-
-      $student = Student::findOrFail($user->username);
-      $data['student'] = $student;
-      $course = Course::where('courseCode', '=', $student->courseCode)->first();
-      $data['course'] = $course;
-
-      // $course = Course::where('courseCode', '=', $user->courseCode)->first()->courseCode;
-
-
-      // $data['year'] = Student::where('studentID', '=', '$user->username')->first()->year;
-
-      $data['student'] = $student;
-      $data['phase'] = Config::find('enrolmentPhase');
-      $enrolled = EnrolmentUnits::with('unit')
-          ->where([
+        $data['student'] = $student;
+        $data['phase'] = Config::find('enrolmentPhase');
+        $enrolled = EnrolmentUnits::with('unit')->where([
             ['studentID', '=', $user->username],
             ['year', '=', Config::find('year')->value],
             ['semester', '=', Config::find('semester')->value],
-          ])->get();
-      $data['enrolled'] = $enrolled;
+        ])->get();
+        $data['enrolled'] = $enrolled;
 
-      $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                      ->where('status', '=', 'approved')->get();
+        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
+        ->where('status', '=', 'approved')->get();
 
-      $data['issues'] = $issues;
-
-      return view ('student.student', $data);
-
+        $data['issues'] = $issues;
+        return view ('student.student', $data);
     }
 
     /**

@@ -11,7 +11,7 @@
 
                 <div class="panel-body">
                     <!-- Planner selection form -->
-                    <form class="form-inline" method="POST" action="{{ url('student/managestudents.index2') }}">
+                    <form class="form-inline" method="POST" action="{{ url('student/viewstudyplanner') }}">
                         <!-- Year Selection -->
                         <div class="form-group">
                             <select class="form-control" name="year" id="year" onchange="this.form.submit()">

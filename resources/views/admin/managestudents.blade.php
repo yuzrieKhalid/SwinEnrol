@@ -12,10 +12,10 @@
                 <div class="panel-heading">
                     <h3>
                         Manage Students
-                        <a class="btn btn-default pull-right" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                        <button class="btn btn-default pull-right" href="#" role="button" name="Add Student" data-toggle="modal" data-target="#adminAddStudent">
                             <span class="glyphicon glyphicon-plus"></span>
                             Add Student
-                        </a>
+                        </button>
                     </h3>
                 </div>
 
@@ -40,10 +40,10 @@
                             <td>{{ $student->studentID }}</td>
                             <td>{{ $student->givenName }} {{ $student->surname }}</td>
                             <td>
-                                <a class="btn btn-default submit" href="{{ route('admin.managestudents.edit', $student->studentID) }}">
+                                <button class="btn btn-default submit" name="Edit"  href="{{ route('admin.managestudents.edit', $student->studentID) }}">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Edit
-                                </a>
+                                </button>
                                 <button class="btn btn-default submit" data-url="{{ route('admin.managestudents.destroy', $student->studentID) }}" data-method="DELETE">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     Delete

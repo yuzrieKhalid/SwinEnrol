@@ -19,7 +19,7 @@
                                 <th>Course Name</th>
                                 <th></th>
                                 <th><span><a class="btn btn-default" href="#"
-                                  role="button" data-toggle="modal" data-target="#addCourse">
+                                  role="button" name="Add Course" data-toggle="modal" data-target="#addCourse">
                                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
                             @foreach($courses as $course)
@@ -27,7 +27,7 @@
                                 <td class="td_courseCode">{{ $course->courseCode }}</td>
                                 <td class="td_courseName">{{ $course->courseName }}</td>
                                 <td>
-                                    <a class="btn btn-default pull-right"
+                                    <a class="btn btn-default pull-right" name="Edit"
                                     href="{{ route('super.managecourse.edit', $course->courseCode) }}"
                                     role="button">
                                         Edit

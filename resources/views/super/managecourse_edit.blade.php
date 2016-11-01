@@ -51,7 +51,7 @@
                    data-method="PUT" data-url="{{ route('super.managecourse.update', $courses->courseCode) }}">
                    Edit</button>
                   <a id="backToCreate" class="btn btn-info"
-                  href="{{ route('super.managecourse.create') }}"
+                   href="{{ route('super.managecourse.create') }}"
                    role="button">Back To Previous Page</a>
               </div>
           </div>
@@ -71,37 +71,6 @@
       return $('meta[name=_token]').attr('content')
   }
 
-
-
-  let addCourse = function(course) {
-      if ($('#course_table').find('.tr_template') == true) {
-          let tr_template = $('#course_table').find('.tr_template').clone()
-          tr_template.removeClass('hidden')
-          tr_template.removeClass('tr_template')
-
-          let courseEdit = tr_template.children('.td_courseEdit').html()
-          courseEdit = courseEdit.replace("id", course.courseCode)
-          let courseDelete = tr_template.children('.td_courseDelete').html()
-          courseDelete = courseDelete.replace("id", course.courseCode)
-
-          tr_template.children('.td_courseCode').html(course.courseCode)
-          tr_template.children('.td_courseName').html(course.courseName)
-          tr_template.children('.td_courseEdit').html(`${courseEdit}`)
-          tr_template.children('.td_courseDelete').html(`${courseDelete}`)
-
-          $('#course_table').append(tr_template)
-      }
-  }
-
-  let getCourse = function() {
-      let url = $('#course_table').data('url')
-      $.get(url, function(data) {
-          data.forEach(function(course) {
-              addCourse(course);
-          })
-      })
-  }
-
   $('.submit').click(function(){
       let method = $(this).data('method')
       let url = $(this).data('url')
@@ -109,20 +78,18 @@
           _token: getToken(),
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
-          courseName: $('#semestersPerYear').val(),
-          courseName: $('#semesterCount').val(),
-          courseName: $('#studyLevel').val(),
+          semestersPerYear: $('#semestersPerYear').val(),
+          semesterCount: $('#semesterCount').val(),
+          studyLevel: $('#studyLevel').val()
       }
       $.ajax({
           'url': url,
           'method': method,
           'data': data
       }).done(function(data) {
-          addCourse(data)
           window.location.reload()
       })
   })
-
 
 })()
 

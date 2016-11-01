@@ -34,13 +34,33 @@
                                     </a>
                                 </td>
                                 <td class="td_courseDelete">
-                                    <button id="submit" type="submit" class="btn btn-danger submit"
-                                    data-method="DELETE" data-url="{{ route('super.managecourse.destroy', $course->courseCode) }}">
+                                    <button id="delete" class="btn btn-danger" data-toggle="modal" data-target="#delete_{{ $course->courseCode }}">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </button>
                                 </td>
                             </tr>
 
+                            <div class="modal fade" id="delete_{{ $course->courseCode }}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h2 class="modal-title">Delete {{ $course->courseCode }}</h2>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete {{ $course->courseCode }} {{ $course->courseName }}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('super.managecourse.destroy', $course->courseCode) }}">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> DELETE
+                                            </button>
+                                            <button class="btn btn-primary" data-dismiss="modal">CANCEL</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end .modal -->
                             @endforeach
                           </table>
                     </div>
@@ -66,7 +86,7 @@
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Semester Per Year:</label>
-                                  <input class="form-control" id="semestersPerYear">
+                                  <input class="form-control" id="semestersPerYeDegreear">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Semester Per Count:</label>
@@ -91,42 +111,9 @@
 
 @section('extra_js')
 <script>
-
 (function(){
-
   let getToken = function() {
       return $('meta[name=_token]').attr('content')
-  }
-
-
-
-  let addCourse = function(course) {
-      if ($('#course_table').find('.tr_template') == true) {
-          let tr_template = $('#course_table').find('.tr_template').clone()
-          tr_template.removeClass('hidden')
-          tr_template.removeClass('tr_template')
-
-          let courseEdit = tr_template.children('.td_courseEdit').html()
-          courseEdit = courseEdit.replace("id", course.courseCode)
-          let courseDelete = tr_template.children('.td_courseDelete').html()
-          courseDelete = courseDelete.replace("id", course.courseCode)
-
-          tr_template.children('.td_courseCode').html(course.courseCode)
-          tr_template.children('.td_courseName').html(course.courseName)
-          tr_template.children('.td_courseEdit').html(`${courseEdit}`)
-          tr_template.children('.td_courseDelete').html(`${courseDelete}`)
-
-          $('#course_table').append(tr_template)
-      }
-  }
-
-  let getCourse = function() {
-      let url = $('#course_table').data('url')
-      $.get(url, function(data) {
-          data.forEach(function(course) {
-              addCourse(course);
-          })
-      })
   }
 
   $('.submit').click(function(){
@@ -136,23 +123,19 @@
           _token: getToken(),
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
-          courseName: $('#semestersPerYear').val(),
-          courseName: $('#semesterCount').val(),
-          courseName: $('#studyLevel').val()
+          semestersPerYear: $('#semestersPerYear').val(),
+          semesterCount: $('#semesterCount').val(),
+          studyLevel: $('#studyLevel').val()
       }
       $.ajax({
           'url': url,
           'method': method,
           'data': data
       }).done(function(data) {
-          addCourse(data)
           window.location.reload()
       })
   })
-
-
 })()
-
 </script>
 
 @stop

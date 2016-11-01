@@ -20,6 +20,12 @@ class ManageCourseForSuperTest extends TestCase
         Artisan::call('migrate:rollback');
     }
 
+    /**
+     * Page Test
+     * A test to add Course (Frontend-button)
+     *
+     * @return void
+     */
     public function addCourses()
     {
         $this->visit('/super/managecourse/create')
@@ -28,6 +34,13 @@ class ManageCourseForSuperTest extends TestCase
             ->onPage('/super/managecourse/create');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to add Course (Controller)
+     * Condition: Course exists
+     * @return void
+     */
     public function addCoursesSuccess()
     {
         //$course = factory(App\Course::class)->create();
@@ -45,6 +58,13 @@ class ManageCourseForSuperTest extends TestCase
         $this->assertRedirectedToRoute('super/managecourse/create');
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to add Course (Controller)
+     * Condition: Coordinator exists or Empty
+     * @return void
+     */
     public function addCoursesFail()
     {
         Input::replace(
@@ -61,6 +81,11 @@ class ManageCourseForSuperTest extends TestCase
         $this->assertSessionHasErrors();
     }
 
+    /**
+     * Page Test(Frontend)
+     * A test to edit Course (button)
+     * @return void
+     */
     public function editCourses()
     {
         $this->visit('/super/managecourse')
@@ -69,6 +94,13 @@ class ManageCourseForSuperTest extends TestCase
             ->onPage('/super/managecourse/$course->courseCode/edit');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to edit Course (Controller)
+     * Condition: Coordinator not exists
+     * @return void
+     */
     public function editCoursesSuccess()
     {
         $course = factory(App\Course::class)->create();
@@ -86,6 +118,13 @@ class ManageCourseForSuperTest extends TestCase
         $this->assertRedirectedToRoute('super/managecourse/create');
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to edit Course (Controller)
+     * Condition: Coordinator exists or Empty
+     * @return void
+     */
     public function editCoursesFail()
     {
         Input::replace(
@@ -103,22 +142,6 @@ class ManageCourseForSuperTest extends TestCase
     }
 
     /*TO DO: Delete button*/
-
-    // public function removeCourseFromCourseList()
-    // {
-    //     $student = factory(App\Student::class)->create();
-    //
-    //     //$this->actingAs($user);
-    //     $this->json('POST', 'admin/managestudents', [
-    //         'studentID' => '4315405',
-    //         'surname'=>'Haque',
-    //         'givenName'=>'Sariful',
-    //         'courseCode'=>'I047',
-    //         'dateOfBirth'=>'26/12/1990',
-    //     ])->json('DELETE', 'admin/managestudents')
-    //     ->see('deleted');
-    // }
-
 
     /**
      * A basic test example.

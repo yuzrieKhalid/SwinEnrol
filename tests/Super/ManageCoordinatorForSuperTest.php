@@ -20,6 +20,12 @@ class ManageCoordinatorForSuperTest extends TestCase
         Artisan::call('migrate:rollback');
     }
 
+    /**
+     * Page Test
+     * A test to add Coordinator (Frontend-button)
+     *
+     * @return void
+     */
     public function addCoordinator()
     {
         $this->visit('/super/managecoordinator')
@@ -28,6 +34,12 @@ class ManageCoordinatorForSuperTest extends TestCase
             ->onPage('/super/managecoordinator/create');
     }
 
+    /**
+     * Page Test
+     * A test to edit Coordinator (Frontend-button)
+     *
+     * @return void
+     */
     public function editCoordinator()
     {
         $this->visit('/super/managecoordinator')
@@ -36,6 +48,13 @@ class ManageCoordinatorForSuperTest extends TestCase
             ->onPage('/super/managecoordinator/$user->username/edit');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to add Coordinator (Controller)
+     * Condition: Coordinator exists
+     * @return void
+     */
     public function addCoordinatorSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -56,7 +75,7 @@ class ManageCoordinatorForSuperTest extends TestCase
             'password' => bcrypt('123456'),
             '_token' => csrf_token()
         ]);
-        
+
         Post::shouldReceive('store')->once();
         $this->call('POST','super/managecoordinator/create');
         $this->assertRedirectedToRoute('super/managecoordinator');
@@ -65,6 +84,13 @@ class ManageCoordinatorForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to add Coordinator (Controller)
+     * Condition: Coordinator exists or Coordinator empty
+     * @return void
+     */
     public function addCoordinatorFail()
     {
         $user = factory(App\User::class)->create([
@@ -83,6 +109,13 @@ class ManageCoordinatorForSuperTest extends TestCase
         $this->assertSessionHasErrors();
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to edit Coordinator (Controller)
+     * Condition: Coordinator exists
+     * @return void
+     */
     public function editCoordinatorSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -111,6 +144,13 @@ class ManageCoordinatorForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to edit Coordinator (Controller)
+     * Condition: Coordinator exists or Coordinator empty
+     * @return void
+     */
     public function editCoordinatorFail()
     {
         $user = factory(App\User::class)->create([

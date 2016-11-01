@@ -20,7 +20,12 @@ class ManageStudentAdminForSuperTest extends TestCase
     {
         Artisan::call('migrate:rollback');
     }
-
+    /**
+     * Page Test(Frontend)
+     * A test to add Studen Admin (button)
+     *
+     * @return void
+     */
     public function addStudentAdmin()
     {
         $this->visit('/super/managestudentadmin')
@@ -29,6 +34,12 @@ class ManageStudentAdminForSuperTest extends TestCase
             ->onPage('/super/managestudentadmin/create');
     }
 
+    /**
+     * Page Test(Frontend)
+     * A test to edit Studen Admin (button)
+     *
+     * @return void
+     */
     public function editStudentAdmin()
     {
         $this->visit('/super/managestudentadmin')
@@ -37,6 +48,13 @@ class ManageStudentAdminForSuperTest extends TestCase
             ->onPage('/super/managestudentadmin/$user->username/edit');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to add Studen Admin (Controller)
+     * Condition: Student exists
+     * @return void
+     */
     public function addStudentAdminSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -64,6 +82,13 @@ class ManageStudentAdminForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to add Student Admin (Controller)
+     * Condition: Student Admin exists or Student Admin not empty
+     * @return void
+     */
     public function addStudentAdminFail()
     {
         $user = factory(App\User::class)->create([
@@ -82,6 +107,13 @@ class ManageStudentAdminForSuperTest extends TestCase
         $this->assertSessionHasErrors();
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to edit Student Admin (Controller)
+     * Condition: Student Admin not exists or empty
+     * @return void
+     */
     public function editStudentAdminSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -110,6 +142,13 @@ class ManageStudentAdminForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to edit Student Admin (Controller)
+     * Condition: Student Admin exists or empty
+     * @return void
+     */
     public function editStudentAdminFail()
     {
         $user = factory(App\User::class)->create([

@@ -20,6 +20,12 @@ class ManageStudentForSuperTest extends TestCase
         Artisan::call('migrate:rollback');
     }
 
+    /**
+     * Page Test(Frontend)
+     * A test to add Studen (button)
+     *
+     * @return void
+     */
     public function addStudent()
     {
         $this->visit('/super/managestudent')
@@ -28,6 +34,12 @@ class ManageStudentForSuperTest extends TestCase
             ->onPage('/super/managestudent/create');
     }
 
+    /**
+     * Page Test(Frontend)
+     * A test to edit Studen (button)
+     *
+     * @return void
+     */
     public function editStudent()
     {
         $this->visit('/super/managestudent')
@@ -36,6 +48,13 @@ class ManageStudentForSuperTest extends TestCase
             ->onPage('/super/managestudent/$user->username/edit');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to add Student (Controller)
+     * Condition: Student exists
+     * @return void
+     */
     public function addStudentSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -63,6 +82,13 @@ class ManageStudentForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to add Student  (Controller)
+     * Condition: Student exists or empty
+     * @return void
+     */
     public function addStudentFail()
     {
         $user = factory(App\User::class)->create([
@@ -81,6 +107,13 @@ class ManageStudentForSuperTest extends TestCase
         $this->assertSessionHasErrors();
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to edit Student  (Controller)
+     * Condition: Student  not exists or empty
+     * @return void
+     */
     public function editStudentSuccess()
     {
         $user = factory(App\User::class)->create([
@@ -109,6 +142,13 @@ class ManageStudentForSuperTest extends TestCase
         $this->assertEquals('login', $response->original->name());
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to edit Student (Controller)
+     * Condition: Student exists or empty
+     * @return void
+     */
     public function editStudentFail()
     {
         $user = factory(App\User::class)->create([

@@ -20,7 +20,7 @@
                     <h4>ENROLMENT RELATED APPLICATIONS</h4>
                     <div class="row">
                         <div class="col-md-2">
-                            <h5>Course Coordinator:</h5>
+                            <h5>Course Coordinator</h5>
                         </div>
                         <div class="col-md-10">
                             <select class="form-control">
@@ -31,7 +31,7 @@
 
                     <div class="row">
                         <div class="col-md-2">
-                            <h5>Select Form:</h5>
+                            <h5>Select Form</h5>
                         </div>
                         <div class="col-md-10">
                             <select class="form-control" id="issueTitle">
@@ -43,6 +43,18 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5>Current Program</h5>
+                        </div>
+                        <div class="col-md-10">
+                            <h5>
+                                <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
+                                <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
+                            </h5>
+                        </div>
+                    </div> <!-- end .row -->
                     <hr>
 
                     {{-- FORM BODY --}}
@@ -50,19 +62,6 @@
                     {{-- Form: Internal Course Transfer --}}
                     <div class="hidden" id="course_transfer">
                         <h4>INTERNAL COURSE TRANSFER</h4>
-
-                        {{-- currentProgram --}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h5>CURRENT PROGRAM</h5>
-                            </div>
-                            <div class="col-md-8">
-                                <h5>
-                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
-                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
-                                </h5>
-                            </div>
-                        </div> <!-- end .row -->
 
                         {{-- fromProgramIntakeYear --}}
                         <div class="row">
@@ -120,20 +119,6 @@
                     {{-- Form: Exemption --}}
                     <div class="hidden" id="exemption">
                         <h4>APPLICATION FOR ADVANCED STANDING (EXEMPTION)</h4>
-
-                        {{-- currentProgram --}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h5>CURRENT PROGRAM</h5>
-                            </div>
-                            <div class="col-md-8">
-                                <h5>
-                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
-                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
-                                </h5>
-                            </div>
-                        </div> <!-- end .row -->
-                        <br>
                         <div class="row">
                             {{-- Exemption Sought --}}
                             <div class="col-md-6">
@@ -203,20 +188,6 @@
                     {{-- Form: Leave of Absence --}}
                     <div class="hidden" id="leave_of_absence">
                         <h4>APPLICATION FOR LEAVE OF ABSENCE</h4>
-
-                        {{-- currentProgram --}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h5>CURRENT PROGRAM</h5>
-                            </div>
-                            <div class="col-md-8">
-                                <h5>
-                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
-                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
-                                </h5>
-                            </div>
-                        </div> <!-- end .row -->
-
                         {{-- foreignStudentCheck --}}
                         <div class="row">
                             <div class="col-md-4">
@@ -227,7 +198,7 @@
                             </div>
                         </div>
                         {{-- internationalStdOfficer --}}
-                        <div class="row">
+                        <div class="row isInternational">
                             <div class="col-md-4">
                                 <h5>INTERNATIONAL STUDENT OFFICER</h5>
                             </div>
@@ -283,19 +254,6 @@
                     {{-- Form: Special Case --}}
                     <div class="hidden" id="special_case">
                         <h4>SPECIAL CASE / PRECLUSION</h4>
-
-                        {{-- currentProgram --}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h5>CURRENT PROGRAM</h5>
-                            </div>
-                            <div class="col-md-8">
-                                <h5>
-                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
-                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
-                                </h5>
-                            </div>
-                        </div> <!-- end .row -->
                         {{-- preclusion --}}
                         <div class="row">
                             <div class="col-md-4">
@@ -370,13 +328,15 @@ $('.datepicker').datepicker({
     }
 
     // CHECK IS FOREIGNER // TODO fix bug: detect the change on checked
-    if ($('#isForeigner:checked').val()) {
-        isForeigner = 'YES'
-        $('.isInternational').removeClass('hidden')
-    } else {
-        isForeigner = 'NO'
-        $('.isInternational').addClass('hidden')
-    }
+    $('#isForeigner:checked').change(function() {
+        if ($('#isForeigner:checked').val()) {
+            isForeigner = 'YES'
+            $('.isInternational').removeClass('hidden')
+        } else {
+            isForeigner = 'NO'
+            $('.isInternational').addClass('hidden')
+        }
+    })
 
     // SELECT ISSUE SCRIPT
     let selectIssue = $("#issueTitle")
@@ -424,8 +384,8 @@ $('.datepicker').datepicker({
             // keep everything in an array to be stringified into a JSON Object
             let json_ict = {}
             json_ict["yearOfRequestedTransfer"] = $('.yearOfRequestedTransfer').val()
-            json_ict["fromProgramCode"] = $('.fromProgramCode').val()
-            json_ict["fromProgramTitle"] = $('.fromProgramTitle').val()
+            json_ict["fromProgramCode"] = $('.fromProgramCode').text()
+            json_ict["fromProgramTitle"] = $('.fromProgramTitle').text()
             json_ict["fromProgramIntakeYear"] = $('.fromProgramIntakeYear').val()
             json_ict["toProgramCode"] = $('.toProgramCode').val()
             json_ict["toProgramTitle"] = $('.toProgramTitle').val()
@@ -443,11 +403,13 @@ $('.datepicker').datepicker({
             let encodedContent = btoa(attached_data)
 
             let json_exemption = {}
-            json_exemption["fromProgramCode"] = $('.fromProgramCode').val()
-            json_exemption["fromProgramTitle"] = $('.fromProgramTitle').val()
-            json_exemption["exemptionUnitCode"] = $('.exemptionUnitCode').val()
-            json_exemption["exemptionUnitYear"] = $('.exemptionUnitYear').val()
-            json_exemption["exemptionUnitTitle"] = $('.exemptionUnitTitle').val()
+            json_exemption["fromProgramCode"] = $('.fromProgramCode').text()
+            json_exemption["fromProgramTitle"] = $('.fromProgramTitle').text()
+            json_exemption["soughtUnitCode"] = $('.exemptionUnitCodeSought').val()
+            json_exemption["soughtUnitTitle"] = $('.exemptionUnitTitleSought').val()
+            json_exemption["exemptionUnitCode"] = $('.exemptionUnitCodePrior').val()
+            json_exemption["exemptionUnitYear"] = $('.exemptionUnitYearPrior').val()
+            json_exemption["exemptionUnitTitle"] = $('.exemptionUnitTitlePrior').val()
 
             submissionData = JSON.stringify(json_exemption)
             attachmentData = encodedContent
@@ -455,25 +417,24 @@ $('.datepicker').datepicker({
 
         } else if (option == 'leave_of_absence') {
 
+            let json_leave_of_absence = {}
+            json_leave_of_absence["fromProgramCode"] = $('.fromProgramCode').text()
+            json_leave_of_absence["fromProgramTitle"] = $('.fromProgramTitle').text()
+            json_leave_of_absence["isForeigner"] = isForeigner
+            json_leave_of_absence["iso_name"] = $('.iso_name').val()
+            json_leave_of_absence["teachingPeriod"] = $('.teachingPeriod').val()
+            json_leave_of_absence["year"] = $('.year').val()
+            json_leave_of_absence["reasonForLOA"] = $('.reasonForLOA').val()
 
-            let json_withdrawal = {}
-            json_withdrawal["fromProgramCode"] = $('.fromProgramCode').val()
-            json_withdrawal["fromProgramTitle"] = $('.fromProgramTitle').val()
-            json_withdrawal["isForeigner"] = isForeigner
-            json_withdrawal["iso_name"] = $('.iso_name').val()
-            json_withdrawal["teachingPeriod"] = $('.teachingPeriod').val()
-            json_withdrawal["year"] = $('.year').val()
-            json_withdrawal["reasonForLOA"] = $('.reasonForLOA').val()
-
-            submissionData = JSON.stringify(json_withdrawal)
+            submissionData = JSON.stringify(json_leave_of_absence)
             attachmentData = null
             issueID = 3
 
         } else if (option == 'preclusion') {
 
-
             let json_preclusion = {}
-
+            json_preclusion["fromProgramCode"] = $('.fromProgramCode').text()
+            json_preclusion["fromProgramTitle"] = $('.fromProgramTitle').text()
             json_preclusion["selectedForPreclusion"] = $('.selectedForPreclusion').val()
             json_preclusion["selectedPrerequisite"] = $('.selectedPrerequisite').val()
             json_preclusion["reasonForPreclusion"] = $('.reasonForPreclusion').val()
@@ -504,7 +465,7 @@ $('.datepicker').datepicker({
             'data': data,
             enctype: 'multipart/form-data'
         }).done(function(data) {
-            // window.location.reload()
+            window.location.reload()
         })
     })
 }) ()

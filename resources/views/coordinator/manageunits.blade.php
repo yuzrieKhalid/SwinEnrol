@@ -13,18 +13,24 @@
                     <h3>Manage Units</h3>
                 </div>
                 <div class="panel-body">
+                    <form class="form-inline" method="POST" action="{{ url('coordinator/manageunits/create') }}">
+                        <div class="form-group">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name='search' placeholder="Search">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-default" name="reset" value="reset">Reset</button>
+                        </div>
+                    </form>
                     <!-- the table needs and url to allow the ajax to fetch the data from the controller (which is the json array) -->
                     <table class="table student" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
-
-                      <div class="col-md-4">
-                        <form class="form" method="GET">
-                          <input type="text" class="form-control" id='unitCode' name='unitCode' placeholder="Search">
-                          <div class="input-group-btn">
-                              <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                          </div>
-
-                        </form>
-                      </div>
                         <thead>
                             <th>Unit ID</th>
                             <th>Unit Name</th>

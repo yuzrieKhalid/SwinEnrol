@@ -41,18 +41,26 @@ class ManageUnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $data = [];
+        // Search
+        $input = $request->only(['search']);
 
-        $courseCode = Course::all();
-        $units = Unit::get();
+        $data = [];
+        $units = [];
+
+        if ($input['search'] != "") {
+            $units = Unit::where('unitCode', 'LIKE', '%'.$input['search'].'%')->get();
+        } else {
+            $units = Unit::get();
+        }
 
         $data['units'] = $units;
         $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);
     }
+
     public function search()
     {
       //

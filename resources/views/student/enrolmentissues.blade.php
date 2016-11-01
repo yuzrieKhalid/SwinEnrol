@@ -14,292 +14,333 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-inline" method="POST" action="{{ url('coordinator/manageunits/create') }}">
-                        <div class="form-group">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name='search' placeholder="Search">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                        </div>
-                        <div class="input-group">
-                            <button type="submit" class="btn btn-default" name="reset" value="reset">Reset</button>
-                        </div>
-                    </form>
-                    <form class="form-horizontal" name="cForm" role="form" action="{{ url('/student/contactcoordinator') }}" onsubmit="return validateForm()" method="POST">
-                        <hr>
+                    <!-- remember, there's no form here-->
+                    {{-- FORM HEAD --}}
 
-                        <div class="studentIssue">
-                            <h4>ENROLMENT RELATED APPLICATIONS</h4>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Course Coordinator: </label>
-                                <div class="dropdown col-sm-10">
-                                    <select class="form-control">
-                                        <option value="khsim">Sim Kwan Hua (khsim@swinburne.edu.my)</option>
-                                    </select>
-                                </div>
+                    <h4>ENROLMENT RELATED APPLICATIONS</h4>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5>Course Coordinator:</h5>
+                        </div>
+                        <div class="col-md-10">
+                            <select class="form-control">
+                                <option value="khsim">Sim Kwan Hua (khsim@swinburne.edu.my)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h5>Select Form:</h5>
+                        </div>
+                        <div class="col-md-10">
+                            <select class="form-control" id="issueTitle">
+                                <option>Select One</option>
+                                <option value="course_transfer">Internal Course Transfer</option>
+                                <option value="exemption">Application for Advanced Standing (Exemptions)</option>
+                                <option value="leave_of_absence">Application for Leave of Absence</option>
+                                <option value="special_case">Application for Unit Preclusion</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+
+                    {{-- FORM BODY --}}
+
+                    {{-- Form: Internal Course Transfer --}}
+                    <div class="hidden" id="course_transfer">
+                        <h4>INTERNAL COURSE TRANSFER</h4>
+
+                        {{-- currentProgram --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>CURRENT PROGRAM</h5>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Title:</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="issueTitle">
-                                        <option>Select One</option>
-                                        <option value="course_transfer">Internal Course Transfer</option>
-                                        <option value="exemption">Application for Advanced Standing (Exemptions)</option>
-                                        <option value="leave_of_absence">Application for Leave of Absence</option>
-                                        <option value="preclusion">Application for Unit Preclusion</option>
-                                    </select>
-                                </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
+                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
+                                </h5>
                             </div>
+                        </div> <!-- end .row -->
 
-                            <hr>
+                        {{-- fromProgramIntakeYear --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>YEAR OF FIRST ENROLMENT IN CURRENT PROGRAM</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <span class="fromProgramIntakeYear">{{ $student->year }}</span>
+                                </h5>
+                            </div>
+                        </div> <!-- end .row -->
 
-                            <!-- Case: Internal Course Transfer -->
-                            <div class="hidden" id="course_transfer">
-                                <h3>Internal Course Transfer</h3>
-                                <h4>YEAR/SEMESTER OF REQUESTED TRANSFER</h4>
-                                <input type="text" class="form-control yearOfRequestedTransfer" placeholder="e.g., 3 / 5">
+                        {{-- proposedProgram --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>PROPOSED PROGRAM</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control toProgramCode">
+                                    <option value="none"></option>
+                                    @foreach($courses as $course)
+                                    <option value="{{ $course->courseCode }}">{{ $course->courseCode }} <span class="toProgramTitle">{{ $course->courseName }}</span></option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> <!-- end .row -->
 
-                                <h4>CURRENT PROGRAM</h4>
+                        {{-- proposedProgramYear --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>PROPOSED TRANSFER YEAR</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control toProgramYear">
+                                    <option value="none"></option>
+                                    <option value="{{ $currentyear }}">{{ $currentyear }}</option>
+                                    <option value="{{ $nextyear }}">{{ $nextyear }}</option>
+                                    <option value="{{ $next2year }}">{{ $next2year }}</option>
+                                </select>
+                            </div>
+                        </div> <!-- end .row -->
 
-                                @foreach($studentcourse as $course)
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">Program Code:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control fromProgramCode" value="{{ $course->courseCode }}" disabled>
+                        {{-- reason for transfer --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>REASON FOR TRANSFER</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control toReasons" rows="3" style="resize:none"></textarea>
+                            </div>
+                        </div> <!-- end .row -->
+                    </div> <!-- end .course_transfer -->
+
+                    {{-- Form: Exemption --}}
+                    <div class="hidden" id="exemption">
+                        <h4>APPLICATION FOR ADVANCED STANDING (EXEMPTION)</h4>
+
+                        {{-- currentProgram --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>CURRENT PROGRAM</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
+                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
+                                </h5>
+                            </div>
+                        </div> <!-- end .row -->
+                        <br>
+                        <div class="row">
+                            {{-- Exemption Sought --}}
+                            <div class="col-md-6">
+                                <h4>Exemption Sought - Swinburne Unit</h4>
+                                {{-- Swinburne: Unit Code --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Unit Code:</h5>
                                     </div>
-                                        <label class="control-label col-sm-2">Program Title:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control fromProgramTitle" value="{{ $course->courseName }}" disabled>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5">Year of first enrolment in current program:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control fromProgramIntakeYear">
-                                    </div>
-                                </div>
-
-                                <h4>PROPOSED PROGRAM</h4>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">Program Title:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control toProgramCode">
-                                            <option value="none"></option>
-                                            @foreach($courses as $course)
-                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} <span class="toProgramTitle">{{ $course->courseName }}</span></option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">Program Year:</label>
-                                    <div class="col-sm-2">
-                                        <select class="form-control toProgramYear">
-                                            <option value="none"></option>
-                                            <option value="{{ $currentyear }}">{{ $currentyear }}</option>
-                                            <option value="{{ $nextyear }}">{{ $nextyear }}</option>
-                                            <option value="{{ $next2year }}">{{ $next2year }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2">Reasons for Requesting Transfer </label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control custom-control toReasons" rows="3" style="resize:none"></textarea>
-                                    </div>
-                                </div>
-                            </div> <!-- end .course_transfer -->
-
-                            <!-- Case: Exemption -->
-                            <div class="hidden" id="exemption">
-                                <h3>APPLICATION FOR ADVANCED STANDING (EXEMPTION)</h3>
-
-                                <h4>Swinburne Unit (Exemption Sought)</h4>
-                                @foreach($studentcourse as $course)
-                                <div class="form-group">
-                                    <!-- Program Code-->
-                                    <label class="control-label col-sm-2">Program Code:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control fromProgramCode" value="{{ $course->courseCode }}" disabled>
-                                    </div>
-                                    <!-- Program Title-->
-                                    <label class="control-label col-sm-2">Program Title:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control fromProgramTitle" value="{{ $course->courseName }}" disabled>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                                <h4>Swinburne Unit (Exemption Sought)</h4>
-                                <div class="form-group">
-                                    <!-- Unit Code-->
-                                    <label class="control-label col-sm-2">Unit Code:</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control exemptionUnitCodeSought">
                                     </div>
-                                    <br><br>
-
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-2">Unit Title:</label>
-                                    <div class="col-sm-10">
+                                </div>
+                                {{-- Swinburne: Unit Title --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Unit Title</h5>
+                                    </div>
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control exemptionUnitTitleSought">
                                     </div>
-                                    <br><br>
                                 </div>
-
-                                <h4>Grounds Upon Which Exemption is Sought (Prior Study)</h4>
-                                <div class="form-group">
-                                    <!-- Unit Code-->
-                                    <label class="control-label col-sm-2">Unit Code:</label>
-                                    <div class="col-sm-3">
+                            </div>
+                            {{-- Grounds on Which Exemption is Sought --}}
+                            <div class="col-md-6">
+                                <h4>Prior Study Proof</h4>
+                                {{-- Prior Study: Unit Code --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Unit Code:</h5>
+                                    </div>
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control exemptionUnitCodePrior">
                                     </div>
-
-                                    <!-- Program Year-->
-                                    <label class="control-label col-sm-2">Year:</label>
-                                    <div class="col-sm-5">
-                                        <input type="text" class="form-control exemptionUnitYearPrior">
+                                </div>
+                                {{-- Prior Study: Unit Title --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Unit Title</h5>
                                     </div>
-                                    <br><br>
-
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-2">Unit Title:</label>
-                                    <div class="col-sm-10">
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control exemptionUnitTitlePrior">
                                     </div>
-                                    <br><br>
-
-                                    <!-- Attach Proof -->
-                                    <label class="control-label col-sm-2">Attachment: </label>
-                                    <div class="col-sm-10">
+                                </div>
+                                {{-- Prior Study: Year --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Year</h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control exemptionUnitYearPrior">
+                                    </div>
+                                </div>
+                                {{-- Prior Study: Academenic Transcript Upload --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5>Upload Transcript</h5>
+                                    </div>
+                                    <div class="col-md-8">
                                         <input type="file" class="attachFilePrior">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <!-- Case: Withdrawal -->
-                            <div class="hidden" id="leave_of_absence">
-                                <h3>APPLICATION FOR LEAVE OF ABSENCE</h3>
+                    {{-- Form: Leave of Absence --}}
+                    <div class="hidden" id="leave_of_absence">
+                        <h4>APPLICATION FOR LEAVE OF ABSENCE</h4>
 
-                                @foreach($studentcourse as $course)
-                                <h4>Program Details</h4>
-                                <div class="form-group">
-                                    <!-- Unit Code-->
-                                    <label class="control-label col-sm-2">Program Code:</label>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" value="{{ $course->courseCode }}" disabled>
-                                    </div>
-                                    <!-- Unit Title-->
-                                    <label class="control-label col-sm-2">Program Title:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{ $course->courseName }}" disabled>
-                                    </div>
-                                </div>
-                                @endforeach
+                        {{-- currentProgram --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>CURRENT PROGRAM</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
+                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
+                                </h5>
+                            </div>
+                        </div> <!-- end .row -->
 
-                                <div class="form-group">
-                                    <!-- Dual Qualification? -->
-                                    <label class="control-label col-sm-5">Are you an international student holding a student visa?<span class="help-block">Leave the box empty if "No"</span></label>
-                                    <label class="radio-inline"><input type="checkbox" name="isForeigner" id="isForeigner" checked> YES</label>
-                                </div>
-
-                                <div class="hidden isInternational">
-                                    <label class="control-label">International Student Officer Name</label>
-                                    <input class="form-control iso_name" type="text" value="">
-                                    <hr>
-                                </div>
-
-                                <label>Teaching Period</label>
-                                {{-- <td><input class="form-control teachingPeriod" type="text" value=""></td>
-                                <td><input class="form-control year" type="text" value="2016"></td> --}}
+                        {{-- foreignStudentCheck --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>ARE YOU AN INTERNATIONAL STUDENT</h5>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="checkbox" name="isForeigner" id="isForeigner" checked>
+                            </div>
+                        </div>
+                        {{-- internationalStdOfficer --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>INTERNATIONAL STUDENT OFFICER</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control iso_name" type="text">
+                            </div>
+                        </div>
+                        {{-- duration --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>TEACHING PERIOD</h5>
+                            </div>
+                            <div class="col-md-8">
                                 <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                     <input type="text" class="input-sm form-control" id="period_from_" value="" />
                                     <span class="input-group-addon">to</span>
                                     <input type="text" class="input-sm form-control" id="period_to_" value="" />
                                 </div>
-                                <br/>
-
-                                <!-- Reason for Withdrawal -->
-                                <label class="control-label">Reasons for Leave Of Absence:</label>
-                                <textarea class="form-control reasonForLOA" rows="3"></textarea>
-
-                                <!-- Conditions -->
-                                <h4>Conditions</h4>
-                                <p>
-                                    1. For domestic students the last date to lodge an application for leave of absence without a Financial Penalty is by close of business on the Unit of Study Census Date
-                                    OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment /
-                                    Invoice).
-                                </p>
-                                <p>
-                                    2. Refunds are subject to the return of your University ID card, fee receipt, and any other University property or materials you may have in your possession.
-                                </p>
-                                <p>
-                                    3. No refund of fees will be made when a student withdraws from a unit of study after close business of the Unit of Study Census Date.
-                                </p>
-                                <p>
-                                    4. Before applying for leave of absence students are advised to read the 'Deferral and Leave of Absence' policies and regulations on
-                                    Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
-                                </p>
                             </div>
-
-                            <!-- Case: Preclusion -->
-                            <div class="hidden" id="preclusion">
-                                <h3>APPLICATION FOR UNIT PRECLUSION</h3>
-
-                                <h4>SELECT UNIT</h4>
-                                <div class="form-group">
-                                    {{-- preclusion --}}
-                                    <label class="control-label col-sm-2">Preclusion Unit:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control selectedForPreclusion">
-                                            <option value="none"></option>
-                                            @foreach($semesterUnits as $unit)
-                                            <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    {{-- preclusion --}}
-                                    <label class="control-label col-sm-2">Prerequisite Unit:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control selectedPrerequisite">
-                                            <option value="none"></option>
-                                            @foreach($units as $unit)
-                                                @if(!empty($unit->requisite))
-                                                    <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unitName }}</span></option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Reason for Preclusion -->
-                                <label class="control-label">REASON FOR PRECLUSION:</label>
-                                <textarea class="form-control reasonForPreclusion" rows="3"></textarea>
-
-                                <!-- Conditions -->
-                                <h4>Conditions</h4>
-                                <p>
-                                    1. You may only apply for this if you failed <strong>ONE</strong> prerequisite to the selected unit.
-                                </p>
-                                <p>
-                                    2. Before submitting the form, you must remember to enrol the failed prerequisite along with the selected unit.
-                                </p>
+                        </div>
+                        {{-- reason --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>REASON FOR LEAVE OF ABSENCE</h5>
                             </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control reasonForLOA" rows="3" style="resize: none"></textarea>
+                            </div>
+                        </div>
 
-                        </div> <!-- end #studentIssue -->
-                    </form>
+                        {{-- condtions --}}
+                        <h5>CONDITIONS</h5>
+                        <ol>
+                            <li>
+                                For domestic students the last date to lodge an application for leave of absence without a Financial Penalty is by close of business on the Unit of Study Census Date
+                                OR prior to commencement of classes for unit of study undertaken in block mode. (For Unit of Study Census Date refer to your Confirmation of Enrolment /
+                                Invoice)
+                            </li>
+                            <li>
+                                Refunds are subject to the return of your University ID card, fee receipt, and any other University property or materials you may have in your possession
+                            </li>
+                            <li>
+                                No refund of fees will be made when a student withdraws from a unit of study after close business of the Unit of Study Census Date
+                            </li>
+                            <li>
+                                Before applying for leave of absence students are advised to read the 'Deferral and Leave of Absence' policies and regulations on
+                                Academic Course Regulations 2013, Chapter 2 Part 4 Deferral and Part 5 Leave of Absence at
+                                <a href="http://www.swinburne.edu.au/policies/regulations/courses.html">http://www.swinburne.edu.au/policies/regulations/courses.html</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                    {{-- Form: Special Case --}}
+                    <div class="hidden" id="special_case">
+                        <h4>SPECIAL CASE / PRECLUSION</h4>
+
+                        {{-- currentProgram --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>CURRENT PROGRAM</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>
+                                    <span class="fromProgramCode">{{ $studentcourse->courseCode }}</span>
+                                    <span class="fromProgramTitle">{{ $studentcourse->courseName }}</span>
+                                </h5>
+                            </div>
+                        </div> <!-- end .row -->
+                        {{-- preclusion --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>UNIT FOR PRECLUSION</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control selectedForPreclusion">
+                                    <option value="none"></option>
+                                    @foreach($semesterUnits as $unit)
+                                    <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> <!-- end .row -->
+                        {{-- prerequisites --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>PREREQUISITE UNIT FOR PRECLUSION</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control selectedForPreclusion">
+                                    <option value="none"></option>
+                                    @foreach($semesterUnits as $unit)
+                                    <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        {{-- reason --}}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>REASON FOR PRECLUSION</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control reasonForPreclusion" rows="3" style="resize: none"></textarea>
+                            </div>
+                        </div> <!-- end .row -->
+                        <!-- Conditions -->
+                        <h5>CONDITIONS</h5>
+                        <ol>
+                            <li>You may only apply for this if you failed <strong>ONE</strong> prerequisite to the selected unit</li>
+                            <li>Before submitting the form, you must remember to enrol the failed prerequisite along with the selected unit</li>
+                        </ol>
+                    </div>
+
                 </div>
 
                 <div class="panel-footer">

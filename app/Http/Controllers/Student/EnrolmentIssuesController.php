@@ -32,7 +32,7 @@ class EnrolmentIssuesController extends Controller
 
         // get User Student
         $student = Student::where('studentID', '=', $user->username)->first();
-        $studentcourse = Course::where('courseCode', '=', $student->courseCode)->get();
+        $studentcourse = Course::where('courseCode', '=', $student->courseCode)->first();
 
         $data['student'] = $student;
         $data['studentcourse'] = $studentcourse;

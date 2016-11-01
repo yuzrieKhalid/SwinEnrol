@@ -28,20 +28,6 @@ class ResolveEnrollmentIssuesForAdminTest extends TestCase
             ->onPage('/admin/resolveissue/create');
     }
 
-    // public function testApproved()
-    // {
-    //     $this->visit('/admin/resolveissue/create')
-    //         ->press('Approved')
-    //         ->onPage('/admin/resolveissue/create');
-    // }
-    //
-    // public function testDisapproved()
-    // {
-    //     $this->visit('/admin/resolveissue/create')
-    //         ->press('Disapproved')
-    //         ->onPage('/admin/resolveissue/create');
-    // }
-
     /**
      * A basic test example.
      *

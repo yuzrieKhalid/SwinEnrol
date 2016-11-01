@@ -19,13 +19,6 @@ class SetEnrolmentDateController extends Controller
      */
     public function index()
     {
-        // $data = [];
-        // $dates  = EnrolmentDates::all();
-        //
-        // $data['dates'] = $dates;
-        //
-        // return view ('admin.setenrolmentdates', $data);
-
         return response()->json(EnrolmentDates::all());
     }
 

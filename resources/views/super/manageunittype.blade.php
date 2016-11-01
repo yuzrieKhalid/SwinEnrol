@@ -14,7 +14,7 @@
                                 <thead>
                                     <th>Types</th>
                                     <th><span class="pull-right">
-                                        <a class="btn btn-default" href="{{ url('/super/manageunittype/create') }}" role="button">
+                                        <a class="btn btn-default" name="AddType" href="{{ url('/super/manageunittype/create') }}" role="button">
                                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         </a></span>
                                     </th>
@@ -28,7 +28,7 @@
                                                 <form method="POST" action="{{ route('super.manageunittype.destroy', $type->unitType) }}">
                                                     {!! csrf_field() !!}
                                                     {{-- Edit --}}
-                                                    <a class="btn btn-default" href="{{ route('super.manageunittype.edit', $type->unitType) }}" role="button">Edit</a>
+                                                    <a class="btn btn-default" name="Edit" href="{{ route('super.manageunittype.edit', $type->unitType) }}" role="button">Edit</a>
 
                                                     {{-- Delete --}}
                                                     <input type="hidden" name="_method" value="DELETE">

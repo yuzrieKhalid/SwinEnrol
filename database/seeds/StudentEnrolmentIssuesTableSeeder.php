@@ -36,7 +36,7 @@ class StudentEnrolmentIssuesTableSeeder extends Seeder
                 "studentID" => "4318595",
                 "issueID" => 3,
                 "status" => "pending",
-                "submissionData" => "{\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"isForeigner\":\"YES\",\"iso_name\":\"Sariful\",\"teachingPeriod\":\"Semester 2\",\"year\":\"2016\",\"reasonForLOA\":\"For fun\"}",
+                "submissionData" => "{\"fromProgramCode\":\"I047\",\"fromProgramTitle\":\"Bachelor of Computer Science\",\"isForeigner\":\"YES\",\"iso_name\":\"Mr Ehwan\",\"period_from\":\"07 November 2016\",\"period_to\":\"09 December 2016\",\"reasonForLOA\":\"Family circumstances\"}",
                 "attachmentData" => "",
                 "created_at"=> Carbon::now(),
                 "updated_at"=> Carbon::now()

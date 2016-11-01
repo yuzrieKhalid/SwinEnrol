@@ -212,10 +212,10 @@
                                 <h5>TEACHING PERIOD</h5>
                             </div>
                             <div class="col-md-8">
-                                <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                                    <input type="text" class="input-sm form-control" id="period_from_" value="" />
+                                <div class="input-daterange input-group" data-provide="datepicker" data-date-format="dd MM yyyy">
+                                    <input type="text" class="input-sm form-control period_from" value="" />
                                     <span class="input-group-addon">to</span>
-                                    <input type="text" class="input-sm form-control" id="period_to_" value="" />
+                                    <input type="text" class="input-sm form-control period_to" value="" />
                                 </div>
                             </div>
                         </div>
@@ -327,7 +327,8 @@ $('.datepicker').datepicker({
         return $('meta[name=_token]').attr('content')
     }
 
-    // CHECK IS FOREIGNER // TODO fix bug: detect the change on checked
+    // CHECK IS FOREIGNER
+    let isForeigner = ''
     $('#isForeigner:checked').change(function() {
         if ($('#isForeigner:checked').val()) {
             isForeigner = 'YES'
@@ -422,7 +423,8 @@ $('.datepicker').datepicker({
             json_leave_of_absence["fromProgramTitle"] = $('.fromProgramTitle').text()
             json_leave_of_absence["isForeigner"] = isForeigner
             json_leave_of_absence["iso_name"] = $('.iso_name').val()
-            json_leave_of_absence["teachingPeriod"] = $('.teachingPeriod').val()
+            json_leave_of_absence["period_from"] = $('.period_from').val()
+            json_leave_of_absence["period_to"] = $('.period_to').val()
             json_leave_of_absence["year"] = $('.year').val()
             json_leave_of_absence["reasonForLOA"] = $('.reasonForLOA').val()
 

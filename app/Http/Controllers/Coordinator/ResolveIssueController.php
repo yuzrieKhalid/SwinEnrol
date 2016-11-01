@@ -39,15 +39,7 @@ class ResolveIssueController extends Controller
      */
     public function create()
     {
-        $data = [];
-        // Combine table Student (for Student Info), StudentEnrolmentIssues (for the submitted data)
-        // and EnrolmentIssues (to get the type of the enrolment issues)
-        $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                    ->where('status', '=', 'pending')->get();
-
-        $data['issues'] = $issues;
-
-        return view ('coordinator.resolveenrolmentissues', $data);
+        return view ('coordinator.resolveenrolmentissues');
     }
 
     /**
@@ -130,15 +122,18 @@ class ResolveIssueController extends Controller
         } else if ($issueID == '2') {
 
             $input = $request->only([
-                'exemptionUnitCode',
-                'exemptionYear'
+                'exemptionUnitCodePrior',
+                'exemptionUnitYearPrior',
+                'exemptionUnitTitlePrior',
+                'soughtUnitCode',
+                'soughtUnitTitle'
             ]);
 
             // update student course code
             $exemptionUnit = new EnrolmentUnits;
             $exemptionUnit->studentID = $studentID;
-            $exemptionUnit->unitCode = $input['exemptionUnitCode'];
-            $exemptionUnit->year = $input['exemptionYear'];
+            $exemptionUnit->unitCode = $input['soughtUnitCode'];
+            $exemptionUnit->year = $input['exemptionUnitYearPrior'];
             $exemptionUnit->term = 'skipped';
             $exemptionUnit->status = 'exempted';
             $exemptionUnit->grade = 'pass';

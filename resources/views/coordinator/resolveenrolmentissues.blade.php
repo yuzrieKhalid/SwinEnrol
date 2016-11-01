@@ -70,12 +70,15 @@
                                                     <p>Student ID: <span class="text-warning studentID">4318595</span></p>
                                                     <p>Issue : <span class="text-warning issue">[Exemption]</span></p>
                                                     <p>Status: <span class="text-warning status">Pending</span></p>
-
-                                                    <h3>Advanced Standing (Exemption) Details</h3>
                                                     <p>Current Program: <span class="text-primary currentProgram">[I047] [Bachelor of Computer Science]</span></p>
+
+                                                    <h3>Exemption Sought</h3>
+                                                    <p>Sought Unit: <span class="text-success exemptionUnitCodeSought">[HIT 1302] [Introduction to Business Information System]</span></p>
                                                     <hr>
-                                                    <p>Exemption Unit: <span class="text-success exemptionUnit">[HIT 1302] [Introduction to Business Information System]</span></p>
-                                                    <p>Exemption Year: <span class="text-success exemptionYear">[2018]</span></p>
+
+                                                    <h3>Grounds on Which Exemption is Sought</h3>
+                                                    <p>Prior Study Unit: <span class="text-success exemptionUnitCodePrior">[HIT 1302] [Introduction to Business Information System]</span></p>
+                                                    <p>Prior Study Year: <span class="text-success exemptionUnitYearPrior">[2018]</span></p>
                                                     <p class="attachmentData">Attachment: <a href="#">iCATS Results Slip.pdf</a></p>
                                                 </div>
 
@@ -278,11 +281,9 @@
         modal_template.find('.status').html(issue.status)
 
         modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
-        modal_template.find('.exemptionUnit').html(submissionData.exemptionUnitCode + ' ' + submissionData.exemptionUnitTitle)
-        modal_template.find('.exemptionYear').html(submissionData.exemptionUnitYear)
-        // TODO: ABILITY TO DOWNLOAD THE ATTACHMENT
-        // modal_template.find('.attachmentData').children('a').attr('data-url', issue.attachmentData)
-        // modal_template.find('.attachmentData').children('a').html(issue.attachmentData.file)
+        modal_template.find('.exemptionUnitCodeSought').html(submissionData.soughtUnitCode + ' ' + submissionData.soughtUnitTitle)
+        modal_template.find('.exemptionUnitCodePrior').html(submissionData.exemptionUnitCodePrior + ' ' + submissionData.exemptionUnitTitlePrior)
+        modal_template.find('.exemptionUnitYearPrior').html(submissionData.exemptionUnitYearPrior)
 
         // replace the id to be passed into the route
         let route = modal_template.find('.modal-footer').children('.submit').data('url')

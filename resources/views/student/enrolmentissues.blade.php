@@ -407,9 +407,9 @@ $('.datepicker').datepicker({
             json_exemption["fromProgramTitle"] = $('.fromProgramTitle').text()
             json_exemption["soughtUnitCode"] = $('.exemptionUnitCodeSought').val()
             json_exemption["soughtUnitTitle"] = $('.exemptionUnitTitleSought').val()
-            json_exemption["exemptionUnitCode"] = $('.exemptionUnitCodePrior').val()
-            json_exemption["exemptionUnitYear"] = $('.exemptionUnitYearPrior').val()
-            json_exemption["exemptionUnitTitle"] = $('.exemptionUnitTitlePrior').val()
+            json_exemption["exemptionUnitCodePrior"] = $('.exemptionUnitCodePrior').val()
+            json_exemption["exemptionUnitYearPrior"] = $('.exemptionUnitYearPrior').val()
+            json_exemption["exemptionUnitTitlePrior"] = $('.exemptionUnitTitlePrior').val()
 
             submissionData = JSON.stringify(json_exemption)
             attachmentData = encodedContent

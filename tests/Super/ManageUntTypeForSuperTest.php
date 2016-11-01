@@ -21,6 +21,12 @@ class ManageUntTypeForSuperTest extends TestCase
         Artisan::call('migrate:rollback');
     }
 
+    /**
+     * Page Test(Frontend)
+     * A test to add Unit Type (button)
+     *
+     * @return void
+     */
     public function addUnitType()
     {
         $this->visit('/super/manageunittype')
@@ -29,6 +35,13 @@ class ManageUntTypeForSuperTest extends TestCase
             ->onPage('/super/manageunittype/create');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to add Unit Type (Controller)
+     * Condition: Unit Type not exists or Empty
+     * @return void
+     */
     public function addUnitTypeSuccess()
     {
         //$course = factory(App\Course::class)->create();
@@ -39,6 +52,13 @@ class ManageUntTypeForSuperTest extends TestCase
         $this->assertRedirectedToRoute('super/managecourse');
     }
 
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to add UnitType  (Controller)
+     * Condition: UnitType not exists or empty
+     * @return void
+     */
     public function addUnitTypeFail()
     {
         //$course = factory(App\Course::class)->create();
@@ -48,6 +68,13 @@ class ManageUntTypeForSuperTest extends TestCase
         $this->assertRedirectedToRoute('super/managecourse');
         $this->assertSessionHasErrors();
     }
+
+    /**
+     * Page Test(Frontend)
+     * A test to edit Studen (button)
+     *
+     * @return void
+     */
     public function editUnitType()
     {
         $this->visit('/super/manageunittype')
@@ -65,7 +92,14 @@ class ManageUntTypeForSuperTest extends TestCase
         $this->call('POST','super/manageunittype/edit');
         $this->assertRedirectedToRoute('super/manageunittype');
     }
-    
+
+    /**
+     * Page Test
+     * FAIL TEST
+     * A test to edit UnitType (Controller)
+     * Condition: UnitType exists or empty
+     * @return void
+     */
     public function editUnitTypeFail()
     {
         $type = factory(App\UnitType::class)->create();
@@ -75,7 +109,7 @@ class ManageUntTypeForSuperTest extends TestCase
         $this->call('POST','super/manageunittype/edit');
         $this->assertRedirectedToRoute('super/manageunittype');
     }
-
+    // Todo Delete UnitType
 
     /**
      * A basic test example.

@@ -61,11 +61,6 @@ class ManageUnitController extends Controller
         return view ('coordinator.manageunits', $data);
     }
 
-    public function search()
-    {
-      //
-    }
-
     /**
      * Store a newly created resource in storage.
      *

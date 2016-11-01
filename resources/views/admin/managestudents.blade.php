@@ -26,9 +26,9 @@
                             <th>Student Name</th>
                             <td style="width: 250px"> <!-- search bar -->
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search Student Name/ID">
+                                    <input type="text" class="form-control" id="search-criteria" placeholder="Search">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
+                                        <button class="btn btn-default" id="search">
                                             <span class="glyphicon glyphicon-search"></span>
                                         </button>
                                     </span>
@@ -36,7 +36,7 @@
                             </td> <!-- end search bar -->
                         </thead>
                         @foreach ($students as $student)
-                        <tr>
+                        <tr class="student">
                             <td>{{ $student->studentID }}</td>
                             <td>{{ $student->givenName }} {{ $student->surname }}</td>
                             <td>
@@ -74,17 +74,17 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>Student ID:</label>
-                                    <input class="form-control" id="studentID" placeholder="4318595">
+                                    <input class="form-control" id="studentID">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Family Name / Surname:</label>
-                                    <input type="text" class="form-control" id="surname" placeholder="Doe">
+                                    <input type="text" class="form-control" id="surname">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Given Name:</label>
-                                    <input type="text" class="form-control" id="givenName" placeholder="John">
+                                    <input type="text" class="form-control" id="givenName">
                                 </div>
 
                                 <div class="form-group">
@@ -96,7 +96,7 @@
 
                                 <div class="form-group">
                                     <label>Course Code:</label>
-                                    <input type="text" class="form-control" id="courseCode" placeholder="IO47">
+                                    <input type="text" class="form-control" id="courseCode">
                                 </div>
                             </div>
 
@@ -118,6 +118,20 @@
 <script src="{{ asset('js/xlsx.min.js') }}"></script>
 <script>
 (function() {
+    // Search
+    $("#search-criteria").keyup(function() {
+        // when something is typed in the box, it will hide all
+        let searchvalue = $(this).val().toLowerCase()
+        $('.student').hide()
+
+        // if the text from the tr matches any part of the search value (indexOf), show
+        $('.student').each(function() {
+            let text = $(this).text().toLowerCase()
+            if (text.indexOf(searchvalue) != -1)
+                $(this).show()
+        })
+    })
+
     // Get CSRF token
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
@@ -160,10 +174,6 @@
         //$('#students_table_status').append(clone_tr)
         $('#students_table').append(clone_tr)
     }
-
-    $('#search').change(function() {
-        console.log($(this).val());
-    })
 }) ()
 </script>
 @stop

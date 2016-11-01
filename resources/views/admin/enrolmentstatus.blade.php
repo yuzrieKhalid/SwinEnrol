@@ -160,6 +160,19 @@
                 tr_template.find('.td_index').html(i+1)
                 tr_template.find('.td_unitCode').html(enrolled[i].unitCode)
                 tr_template.find('.td_unitStatus').html(enrolled[i].status)
+
+                // add text color depending on the status
+                if (tr_template.find('.td_unitStatus').html() == 'pending'      ||
+                    tr_template.find('.td_unitStatus').html() == 'pending_add'  ||
+                    tr_template.find('.td_unitStatus').html() == 'pending_add') {
+                    tr_template.addClass('text-warning')    // yellow
+                } else if (tr_template.find('.td_unitStatus').html() == 'dropped') {
+                    tr_template.addClass('text-danger')     // red
+                } else { // if (tr_template.find('.td_unitStatus').html() == 'confirmed')
+                    tr_template.addClass('text-success')    // green
+                }
+
+                // append to suitable parent tag
                 enrolment_table.append(tr_template)
             }
         }

@@ -42,7 +42,6 @@ Route::group([
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);
     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
-    Route::post('enrolmentstatus', 'Admin\EnrolmentStatusStudent@index');
     Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 

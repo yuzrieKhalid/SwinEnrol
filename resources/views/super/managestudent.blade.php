@@ -9,24 +9,25 @@
                         <h3>Manage Students</h3>
                     </div>
                     <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="search-criteria" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" id="search">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <table class="table" id="user_table">
-                          <!--  -->
-                          <div class="col-md-4">
-                            <form class="form" method="GET">
-                              <input type="text" class="form-control" id='student' name='student' placeholder="Search">
-                              <div class="input-group-btn">
-                                  <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                              </div>
-
-                            </form>
-                          </div>
-                          <!--  -->
                             <thead>
                                 <th>Username</th>
                                 <th><span class="pull-right"><a class="btn btn-default" name="addSt" id="addSt" href="{{ url('/super/managestudent/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
                             @foreach($users as $user)
-                                <tr>
+                                <tr class="student">
                                     <td class="td_username">{{ $user->username }}</td>
                                     <td>
                                         <div class="pull-right">
@@ -69,4 +70,24 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('extra_js')
+<script type="text/javascript">
+(function() {
+    // Search
+    $("#search-criteria").keyup(function() {
+        // when something is typed in the box, it will hide all
+        let searchvalue = $(this).val().toLowerCase()
+        $('.student').hide()
+
+        // if the text from the tr matches any part of the search value (indexOf), show
+        $('.student').each(function() {
+            let text = $(this).text().toLowerCase()
+            if (text.indexOf(searchvalue) != -1)
+                $(this).show()
+        })
+    })
+}) ()
+</script>
 @stop

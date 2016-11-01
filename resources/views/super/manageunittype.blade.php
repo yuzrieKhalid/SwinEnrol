@@ -14,7 +14,7 @@
                                 <thead>
                                     <th>Types</th>
                                     <th><span class="pull-right">
-                                        <a class="btn btn-default" href="{{ url('/super/manageunittype/create') }}" role="button">
+                                        <a class="btn btn-default" name="AddType" href="{{ url('/super/manageunittype/create') }}" role="button">
                                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                         </a></span>
                                     </th>

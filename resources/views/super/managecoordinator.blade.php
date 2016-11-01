@@ -12,7 +12,7 @@
                         <table class="table" id="user_table">
                             <thead>
                                 <th>Username</th>
-                                <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managecoordinator/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                                <th><span class="pull-right"><a class="btn btn-default" name="AddCor" id="AddCor" href="{{ url('/super/managecoordinator/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
                             @foreach($users as $user)
                                 <tr>

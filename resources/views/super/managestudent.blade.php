@@ -23,7 +23,7 @@
                           <!--  -->
                             <thead>
                                 <th>Username</th>
-                                <th><span class="pull-right"><a class="btn btn-default" href="{{ url('/super/managestudent/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                                <th><span class="pull-right"><a class="btn btn-default" name="addSt" id="addSt" href="{{ url('/super/managestudent/create') }}" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
                             </thead>
                             @foreach($users as $user)
                                 <tr>

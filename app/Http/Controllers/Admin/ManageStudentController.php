@@ -129,7 +129,7 @@ class ManageStudentController extends Controller
             'courseCode',
             'password'
         ]);
-        
+
         // find student and update
         $student = Student::findOrFail($id);
         $student->studentID = $input['studentID'];
@@ -158,7 +158,8 @@ class ManageStudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return response()->json($student);
+        // return response()->json($student);
+        return 'deleted';
     }
 
     public function downloadExcel()

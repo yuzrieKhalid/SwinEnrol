@@ -12,10 +12,10 @@
                 <div class="panel-heading">
                     <h3>
                         Manage Students
-                        <a class="btn btn-default pull-right" href="#" role="button" data-toggle="modal" data-target="#adminAddStudent">
+                        <button class="btn btn-default pull-right" href="#" role="button" name="Add Student" data-toggle="modal" data-target="#adminAddStudent">
                             <span class="glyphicon glyphicon-plus"></span>
                             Add Student
-                        </a>
+                        </button>
                     </h3>
                 </div>
 
@@ -40,17 +40,39 @@
                             <td>{{ $student->studentID }}</td>
                             <td>{{ $student->givenName }} {{ $student->surname }}</td>
                             <td>
-                                <a class="btn btn-default submit" href="{{ route('admin.managestudents.edit', $student->studentID) }}">
+                                <a class="btn btn-default submit" name="Edit"  href="{{ route('admin.managestudents.edit', $student->studentID) }}">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Edit
                                 </a>
-                                <button class="btn btn-default submit" data-url="{{ route('admin.managestudents.destroy', $student->studentID) }}" data-method="DELETE">
+                                <button id="delete" class="btn btn-danger" data-toggle="modal" data-target="#delete_{{ $student->studentID }}">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    Delete
                                 </button>
-                              </td>
-
+                            </td>
                         </tr>
+
+                        {{-- Delete Confirmation Modal --}}
+                        <div class="modal fade" id="delete_{{ $student->studentID }}" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h2 class="modal-title">Delete {{ $student->studentID }}</h2>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete {{ $student->studentID }}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-danger submit" data-url="{{ route('admin.managestudents.destroy', $student->studentID) }}" data-method="DELETE">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            Delete
+                                        </button>
+                                        <button class="btn btn-primary" data-dismiss="modal">CANCEL</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end .modal -->
                         @endforeach
                     </table>
                 </div> <!-- end .panel-body -->

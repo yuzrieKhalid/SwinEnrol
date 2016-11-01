@@ -18,9 +18,7 @@ class ApprovedIssuesController extends Controller
      */
     public function index()
     {
-        $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                        ->where('status', '=', 'approved')->get();
-        return response()->json($data);
+        //
     }
 
     /**

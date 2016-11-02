@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GraduationRequirementsTableSeeder::class);
         $this->call(CourseCoordinatorTableSeeder::class);
         $this->call(CoordinatorUnitTableSeeder::class);
+        $this->call(UnitInfoTableSeeder::class);
 
         // eduversal
         $this->call(StudentRecordsSeeder::class);

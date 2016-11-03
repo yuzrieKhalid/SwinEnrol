@@ -137,7 +137,7 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'AdminOfficer\HomeController@index');
-    Route::post('manageunitinfo/search', 'AdminOfficer\ManageUnitInfoController@index');
+    Route::post('manageunitinfo/{manageunitinfo}/edit', ['as' => 'adminofficer.manageunitinfo.edit', 'uses' => 'AdminOfficer\ManageUnitInfoController@edit']);
     Route::resource('manageunitinfo', 'AdminOfficer\ManageUnitInfoController');
 });
 

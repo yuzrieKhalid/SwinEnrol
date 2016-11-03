@@ -177,7 +177,7 @@
             'method': method,
             'data': data
         }).done(function(data) {
-            window.location.reload()
+            // window.location.reload()
         })
     })
     // Uploading Section

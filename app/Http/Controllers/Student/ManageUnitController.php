@@ -391,6 +391,6 @@ class ManageUnitController extends Controller
         ->where('semesterLength', '=', $input['semesterLength'])
         ->delete();
 
-        return response()->json($unit);
+        return 'deleted';
     }
 }

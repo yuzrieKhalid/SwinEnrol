@@ -72,16 +72,13 @@ class ManageStudentController extends Controller
 
         $student->year = Carbon::now()->year;
         $student->term = Config::findOrFail('semester')->value;;
-
+        $student->save();
 
         // adds the student to the User table too
         $user = new User;
         $user->username = $student->studentID;
         $user->password = bcrypt($input['dateOfBirth']);
         $user->permissionLevel = '1';
-
-        // save into database
-        $student->save();
         $user->save();
 
         return response()->json($user);

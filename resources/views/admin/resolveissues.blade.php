@@ -53,11 +53,10 @@
                                                     <p>Issue ID : <span class="text-warning issue">[Leave of Absence]</span></p>
                                                     <p>Status: <span class="text-warning status">Pending</span></p>
 
-                                                    <h3>Withdrawal From Program Details</h3>
+                                                    <h3>Leave of Absence</h3>
                                                     <p>Teaching Period: <span class="text-primary teachingPeriod">[4 Years]</span></p>
-                                                    <p>Year: <span class="text-primary year">2018</span></p>
                                                     <p>Is An International Student: <span class="text-primary isForeigner">[YES]</span></p>
-                                                    <p>International Student Officer: <span class="text-primary iso_name">[31-08-2016]</span></p>
+                                                    <p>International Student Officer: <span class="text-primary iso_name">[Some name]</span></p>
                                                     <hr>
                                                     <p>Reason of Transfer:</p>
                                                     <blockquote>
@@ -121,8 +120,7 @@
         modal_template.find('.issue').html(issue.enrolment_issues.issueType)
         modal_template.find('.status').html(issue.status)
 
-        modal_template.find('.teachingPeriod').html(submissionData.teachingPeriod)
-        modal_template.find('.year').html(submissionData.year)
+        modal_template.find('.teachingPeriod').html('From ' + submissionData.period_from + ' to ' + submissionData.period_to)
         modal_template.find('.isForeigner').html(submissionData.isForeigner)
         modal_template.find('.iso_name').html(submissionData.iso_name)
         modal_template.find('.reason').html(submissionData.reasonForLOA)
@@ -171,7 +169,6 @@
         let url = $('#student_enrolment_issues_table').data('url')
         $.get(url, function(data) {
             data.forEach(function(issue) {
-                console.log(issue);
                 addData(issue)
             })
         })

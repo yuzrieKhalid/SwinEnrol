@@ -41,7 +41,6 @@ class EnrolmentHistoryController extends Controller
             $sheet->fromArray($data);
           });
         })->export('xls');
-
-   }
+    }
 
 }

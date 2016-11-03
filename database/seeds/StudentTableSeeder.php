@@ -73,6 +73,16 @@ class StudentTableSeeder extends Seeder
                 'term' => 'Semester 1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'test',
+                'surname' => 'User',
+                'givenName' => 'Test',
+                'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

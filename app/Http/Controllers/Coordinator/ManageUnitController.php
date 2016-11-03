@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
 use App\Unit;
 use App\Course;
 use App\Requisite;
 use App\StudyLevel;
+use App\StudyPlanner;
+use App\CourseCoordinator;
 
 class ManageUnitController extends Controller
 {
@@ -31,27 +34,26 @@ class ManageUnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        // Search
+        $input = $request->only(['search']);
+
         $data = [];
-        $units = Unit::get();
+        $units = [];
+
+        if ($input['search'] != "") {
+            $units = Unit::where('unitCode', 'LIKE', '%'.$input['search'].'%')->get();
+        } else {
+            $units = Unit::get();
+        }
 
         $data['units'] = $units;
         $data['studyLevels'] = StudyLevel::all();
 
         return view ('coordinator.manageunits', $data);
     }
-    public function search(Request $request)
-    {
-      $unitCode = $request->only('unitCode');
-
-      if(!empty($unitCode)){
-        return $unit->where('unitCode', 'LIKE', '%'.$unitCode.'%')->get();
-      }
-
-      return false;
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *

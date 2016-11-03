@@ -61,13 +61,12 @@
                                 <li><a href="{{ url('/admin/setenrolmentdates/create') }}">Set Enrolment Dates</a></li>
                                 <li><a href="{{ url('/admin/resolveissue/create') }}">Resolve Leave of Absence</a></li>
                                 <li><a href="{{ url('/admin/approvedissues/create') }}">Approved Issues</a></li>
-                                <li><a href="{{ url('/admin/enrolmentstatus') }}">Enrolment Status</a></li>
+                                <li><a href="{{ url('/admin/enrolmentstatus/create') }}">Enrolment Status</a></li>
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '1')
                                 <li class="dropdown-header">MENU</li>
-                                <li><a href="{{ url('/student') }}">Enrolment Status</a></li>
-                                <li><a href="{{ url('/student/enrolmenthistory') }}">Enrolment History</a></li>
+                                <li><a href="{{ url('/student') }}">Home</a></li>
                                 <li><a href="{{ url('/student/manageunits/create') }}">Manage Units</a></li>
                                 <li><a href="{{ url('/student/viewstudyplanner') }}">View Study Planner</a></li>
                                 <li><a href="{{ url('/student/viewunitlistings') }}">View Unit Listings</a></li>

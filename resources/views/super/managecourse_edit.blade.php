@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
   <div class="col-md-9">
-    <div class="panel panel-success">
+    <div class="panel panel-warning">
           <div class="panel-heading">
               <h3>Update Course Information <br>
                   <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>
@@ -51,7 +51,7 @@
                    data-method="PUT" data-url="{{ route('super.managecourse.update', $courses->courseCode) }}">
                    Edit</button>
                   <a id="backToCreate" class="btn btn-info"
-                  href="{{ route('super.managecourse.create') }}"
+                   href="{{ route('super.managecourse.create') }}"
                    role="button">Back To Previous Page</a>
               </div>
           </div>
@@ -71,37 +71,6 @@
       return $('meta[name=_token]').attr('content')
   }
 
-
-
-  let addCourse = function(course) {
-      if ($('#course_table').find('.tr_template') == true) {
-          let tr_template = $('#course_table').find('.tr_template').clone()
-          tr_template.removeClass('hidden')
-          tr_template.removeClass('tr_template')
-
-          let courseEdit = tr_template.children('.td_courseEdit').html()
-          courseEdit = courseEdit.replace("id", course.courseCode)
-          let courseDelete = tr_template.children('.td_courseDelete').html()
-          courseDelete = courseDelete.replace("id", course.courseCode)
-
-          tr_template.children('.td_courseCode').html(course.courseCode)
-          tr_template.children('.td_courseName').html(course.courseName)
-          tr_template.children('.td_courseEdit').html(`${courseEdit}`)
-          tr_template.children('.td_courseDelete').html(`${courseDelete}`)
-
-          $('#course_table').append(tr_template)
-      }
-  }
-
-  let getCourse = function() {
-      let url = $('#course_table').data('url')
-      $.get(url, function(data) {
-          data.forEach(function(course) {
-              addCourse(course);
-          })
-      })
-  }
-
   $('.submit').click(function(){
       let method = $(this).data('method')
       let url = $(this).data('url')
@@ -110,19 +79,18 @@
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
           semestersPerYear: $('#semestersPerYear').val(),
-          semesterCoun: $('#semesterCount').val(),
-          studyLevel: $('#studyLevel').val(),
+          semesterCount: $('#semesterCount').val(),
+          studyLevel: $('#studyLevel').val()
+
       }
       $.ajax({
           'url': url,
           'method': method,
           'data': data
       }).done(function(data) {
-          addCourse(data)
           window.location.reload()
       })
   })
-
 
 })()
 

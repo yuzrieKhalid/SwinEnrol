@@ -41,7 +41,7 @@ Route::group([
          'as' => 'admin.resolveissue.disapprove',
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);
-     Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
+    Route::resource('approvedissues', 'Admin\ApprovedIssuesController');
     Route::resource('enrolmentstatus', 'Admin\EnrolmentStatusStudent');
 });
 
@@ -67,6 +67,7 @@ Route::group([
         'uses' => 'Coordinator\HomeController@destroy'
     ]);
 
+    Route::post('manageunits/create', 'Coordinator\ManageUnitController@create');
     Route::post('managestudyplanner/create', 'Coordinator\ManagePlannerController@create');
     Route::resource('managestudyplanner', 'Coordinator\ManagePlannerController');
     Route::resource('manageunitlisting', 'Coordinator\ManageListingController');

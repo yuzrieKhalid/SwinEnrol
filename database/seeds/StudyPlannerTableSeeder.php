@@ -14,7 +14,7 @@ class StudyPlannerTableSeeder extends Seeder
     {
         //
         DB::table('study_planner')->insert([
-            // BCS
+            // BCS 2016
             // Year 1 Sem 1
             [
                 'unitCode' => 'HIT1401',

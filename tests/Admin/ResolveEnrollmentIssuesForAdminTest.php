@@ -20,6 +20,13 @@ class ResolveEnrollmentIssuesForAdminTest extends TestCase
         Artisan::call('migrate:rollback');
     }
 
+    /**
+     * Page Test
+     * SUCCESS TEST
+     * A test to show student Issues(Leave of Absence)
+     * Condition: UnitType exists or empty
+     * @return void
+     */
     public function showIssues()
     {
         $this->visit('/admin/resolveissue/create')

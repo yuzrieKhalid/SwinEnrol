@@ -109,9 +109,9 @@
           _token: getToken(),
           courseCode: $('#courseCode').val(),
           courseName: $('#courseName').val(),
-          courseName: $('#semestersPerYear').val(),
-          courseName: $('#semesterCount').val(),
-          courseName: $('#studyLevel').val(),
+          semestersPerYear: $('#semestersPerYear').val(),
+          semesterCoun: $('#semesterCount').val(),
+          studyLevel: $('#studyLevel').val(),
       }
       $.ajax({
           'url': url,

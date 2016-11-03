@@ -23,11 +23,6 @@ class ManageStudentRemoveForAdminTest extends TestCase
 
     public function removeStudentFromStudentList()
     {
-        // $student = factory(App\Student::class)->create([
-        //     'studentID' => '4315405'
-        // ]);
-
-        //$this->actingAs($user);
         $this->json('POST', 'admin/managestudents', [
             'studentID' => '4315405',
             'surname'=>'Haque',
@@ -35,12 +30,10 @@ class ManageStudentRemoveForAdminTest extends TestCase
             'courseCode'=>'I047',
             'dateOfBirth'=>'26/12/1990',
         ])->json('DELETE', 'admin/managestudents')
-        ->see('deleted');
-        // ->onPage('admin/managestudents');
+        ->see('deleted')
+        ->onPage('admin/managestudents');
 
     }
-
-
 
 
     /**

@@ -27,8 +27,9 @@ class HomeController extends Controller
         $data['student'] = $student;
         $course = Course::where('courseCode', '=', $student->courseCode)->first();
         $data['course'] = $course;
-
         $data['student'] = $student;
+        $data['currentsem'] = Config::find('semester');
+        $data['currentyear'] = Config::find('year');
         $data['phase'] = Config::find('enrolmentPhase');
         $enrolled = EnrolmentUnits::with('unit')->where([
             ['studentID', '=', $user->username],
@@ -38,13 +39,15 @@ class HomeController extends Controller
         $data['enrolled'] = $enrolled;
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-        ->where('status', '=', 'approved')->get();
+        ->where('studentID', '=',$student->studentID)
+        ->get();
         $data['issues'] = $issues;
 
-        // get all the previous taken units (joined with Unit table)
-        $history = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
+        // get all the previous taken units (joined with Unit table) - that has a 'pass' grade
+        $history = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('grade', 'pass')->get();
         $data['history'] = $history;
 
+        // get the exemptions
         $exempted = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('status', '=', 'exempted')->get();
         $data['exempted'] = $exempted;
 

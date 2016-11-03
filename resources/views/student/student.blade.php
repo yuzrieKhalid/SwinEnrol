@@ -15,20 +15,20 @@
                         <table class="table borderless-table">
                             <tbody>
                                 <tr>
-                                    <td>NAME</td>
+                                    <td>STUDENT NAME</td>
                                     <td>{{ $student->givenName }} {{ $student->surname }}</td>
                                 </tr>
                                 <tr>
-                                    <td>ID</td>
+                                    <td>STUDENT ID</td>
                                     <td>{{{ isset(Auth::user()->username) ? Auth::user()->username : Auth::user()->email }}}</td>
                                 </tr>
                                 <tr>
-                                    <td>SEMESTER</td>
-                                    <td>{{ $student->term }}</td>
+                                    <td>CURRENT SEMESTER</td>
+                                    <td>{{ $currentsem->value }} {{ $currentyear->value }}</td>
                                 </tr>
                                 <tr>
-                                    <td>YEAR</td>
-                                    <td>{{ $student->year }}</td>
+                                    <td>YEAR INTAKE</td>
+                                    <td>{{ $student->term }} {{ $student->year }}</td>
                                 </tr>
                                 <tr>
                                     <td>PROGRAM</td>
@@ -118,12 +118,7 @@
                                 @endforeach
                             @endif
                         </table>
-                        <a href="{{ url('/enrolmenthistory/downloadExcel/xlsx') }}">
-                            <button class="btn btn-success">Download Unit List</button>
-                        </a>
                     </div>
-
-
 
                     <!-- Exempted Units -> only for students who applied for exemption -->
                     <div class="table-responsive">
@@ -146,11 +141,93 @@
                             @endif
                         </table>
                     </div>
-
-
                 </div>
             </div> <!-- end .panel -->
-        </div>
+        </div> <!-- end .col-md -->
+
+        {{-- enrolment issues panel --}}
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Submitted Enrolment Issues
+                </div>
+                <div class="panel-body">
+                    {{-- pending table --}}
+                    <div class="col-md-4">
+                        <div class="table-responsive">
+                            <table class="table borderless-table">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2" class="text-center">
+                                            <h4>Pending Issues</h4>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($issues as $issue)
+                                        @if($issue->status == 'pending')
+                                            <tr>
+                                                <td>{{ $issue->enrolment_issues->issueType }}</td>
+                                                <td>{{ $issue->updated_at->format('D d/m/Y') }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {{-- approved table --}}
+                    <div class="col-md-4">
+                        <div class="table-responsive">
+                            <table class="table borderless-table">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2" class="text-center">
+                                            <h4>Approved Issues</h4>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($issues as $issue)
+                                        @if($issue->status == 'approved')
+                                            <tr>
+                                                <td>{{ $issue->enrolment_issues->issueType }}</td>
+                                                <td>{{ $issue->updated_at->format('D d/m/Y') }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {{-- disapproved table --}}
+                    <div class="col-md-4">
+                        <div class="table-responsive">
+                            <table class="table borderless-table">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2" class="text-center">
+                                            <h4>Disapproved Issues</h4>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($issues as $issue)
+                                        @if($issue->status == 'disapproved')
+                                            <tr>
+                                                <td>{{ $issue->enrolment_issues->issueType }}</td>
+                                                <td>{{ $issue->updated_at->format('D d/m/Y') }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end .panel -->
+        </div> <!-- end .col-md-12 -->
+        {{-- end enrolment issues panel --}}
     </div>
 
 </div>

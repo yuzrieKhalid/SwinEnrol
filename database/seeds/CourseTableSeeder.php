@@ -59,6 +59,24 @@ class CourseTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'courseCode' => 'F4-K002',
+                'courseName' => 'Bachelor of Engineering (Civil)(Honours)',
+                'semestersPerYear' => 2,
+                'semesterCount' => 8,
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'courseCode' => 'BH-ERM',
+                'courseName' => 'Bachelor of Robotics and Mechatronics (Honours)',
+                'semestersPerYear' => 2,
+                'semesterCount' => 8,
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
             // etc
             [
                 'courseCode' => 'FICT',

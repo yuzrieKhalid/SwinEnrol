@@ -94,6 +94,12 @@
                                 <li><a href="{{ url('/super/managestudent') }}">Manage Students</a></li>
                                 <li><a href="{{ url('/super/manageunittype') }}">Manage Unit Types</a></li>
                                 @endif
+
+                                @if(Auth::user()->permissionLevel == '5')
+                                <li class="dropdown-header">MENU</li>
+                                <li><a href="{{ url('/adminofficer') }}">Home</a></li>
+                                <li><a href="{{ url('/adminofficer/manageunitinfo') }}">Manage Unit Info</a></li>
+                                @endif
                             </ul>
                         </li>
                     @endif

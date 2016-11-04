@@ -38,6 +38,11 @@ class Unit extends Model
         return $this->hasMany('App\CoordinatorUnits', 'unitCode');
     }
 
+    public function unit_info()
+    {
+        return $this->hasMany('App\UnitInfo', 'unitCode');
+    }
+
     // inverse relation
     public function study_level()
     {

@@ -131,6 +131,15 @@ Route::group([
     Route::resource('manageunittype', 'Super\ManageUnitType');
 });
 
+Route::group([
+    'prefix' => 'adminofficer',
+    'middleware' => ['web', 'auth'],
+], function() {
+    Route::get('/', 'AdminOfficer\HomeController@index');
+    Route::post('manageunitinfo/{manageunitinfo}/edit', ['as' => 'adminofficer.manageunitinfo.edit', 'uses' => 'AdminOfficer\ManageUnitInfoController@edit']);
+    Route::resource('manageunitinfo', 'AdminOfficer\ManageUnitInfoController');
+});
+
 Route::get('/phase', 'PhaseController@phaseTrigger');
 Route::get('/unit', 'PhaseController@unitApprove');
 Route::get('/unitCheck', 'PhaseController@unitCheck');

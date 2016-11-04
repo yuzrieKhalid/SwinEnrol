@@ -1094,7 +1094,7 @@ class StudyPlannerTableSeeder extends Seeder
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
-                'enrolmentTerm' => '8',
+                'enrolmentTerm' => '7',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -1104,10 +1104,303 @@ class StudyPlannerTableSeeder extends Seeder
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
-                'enrolmentTerm' => '8',
+                'enrolmentTerm' => '7',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            /////  Civil Eng:::::
+            // Year 1 Sem 1
+            [
+                'unitCode' => 'CVE10005',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE10004',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PHY10001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10006',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 1 Sem 2
+            [
+                'unitCode' => 'CVE10002',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE10001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20004',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10007',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 2 Sem 1
+            [
+                'unitCode' => 'CVE10006',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE20002',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE20003',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20003',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 2 Sem 2
+            [
+                'unitCode' => 'CVE20001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+
+
+
+			/////*******************************
+			/////*******************************
+			/////*******************************
+
+
+
+
+			/////////*****************////////////
+
+
+            [
+                'unitCode' => 'CVE30001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE30002',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			[
+                'unitCode' => 'MTH20006',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 3 Sem 1
+            [
+                'unitCode' => 'CVE20005',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE30004',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			[
+                'unitCode' => 'CVE40004',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			[
+                'unitCode' => 'MME30001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 3 Sem 1
+            [
+                'unitCode' => 'CVE20004',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE30003',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			[
+                'unitCode' => 'CVE40002',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Year 3 Sem 2
+            [
+                'unitCode' => 'CVE40001',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE40006',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			[
+                'unitCode' => 'CVE40008',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+			//year 4 sem 1
+			[
+                'unitCode' => 'CVE40009',
+                'courseCode' => 'F4-K002',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
 
         ]);
     }

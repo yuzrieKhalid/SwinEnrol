@@ -975,6 +975,160 @@ class UnitTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
+                'unitCode' => 'MEE20005',
+                'unitName' => 'Materials & Manufacturing 1',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH20008',
+                'unitName' => 'Engineering Mathematics 4A',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20001',
+                'unitName' => 'Thermodynamics 1',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40001',
+                'unitName' => 'Thermodynamics 2',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE30004',
+                'unitName' => 'Solid Mechanics',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE30002',
+                'unitName' => 'Control Engineering',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE30001',
+                'unitName' => 'Materials and Manufacturing 2',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40002',
+                'unitName' => 'Materials and Manufacturing 2',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40004',
+                'unitName' => 'Fluid Mechanics 2',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40008',
+                'unitName' => 'Final Year Research Project 1 (Mech)',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40009',
+                'unitName' => 'Final Year Research Project 2 (Mech)',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
                 'unitCode' => 'HEC2322',
                 'unitName' => 'Engineering Materials and Characterisation',
                 'creditPoints' => '0',
@@ -2624,16 +2778,6 @@ class UnitTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-			//////////////////////////////////////////////
-			///
-
-			//////////////////////////////////////////////
-			///
-
-			//////////////////////////////////////////////
-			///
-
-			//////////////////////////////////////////////
 			///Robotics
             [
                 'unitCode' => 'EEE20006',

@@ -375,6 +375,431 @@ class StudyPlannerTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            // Bachelor of Engineering (Chemical)
+			/////*******************************
+
+			/////*******************************
+            [
+                'unitCode' => 'CVE10002',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE10001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10006',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'HEC1221',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PHY10001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10002',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10007',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'EEE10001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2411',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2421',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2322',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'MEE20002',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2311',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH20007',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3521',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'HEC3651',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3514',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2412',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME30001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            ////
+            [
+                'unitCode' => 'HEC3622',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3523',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3512',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4842',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'HEC4771',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4745',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3612',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4722',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //////
+            [
+                'unitCode' => 'HEC4873',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4746',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4824',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME40001',
+                'courseCode' => 'SK401',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Bachelor of Design (Graphic Design)
+          /////*******************************
+          /////*******************************
+          /////*******************************
+          [
+              'unitCode' => 'HDC001',
+              'courseCode' => 'BA-MULGD',
+              'unitType' => 'Core',
+              'year' => 2016,
+              'semester' => 'Semester 1',
+              'enrolmentTerm' => '0',
+              'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now()
+          ],
+          [
+              'unitCode' => 'HDC002',
+              'courseCode' => 'BA-MULGD',
+              'unitType' => 'Core',
+              'year' => 2016,
+              'semester' => 'Semester 1',
+              'enrolmentTerm' => '0',
+              'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now()
+          ],
+          [
+              'unitCode' => 'HDC003',
+              'courseCode' => 'BA-MULGD',
+              'unitType' => 'Core',
+              'year' => 2016,
+              'semester' => 'Semester 1',
+              'enrolmentTerm' => '0',
+              'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now()
+          ],
+          [
+              'unitCode' => 'HDC004',
+              'courseCode' => 'BA-MULGD',
+              'unitType' => 'Core',
+              'year' => 2016,
+              'semester' => 'Semester 1',
+              'enrolmentTerm' => '0',
+              'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now()
+          ],
+          [
+                'unitCode' => 'HDCOM111',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM112',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM121',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM122',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM211',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

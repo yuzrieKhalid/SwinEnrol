@@ -74,6 +74,20 @@ class UnitTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'unitCode' => 'MME40001',
+                'unitName' => ' dmdmhfndkjv',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
 			[
                 'unitCode' => 'COS20015',
                 'unitName' => ' Fundamental of Data Management',

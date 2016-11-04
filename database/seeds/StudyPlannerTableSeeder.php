@@ -800,6 +800,315 @@ class StudyPlannerTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            /////
+
+            [
+                'unitCode' => 'HDCOM212',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM221',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM311',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM312',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM321',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '8',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'courseCode' => 'BA-MULGD',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '8',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            // Bachelor of Science (Biotechnology)
+            /////*******************************
+			/////*******************************
+			/////*******************************
+		    [
+                'unitCode' => 'BIO10001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH00004',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO10003',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10005',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ICT10007',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //
+            [
+                'unitCode' => 'BCH20002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO20002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH20001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            ///
+            [
+                'unitCode' => 'BIO20001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'COM20002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE20006',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES3410',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PEH20002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES3405',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES2210',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30004',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'NPS30002',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES2205',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH30003',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '8',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30001',
+                'courseCode' => 'BA-SCBIO2',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '8',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
         ]);
     }
 }

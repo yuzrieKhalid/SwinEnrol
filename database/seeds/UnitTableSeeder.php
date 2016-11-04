@@ -1398,19 +1398,6 @@ class UnitTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-
-
-			////////////*********************////////////
-
-			/////////////*********************////////////
-
-			//////////////////////////////
-
-			/////////////////////////////////
-
-			////////////////////////////////
-
-			///////////////////////////////
             [
                 'unitCode' => 'PRE10',
                 'unitName' => 'Multi-Prerequisite (Success)',
@@ -2102,9 +2089,6 @@ class UnitTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-            // Engineering (Chemical) Up
-
-			/////
             // Design (Graphic Design)
             [
                 'unitCode' => 'HDC001',
@@ -2651,6 +2635,76 @@ class UnitTableSeeder extends Seeder
 
 			//////////////////////////////////////////////
 			///Robotics
+            [
+                'unitCode' => 'EEE20006',
+                'unitName' => 'Circuits and Electronics 1',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20006',
+                'unitName' => 'Machine Dynamics 1',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE30003',
+                'unitName' => 'Machine Design',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE40003',
+                'unitName' => 'Digital Signal & Image Processing',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40003',
+                'unitName' => 'Machine Dynamics 2',
+                'creditPoints' => '0',
+                'maxStudentCount' => 100,
+                'lectureGroupCount' => 10,
+                'lectureDuration' => '2h',
+                'tutorialGroupCount' => 10,
+                'tutorialDuration' => '2h',
+                'unitInfo' => '[{"convenor":"kikuji"},{"lecturers":["kakuji"],"lecturers_count":1},{"tutors":["kossen"],"tutors_count":1}]',
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
 			[
                 'unitCode' => 'RME10001',
                 'unitName' => 'Robotics & Mechatronics Project 1',

@@ -1243,20 +1243,6 @@ class StudyPlannerTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-
-
-
-
-			/////*******************************
-			/////*******************************
-			/////*******************************
-
-
-
-
-			/////////*****************////////////
-
-
             [
                 'unitCode' => 'CVE30001',
                 'courseCode' => 'F4-K002',
@@ -1400,7 +1386,304 @@ class StudyPlannerTableSeeder extends Seeder
                 'enrolmentTerm' => '7',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]
+            ],
+            //////// Robotics///////
+            ////////*************///////
+            [
+                'unitCode' => 'MEE10001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME10001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE10001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10006',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            /// 2
+            [
+                'unitCode' => 'CVE10004',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME10002',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PHY10001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10007',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            //3
+
+            [
+                'unitCode' => 'EEE20001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+            [
+                'unitCode' => 'EEE20006',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+            [
+                'unitCode' => 'COS10009',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH20007',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            ////4
+            [
+                'unitCode' => 'MEE20004',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20006',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME20001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME30001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            ////5
+            [
+                'unitCode' => 'MEE30003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE20003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME30002',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            /// 6
+            [
+                'unitCode' => 'EEE40003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40002',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME30003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'COS20007',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '5',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40005',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            ////7
+            [
+                'unitCode' => 'RME40003',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40006',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME40001',
+                'courseCode' => 'BH-ERM',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+
+
+
+
+
 
         ]);
     }

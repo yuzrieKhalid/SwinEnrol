@@ -214,6 +214,167 @@ class StudyPlannerTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            // Bachelor of Business (Finance)
+            [
+                'unitCode' => 'MGT10001',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'LAW10004',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'COM10007',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ECO10002',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '0',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ACC10007',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ECO10003',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN10002',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN20012',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '3',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN20014',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN20013',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '4',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BUS30010',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN30014',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN30016',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '6',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BUS30009',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'FIN30015',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENT30010',
+                'courseCode' => 'BA-BUSFIN3',
+                'unitType' => 'Core',
+                'year' => 2016,
+                'semester' => 'Semester 1',
+                'enrolmentTerm' => '7',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

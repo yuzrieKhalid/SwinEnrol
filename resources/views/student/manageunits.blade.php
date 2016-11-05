@@ -158,6 +158,14 @@
                         </div>
 
                         <div id="content" class="tab-content">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search-criteria" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" id="search">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
                             @if($phase->value == 1 || $phase->value == 6)
                                 <div class="tab-pane fade active in @if ($errors->has('$unit->unitCode')) has-error @endif" id="core-table">
                                     <table class="table">
@@ -167,7 +175,7 @@
                                         </thead>
                                         <!-- Check if already enrolled, don't add to this list -->
                                         @foreach ($longSemester as $unit)
-                                            <tr>
+                                            <tr class="units">
                                                 <td>{{ $unit->unitCode }}</td>
                                                 <td>{{ $unit->unit->unitName }}</td>
                                                 <td>
@@ -339,6 +347,20 @@
 (function() {
     // tooltip
     $('[data-toggle="collapse"]').tooltip();
+
+    // Search
+    $("#search-criteria").keyup(function() {
+        // when something is typed in the box, it will hide all
+        let searchvalue = $(this).val().toLowerCase()
+        $('.units').hide()
+
+        // if the text from the tr matches any part of the search value (indexOf), show
+        $('.units').each(function() {
+            let text = $(this).text().toLowerCase()
+            if (text.indexOf(searchvalue) != -1)
+                $(this).show()
+        })
+    })
 
     // csrf token
     let getToken = function() {

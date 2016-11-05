@@ -395,7 +395,7 @@
         // update the url
         url = url.replace('stdID', stdid)
         url = url.replace('issID', issid)
-        console.log(url)
+        // console.log(url)
 
         if (issid == 1) {
             // case: course transfer
@@ -428,7 +428,7 @@
             'method': method,
             'data': data
         }).done(function() {
-            // window.location.reload()
+            window.location.reload()
         })
     })
 }) ()

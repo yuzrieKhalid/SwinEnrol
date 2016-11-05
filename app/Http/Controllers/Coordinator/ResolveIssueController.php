@@ -63,7 +63,7 @@ class ResolveIssueController extends Controller
     {
         $history = EnrolmentUnits::with('unit')
             ->where('studentID', '=', $id)
-            ->where('status', '=', 'confirmed')->get();
+            ->where('grade', '=', 'pass')->get();
             // ^ maybe check grade instead of status
         $data['history'] = $history;
 

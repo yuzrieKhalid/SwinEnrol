@@ -60,6 +60,15 @@ class CourseTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
+                'courseCode' => 'BH-EME',
+                'courseName' => 'Bachelor of Engineering (Mechanical) (Honours)',
+                'semestersPerYear' => 3,
+                'semesterCount' => 9,
+                'studyLevel' => 'Degree',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
                 'courseCode' => 'F4-K002',
                 'courseName' => 'Bachelor of Engineering (Civil)(Honours)',
                 'semestersPerYear' => 2,

@@ -109,8 +109,10 @@ Route::group([
     Route::get('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::post('viewstudyplanner', 'Student\ViewPlannerController@index');
     Route::get('viewunitlistings', 'Student\ViewListingController@index');
-    Route::resource('enrolmentissues', 'Student\EnrolmentIssuesController');
-    Route::resource('internalcoursetransfer', 'Student\CourseTransferController');
+    Route::resource('coursetransfer', 'Student\CourseTransferController');
+    Route::resource('exemption', 'Student\ExemptionController');
+    Route::resource('leaveofabsence', 'Student\LeaveOfAbsenceController');
+    Route::resource('preclusion', 'Student\PreclusionController');
     Route::resource('manageunits', 'Student\ManageUnitController');
     Route::post('articulate', ['as' => 'student.articulate', 'uses' => 'Student\ManageUnitController@articulate']);
 });

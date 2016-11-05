@@ -70,7 +70,11 @@
                                 <li><a href="{{ url('/student/manageunits/create') }}">Manage Units</a></li>
                                 <li><a href="{{ url('/student/viewstudyplanner') }}">View Study Planner</a></li>
                                 <li><a href="{{ url('/student/viewunitlistings') }}">View Unit Listings</a></li>
-                                <li><a href="{{ url('/student/enrolmentissues') }}">Other Enrolment Issues</a></li>
+                                <li class="dropdown-header">ENROLMENT ISSUES FORM</li>
+                                <li><a href="{{ url('/student/coursetransfer') }}">Course Transfer</a></li>
+                                <li><a href="{{ url('/student/exemption') }}">Unit Exemption</a></li>
+                                <li><a href="{{ url('/student/leaveofabsence') }}">Leave of Absence</a></li>
+                                <li><a href="{{ url('/student/preclusion') }}">Preclusion</a></li>
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '2')

@@ -18,7 +18,7 @@ use App\Unit;
 use App\Config;
 use Carbon\Carbon;
 
-class CourseTransferController extends Controller
+class LeaveOfAbsenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,6 +28,7 @@ class CourseTransferController extends Controller
     public function index()
     {
         $data = [];
+
         $user = Auth::user();
 
         // get user student and coordinator
@@ -39,10 +40,6 @@ class CourseTransferController extends Controller
         $data['studentcourse'] = $studentcourse;
         $data['coursecoordinator'] = $coursecoordinator;
 
-        // get all courses apart from the one currently being taken
-        $courses = Course::where('courseCode', '!=', $student->courseCode)->get();
-        $data['courses'] = $courses;
-
         // get previous, current and next year
         $currentyear = Carbon::now()->year;
         $nextyear = Carbon::now()->addYears(1)->year;
@@ -51,7 +48,7 @@ class CourseTransferController extends Controller
         $data['nextyear'] = $nextyear;
         $data['next2year'] = $next2year;
 
-        return view ('student.coursetransfer', $data);
+        return view('student.leaveofabsence', $data);
     }
 
     /**
@@ -61,7 +58,7 @@ class CourseTransferController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -97,7 +94,7 @@ class CourseTransferController extends Controller
      */
     public function show($id)
     {
-        return response()->json($id);
+        //
     }
 
     /**
@@ -108,7 +105,7 @@ class CourseTransferController extends Controller
      */
     public function edit($id)
     {
-        return view ('student.internalcoursetransfer');
+        //
     }
 
     /**
@@ -120,19 +117,7 @@ class CourseTransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->only([
-            'studentID',
-            'comment',
-            'courseCode',
-        ]);
-
-        $transfer = InternalCourseTransfer::findOrFail($id);
-        $transfer->studentID = $input['studentID'];
-        $transfer->comment = $input['comment'];
-        $transfer->courseCode = $input['courseCode'];
-
-        $transfer->save();
-        return response()->json($transfer);
+        //
     }
 
     /**
@@ -143,9 +128,6 @@ class CourseTransferController extends Controller
      */
     public function destroy($id)
     {
-        $transfer = InternalCourseTransfer::findOrFail($id);
-        $transfer->delete();
-
-        return response()->json($transfer);
+        //
     }
 }

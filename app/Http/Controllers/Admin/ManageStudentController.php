@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Student;
 use App\User;
+use App\Course;
 use App\Config;
 use Excel;
 
@@ -30,8 +31,9 @@ class ManageStudentController extends Controller
         // get today
         $now = Carbon::now()->format('d/m/Y');
         $data['now'] = $now;
-        // TODO: Return all data to the view
-        // return response()->json(Student::all());     // when ready, use this
+
+        $data['courses'] = Course::all();
+
         return view ('admin.managestudents', $data);           // temporary, use this
     }
 

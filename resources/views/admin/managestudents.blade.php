@@ -118,7 +118,11 @@
 
                                 <div class="form-group">
                                     <label>Course Code:</label>
-                                    <input type="text" class="form-control" id="courseCode">
+                                    <select class="form-control" name="courseCode" id="courseCode">
+                                        @foreach($courses as $course)
+                                            <option value="{{ $course->courseCode }}">{{ $course->courseCode }} {{ $course->courseName }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 

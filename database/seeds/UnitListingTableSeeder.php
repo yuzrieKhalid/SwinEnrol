@@ -12,7 +12,6 @@ class UnitListingTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         DB::table('unit_listing')->insert([
             // Computing (BCS + BICT)
             // Semester 2 2016
@@ -1037,6 +1036,42 @@ class UnitListingTableSeeder extends Seeder
                 'year' => 2016,
                 'semester' => 'Semester 2',
                 'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+            // Semester 1 + short : Summer
+            // Semester 2 + short : Winter
+            // Short Semester (Summer Sem - Mixed)
+            [
+                'unitCode' => 'ACC10007',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'short',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ACC20007',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'short',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME30001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'short',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME40001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'short',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

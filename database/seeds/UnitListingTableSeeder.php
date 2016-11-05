@@ -377,6 +377,546 @@ class UnitListingTableSeeder extends Seeder
                 'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ], // end Business (Mixed)
+
+            // Design
+            [
+                'unitCode' => 'HDC001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDC005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM311',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM312',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM321',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HDCOM322',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ], // end Design
+
+            // Engineering (Mixed)
+            [
+                'unitCode' => 'MEE10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20006',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE20003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE30004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40008',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MEE40009',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE10004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE10005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE10006',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE20002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE20004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE20003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE30003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE40004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE30004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE40006',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE40008',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE40009',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME20001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME30003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME40006',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE20003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE20005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE20004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE30002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE40003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE30005',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE40011',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'EEE40012',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'SWE20004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CVE10002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC1221',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2411',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2322',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2421',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC2412',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3651',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3514',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4722',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3612',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4722',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC3612',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4771',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HEC4873',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10006',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH10007',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PHY10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME30001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'RME10002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH20008',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MME40001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
         ]);
     }

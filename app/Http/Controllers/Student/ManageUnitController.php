@@ -117,10 +117,22 @@ class ManageUnitController extends Controller
                 array_push($data['enrolledShort'], $unit);
         }
 
+        $listingsemester = Config::find('semester')->value;
+        $listingyear = Config::find('year')->value;
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $listingsemester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $listingyear += 1; // +1 year
+            $listingsemester = 'Semester 1';
+        }
+
         // get all current units - according to UnitListing
         $allUnits = UnitListing::with('unit')
-        ->where('year', '=', Config::find('year')->value)
-        ->where('semester', '=', Config::find('semester')->value)
+        ->where('year', '=', $listingyear)
+        ->where('semester', '=', $listingsemester)
         ->get();
 
         // filter units according to level of study

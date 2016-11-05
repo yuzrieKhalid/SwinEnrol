@@ -23,6 +23,16 @@ class ViewListingController extends Controller
         $year = Config::find('year')->value; // get enrolment year
         $studyLevel = Course::find(Student::find(Auth::user()->username)->courseCode)->studyLevel; // get student level of study
 
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $semester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $year += 1; // +1 year
+            $semester = 'Semester 1';
+        }
+        
         // get long semester unit listing
         $units = UnitListing::with('unit')
             ->where('year', '=', $year)

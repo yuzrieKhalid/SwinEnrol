@@ -21,26 +21,60 @@
                                 <input type="hidden" name="_method" value="PUT">
                             @endif
 
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('studentID') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Username</label>
 
                                 <div class="col-md-6">
-                                    @if(isset($user))
-                                        <input type="text" class="form-control" name="username" value="{{ $user[0]->username }}">
-                                    @else
-                                        <input type="text" class="form-control" name="username" value="">
-                                    @endif
-
-                                    @if ($errors->has('username'))
+                                    <input type="text" class="form-control" name="studentID" value="{{ $student->studentID }}">
+                                    @if ($errors->has('studentID'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
+                                            <strong>{{ $errors->first('studentID') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('givenName') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Given Name</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="givenName" value="{{ $student->givenName }}">
+                                    @if ($errors->has('givenName'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('givenName') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Surname</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="surname" value="{{ $student->surname }}">
+                                    @if ($errors->has('surname'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('surname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('courseCode') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Course Code</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="courseCode" value="{{ $student->courseCode }}">
+                                    @if ($errors->has('courseCode'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('courseCode') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Password</label>
+                                <label class="col-md-4 control-label">New Password</label>
 
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
@@ -69,10 +103,11 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary submit"
+                                        data-method="PUT" data-url="{{ route('super.managestudent.update', $student->studentID) }}">
                                         Save
                                     </button>
-                                    <a class="btn btn-danger" href="{{ url('/super/managestudent') }}" role="button">Cancel</a>
+                                    <a class="btn btn-danger" href="{{ route('super.managestudent.index') }}" role="button">Cancel</a>
                                 </div>
                             </div>
                         </form>

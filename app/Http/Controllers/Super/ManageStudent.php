@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Student;
 
 class ManageStudent extends Controller
 {
@@ -83,6 +84,8 @@ class ManageStudent extends Controller
      */
     public function edit($id)
     {
+        $data = [];
+        $data['student'] = Student::where('studentID', '=', $id)->first();
         $data['user'] = User::where('permissionLevel', '=', 1)
         ->where('username', '=', $id)
         ->get();
@@ -101,14 +104,25 @@ class ManageStudent extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->only([
-            'username',
+            'studentID',
+            'givenName',
+            'surname',
+            'courseCode',
             'password'
+        ]);
+
+        $student = Student::where('studentID', '=', $id)
+        ->update([
+            'studentID' => $input['studentID'],
+            'surname' => $input['surname'],
+            'givenName' => $input['givenName'],
+            'courseCode' => $input['courseCode']
         ]);
 
         $user = User::where('permissionLevel', '=', 1)
         ->where('username', '=', $id)
         ->update([
-            'username' => $input['username'],
+            'username' => $input['studentID'],
             'password' => bcrypt($input['password'])
         ]);
 

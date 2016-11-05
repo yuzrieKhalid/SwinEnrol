@@ -20,8 +20,7 @@ class ResolveIssueController extends Controller
     {
         $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
                                 ->where('status', '=', 'pending')
-                                ->where('issueID', '=', '3')
-                                ->orwhere('issueID', '=', '4')->get();
+                                ->where('issueID', '=', '3')->get();
         return response()->json($data);
     }
 

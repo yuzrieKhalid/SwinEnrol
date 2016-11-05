@@ -130,20 +130,20 @@ class ManageStudentController extends Controller
         ]);
 
         // find student and update
-        $student = Student::findOrFail($id);
-        $student->studentID = $input['studentID'];
-        $student->surname = $input['surname'];
-        $student->givenName = $input['givenName'];
-        $student->courseCode = $input['courseCode'];
-        $student->save();
+        $student = Student::where('studentID', '=', $id)->update([
+            'studentID' => $input['studentID'],
+            'surname' => $input['surname'],
+            'givenName' => $input['givenName'],
+            'courseCode' => $input['courseCode']
+        ]);
 
-        $user = User::findOrFail($id);
-        $user->username = $input['studentID'];
-        $user->password = bcrypt($input['password']);
-        $user->permissionLevel = '1';
-        $user->save();
+        $user = User::where('username', '=', $id)->update([
+            'username' => $input['studentID'],
+            'password' => bcrypt($input['password']),
+            'permissionLevel' => '1'
+        ]);
 
-        return response()->json($student);
+        return 'updated';
     }
 
     /**

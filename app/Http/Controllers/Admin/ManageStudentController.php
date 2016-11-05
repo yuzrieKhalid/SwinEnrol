@@ -154,8 +154,11 @@ class ManageStudentController extends Controller
      */
     public function destroy($id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::where('studentID', '=', $id);
         $student->delete();
+
+        $user = User::where('username', '=', $id);
+        $user->delete();
 
         // return response()->json($student);
         return 'deleted';

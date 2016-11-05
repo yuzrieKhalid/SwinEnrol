@@ -917,6 +917,128 @@ class UnitListingTableSeeder extends Seeder
                 'semesterLength' => 'long',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ], // end Engineering (Mixed)
+
+            // Biotechnology
+            [
+                'unitCode' => 'BIO10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ICT10007',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO10003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'CHE10002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH20002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO20002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BIO30001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'MTH00004',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'BCH30003',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'ENV30001',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'NPS30002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES2210',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'HES3405',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'unitCode' => 'PEH20002',
+                'year' => 2016,
+                'semester' => 'Semester 2',
+                'semesterLength' => 'long',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
         ]);
     }

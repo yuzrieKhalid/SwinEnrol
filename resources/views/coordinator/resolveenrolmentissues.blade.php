@@ -281,7 +281,7 @@
         modal_template.find('.status').html(issue.status)
 
         modal_template.find('.currentProgram').html(submissionData.fromProgramCode + ' ' + submissionData.fromProgramTitle)
-        modal_template.find('.exemptionUnitCodeSought').html(submissionData.soughtUnitCode + ' ' + submissionData.soughtUnitTitle)
+        modal_template.find('.exemptionUnitCodeSought').html(submissionData.soughtUnitCode)
         modal_template.find('.exemptionUnitCodePrior').html(submissionData.exemptionUnitCodePrior + ' ' + submissionData.exemptionUnitTitlePrior)
         modal_template.find('.exemptionUnitYearPrior').html(submissionData.exemptionUnitYearPrior)
 
@@ -296,8 +296,8 @@
         modal_template.find('.modal-footer').children('.submit').attr('data-stdid', issue.studentID)
         modal_template.find('.modal-footer').children('.submit').attr('data-issid', issue.issueID)
 
-        modal_template.find('.modal-footer').children('.submit').attr('data-first', submissionData.exemptionUnitCode)
-        modal_template.find('.modal-footer').children('.submit').attr('data-second', submissionData.exemptionUnitYear)
+        modal_template.find('.modal-footer').children('.submit').attr('data-first', submissionData.soughtUnitCode)
+        modal_template.find('.modal-footer').children('.submit').attr('data-second', submissionData.exemptionUnitYearPrior)
 
         $('#modal_placeholder').append(modal_template)
     }

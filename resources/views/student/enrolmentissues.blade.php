@@ -126,19 +126,14 @@
                                 {{-- Swinburne: Unit Code --}}
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <h5>Unit Code:</h5>
+                                        <h5>Unit Sought:</h5>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control exemptionUnitCodeSought">
-                                    </div>
-                                </div>
-                                {{-- Swinburne: Unit Title --}}
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h5>Unit Title</h5>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control exemptionUnitTitleSought">
+                                        <select class="form-control exemptionUnitCodeSought">
+                                            @foreach($allunits as $unit)
+                                                <option value="{{ $unit->unitCode }}"> {{ $unit->unitCode }} {{ $unit->unitName }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -407,7 +402,6 @@ $('.datepicker').datepicker({
             json_exemption["fromProgramCode"] = $('.fromProgramCode').text()
             json_exemption["fromProgramTitle"] = $('.fromProgramTitle').text()
             json_exemption["soughtUnitCode"] = $('.exemptionUnitCodeSought').val()
-            json_exemption["soughtUnitTitle"] = $('.exemptionUnitTitleSought').val()
             json_exemption["exemptionUnitCodePrior"] = $('.exemptionUnitCodePrior').val()
             json_exemption["exemptionUnitYearPrior"] = $('.exemptionUnitYearPrior').val()
             json_exemption["exemptionUnitTitlePrior"] = $('.exemptionUnitTitlePrior').val()

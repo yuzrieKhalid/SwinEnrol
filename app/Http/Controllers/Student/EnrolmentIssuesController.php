@@ -57,6 +57,8 @@ class EnrolmentIssuesController extends Controller
 
         $data['units'] = Unit::with('requisite')->get();
 
+        $data['allunits'] = Unit::all();
+
         return view ('student.enrolmentissues', $data);
     }
 

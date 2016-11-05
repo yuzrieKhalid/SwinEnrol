@@ -122,19 +122,16 @@ class ResolveIssueController extends Controller
         } else if ($issueID == '2') {
 
             $input = $request->only([
-                'exemptionUnitCodePrior',
-                'exemptionUnitYearPrior',
-                'exemptionUnitTitlePrior',
-                'soughtUnitCode',
-                'soughtUnitTitle'
+                'exemptionUnitCode',
+                'exemptionYear',
             ]);
 
             // update student course code
             $exemptionUnit = new EnrolmentUnits;
             $exemptionUnit->studentID = $studentID;
-            $exemptionUnit->unitCode = $input['soughtUnitCode'];
-            $exemptionUnit->year = $input['exemptionUnitYearPrior'];
-            $exemptionUnit->term = 'skipped';
+            $exemptionUnit->unitCode = $input['exemptionUnitCode'];
+            $exemptionUnit->year = $input['exemptionYear'];
+            $exemptionUnit->semester = 'skipped';
             $exemptionUnit->status = 'exempted';
             $exemptionUnit->grade = 'pass';
             $exemptionUnit->save();

@@ -41,6 +41,8 @@ class ManageListingController extends Controller
      */
     public function create()
     {
+        $data = [];
+
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
@@ -53,8 +55,9 @@ class ManageListingController extends Controller
             $year += 1; // +1 year
             $semester = 'Semester 1';
         }
+        $data['year'] = $year;
+        $data['semester'] = $semester;
 
-        $data = [];
         $data['semesterUnits'] = UnitListing::with('unit')
             ->where('year', '=', $year)
             ->where('semester', '=', $semester)
@@ -87,6 +90,16 @@ class ManageListingController extends Controller
 
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
+
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $semester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $year += 1; // +1 year
+            $semester = 'Semester 1';
+        }
 
         $unit = new UnitListing;
         $unit->unitCode = $input['unitCode'];
@@ -158,11 +171,21 @@ class ManageListingController extends Controller
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
-        $unitlisting = UnitListing::where('unitCode', '=', $input['unitCode'])
-            ->where('year', '=', $year)
-            ->where('semester', '=', $semester)
-            ->where('semesterLength', '=', $input['semesterLength'])
-            ->delete();
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $semester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $year += 1; // +1 year
+            $semester = 'Semester 1';
+        }
+
+        $unitlisting = UnitListing::where('unitCode', '=', $input['unitCode'])->delete()
+        ->where('year', '=', $year)
+        ->where('semester', '=', $semester)
+        ->where('semesterLength', '=', $input['semesterLength'])
+        ->delete();
 
         return response()->json($unitlisting);
     }

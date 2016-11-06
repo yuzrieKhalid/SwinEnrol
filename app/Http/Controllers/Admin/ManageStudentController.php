@@ -13,6 +13,8 @@ use App\User;
 use App\Course;
 use App\Config;
 use Excel;
+use App\StudentRecord;
+use App\ExamUnit;
 
 class ManageStudentController extends Controller
 {
@@ -164,16 +166,77 @@ class ManageStudentController extends Controller
         return 'deleted';
     }
 
+    // Export into xls file format
     public function downloadExcel()
     {
+        // translate the objects into an array
         $data = Student::get()->toArray();
-        return Excel::create('Student_List', function($excel) use ($data) {
-        $excel->sheet('mySheet', function($sheet)use($data){
-            $sheet->fromArray($data);
-          });
+        return Excel::create('Student_List', function($excel) use ($data) {     // create the file called Student_List
+                $excel->sheet('mySheet', function($sheet)use($data) {           // create sheet called mySheet
+                $sheet->fromArray($data);                                       // populate data from $data array into mySheet
+            });
+        })->export('xls'); // export into file format
+    }
 
-        })->export('xls');
+    /**
+     * Check if the student's record exist or not
+     * @param $record - one data from the whole get()
+     * @param $existingItems - whole data from get()
+     */
+    function checkifStudentExist($record, $existingStudents)
+    {
+        foreach ($existingStudents as $existingStudent) {
+            if ($record->studentID == $existingStudent->studentID)
+                return true;
+        }
+        return false;
+    }
 
+    // Import new students from Eduversal and create entry for Swinenrol - StudentRecords
+    public function importStudentRecords()
+    {
+        $data = [];
+
+        // get from student records where not yet existing in swinenrol
+        $swinenrolstudents = Student::all();        // get all to compare
+        $eduversalstudents = StudentRecord::all();  // get all to compare
+        $data['studentrecords'] = [];
+        foreach ($eduversalstudents as $e_student) {
+            // check if the student from eduversal exist in swinenrol
+            if (!Self::checkifStudentExist($e_student, $swinenrolstudents))
+                array_push($data['studentrecords'], $e_student);
+        }
+
+        foreach ($data['studentrecords'] as $newstudent) {
+            // 1. create the user
+            User::create([
+                'username' => $newstudent->studentID,
+                'password' => bcrypt($newstudent->dateOfBirth),
+                'email' => $newstudent->studentID . '@students.swinburne.edu.my',
+                'permissionLevel' => '1',
+            ]);
+
+            // 2. create the student entry
+            Student::create([
+                'studentID' => $newstudent->studentID,
+                'surname' => $newstudent->surname,
+                'givenName' => $newstudent->givenName,
+                'courseCode' => $newstudent->courseCode,
+                'year' => $newstudent->year,
+                'term' => $newstudent->term,
+            ]);
+        }
+
+        return redirect()->action('Admin\ManageStudentController@index');
+    }
+
+    // Import from Eduversal and update EnrolmentUnit - ExamUnits
+    public function importExamUnits()
+    {
+        $data = [];
+        $data['examunits'] = ExamUnit::all();
+
+        return response()->json($data);
     }
 
     /**
@@ -205,11 +268,3 @@ class ManageStudentController extends Controller
         return response()->json($jsonArray);
     }
 }
-
-// console.log(studentsInfo[0].firstname); // this to help easier access the students
-// let studentsInfo = {}
-// // to access the students : console.log(students[0].sheet1[0].firstname);
-// for (var i = 0; i < students[0].sheet1.length; i++) {
-//     // to access each student : console.log(students[0].sheet1[i].firstname);
-//     studentsInfo[i] = students[0].sheet1[i]
-// }

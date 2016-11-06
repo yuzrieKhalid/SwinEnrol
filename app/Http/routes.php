@@ -24,9 +24,10 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
-    Route::post('managestudents/upload/file', 'Admin\ManageStudentController@fileUpload')->name('admin.managestudents.fileUpload');
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::get('managestudents/downloadExcel/{type}', 'Admin\ManageStudentController@downloadExcel');
+    Route::get('managestudents/import/studentrecords', 'Admin\ManageStudentController@importStudentRecords');
+    Route::get('managestudents/import/examunits', 'Admin\ManageStudentController@importExamUnits');
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [

@@ -80,6 +80,12 @@
                     <a href="{{ url('/admin/managestudents/downloadExcel/XLSX') }}">
                         <button class="btn btn-success">Export Student List</button>
                     </a>
+                    <a href="{{ url('/admin/managestudents/import/studentrecords') }}">
+                        <button class="btn btn-primary">Import Student Records</button>
+                    </a>
+                    <a href="{{ url('/admin/managestudents/import/examunits') }}">
+                        <button class="btn btn-primary">Import Exam Units</button>
+                    </a>
                 </div>
             </div> <!-- end .panel -->
 

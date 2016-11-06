@@ -27,8 +27,8 @@ class ResolveIssueController extends Controller
     public function index()
     {
         $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                        ->where('status', '=', 'pending')
-                                        ->where('issueID', '!=', '3')->get();
+        ->where('status', '=', 'pending')
+        ->where('issueID', '!=', '3')->get();
         return response()->json($data);
     }
 
@@ -62,17 +62,17 @@ class ResolveIssueController extends Controller
     public function show($id)
     {
         $history = EnrolmentUnits::with('unit')
-            ->where('studentID', '=', $id)
-            ->where('grade', '=', 'pass')->get();
-            // ^ maybe check grade instead of status
+        ->where('studentID', '=', $id)
+        ->where('grade', '=', 'pass')->get();
+
         $data['history'] = $history;
 
         $current = EnrolmentUnits::with('unit')
-            ->where([
-                ['studentID', '=', $id],
-                ['year', '=', Config::find('year')->value],
-                ['term', '=', Config::find('semester')->value],
-            ])->get();
+        ->where([
+            ['studentID', '=', $id],
+            ['year', '=', Config::find('year')->value],
+            ['term', '=', Config::find('semester')->value],
+        ])->get();
         $data['current'] = $current;
 
         return response()->json($data);
@@ -108,16 +108,16 @@ class ResolveIssueController extends Controller
 
             // update student course code
             $student = Student::where('studentID', '=', $studentID)
-                                ->update([
-                                    'courseCode' => $input['proposedProgramCode'],
-                                    'year' => $input['proposedIntakeYear']
-                                ]);
+            ->update([
+                'courseCode' => $input['proposedProgramCode'],
+                'year' => $input['proposedIntakeYear']
+            ]);
 
             // update the issue
             $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                                                ->where('issueID', '=', $issueID)
-                                                ->where('status', '=', 'pending')
-                                                ->update(['status' => 'approved']);
+            ->where('issueID', '=', $issueID)
+            ->where('status', '=', 'pending')
+            ->update(['status' => 'approved']);
 
         } else if ($issueID == '2') {
 
@@ -138,9 +138,9 @@ class ResolveIssueController extends Controller
 
             // update the issue
             $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                                                ->where('issueID', '=', $issueID)
-                                                ->where('status', '=', 'pending')
-                                                ->update(['status' => 'approved']);
+            ->where('issueID', '=', $issueID)
+            ->where('status', '=', 'pending')
+            ->update(['status' => 'approved']);
 
         } else if ($issueID == '5') {
 
@@ -151,30 +151,30 @@ class ResolveIssueController extends Controller
 
             // update student enrolment units for the selected preclusion and its prerequisite
             $preclusionUnit = EnrolmentUnits::where('studentID', $studentID)
-                                            ->where('unitCode', '=', $input['preclusionUnit'])
-                                            ->update([
-                                                'year' => Config::find('year')->value,
-                                                'term' => Config::find('semester')->value,
-                                                'status' => 'confirmed'
-                                            ]);
+            ->where('unitCode', '=', $input['preclusionUnit'])
+            ->update([
+                'year' => Config::find('year')->value,
+                'term' => Config::find('semester')->value,
+                'status' => 'confirmed'
+            ]);
 
             $prerequisiteUnit = EnrolmentUnits::where('studentID', $studentID)
-                                            ->where('unitCode', '=', $input['prerequisiteUnit'])
-                                            ->update([
-                                                'year' => Config::find('year')->value,
-                                                'term' => Config::find('semester')->value,
-                                                'status' => 'confirmed'
-                                            ]);
+            ->where('unitCode', '=', $input['prerequisiteUnit'])
+            ->update([
+                'year' => Config::find('year')->value,
+                'term' => Config::find('semester')->value,
+                'status' => 'confirmed'
+            ]);
 
             // update the issue
             $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                                                ->where('issueID', '=', $issueID)
-                                                ->where('status', '=', 'pending')
-                                                ->update(['status' => 'approved']);
+            ->where('issueID', '=', $issueID)
+            ->where('status', '=', 'pending')
+            ->update(['status' => 'approved']);
         }
 
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                                        ->where('issueID', '=', $issueID)->get();
+        ->where('issueID', '=', $issueID)->get();
 
         return response()->json($issue);
     }
@@ -189,12 +189,12 @@ class ResolveIssueController extends Controller
     public function destroy($studentID, $issueID)
     {
         $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                    ->where('issueID', '=', $issueID)
-                    ->where('status', '=', 'pending')
-                    ->update(['status' => 'disapproved']);
+        ->where('issueID', '=', $issueID)
+        ->where('status', '=', 'pending')
+        ->update(['status' => 'disapproved']);
 
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
-                                        ->where('issueID', '=', $issueID)->get();
+        ->where('issueID', '=', $issueID)->get();
 
         return response()->json($issue);
     }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
 use Carbon\Carbon;
 use App\Student;
 use App\User;
@@ -37,7 +38,7 @@ class ManageStudentController extends Controller
 
         $data['courses'] = Course::all();
 
-        return view ('admin.managestudents', $data);           // temporary, use this
+        return view ('admin.managestudents', $data);
     }
 
     /**
@@ -228,7 +229,7 @@ class ManageStudentController extends Controller
             ]);
         }
 
-        return redirect()->action('Admin\ManageStudentController@index');
+        return redirect()->action('Admin\ManageStudentController@index')->with('message', 'Students Imported Succesfully');
     }
 
     // Import from Eduversal and update EnrolmentUnit - ExamUnits
@@ -240,6 +241,7 @@ class ManageStudentController extends Controller
         // get enrolment units -> to see whether the enrolment updated or not
         $enrolmentunits = EnrolmentUnits::all();
 
+        // check if the studentID and unitCode match in both tables, update else skip
         foreach ($data['examunits'] as $examunit) {
             foreach ($enrolmentunits as $enrolmentunit) {
                 if ($examunit->studentID == $enrolmentunit->studentID &&
@@ -247,15 +249,13 @@ class ManageStudentController extends Controller
                 {
                     EnrolmentUnits::where('studentID', $examunit->studentID)
                     ->where('unitCode', $examunit->unitCode)
-                    ->update([
-                        'grade' => $examunit->grade
-                    ]);
+                    ->update([ 'grade' => $examunit->grade ]);
+                    break;
                 }
             }
         }
 
-
-        return response()->json($enrolmentunit);
+        return redirect()->action('Admin\ManageStudentController@index')->with('message', 'Results Updated');
     }
 
     /**

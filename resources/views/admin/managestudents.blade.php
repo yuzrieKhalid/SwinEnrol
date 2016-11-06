@@ -20,6 +20,11 @@
                 </div>
 
                 <div class="panel-body">
+                    @if(Session::has('message'))
+                        <div class="panel panel-success">
+                            <div class="panel-heading">{{ Session::get('message') }}</div>
+                        </div>
+                    @endif
                     <table class="table table-striped">
                         <thead>
                             <th>Student ID</th>

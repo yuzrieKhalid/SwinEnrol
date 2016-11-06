@@ -8,6 +8,14 @@ class EnrolmentUnits extends Model
 {
     protected $table = 'enrolment_units';
 
+    protected $fillable = [
+        'studentID',
+        'unitCode',
+        'year',
+        'semester',
+        'status',
+        'grade'
+    ];
     // inverse relation
     public function student()
 	{

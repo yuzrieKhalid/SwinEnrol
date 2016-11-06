@@ -58,7 +58,7 @@
                             <h5>PREREQUISITE UNIT FOR PRECLUSION</h5>
                         </div>
                         <div class="col-md-8">
-                            <select class="form-control selectedForPreclusion">
+                            <select class="form-control selectedPrerequisite">
                                 <option value="none"></option>
                                 @foreach($semesterUnits as $unit)
                                 <option value="{{ $unit->unitCode }}">{{ $unit->unitCode }} <span class="">{{ $unit->unit->unitName }}</span></option>

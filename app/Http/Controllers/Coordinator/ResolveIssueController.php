@@ -71,7 +71,7 @@ class ResolveIssueController extends Controller
         ->where([
             ['studentID', '=', $id],
             ['year', '=', Config::find('year')->value],
-            ['term', '=', Config::find('semester')->value],
+            ['semester', '=', Config::find('semester')->value],
         ])->get();
         $data['current'] = $current;
 
@@ -149,21 +149,24 @@ class ResolveIssueController extends Controller
                 'prerequisiteUnit'
             ]);
 
+            // student must have enrolled both units first
             // update student enrolment units for the selected preclusion and its prerequisite
-            $preclusionUnit = EnrolmentUnits::where('studentID', $studentID)
-            ->where('unitCode', '=', $input['preclusionUnit'])
-            ->update([
+            $preclusionUnit = EnrolmentUnits::create([
+                'studentID' => $studentID,
+                'unitCode' => $input['preclusionUnit'],
                 'year' => Config::find('year')->value,
-                'term' => Config::find('semester')->value,
-                'status' => 'confirmed'
+                'semester' => Config::find('semester')->value,
+                'status' => 'confirmed',
+                'grade' => 'ungraded'
             ]);
 
-            $prerequisiteUnit = EnrolmentUnits::where('studentID', $studentID)
-            ->where('unitCode', '=', $input['prerequisiteUnit'])
-            ->update([
+            $prerequisiteUnit = EnrolmentUnits::create([
+                'studentID' => $studentID,
+                'unitCode' => $input['prerequisiteUnit'],
                 'year' => Config::find('year')->value,
-                'term' => Config::find('semester')->value,
-                'status' => 'confirmed'
+                'semester' => Config::find('semester')->value,
+                'status' => 'confirmed',
+                'grade' => 'ungraded'
             ]);
 
             // update the issue

@@ -14,7 +14,6 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="panel-body">
                                 <table class="table table-hover" id="student_enrolment_issues_table" data-url="{{ route('coordinator.resolveenrolmentissues.index') }}">
@@ -151,9 +150,7 @@
                                     </div> <!-- .modal-dialog -->
                                 </div> <!-- .modal_template-->
                             </div> <!-- .modal_placeholder -->
-
                         </div> <!-- end .form-group -->
-                    </form>
                 </div>
             </div>
         </div>

@@ -6,59 +6,57 @@
 @stop
 @section('content')
 <div class="container">
-  <div class="row">
-  <div class="col-md-9">
-    <div class="panel panel-warning">
-          <div class="panel-heading">
-              <h3>Update Course Information <br>
-                  <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>
-              </h3>
-          </div>
-          <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Course Code</label>
-                        <input type="text" class="form-control" id="courseCode" value="{{ $courses->courseCode }}">
-                    </div>
-
-                    <div class="form-group"> <!-- unitName -->
-                        <label class="control-label">Course Name:</label>
-                        <input type="text" class="form-control" id="courseName" value="{{ $courses->courseName }}">
-                    </div>
-
-                    <div class="form-group"> <!-- unitName -->
-                        <label class="control-label">Semseter (Per Year):</label>
-                        <input type="text" class="form-control" id="semestersPerYear" value="{{ $courses->semestersPerYear }}">
-                    </div>
-
-                    <div class="form-group"> <!-- unitName -->
-                        <label class="control-label">Semester (Total):</label>
-                        <input type="text" class="form-control" id="semesterCount" value="{{ $courses->semesterCount }}">
-                    </div>
-
-                    <div class="form-group"> <!-- unitName -->
-                        <label class="control-label">Study Level:</label>
-                        <input type="text" class="form-control" id="studyLevel" value="{{ $courses->studyLevel }}">
-                    </div>
-
-
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3>Update Course Information <br>
+                        <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>
+                    </h3>
                 </div>
-              </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group"> <!-- course code -->
+                                <label class="control-label">Course Code</label>
+                                <input type="text" class="form-control" id="courseCode" value="{{ $courses->courseCode }}">
+                            </div>
 
-              <div class="panel-footer">
-                  <button type="submit" class="submit btn btn-warning" id="submit"
-                   data-method="PUT" data-url="{{ route('super.managecourse.update', $courses->courseCode) }}">
-                   Edit</button>
-                  <a id="backToCreate" class="btn btn-info"
-                   href="{{ route('super.managecourse.create') }}"
-                   role="button">Back To Previous Page</a>
-              </div>
-          </div>
-        </div>
-    </div>
-    </div>
-</div>
+                            <div class="form-group"> <!-- course name -->
+                                <label class="control-label">Course Name:</label>
+                                <input type="text" class="form-control" id="courseName" value="{{ $courses->courseName }}">
+                            </div>
+
+                            <div class="form-group"> <!-- semesters per year -->
+                                <label class="control-label">Semester (Per Year):</label>
+                                <input type="text" class="form-control" id="semestersPerYear" value="{{ $courses->semestersPerYear }}">
+                            </div>
+
+                            <div class="form-group"> <!-- semester count in total -->
+                                <label class="control-label">Semester (Total):</label>
+                                <input type="text" class="form-control" id="semesterCount" value="{{ $courses->semesterCount }}">
+                            </div>
+
+                            <div class="form-group"> <!-- study level -->
+                                <label class="control-label">Study Level:</label>
+                                <input type="text" class="form-control" id="studyLevel" value="{{ $courses->studyLevel }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="submit btn btn-warning" id="submit" data-method="PUT"
+                        data-url="{{ route('super.managecourse.update', $courses->courseCode) }}">
+                            Edit
+                    </button>
+                    <a id="backToCreate" class="btn btn-info" href="{{ route('super.managecourse.create') }}"
+                        role="button">Back To Previous Page
+                    </a>
+                </div> <!-- end .panel-footer -->
+            </div> <!-- end .panel -->
+        </div> <!-- end .col -->
+    </div> <!-- end .row -->
+</div> <!-- end .container -->
 @stop
 
 

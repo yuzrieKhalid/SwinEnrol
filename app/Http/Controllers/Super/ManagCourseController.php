@@ -58,9 +58,9 @@ class ManagCourseController extends Controller
       $course = new Course;
       $course->courseCode = $input['courseCode'];
       $course->courseName = $input['courseName'];
-      $course->courseName = $input['semestersPerYear'];
-      $course->courseName = $input['semesterCount'];
-      $course->courseName = $input['studyLevel'];
+      $course->semestersPerYear = $input['semestersPerYear'];
+      $course->semesterCount = $input['semesterCount'];
+      $course->studyLevel = $input['studyLevel'];
       $course->save();
 
       return response()->json($course);
@@ -113,9 +113,9 @@ class ManagCourseController extends Controller
       $course = Course::findOrFail($id);
       $course->courseCode = $input['courseCode'];
       $course->courseName = $input['courseName'];
-      $course->courseName = $input['semestersPerYear'];
-      $course->courseName = $input['semesterCount'];
-      $course->courseName = $input['studyLevel'];
+      $course->semestersPerYear = $input['semestersPerYear'];
+      $course->semesterCount = $input['semesterCount'];
+      $course->studyLevel = $input['studyLevel'];
       $course->save();
 
       return response()->json($course);

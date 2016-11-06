@@ -86,7 +86,7 @@
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Semester Per Year:</label>
-                                  <input class="form-control" id="semestersPerYeDegreear">
+                                  <input class="form-control" id="semestersPerYear">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Semester Per Count:</label>

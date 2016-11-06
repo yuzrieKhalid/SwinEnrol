@@ -78,7 +78,40 @@ class StudentRecordsSeeder extends Seeder
                 'paymentStatus' => 'paid',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]
+            ],
+            [
+                'studentID' => 'student2',
+                'surname' => 'New 2',
+                'givenName' => 'Student 2',
+                'courseCode' => 'I047',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'paymentStatus' => 'unpaid',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'student3',
+                'surname' => 'New 3',
+                'givenName' => 'Student 3',
+                'courseCode' => 'BA-MULGD',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'paymentStatus' => 'paid',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'studentID' => 'student4',
+                'surname' => 'New 4',
+                'givenName' => 'Student 4',
+                'courseCode' => 'BA-BUSFIN3',
+                'year' => 2016,
+                'term' => 'Semester 1',
+                'paymentStatus' => 'paid',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

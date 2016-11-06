@@ -17,7 +17,7 @@
                 <div class="panel-body">
                   <!-- <div class="col-md-6"> -->
                     <h2>
-                        <small>Long Semester</small>
+                        <small>{{ $semester->value }} {{ $year }}</small>
                     </h2>
                     <!-- </div> -->
 
@@ -95,7 +95,12 @@
                         @endif
                     </table>
 
-                    <h2><small>Short Semester</small></h2>
+                    @if($semester->value == 'Semester 1')
+                        <h2><small>Winter Term {{ $year }}</small></h2>
+                    @else
+                        <h2><small>Summer Term {{ $year+1 }}</small></h2>
+                    @endif
+
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
                         <thead>
                             <th>Unit Code</th>
@@ -138,22 +143,23 @@
             @if($phase->value == 1 || $phase->value == 3 || $phase->value == 6)
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3>Add Units
-                            <!-- <span class="pull-right">
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                            </span> -->
-                        </h3>
+                        <h3>Add Units</h3>
                     </div>
 
                     <div class="panel-body">
                         <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
                             <!-- On press will make one of them hiddden -->
                             @if($phase->value == 1 || $phase->value == 6)
-                                <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">Long Semester</a>
+                                <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">{{ $semester->value }} {{ $year }}</a>
                             @endif
                             @if($phase->value == 1 || $phase->value == 3)
-                                <a id="elective_group" class="btn btn-default" href="#elective-table" data-toggle="tab" role="button">Short Semester</a>
+                                <a id="elective_group" class="btn btn-default" href="#elective-table" data-toggle="tab" role="button">
+                                    @if($semester->value == 'Semester 1')
+                                        Winter Term {{ $year }}
+                                    @else
+                                        Summer Term {{ $year+1 }}
+                                    @endif
+                                </a>
                             @endif
                         </div>
 

@@ -55,6 +55,8 @@ class ManageUnitController extends Controller
     public function create()
     {
         $data['phase'] = Config::find('enrolmentPhase');
+        $data['year'] = Config::find('year');
+        $data['semester'] = Config::find('semester');
 
         $user = Auth::user();
         $student = Student::find($user->username);

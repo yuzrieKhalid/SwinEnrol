@@ -15,7 +15,7 @@ class CoordinatorUnitTableSeeder extends Seeder
         //
         DB::table('coordinator_units')->insert([
             [
-                'username' => 'I047',
+                'username' => 'CScience',
                 'unitCode' => 'COS10009',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

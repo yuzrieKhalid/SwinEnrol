@@ -14,17 +14,17 @@ class CourseCoordinatorTableSeeder extends Seeder
         //
         DB::table('course_coordinator')->insert([
             [
-                'username' => 'I047',
+                'username' => 'CScience',
                 'courseCode' => 'I047',
                 'name' => 'Sim Kwan Hua'
             ],
             [
-                'username' => 'BUSFIN3',
+                'username' => 'Finance',
                 'courseCode' => 'BA-BUSFIN3',
                 'name' => 'Finance Coordinator'
             ],
             [
-                'username' => 'MULGD',
+                'username' => 'Multimedia',
                 'courseCode' => 'BA-MULGD',
                 'name' => 'Design Coordinator'
             ]

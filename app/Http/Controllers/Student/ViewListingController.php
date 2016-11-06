@@ -19,9 +19,11 @@ use Carbon\Carbon;
 class ViewListingController extends Controller
 {
     public function index() {
-        $semester = Config::find('semester')->value; // get enrolment semester
-        $year = Config::find('year')->value; // get enrolment year
         $studyLevel = Course::find(Student::find(Auth::user()->username)->courseCode)->studyLevel; // get student level of study
+
+        // because the config contains the value for current semester so we need to change it accordingly
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
 
         // because the config contains the value for current semester so we need to change it accordingly
         // because a unit listing shows the list for next semester
@@ -32,7 +34,9 @@ class ViewListingController extends Controller
             $year += 1; // +1 year
             $semester = 'Semester 1';
         }
-        
+        $data['year'] = $year;
+        $data['semester'] = $semester;
+
         // get long semester unit listing
         $units = UnitListing::with('unit')
             ->where('year', '=', $year)

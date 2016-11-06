@@ -15,9 +15,9 @@
                 </div>
 
                 <div class="panel-body">
-                    <h2>
-                        <small>{{ $semester }} {{ $year }}</small>
-                    </h2>
+                    <h2><small>{{ $semester }} {{ $year }}</small></h2>
+
+                    {{-- Search Long Semester Units Only --}}
                     <div class="row">
                         <div class="col-md-4">
                             <div class="input-group">
@@ -27,10 +27,11 @@
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
-                            </div>
-                        </div>
+                            </div> <!-- end .input-group -->
+                        </div> <!-- end .col -->
                     </div> <!-- end .row -->
 
+                    {{-- Long Semester Table --}}
                     <table class="table">
                         <thead>
                             <th>Unit Code</th>
@@ -58,6 +59,7 @@
                         <h2><small>Winter Term {{ $year }}</small></h2>
                     @endif
 
+                    {{-- Search Short Semester Units Only --}}
                     <div class="row">
                         <div class="col-md-4">
                             <div class="input-group">
@@ -67,10 +69,11 @@
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
-                            </div>
-                        </div>
+                            </div> <!-- end .input-group -->
+                        </div> <!-- end .col -->
                     </div> <!-- end .row -->
 
+                    {{-- Short Semester Table --}}
                     <table class="table">
                         <thead>
                             <th>Unit Code</th>

@@ -13,7 +13,9 @@ class Student extends Model
         'surname',
         'givenName',
         'email',
-        'courseCode'
+        'courseCode',
+        'year',
+        'term'
     ];
     // primary key
     protected $primaryKey = 'studentID';

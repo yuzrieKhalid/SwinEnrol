@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Student;
+use App\Config;
 
 class ManageStudent extends Controller
 {
@@ -17,20 +18,13 @@ class ManageStudent extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
         $data = [];
         $username = User::where('permissionLevel', '=', 1)->get();
         $data['users'] = $username;
 
-        $student = $request->input('student');
-        $ser = $username->where('student', 'LIKE', '%'.$student.'%');
-        if(!empty($student))
-          return view ('super.managestudent', $data)->withDetails($ser);
-        else
-          return view ('super.managestudent', $data);
-
+        return view ('super.managestudent', $data);
     }
 
     /**
@@ -40,7 +34,11 @@ class ManageStudent extends Controller
      */
     public function create()
     {
-        return view('super.managestudent_create');
+        $data = [];
+        $data['year'] = Config::find('year')->value;
+        $data['semester'] = Config::find('semester')->value;
+
+        return view('super.managestudent_create', $data);
     }
 
     /**
@@ -52,15 +50,31 @@ class ManageStudent extends Controller
     public function store(Request $request)
     {
         $input = $request->only([
-            'username',
-            'password'
+            'studentID',
+            'givenName',
+            'surname',
+            'courseCode',
+            'password',
+            'year',
+            'semester'
+        ]);
+
+        $student = new Student;
+        $student->create([
+            'studentID' => $input['studentID'],
+            'surname' => $input['surname'],
+            'givenName' => $input['givenName'],
+            'courseCode' => $input['courseCode'],
+            'year' => $input['year'],
+            'term' => $input['semester']
         ]);
 
         $user = new User;
-        $user->username = $input['username'];
-        $user->password = bcrypt($input['password']);
-        $user->permissionLevel = 1;
-        $user->save();
+        $user->create([
+            'username' => $input['studentID'],
+            'password' => bcrypt($input['password']),
+            'permissionLevel' => 1
+        ]);
 
         return redirect('super/managestudent');
     }
@@ -85,13 +99,10 @@ class ManageStudent extends Controller
     public function edit($id)
     {
         $data = [];
-        $data['student'] = Student::where('studentID', '=', $id)->first();
-        $data['user'] = User::where('permissionLevel', '=', 1)
-        ->where('username', '=', $id)
-        ->get();
+        $data['user'] = User::where('username', $id)->first();
+        $data['student'] = Student::where('studentID', $id)->first();
 
-        // return response()->json($data);
-        return view ('super.managestudent_create', $data);
+        return view('super.managestudent_edit', $data);
     }
 
     /**
@@ -139,6 +150,9 @@ class ManageStudent extends Controller
     {
         User::where('permissionLevel', '=', 1)
         ->where('username', '=', $id)
+        ->delete();
+
+        Student::where('studentID', '=', $id)
         ->delete();
 
         return redirect('super/managestudent');

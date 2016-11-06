@@ -9,23 +9,17 @@
                         <h3>Add Student</h3>
                     </div>
                     <div class="panel-body">
-                        @if(isset($user))
-                            <form class="form-horizontal" role="form" method="POST" action="/super/managestudent/{{ $user[0]->username }}">
-                        @else
-                            <form class="form-horizontal" role="form" method="POST" action="{{ route('super.managestudent.store') }}">
-                        @endif
+                        <form class="form-horizontal" role="form" method="POST" action="/super/managestudent/{{ $user->username }}">
 
+                            {{-- Editting with PUT Method with CSRF Token --}}
+                            <input type="hidden" name="_method" value="PUT">
                             {!! csrf_field() !!}
-
-                            @if(isset($user))
-                                <input type="hidden" name="_method" value="PUT">
-                            @endif
 
                             <div class="form-group{{ $errors->has('studentID') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Username</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="studentID" value="">
+                                    <input type="text" class="form-control" name="studentID" value="{{ $student->studentID }}">
                                     @if ($errors->has('studentID'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('studentID') }}</strong>
@@ -38,7 +32,7 @@
                                 <label class="col-md-4 control-label">Given Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="givenName" value="">
+                                    <input type="text" class="form-control" name="givenName" value="{{ $student->givenName }}">
                                     @if ($errors->has('givenName'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('givenName') }}</strong>
@@ -51,7 +45,7 @@
                                 <label class="col-md-4 control-label">Surname</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="surname" value="">
+                                    <input type="text" class="form-control" name="surname" value="{{ $student->surname }}">
                                     @if ($errors->has('surname'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('surname') }}</strong>
@@ -64,7 +58,7 @@
                                 <label class="col-md-4 control-label">Course Code</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="courseCode" value="">
+                                    <input type="text" class="form-control" name="courseCode" value="{{ $student->courseCode }}">
                                     @if ($errors->has('courseCode'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('courseCode') }}</strong>
@@ -77,7 +71,7 @@
                                 <label class="col-md-4 control-label">Year</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="year" value="{{ $year }}">
+                                    <input type="text" class="form-control" name="year" value="{{ $student->year }}">
                                     @if ($errors->has('year'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('year') }}</strong>
@@ -90,7 +84,7 @@
                                 <label class="col-md-4 control-label">Semester</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="semester" value="{{ $semester }}">
+                                    <input type="text" class="form-control" name="semester" value="{{ $student->term }}">
                                     @if ($errors->has('semester'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('semester') }}</strong>
@@ -129,7 +123,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary submit" data-method="POST" data-url="{{ route('super.managestudent.store') }}">Save</button>
+                                    <button type="submit" class="btn btn-primary submit" data-method="POST" data-url="{{ route('super.managestudent.update',$student->studentID) }}">Save</button>
                                     <a class="btn btn-danger" href="{{ route('super.managestudent.index') }}" role="button">Cancel</a>
                                 </div>
                             </div>

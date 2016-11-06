@@ -17,7 +17,7 @@
                 <div class="panel-body">
                   <!-- <div class="col-md-6"> -->
                     <h2>
-                        <small>{{ $semester->value }} {{ $year }}</small>
+                        <small>{{ $listingsemester }} {{ $listingyear }}</small>
                     </h2>
                     <!-- </div> -->
 
@@ -95,10 +95,10 @@
                         @endif
                     </table>
 
-                    @if($semester->value == 'Semester 1')
-                        <h2><small>Winter Term {{ $year }}</small></h2>
+                    @if($listingsemester == 'Semester 1')
+                        <h2><small>Summer Term {{ $listingyear+1 }}</small></h2>
                     @else
-                        <h2><small>Summer Term {{ $year+1 }}</small></h2>
+                        <h2><small>Winter Term {{ $listingyear }}</small></h2>
                     @endif
 
                     <table class="table" id="enrolled_table" data-url="{{ route('student.manageunits.index') }}">
@@ -146,18 +146,18 @@
                         <h3>Add Units</h3>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" style="max-height: 800px; overflow-y: scroll;">
                         <div class="btn-group btn-group-justified" role="group" style="margin-bottom:10px;">
                             <!-- On press will make one of them hiddden -->
                             @if($phase->value == 1 || $phase->value == 6)
-                                <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">{{ $semester->value }} {{ $year }}</a>
+                                <a id="core_group" class="btn btn-default" href="#core-table" data-toggle="tab" role="button">{{ $listingsemester }} {{ $listingyear }}</a>
                             @endif
                             @if($phase->value == 1 || $phase->value == 3)
                                 <a id="elective_group" class="btn btn-default" href="#elective-table" data-toggle="tab" role="button">
-                                    @if($semester->value == 'Semester 1')
-                                        Winter Term {{ $year }}
-                                    @else
+                                    @if($listingsemester == 'Semester 1')
                                         Summer Term {{ $year+1 }}
+                                    @else
+                                        Winter Term {{ $year }}
                                     @endif
                                 </a>
                             @endif

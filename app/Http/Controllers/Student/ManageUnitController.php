@@ -119,7 +119,7 @@ class ManageUnitController extends Controller
                 array_push($data['enrolledShort'], $unit);
         }
 
-        $listingsemester = Config::find('semester')->value;
+        $listingsemester = Config::find('semester')->value + 1;
         $listingyear = Config::find('year')->value;
         // because the config contains the value for current semester so we need to change it accordingly
         // because a unit listing shows the list for next semester
@@ -130,6 +130,8 @@ class ManageUnitController extends Controller
             $listingyear += 1; // +1 year
             $listingsemester = 'Semester 1';
         }
+        $data['listingyear'] = $listingyear;
+        $data['listingsemester'] = $listingsemester;
 
         // get all current units - according to UnitListing
         $allUnits = UnitListing::with('unit')

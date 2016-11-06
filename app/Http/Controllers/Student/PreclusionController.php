@@ -48,10 +48,26 @@ class PreclusionController extends Controller
         $data['nextyear'] = $nextyear;
         $data['next2year'] = $next2year;
 
+        // because the config contains the value for current semester so we need to change it accordingly
+        $semester = Config::find('semester')->value;
+        $year = Config::find('year')->value;
+
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $semester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $year += 1; // +1 year
+            $semester = 'Semester 1';
+        }
+        $data['year'] = $year;
+        $data['semester'] = $semester;
+
         // get current enrolment units
         $data['semesterUnits'] = UnitListing::with('unit')
-        ->where('year', '=', Config::find('year')->value)
-        ->where('semester', '=', Config::find('semester')->value)
+        ->where('year', '=', $year)
+        ->where('semester', '=', $semester)
         ->get();
 
         $data['units'] = Unit::with('requisite')->get();

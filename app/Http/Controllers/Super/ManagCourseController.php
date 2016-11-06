@@ -55,13 +55,17 @@ class ManagCourseController extends Controller
 
       ]);
 
-      $course = new Course;
-      $course->courseCode = $input['courseCode'];
-      $course->courseName = $input['courseName'];
-      $course->semestersPerYear = $input['semestersPerYear'];
-      $course->semesterCount = $input['semesterCount'];
-      $course->studyLevel = $input['studyLevel'];
-      $course->save();
+      if (!Course::find($input['courseCode'])) {
+          $course = new Course;
+          $course->courseCode = $input['courseCode'];
+          $course->courseName = $input['courseName'];
+          $course->semestersPerYear = $input['semestersPerYear'];
+          $course->semesterCount = $input['semesterCount'];
+          $course->studyLevel = $input['studyLevel'];
+          $course->save();
+      } else {
+          return redirect('errors.recordexist');
+      }
 
       return response()->json($course);
     }

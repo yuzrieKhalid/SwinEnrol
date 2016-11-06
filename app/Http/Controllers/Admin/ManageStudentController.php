@@ -15,6 +15,7 @@ use App\Config;
 use Excel;
 use App\StudentRecord;
 use App\ExamUnit;
+use App\EnrolmentUnits;
 
 class ManageStudentController extends Controller
 {
@@ -236,7 +237,25 @@ class ManageStudentController extends Controller
         $data = [];
         $data['examunits'] = ExamUnit::all();
 
-        return response()->json($data);
+        // get enrolment units -> to see whether the enrolment updated or not
+        $enrolmentunits = EnrolmentUnits::all();
+
+        foreach ($data['examunits'] as $examunit) {
+            foreach ($enrolmentunits as $enrolmentunit) {
+                if ($examunit->studentID == $enrolmentunit->studentID &&
+                    $examunit->unitCode == $enrolmentunit->unitCode)
+                {
+                    EnrolmentUnits::where('studentID', $examunit->studentID)
+                    ->where('unitCode', $examunit->unitCode)
+                    ->update([
+                        'grade' => $examunit->grade
+                    ]);
+                }
+            }
+        }
+
+
+        return response()->json($enrolmentunit);
     }
 
     /**

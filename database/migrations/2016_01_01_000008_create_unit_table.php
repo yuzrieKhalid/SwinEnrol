@@ -17,12 +17,6 @@ class CreateUnitTable extends Migration
             $table->string('unitCode');
             $table->string('unitName');
             $table->decimal('creditPoints', 5, 2);
-            $table->integer('maxStudentCount')->unsigned();
-            $table->integer('lectureGroupCount')->unsigned();
-            $table->string('lectureDuration');
-            $table->integer('tutorialGroupCount')->unsigned();
-            $table->string('tutorialDuration');
-            $table->string('unitInfo');
             $table->string('studyLevel');
 
             $table->timestamps();

@@ -14,6 +14,12 @@ class ErrorRedirectController extends Controller
         return view('errors.recordexist');
     }
 
+    // CASE: Model Not Found
+    public function modelnotfound()
+    {
+        return view('errors.modelnotfound');
+    }
+
     // CASE: 403 Wrong Permission
     public function error403()
     {

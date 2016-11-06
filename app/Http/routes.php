@@ -147,6 +147,7 @@ Route::get('/unit', 'PhaseController@unitApprove');
 Route::get('/unitCheck', 'PhaseController@unitCheck');
 Route::get('/test', 'Test@test');
 Route::get('/recordexist', 'ErrorRedirectController@recordexist');
+Route::get('/modelnotfound', 'ErrorRedirectController@modelnotfound');
 Route::get('/403', 'ErrorRedirectController@error403');
 Route::get('/404', 'ErrorRedirectController@error404');
 Route::get('/503', 'ErrorRedirectController@error503');

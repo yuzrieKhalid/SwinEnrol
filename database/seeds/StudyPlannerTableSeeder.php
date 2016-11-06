@@ -1112,7 +1112,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 1 Sem 1
             [
                 'unitCode' => 'CVE10005',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1122,7 +1122,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE10004',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1132,7 +1132,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'PHY10001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1142,7 +1142,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'MTH10006',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1153,7 +1153,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 1 Sem 2
             [
                 'unitCode' => 'CVE10002',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1163,7 +1163,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'MEE10001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1173,7 +1173,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'MEE20004',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1183,7 +1183,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'MTH10007',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1194,7 +1194,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 2 Sem 1
             [
                 'unitCode' => 'CVE10006',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1204,7 +1204,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE20002',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1214,7 +1214,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE20003',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1224,7 +1224,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'MEE20003',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1235,7 +1235,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 2 Sem 2
             [
                 'unitCode' => 'CVE20001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1245,7 +1245,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE30001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1255,7 +1255,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE30002',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1265,7 +1265,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
 			[
                 'unitCode' => 'MTH20006',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1276,7 +1276,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 3 Sem 1
             [
                 'unitCode' => 'CVE20005',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1286,7 +1286,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE30004',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1296,7 +1296,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
 			[
                 'unitCode' => 'CVE40004',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1306,7 +1306,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
 			[
                 'unitCode' => 'MME30001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1317,7 +1317,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 3 Sem 1
             [
                 'unitCode' => 'CVE20004',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1327,7 +1327,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE30003',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1337,7 +1337,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
 			[
                 'unitCode' => 'CVE40002',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1348,7 +1348,7 @@ class StudyPlannerTableSeeder extends Seeder
             // Year 3 Sem 2
             [
                 'unitCode' => 'CVE40001',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1358,7 +1358,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
             [
                 'unitCode' => 'CVE40006',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1368,7 +1368,7 @@ class StudyPlannerTableSeeder extends Seeder
             ],
 			[
                 'unitCode' => 'CVE40008',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',
@@ -1379,7 +1379,7 @@ class StudyPlannerTableSeeder extends Seeder
 			//year 4 sem 1
 			[
                 'unitCode' => 'CVE40009',
-                'courseCode' => 'F4-K002',
+                'courseCode' => 'BH-ECV',
                 'unitType' => 'Core',
                 'year' => 2016,
                 'semester' => 'Semester 1',

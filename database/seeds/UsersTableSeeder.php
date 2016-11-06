@@ -41,47 +41,39 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'student',
                 'password' => bcrypt('student'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'email' => 'student@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'coordinator',
-                'password' => bcrypt('coordinator'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'username' => 'I047',
+                'password' => bcrypt('I047'),
+                'email' => 'ComputerScience@coordinator.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'coordinator_cs',
-                'password' => bcrypt('coordinator_cs'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'username' => 'BUSFIN3',
+                'password' => bcrypt('BUSFIN3'),
+                'email' => 'Finance@coordinator.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'coordinator_fi',
-                'password' => bcrypt('coordinator_fi'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'username' => 'MULGD',
+                'password' => bcrypt('MULGD'),
+                'email' => 'MultimediaDesign@coordinator.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'coordinator_de',
-                'password' => bcrypt('coordinator_de'),
-                'email' => '4318595@students.swinburne.edu.my',
-                'permissionLevel' => '2',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'username' => 'admin',
-                'password' => bcrypt('admin'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'username' => 'enrolment_ZI',
+                'password' => bcrypt('enrolment_ZI'),
+                'email' => 'zarinaibrahim@enrolment.swinburne.edu.my',
                 'permissionLevel' => '3',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -89,7 +81,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'super',
                 'password' => bcrypt('super'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'email' => 'super@authority.swinburne.edu.my',
                 'permissionLevel' => '4',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -97,7 +89,7 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'articulate',
                 'password' => bcrypt('articulate'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'email' => 'articulate@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -105,23 +97,15 @@ class UsersTableSeeder extends Seeder
             [
                 'username' => 'articulatefail',
                 'password' => bcrypt('articulatefail'),
-                'email' => '4318595@students.swinburne.edu.my',
+                'email' => 'articulatefail@students.swinburne.edu.my',
                 'permissionLevel' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'test',
-                'password' => bcrypt('test'),
-                'email' => '4304373@students.swinburne.edu.my',
-                'permissionLevel' => '1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'username' => 'ao',
-                'password' => bcrypt('ao'),
-                'email' => '4304373@students.swinburne.edu.my',
+                'username' => 'adminofficer',
+                'password' => bcrypt('adminofficer'),
+                'email' => 'adminofficer@staff.swinburne.edu.my',
                 'permissionLevel' => '5',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

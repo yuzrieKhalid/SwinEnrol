@@ -97,6 +97,14 @@
                         <tr><td colspan="3">No units taken yet currently</td></tr>
                         @endif
                     </table>
+                    <h4 class="text-danger">Dropped Units from {{ $listingsemester }}</h4>
+                    <ol>
+                        @foreach ($enrolledLong as $unit)
+                            @if($unit->status == 'dropped')
+                                <li class="text-danger">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</li>
+                            @endif
+                        @endforeach
+                    </ol><br>
 
                     @if($listingsemester == 'Semester 1')
                         <h2><small>Summer Term {{ $listingyear+1 }}</small></h2>
@@ -141,6 +149,19 @@
                         <tr><td colspan="3">No units taken yet currently</td></tr>
                         @endif
                     </table>
+
+                    @if($listingsemester == 'Semester 1')
+                        <h4 class="text-danger">Dropped Units from Summer Term</h4>
+                    @else
+                        <h4 class="text-danger">Dropped Units from Winter Term</h4>
+                    @endif
+                    <ol>
+                        @foreach ($enrolledShort as $unit)
+                            @if($unit->status == 'dropped')
+                                <li class="text-danger">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</li>
+                            @endif
+                        @endforeach
+                    </ol><br>
                 </div>
             </div> <!-- end .panel -->
 

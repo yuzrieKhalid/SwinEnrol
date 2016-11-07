@@ -62,7 +62,7 @@
                             <h5>Unit Code:</h5>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control exemptionUnitCodePrior">
+                            <input type="text" id="unitCode" class="form-control exemptionUnitCodePrior" required="Pleaser">
                         </div>
                     </div>
                     {{-- Prior Study: Unit Title --}}
@@ -71,7 +71,7 @@
                             <h5>Unit Title</h5>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control exemptionUnitTitlePrior">
+                            <input type="text" id="unitTitle" class="form-control exemptionUnitTitlePrior">
                         </div>
                     </div>
                     {{-- Prior Study: Year --}}
@@ -80,7 +80,7 @@
                             <h5>Year</h5>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control exemptionUnitYearPrior">
+                            <input type="text" id="year" class="form-control exemptionUnitYearPrior">
                         </div>
                     </div>
                     {{-- Prior Study: Academenic Transcript Upload --}}
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="panel-footer">
-                    <button class="btn btn-default submit" data-method="POST" data-redirect="{{ url('/student') }}"
+                    <button class="btn btn-default submit" id="submit" type="submit" data-method="POST" data-redirect="{{ url('/student') }}"
                         data-url="{{ route('student.exemption.store') }}">
                         Submit
                     </button>
@@ -113,7 +113,12 @@
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
     }
-
+    // $('.submit').click(function(){
+    //    if($('#unitCode').val() == ''){
+    //       alert('Please Enter Your Unit Code');
+    //    }
+    // })
+   
     // UPLOAD FILE SCRIPT
     let attached_data = ""
     let attachFile = $('.attachFile').change(function() {
@@ -130,40 +135,48 @@
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
 
-        // convert the string to base64 encoding
-        let encodedContent = btoa(attached_data)
+        if( $('#unitCode').val().length==0 ) {
+            alert('Please enter your Unit Code');
+        } 
+        else if($('#unitTitle').val().length==0 ){
+            alert('Please enter your Unit Title');
+        }else {
+            // convert the string to base64 encoding
+            let encodedContent = btoa(attached_data)
 
-        // create a json object to store into submissionData : string -- a jsonstring
-        let json_exemption = {}
-        json_exemption["fromProgramCode"] = $('.fromProgramCode').text()
-        json_exemption["fromProgramTitle"] = $('.fromProgramTitle').text()
-        json_exemption["soughtUnitCode"] = $('.exemptionUnitCodeSought').val()
-        json_exemption["exemptionUnitCodePrior"] = $('.exemptionUnitCodePrior').val()
-        json_exemption["exemptionUnitYearPrior"] = $('.exemptionUnitYearPrior').val()
-        json_exemption["exemptionUnitTitlePrior"] = $('.exemptionUnitTitlePrior').val()
+            // create a json object to store into submissionData : string -- a jsonstring
+            let json_exemption = {}
+            json_exemption["fromProgramCode"] = $('.fromProgramCode').text()
+            json_exemption["fromProgramTitle"] = $('.fromProgramTitle').text()
+            json_exemption["soughtUnitCode"] = $('.exemptionUnitCodeSought').val()
+            json_exemption["exemptionUnitCodePrior"] = $('.exemptionUnitCodePrior').val()
+            json_exemption["exemptionUnitYearPrior"] = $('.exemptionUnitYearPrior').val()
+            json_exemption["exemptionUnitTitlePrior"] = $('.exemptionUnitTitlePrior').val()
 
-        let submissionData = JSON.stringify(json_exemption)
-        let attachmentData = encodedContent
+            let submissionData = JSON.stringify(json_exemption)
+            let attachmentData = encodedContent
 
-        // AJAX Creating the Issue
-        let method = $(this).data('method')
-        let url = $(this).data('url')
-        let homeredirect = $(this).data('redirect')
-        let data = {
-            '_token': getToken(),
-            'issueID': 2,
-            'submissionData': submissionData,
-            'attachmentData': attachmentData
+            // AJAX Creating the Issue
+            let method = $(this).data('method')
+            let url = $(this).data('url')
+            let homeredirect = $(this).data('redirect')
+            let data = {
+                '_token': getToken(),
+                'issueID': 2,
+                'submissionData': submissionData,
+                'attachmentData': attachmentData
+            }
+
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data,
+                enctype: 'multipart/form-data'
+            }).done(function(data) {
+                window.location.replace(homeredirect)
+            })
         }
-
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data,
-            enctype: 'multipart/form-data'
-        }).done(function(data) {
-            window.location.replace(homeredirect)
-        })
+        
     })
 }) ()
 </script>

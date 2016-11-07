@@ -87,12 +87,12 @@
                             <h5>REASON FOR TRANSFER</h5>
                         </div>
                         <div class="col-md-8">
-                            <textarea class="form-control toReasons" rows="3" style="resize:none"></textarea>
+                            <textarea id="reason" class="form-control toReasons" rows="3" style="resize:none"></textarea>
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .panel-body -->
                 <div class="panel-footer">
-                    <button class="btn btn-default submit" data-method="POST" data-redirect="{{ url('/student') }}"
+                    <button class="btn btn-default submit" type="submit" id="submit" data-method="POST" data-redirect="{{ url('/student') }}"
                         data-url="{{ route('student.coursetransfer.store') }}">
                             Submit
                     </button>
@@ -113,6 +113,9 @@
 
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
+        if($('#reason').val().length == 0){
+            alert("Please briefly give your reason/s for requesting a transfer");
+        }else{
 
         // create a json object to store into submissionData : string -- a jsonstring
         let json_ict = {}
@@ -148,7 +151,9 @@
         }).done(function(data) {
             window.location.replace(homeredirect)
         })
+        }
     })
+    
 }) ()
 </script>
 @stop

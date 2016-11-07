@@ -54,7 +54,7 @@
                             <h5>INTERNATIONAL STUDENT OFFICER</h5>
                         </div>
                         <div class="col-md-8">
-                            <input class="form-control iso_name" type="text">
+                            <input class="form-control iso_name" id="officer" type="text">
                         </div>
                     </div>
                     {{-- duration --}}
@@ -64,9 +64,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="input-daterange input-group" data-provide="datepicker" data-date-format="dd MM yyyy">
-                                <input type="text" class="input-sm form-control period_from" value="" />
+                                <input type="text" class="input-sm form-control period_from" id="dateS" value="" />
                                 <span class="input-group-addon">to</span>
-                                <input type="text" class="input-sm form-control period_to" value="" />
+                                <input type="text" id="dateL" class="input-sm form-control period_to" value="" />
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                             <h5>REASON FOR LEAVE OF ABSENCE</h5>
                         </div>
                         <div class="col-md-8">
-                            <textarea class="form-control reasonForLOA" rows="3" style="resize: none"></textarea>
+                            <textarea class="form-control reasonForLOA" id="reason" rows="3" style="resize: none"></textarea>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                 </div> <!-- end .panel-body -->
 
                 <div class="panel-footer">
-                    <button class="btn btn-default submit" data-method="POST" data-redirect="{{ url('/student') }}"
+                    <button class="btn btn-default submit" type="submit" id="submit" data-method="POST" data-redirect="{{ url('/student') }}"
                         data-url="{{ route('student.leaveofabsence.store') }}">
                         Submit
                     </button>
@@ -138,6 +138,15 @@
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
 
+        if($('#officer').val().length == 0){
+            alert("Please enter Inernational Officer Name")
+        }else if($('#dateS').val().length == 0 && $('#dateL').val().length == 0){
+            alert("Please enter LEAVE OF ABSENCE PERIOD")
+        }else if($('#reason').val().length== 0){
+            alert("Please briefly give your reason/s for requesting leave of absence")
+
+        }else{
+
         // create a json object to store into submissionData : string -- a jsonstring
         let json_leave_of_absence = {}
         json_leave_of_absence["fromProgramCode"] = $('.fromProgramCode').text()
@@ -171,6 +180,7 @@
         }).done(function(data) {
             window.location.replace(homeredirect)
         })
+    }
     })
 }) ()
 </script>

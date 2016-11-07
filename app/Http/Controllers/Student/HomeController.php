@@ -44,7 +44,7 @@ class HomeController extends Controller
         $data['issues'] = $issues;
 
         // get all the previous taken units (joined with Unit table) - that has a 'pass' grade
-        $history = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('grade', 'pass')->get();
+        $history = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['history'] = $history;
 
         // get the exemptions

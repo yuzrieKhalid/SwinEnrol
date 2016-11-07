@@ -101,16 +101,16 @@
                                 <tr><td colspan="3">No Units Enrolled Yet</td></tr>
                             @else
                                 @foreach ($history as $unit)
+                                    @if($unit->grade == 'pass')
                                     <tr>
                                         <td>{{ $unit->unitCode }}</td>
                                         <td>{{ $unit->unit->unitName }}</td>
-                                        @if($unit->grade == 'pass')
-                                            <!-- Passed -->
-                                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                        @else
-                                            <!-- Failed -->
-                                            <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
-                                        @endif
+                                        <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                    @elseif($unit->grade == 'fail')
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
+                                    @endif
                                     </tr>
                                 @endforeach
                             @endif

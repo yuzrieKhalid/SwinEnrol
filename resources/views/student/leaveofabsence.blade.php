@@ -138,9 +138,10 @@
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
 
-        if($('#officer').val().length == 0){
-            alert("Please enter Inernational Officer Name")
-        }else if($('#dateS').val().length == 0 && $('#dateL').val().length == 0){
+        if (isForeigner == 'YES') {
+            if($('#officer').val().length == 0)
+                alert("Please enter International Officer Name")
+        } if($('#dateS').val().length == 0 && $('#dateL').val().length == 0){
             alert("Please enter LEAVE OF ABSENCE PERIOD")
         }else if($('#reason').val().length== 0){
             alert("Please briefly give your reason/s for requesting leave of absence")

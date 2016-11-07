@@ -107,36 +107,40 @@
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {
 
-        // create a json object to store into submissionData : string -- a jsonstring
-        let json_preclusion = {}
-        json_preclusion["fromProgramCode"] = $('.fromProgramCode').text()
-        json_preclusion["fromProgramTitle"] = $('.fromProgramTitle').text()
-        json_preclusion["selectedForPreclusion"] = $('.selectedForPreclusion').val()
-        json_preclusion["selectedPrerequisite"] = $('.selectedPrerequisite').val()
-        json_preclusion["reasonForPreclusion"] = $('.reasonForPreclusion').val()
+        if ($('.reasonForPreclusion').val() == '') {
+            alert('Please enter your reason for preclusion')
+        } else {
+            // create a json object to store into submissionData : string -- a jsonstring
+            let json_preclusion = {}
+            json_preclusion["fromProgramCode"] = $('.fromProgramCode').text()
+            json_preclusion["fromProgramTitle"] = $('.fromProgramTitle').text()
+            json_preclusion["selectedForPreclusion"] = $('.selectedForPreclusion').val()
+            json_preclusion["selectedPrerequisite"] = $('.selectedPrerequisite').val()
+            json_preclusion["reasonForPreclusion"] = $('.reasonForPreclusion').val()
 
-        let submissionData = JSON.stringify(json_preclusion)
-        let attachmentData = null
+            let submissionData = JSON.stringify(json_preclusion)
+            let attachmentData = null
 
-        // AJAX Creating the Issue
-        let method = $(this).data('method')
-        let url = $(this).data('url')
-        let homeredirect = $(this).data('redirect')
-        let data = {
-            '_token': getToken(),
-            'issueID': 5,
-            'submissionData': submissionData,
-            'attachmentData': attachmentData
+            // AJAX Creating the Issue
+            let method = $(this).data('method')
+            let url = $(this).data('url')
+            let homeredirect = $(this).data('redirect')
+            let data = {
+                '_token': getToken(),
+                'issueID': 5,
+                'submissionData': submissionData,
+                'attachmentData': attachmentData
+            }
+
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data,
+                enctype: 'multipart/form-data'
+            }).done(function(data) {
+                window.location.replace(homeredirect)
+            })
         }
-
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data,
-            enctype: 'multipart/form-data'
-        }).done(function(data) {
-            window.location.replace(homeredirect)
-        })
     })
 }) ()
 </script>

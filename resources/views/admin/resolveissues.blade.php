@@ -17,21 +17,23 @@
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="panel-body">
-                                <table class="table table-hover" id="student_enrolment_issues_table" data-url="{{ route('admin.resolveissue.index') }}">
-                                    <thead>
-                                        <th>Student ID</th>
-                                        <th>Student Name</th>
-                                        <th>Issue Type</th>
-                                        <th>Date</th>
-                                    </thead>
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="student_enrolment_issues_table" data-url="{{ route('admin.resolveissue.index') }}">
+                                        <thead>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <th>Issue Type</th>
+                                            <th>Date</th>
+                                        </thead>
 
-                                    <tr class="hidden tr_template button" name="Show" data-toggle="modal" data-target="">
-                                        <td class="td_studentID"></td>
-                                        <td class="td_studentName"></td>
-                                        <td class="td_issueType"></td>
-                                        <td class="td_date"></td>
-                                    </tr>
-                                </table>
+                                        <tr class="hidden tr_template button" name="Show" data-toggle="modal" data-target="">
+                                            <td class="td_studentID"></td>
+                                            <td class="td_studentName"></td>
+                                            <td class="td_issueType"></td>
+                                            <td class="td_date"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
 
                             <!-- Modal Template -->

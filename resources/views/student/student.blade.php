@@ -48,6 +48,7 @@
                 </div>
                 <div class="panel-body">
                     @include('student.phaseNotification')
+                    <h4>{{ $listingsemester }} {{ $listingyear }}</h4>
                     <table class="table">
                       <thead>
                           <th>Unit Code</th>
@@ -58,7 +59,7 @@
                       <tr><td colspan="3">No Units Enrolled Yet</td></tr>
                       @else
 
-                      @foreach ($enrolled as $unit)
+                      @foreach ($enrolledLong as $unit)
                           @if($unit->status == 'confirmed' || $unit->status == 'pending')
                               <tr>
                                   <td>{{ $unit->unitCode }}</td>
@@ -66,9 +67,6 @@
                                   @if($unit->status == 'confirmed')
                                       <!-- Successfully Enrolled -->
                                       <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                  @elseif($unit->status == 'dropped')
-                                      <!-- Dropped -->
-                                      <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Dropped" aria-hidden="true"></span></td>
                                   @else
                                       <!-- Waiting to be approved -->
                                       <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
@@ -78,14 +76,61 @@
                       @endforeach
                       @endif
                       </table>
-                      <h4 class="text-danger">Dropped Units</h4>
+
+                      @if($listingsemester == 'Semester 1')
+                          <h4>Summer Term {{ $listingyear+1 }}</h4>
+                      @else
+                          <h4>Winter Term {{ $listingyear }}</h4>
+                      @endif
+                      <table class="table">
+                          <thead>
+                              <th>Unit Code</th>
+                              <th>Unit Title</th>
+                              <th>Status</th>
+                          </thead>
+                          @if(empty($enrolled))
+                              <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                          @else
+
+                              @foreach ($enrolledShort as $unit)
+                                  @if($unit->status == 'confirmed' || $unit->status == 'pending')
+                                      <tr>
+                                          <td>{{ $unit->unitCode }}</td>
+                                          <td>{{ $unit->unit->unitName }}</td>
+                                          @if($unit->status == 'confirmed')
+                                              <!-- Successfully Enrolled -->
+                                              <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                          @else
+                                              <!-- Waiting to be approved -->
+                                              <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                                          @endif
+                                      </tr>
+                                  @endif
+                              @endforeach
+                          @endif
+                     </table>
+
+                      <h4 class="text-danger">Dropped Units from {{ $listingsemester }}</h4>
                       <ol>
-                          @foreach ($enrolled as $unit)
+                          @foreach ($enrolledLong as $unit)
                               @if($unit->status == 'dropped')
                                   <li class="text-danger">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</li>
                               @endif
                           @endforeach
-                      </ol>
+                      </ol><br>
+
+                      @if($listingsemester == 'Semester 1')
+                          <h4 class="text-danger">Dropped Units from Summer Term</h4>
+                      @else
+                          <h4 class="text-danger">Dropped Units from Winter Term</h4>
+                      @endif
+                      <ol>
+                          @foreach ($enrolledShort as $unit)
+                              @if($unit->status == 'dropped')
+                                  <li class="text-danger">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</li>
+                              @endif
+                          @endforeach
+                      </ol><br>
                 </div>
             </div>
         </div>

@@ -31,12 +31,24 @@ class HomeController extends Controller
         $data['currentsem'] = Config::find('semester');
         $data['currentyear'] = Config::find('year');
         $data['phase'] = Config::find('enrolmentPhase');
-        $enrolled = EnrolmentUnits::with('unit')->where([
-            ['studentID', '=', $user->username],
-            ['year', '=', Config::find('year')->value],
-            ['semester', '=', Config::find('semester')->value],
-        ])->get();
-        $data['enrolled'] = $enrolled;
+
+        // get all enrolled units
+        $enrolled = EnrolmentUnits::with('unit')
+        ->where('studentID', '=', $user->username)
+        ->where('year', '=', Config::find('year')->value)
+        ->where('semester', '=', Config::find('semester')->value)
+        ->get();
+
+        // sort enrolled units into long/short semesters
+        $data['enrolledLong'] = [];
+        $data['enrolledShort'] = [];
+        foreach($enrolled as $unit)
+        {
+            if($unit->semesterLength == 'long')
+                array_push($data['enrolledLong'], $unit);
+            if($unit->semesterLength == 'short')
+                array_push($data['enrolledShort'], $unit);
+        }
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
         ->where('studentID', '=',$student->studentID)
@@ -50,6 +62,19 @@ class HomeController extends Controller
         // get the exemptions
         $exempted = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('status', '=', 'exempted')->get();
         $data['exempted'] = $exempted;
+
+        // get the semester and year for the enrolled from Manage Unit page
+        $listingsemester = Config::find('semester')->value + 1;
+        $listingyear = Config::find('year')->value;
+        if (Config::find('semester')->value == 'Semester 1') {
+            $listingsemester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $listingyear += 1; // +1 year
+            $listingsemester = 'Semester 1';
+        }
+        $data['listingyear'] = $listingyear;
+        $data['listingsemester'] = $listingsemester;
 
         return view ('student.student', $data);
     }

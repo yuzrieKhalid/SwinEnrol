@@ -17,62 +17,63 @@
                         <div class="form-group">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name='search' placeholder="Search">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                        </div>
-                        <div class="input-group">
-                            <button type="submit" class="btn btn-default" name="reset" value="reset">Reset</button>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name='search' placeholder="Search">
+                                    <span class="input-group-btn hidden-xs">
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="input-group">
+                                    <button type="submit" class="btn btn-default" name="reset" value="reset">Reset</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                     <!-- the table needs and url to allow the ajax to fetch the data from the controller (which is the json array) -->
-                    <table class="table student" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
-                        <thead>
-                            <th>Unit ID</th>
-                            <th>Unit Name</th>
-                            <th></th>
-                            <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" title="Add New Unit" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
-                        </thead>
-                        @foreach($units as $unit)
-                        @if(isset($unit))
-                        <tr>
-                            <td class="td_unitCode">{{ $unit->unitCode }}</td>
-                            <td class="td_unitName">{{ $unit->unitName }}</td>
-                            <td>
-                                <a class="btn btn-default pull-right" href="{{ route('coordinator.manageunits.edit', $unit->unitCode) }}"  role="button">
-                                    Edit
-                                </a>
-                            </td>
-                            <td class="td_unitDelete">
-                                <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        @else
-                        <tr class="hidden tr_template">
-                            <td class="td_unitCode"><a href="#"></a></td>
-                            <td class="td_unitName"><a href="#"></a></td>
-                            <td class="td_unitEdit">
-                                <a class="btn btn-default  pull-right" href="{{ route('coordinator.manageunits.edit', 'id') }}" role="button">
-                                    Edit
-                                </a>
-                            </td>
-                            <td class="td_unitDelete">
+                    <div class="table-responsive">
+                        <table class="table student" id="units_table" data-url="{{ route('coordinator.manageunits.index') }}">
+                            <thead>
+                                <th>Unit ID</th>
+                                <th>Unit Name</th>
+                                <th></th>
+                                <th><span><a class="btn btn-default" href="#" role="button" data-toggle="modal" title="Add New Unit" data-target="#addUnit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></span></th>
+                            </thead>
+                            @foreach($units as $unit)
+                                @if(isset($unit))
+                                    <tr>
+                                        <td class="td_unitCode">{{ $unit->unitCode }}</td>
+                                        <td class="td_unitName">{{ $unit->unitName }}</td>
+                                        <td><a class="btn btn-default pull-right" href="{{ route('coordinator.manageunits.edit', $unit->unitCode) }}"  role="button">Edit</a></td>
+                                        <td class="td_unitDelete">
+                                            <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr class="hidden tr_template">
+                                        <td class="td_unitCode"><a href="#"></a></td>
+                                        <td class="td_unitName"><a href="#"></a></td>
+                                        <td class="td_unitEdit">
+                                            <a class="btn btn-default  pull-right" href="{{ route('coordinator.manageunits.edit', 'id') }}" role="button">Edit</a>
+                                        </td>
+                                        <td class="td_unitDelete">
+                                            <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                            </button>
+                                        </td>
 
-                                <button id="submit" type="submit" class="btn btn-danger submit" data-method="DELETE" data-url="{{ route('coordinator.manageunits.destroy', $unit->unitCode) }}">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </td>
-
-                        </tr>
-                        @endif
-                        @endforeach
-                    </table>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div> <!-- end .panel -->
 
@@ -562,7 +563,7 @@
             tr_template.children('.td_unitEdit').html(`${unitEdit}`)
             tr_template.children('.td_unitDelete').html(`${unitDelete}`)
 
-            $('#units_table').append(tr_template)   
+            $('#units_table').append(tr_template)
         }
     }
 

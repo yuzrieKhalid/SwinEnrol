@@ -46,7 +46,7 @@
                                 </tr>
                             @endforeach
                         </table>
-                    </div>
+                    </div> <!-- end .table-responsive -->
 
                     @if($semester == 'Semester 1')
                         <h2><small>Summer Term {{ $year+1 }}</small></h2>
@@ -89,12 +89,12 @@
                                 </tr>
                             @endforeach
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    </div> <!-- end .table-responsive -->
+                </div> <!-- end .panel-body -->
+            </div> <!-- end .panel -->
+        </div> <!-- end .col -->
+    </div> <!-- end .row -->
+</div> <!-- end .container -->
 @stop
 
 @section('extra_js')

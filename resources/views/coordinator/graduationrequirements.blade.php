@@ -38,17 +38,19 @@
                                     <div class="col-xs-3 col-sm-6">
                                         <input class="form-control count" type="text" name="{{ $requirement->unitType }}" value="{{ $requirement->unitCount }}">
                                     </div>
+
+                                    <div class="col-xs-2 col-sm-1">
+                                        <button class="delete btn btn-danger" data-method="DELETE"
+                                            data-url="{{ route('coordinator.graduationrequirements.destroy', $requirement->unitType) }}">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </div>
+
                                     <div class="col-xs-2 col-sm-1">
                                         <button class="update btn btn-success" data-method="PUT"
                                             data-type="{{ $requirement->unitType }}" data-count="{{ $requirement->unitCount }}"
                                             data-url="{{ route('coordinator.graduationrequirements.update', $requirement->unitType) }}">
                                             Update
-                                        </button>
-                                    </div>
-                                    <div class="col-xs-2 col-sm-1">
-                                        <button class="delete btn btn-danger" data-method="DELETE"
-                                            data-url="{{ route('coordinator.graduationrequirements.destroy', $requirement->unitType) }}">
-                                                <span class="glyphicon glyphicon-remove"></span>
                                         </button>
                                     </div>
                                 </div>

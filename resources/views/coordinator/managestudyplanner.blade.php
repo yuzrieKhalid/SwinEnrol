@@ -77,29 +77,31 @@
                                     <h2>
                                         <small>{{ $term[$n] }}</small>
                                     </h2>
-                                    <table class="table">
-                                        <col width="125">
-                                        <thead>
-                                            <th>Unit Code</th>
-                                            <th>Unit Title</th>
-                                            <th>Pre-requisite</th>
-                                            <th>Co-requisite</th>
-                                            <th colspan="2">Anti-requisite</th>
-                                        </thead>
-                                        {{-- Fetch data for study planner --}}
-                                        @foreach ($semesterUnits as $unit)
-                                            @if($n == $unit->enrolmentTerm)
-                                                <tr>
-                                                    <td>{{ $unit->unitCode }}</td>
-                                                    <td>{{ $unit->unit->unitName }}</td>
-                                                    <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) @if(count($requisite[$unit->unitCode]['prerequisite']) > 0) {{ $requisite[$unit->unitCode]['prerequisite'][0] }} @if(count($requisite[$unit->unitCode]['prerequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
-                                                    <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) @if(count($requisite[$unit->unitCode]['corequisite']) > 0) {{ $requisite[$unit->unitCode]['corequisite'][0] }} @if(count($requisite[$unit->unitCode]['corequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['corequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['corequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
-                                                    <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) @if(count($requisite[$unit->unitCode]['antirequisite']) > 0) {{ $requisite[$unit->unitCode]['antirequisite'][0] }} @if(count($requisite[$unit->unitCode]['antirequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['antirequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['antirequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
-                                                    <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <col width="125">
+                                            <thead>
+                                                <th>Unit Code</th>
+                                                <th>Unit Title</th>
+                                                <th>Pre-requisite</th>
+                                                <th>Co-requisite</th>
+                                                <th colspan="2">Anti-requisite</th>
+                                            </thead>
+                                            {{-- Fetch data for study planner --}}
+                                            @foreach ($semesterUnits as $unit)
+                                                @if($n == $unit->enrolmentTerm)
+                                                    <tr>
+                                                        <td>{{ $unit->unitCode }}</td>
+                                                        <td>{{ $unit->unit->unitName }}</td>
+                                                        <td>@if(isset($requisite[$unit->unitCode]['prerequisite'])) @if(count($requisite[$unit->unitCode]['prerequisite']) > 0) {{ $requisite[$unit->unitCode]['prerequisite'][0] }} @if(count($requisite[$unit->unitCode]['prerequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['prerequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['prerequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                        <td>@if(isset($requisite[$unit->unitCode]['corequisite'])) @if(count($requisite[$unit->unitCode]['corequisite']) > 0) {{ $requisite[$unit->unitCode]['corequisite'][0] }} @if(count($requisite[$unit->unitCode]['corequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['corequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['corequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                        <td>@if(isset($requisite[$unit->unitCode]['antirequisite'])) @if(count($requisite[$unit->unitCode]['antirequisite']) > 0) {{ $requisite[$unit->unitCode]['antirequisite'][0] }} @if(count($requisite[$unit->unitCode]['antirequisite']) > 1) @for($i = 1; $i < count($requisite[$unit->unitCode]['antirequisite']); $i++) AND <br/> {{ $requisite[$unit->unitCode]['antirequisite'][$i] }} @endfor @endif @endif @else - @endif</td>
+                                                        <td><a id="submit" data-unit-code="{{ $unit->unitCode }}" data-enrolment-term="{{ $n }}" data-method="DELETE" data-url="{{ route('coordinator.managestudyplanner.destroy', $unit->unitCode) }}" class="submit pull-right" href="" role="button"><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span></a></td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        </table>
+                                    </div>
                                 @endif
                             @endfor
                         @endif

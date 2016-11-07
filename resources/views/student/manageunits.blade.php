@@ -30,65 +30,68 @@
 
                         @if (!empty($enrolledLong))
                             @foreach ($enrolledLong as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unit->unitName }}</td>
-                                @if($unit->status == 'confirmed')
-                                <!-- Has already passed -->
-                                <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                @elseif($unit->status == 'dropped')
-                                <!-- Dropped -->
-                                <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Dropped" aria-hidden="true"></span></td>
-                                @else
-                                <!-- Waiting to be approved -->
-                                <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
-                                @endif
-                                @if($phase->value == 1)
-                                <td>
-                                    <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit"
-                                        data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
-                                        <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-
-                                @elseif($phase->value == 6 || $phase->value == 7)
-                                <td>
-                                    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-remove">
-                                        <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-
-                                <div class="modal fade" id="adjustment-{{ $unit->unitCode }}-remove" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h2 class="modal-title">Drop Unit</h2>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
-                                                <div class="form-group">
-                                                    <label class="control-label">Reason: </label>
-                                                    <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
-                                                </div>
-                                                <p>IMPORTANT INFORMATION</p>
-                                                <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
-                                                <p>2.  Enrolment Deadlines:</p>
-                                                <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
-                                                <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
-                                            </div>
-
-                                            <div class="panel-footer">
-                                                <button type="button" class="adjustment_submit btn btn-danger" id="{{ $unit->unitCode }}" data-method="PUT" data-status="pending_drop"
-                                                    data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
-                                                    Submit
+                                @if($unit->status == 'confirmed' || $unit->status == 'pending')
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        @if($unit->status == 'confirmed')
+                                            <!-- Has already passed -->
+                                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                        @elseif($unit->status == 'dropped')
+                                            <!-- Dropped -->
+                                            <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Dropped" aria-hidden="true"></span></td>
+                                        @else
+                                            <!-- Waiting to be approved -->
+                                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                                        @endif
+                                        @if($phase->value == 1)
+                                            <td>
+                                                <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit"
+                                                    data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                                 </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+
+                                        @elseif($phase->value == 6 || $phase->value == 7)
+                                            <td>
+                                                <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-remove">
+                                                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                                </button>
+                                            </td>
+
+                                            <div class="modal fade" id="adjustment-{{ $unit->unitCode }}-remove" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h2 class="modal-title">Drop Unit</h2>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Reason: </label>
+                                                                <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
+                                                            </div>
+                                                            <p>IMPORTANT INFORMATION</p>
+                                                            <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
+                                                            <p>2.  Enrolment Deadlines:</p>
+                                                            <p>(i)  Addition of units of study must be submitted by close of business on the Friday of the 1st week of classes for a 12 week semester or by close of business on the 1st day of 6 week term.</p>
+                                                            <p>(ii)  Withdrawal of units or before close of business of the Unit of Study will avoid academic penalties.  Withdrawal of unit is subject to forfeiture fee.  Please refer to the <a href="http://www.swinburne.edu.my/wp-content/uploads/2016/04/Refund-Tuition-Fees.pdf">Refund and Tuition Fee Policy</a>.</p>
+                                                        </div>
+
+                                                        <div class="panel-footer">
+                                                            <button type="button" class="adjustment_submit btn btn-danger" id="{{ $unit->unitCode }}" data-method="PUT" data-status="pending_drop"
+                                                                data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                                                Submit
+                                                            </button>
+                                                        </div> <!-- end .panel-footer -->
+
+                                                    </div> <!-- end .modal-content -->
+                                                </div> <!-- end .modal-dialog -->
+                                            </div> <!-- end .modal -->
+                                        @endif
+                                    </tr>
                                 @endif
-                            </tr>
                             @endforeach
                         @else
                         <tr><td colspan="3">No units taken yet currently</td></tr>
@@ -110,27 +113,29 @@
 
                         @if (!empty($enrolledShort))
                             @foreach ($enrolledShort as $unit)
-                            <tr>
-                                <td>{{ $unit->unitCode }}</td>
-                                <td>{{ $unit->unit->unitName }}</td>
-                                @if($unit->status == 'confirmed')
-                                <!-- Has already passed -->
-                                <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                @elseif($unit->status == 'pending')
-                                <!-- Waiting to be approved (Phase 2) -->
-                                <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
-                                @else
-                                <!-- Is currently taken -->
-                                <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" aria-hidden="true"></span></td>
+                                @if($unit->status == 'confirmed' || $unit->status == 'pending')
+                                    <tr>
+                                        <td>{{ $unit->unitCode }}</td>
+                                        <td>{{ $unit->unit->unitName }}</td>
+                                        @if($unit->status == 'confirmed')
+                                            <!-- Has already passed -->
+                                            <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                        @elseif($unit->status == 'pending')
+                                            <!-- Waiting to be approved (Phase 2) -->
+                                            <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                                        @else
+                                            <!-- Is currently taken -->
+
+                                        @endif
+                                        @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
+                                            <td>
+                                                <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
+                                                    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                                </button>
+                                            </td>
+                                        @endif
+                                    </tr>
                                 @endif
-                                @if($phase->value == 1 || $phase->value == 3 || $phase->value == 4)
-                                <td>
-                                  <button type="submit" class="submit btn btn-sm" id="{{ $unit->unitCode }}" data-toggle="tooltip" title="Drop Unit" data-method="DELETE" data-url="{{ route('student.manageunits.destroy', $unit->unitCode) }}" data-length="{{ $unit->semesterLength }}">
-                                      <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                                @endif
-                            </tr>
                             @endforeach
                         @else
                         <tr><td colspan="3">No units taken yet currently</td></tr>

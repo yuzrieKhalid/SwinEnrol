@@ -59,25 +59,33 @@
                       @else
 
                       @foreach ($enrolled as $unit)
-                      <tr>
-                          <td>{{ $unit->unitCode }}</td>
-                          <td>{{ $unit->unit->unitName }}</td>
-                          @if($unit->status == 'confirmed')
-                          <!-- Successfully Enrolled -->
-                          <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                          @elseif($unit->status == 'dropped')
-                          <!-- Dropped -->
-                          <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Dropped" aria-hidden="true"></span></td>
-                          @else
-                          <!-- Waiting to be approved -->
-                          <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                          @if($unit->status == 'confirmed' || $unit->status == 'pending')
+                              <tr>
+                                  <td>{{ $unit->unitCode }}</td>
+                                  <td>{{ $unit->unit->unitName }}</td>
+                                  @if($unit->status == 'confirmed')
+                                      <!-- Successfully Enrolled -->
+                                      <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                  @elseif($unit->status == 'dropped')
+                                      <!-- Dropped -->
+                                      <td><span class="glyphicon glyphicon glyphicon-remove" data-toggle="tooltip" title="Dropped" aria-hidden="true"></span></td>
+                                  @else
+                                      <!-- Waiting to be approved -->
+                                      <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                                  @endif
+                              </tr>
                           @endif
-                      </tr>
                       @endforeach
-
                       @endif
-
-                  </table>
+                      </table>
+                      <h4 class="text-danger">Dropped Units</h4>
+                      <ol>
+                          @foreach ($enrolled as $unit)
+                              @if($unit->status == 'dropped')
+                                  <li class="text-danger">{{ $unit->unitCode }} {{ $unit->unit->unitName }}</li>
+                              @endif
+                          @endforeach
+                      </ol>
                 </div>
             </div>
         </div>

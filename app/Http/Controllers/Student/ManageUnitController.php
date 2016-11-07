@@ -358,16 +358,24 @@ class ManageUnitController extends Controller
 
         if($unitCount < 4)
         {
-            $unit = new EnrolmentUnits;
-            $unit->studentID = Auth::user()->username;
-            $unit->unitCode = $input['unitCode'];
-            $unit->year = Config::find('year')->value;
-            $unit->semester = Config::find('semester')->value;
-            $unit->semesterLength = $input['semesterLength'];
-            $unit->status = $input['status'];
-            $unit->result = 0.00;
-            $unit->grade = 'ungraded';
-            $unit->save();
+            if ($input['status'] == 'pending_drop') {
+                // if existing unit is amended to remove, just update existing entry
+                $unit = EnrolmentUnits::where('studentID', Auth::user()->username)
+                ->where('unitCode', $input['unitCode'])
+                ->update(['status' => $input['status']]);
+            } else {
+                // if amendment is to add, add new unit with status
+                $unit = new EnrolmentUnits;
+                $unit->studentID = Auth::user()->username;
+                $unit->unitCode = $input['unitCode'];
+                $unit->year = Config::find('year')->value;
+                $unit->semester = Config::find('semester')->value;
+                $unit->semesterLength = $input['semesterLength'];
+                $unit->status = $input['status'];
+                $unit->result = 0.00;
+                $unit->grade = 'ungraded';
+                $unit->save();
+            }
 
             // create an amendment issue
             $issue = new StudentEnrolmentIssues;

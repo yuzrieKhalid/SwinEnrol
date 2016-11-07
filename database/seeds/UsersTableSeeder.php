@@ -47,9 +47,25 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'CScience',
+                'username' => 'ComputerScience',
                 'password' => bcrypt('123'),
                 'email' => 'ComputerScience@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'InformationTechnology',
+                'password' => bcrypt('123'),
+                'email' => 'InformationTechnology@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'AccountingFinance',
+                'password' => bcrypt('123'),
+                'email' => 'AccountingFinance@coordinator.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -63,9 +79,97 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'username' => 'Multimedia',
+                'username' => 'InternationalBusiness',
+                'password' => bcrypt('123'),
+                'email' => 'InternationalBusiness@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'HumanResource',
+                'password' => bcrypt('123'),
+                'email' => 'HumanResource@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'Accounting',
+                'password' => bcrypt('123'),
+                'email' => 'Accounting@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'Marketing',
+                'password' => bcrypt('123'),
+                'email' => 'Marketing@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'GraphicDesign',
+                'password' => bcrypt('123'),
+                'email' => 'GraphicDesign@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'MultimediaDesign',
                 'password' => bcrypt('123'),
                 'email' => 'MultimediaDesign@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'CivilEngineering',
+                'password' => bcrypt('123'),
+                'email' => 'CivilEngineering@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'ChemicalEngineering',
+                'password' => bcrypt('123'),
+                'email' => 'ChemicalEngineering@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'ElectricalEngineering',
+                'password' => bcrypt('123'),
+                'email' => 'ElectricalEngineering@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'MechanicalEngineering',
+                'password' => bcrypt('123'),
+                'email' => 'MechanicalEngineering@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'RoboticsEngineering',
+                'password' => bcrypt('123'),
+                'email' => 'RoboticsEngineering@coordinator.swinburne.edu.my',
+                'permissionLevel' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'Biotechnology',
+                'password' => bcrypt('123'),
+                'email' => 'Biotechnology@coordinator.swinburne.edu.my',
                 'permissionLevel' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

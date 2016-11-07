@@ -85,23 +85,23 @@ class PhaseController extends Controller
                 $status = true; // status for checking unit approval
 
                 // already completed
-                if(!$this->completedUnitCheck($unit, $completed))
+                if(!Self::completedUnitCheck($unit, $completed))
                     $status = false;
 
                 // check prerequisites
-                if(!$this->prerequisiteCheck($unit, $completed))
+                if(!Self::prerequisiteCheck($unit, $completed))
                     $status = false;
 
                 // check antirequisites
-                if(!$this->antirequisiteCheck($unit, $completed, $success))
+                if(!Self::antirequisiteCheck($unit, $completed, $success))
                     $status = false;
 
                 // check credit points
-                if(!$this->creditPointsCheck($unit, $completed))
+                if(!Self::creditPointsCheck($unit, $completed))
                     $status = false;
 
                 // check corequisite
-                if(!$this->corequisiteCheck($unit, $completed, $success))
+                if(!Self::corequisiteCheck($unit, $completed, $success))
                     $status = false;
 
                 if($status == true)
@@ -167,7 +167,7 @@ class PhaseController extends Controller
         // get unit
         $unit = Unit::find('PRE11');
 
-        $data = $this->prerequisiteCheck($unit, $completed);
+        $data = Self::prerequisiteCheck($unit, $completed);
 
         return response()->json($data);
     }
@@ -402,7 +402,7 @@ class PhaseController extends Controller
         }
         else if($phase->value == '2')
         {
-            $approval = $this->unitApprove();
+            $approval = Self::unitApprove();
             $phase->value = '3';
         }
         else if($phase->value == '3')
@@ -415,7 +415,7 @@ class PhaseController extends Controller
         }
         else if($phase->value == '5')
         {
-            $approval = $this->unitApprove();
+            $approval = Self::unitApprove();
             $phase->value = '6';
         }
         else if($phase->value == '6')

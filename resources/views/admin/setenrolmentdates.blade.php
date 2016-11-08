@@ -117,12 +117,9 @@
                               <form id="eventForm" method="post" class="form-horizontal">
                               <label>Enrolment Period</label>
                               <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd" required>
-                                  <input type="text" class="input-sm form-control" id="reenrolmentCloseDate" name="reenrolmentCloseDate"/>
+                                  <input type="text" class="input-sm form-control" id="enrolStart" name="reenrolmentCloseDate"/>
                                   <span class="input-group-addon">to</span>
-                                  <input type="text" class="input-sm form-control" id="reenrolmentOpenDate" name="reenrolmentOpenDate"/>
-                                  <!-- <div class="error_msg">
-                                      Return date is earlier than departure date
-                                  </div> -->
+                                  <input type="text" class="input-sm form-control" id="enrolEnd" name="reenrolmentOpenDate"/>                        
                               </div>
 
                               <label>Short Semester Commencement</label>
@@ -139,12 +136,6 @@
                               <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd">
                                   <input type="text" class="input-sm form-control" id="examResultsRelease" name="examResultsRelease"/>
                               </div>
-
-                          <!--  -->
-                          <!--  -->
-                          <!--  -->
-                          <!--  -->
-
                           <div class="modal-footer">
                               <button type="button" class="btn btn-default create" id="openEnrolment"
                                    data-method="POST" data-url="{{ route('admin.setenrolmentdates.store') }}">
@@ -249,6 +240,11 @@
 
     // only for opening new enrolment
     $('.create').click(function() {
+      if($('#enrolStart').val().length == 0){
+            alert("Please enter Enrolment Start Date")
+        }else if($('#enrolEnd').val().length == 0 ){
+            alert("Please enter Enrolment End Date")
+        }else{
         let method = $(this).data('method')
         let url = $(this).data('url')
         data = {
@@ -269,6 +265,7 @@
             'method': method,
             'data': data
         }).done(function(data) { window.location.reload() })
+      }
     })
 
     // delete only

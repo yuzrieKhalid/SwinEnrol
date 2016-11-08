@@ -114,12 +114,11 @@
 
     $('.submit').attr("disabled", "disabled")
 
-    let maxLength = 0
+    let minLength = 0
     $('textarea').keyup(function() {
-      var length = $(this).val().length;
-      var length = maxLength+length;
-      $('#chars').text(length);
-
+        var length = $(this).val().length;
+        var length = minLength+length;
+        $('#chars').text(length);
         var inputValue = $(this).val().length;
         if(inputValue >= 50){
             $('.submit').removeAttr('disabled')

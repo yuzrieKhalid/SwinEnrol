@@ -356,9 +356,14 @@
 
     $('.adjustment_submit').attr("disabled", "disabled")
 
+    let minLength = 0
     $('#inputlink2').keyup(function(){
+        var length = $(this).val().length;
+        var length = minLength+length;
+
+        var inputValue2 = $(this).val().length;
         let inputValue = $(this).val()
-        if (inputValue.indexOf(".") >= 0) {
+        if (inputValue.indexOf(".") >= 0 && inputValue2 >= 10) {
             $('.adjustment_submit').removeAttr("disabled")
         }
     })

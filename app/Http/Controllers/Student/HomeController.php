@@ -33,15 +33,12 @@ class HomeController extends Controller
         $data['phase'] = Config::find('enrolmentPhase');
 
         // get all enrolled units
-        $enrolled = EnrolmentUnits::with('unit')
-        ->where('studentID', '=', $user->username)
-        ->where('year', '=', $data['currentyear']->value)
-        ->where('semester', '=', $data['currentsem']->value)
-        ->get();
-
+        $enrolled = EnrolmentUnits::with('unit')->where([
+            ['studentID', '=', $user->username],
+            ['year', '=', Config::find('year')->value],
+            ['semester', '=', Config::find('semester')->value],
+        ])->get();
         $data['enrolled'] = $enrolled;
-
-        // return $enrolled;
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
         ->where('studentID', '=',$student->studentID)

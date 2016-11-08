@@ -118,8 +118,8 @@ class ManageUnitController extends Controller
         // get all enrolled units for the upcoming semester
         $enrolled = EnrolmentUnits::with('unit')
         ->where('studentID', '=', $user->username)
-        ->where('year', '=', $listingyear)
-        ->where('semester', '=', $listingsemester)
+        ->where('year', '=', Config::find('year')->value)
+        ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
         // sort enrolled units into long/short semesters
@@ -294,8 +294,8 @@ class ManageUnitController extends Controller
             $unit = new EnrolmentUnits;
             $unit->studentID = Auth::user()->username;
             $unit->unitCode = $input['unitCode'];
-            $unit->year = $listingyear;
-            $unit->semester = $listingsemester;
+            $unit->year = Config::find('year')->value;
+            $unit->semester = Config::find('semester')->value;
             $unit->semesterLength = $input['semesterLength'];
             $unit->status = 'pending';
             $unit->result = 0.00;

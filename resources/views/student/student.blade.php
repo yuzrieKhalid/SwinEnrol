@@ -43,15 +43,7 @@
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    @if($phase->value == 2 || $phase->value == 3 || $phase->value == 4 || $phase->value == 5)
-                        @if($currentsem->value == 'Semester 1')
-                            <h3>Summer Term {{ $listingyear+1 }}</h3>
-                        @else
-                            <h3>Winter Term {{ $listingyear }}</h3>
-                        @endif
-                    @else
-                        <h3>{{ $currentsem->value }} {{ $currentyear->value }}</h3>
-                    @endif
+                    <h3>Current Enrolment</h3>
 
                 </div>
                 <div class="panel-body">

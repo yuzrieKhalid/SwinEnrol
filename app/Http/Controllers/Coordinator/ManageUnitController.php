@@ -133,15 +133,14 @@ class ManageUnitController extends Controller
             'studyLevel'
         ]);
 
-        // update unit details
-        $unit = Unit::findOrFail($id)->update([
-            'unitCode' => $input['unitCode'],
-            'unitName' => $input['unitName'],
-            'creditPoints' => $input['creditPoints'],
-            'studyLevel' => $input['studyLevel'],
-        ]);
+        $unit = Unit::findOrFail($id);
+        $unit->unitCode = $input['unitCode'];
+        $unit->unitName = $input['unitName'];
+        $unit->creditPoints = $input['creditPoints'];
+        $unit->studyLevel = $input['studyLevel'];
+        $unit->save();
 
-        return response()->json($unit);
+        return redirect('coordinator/manageunits');
     }
 
     /**

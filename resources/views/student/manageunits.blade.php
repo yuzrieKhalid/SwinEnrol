@@ -360,7 +360,6 @@
     $('#inputlink2').keyup(function(){
         var length = $(this).val().length;
         var length = minLength+length;
-
         var inputValue2 = $(this).val().length;
         let inputValue = $(this).val()
         if (inputValue.indexOf(".") >= 0 && inputValue2 >= 10) {

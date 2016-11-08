@@ -77,6 +77,7 @@
                         </div>
                         <div class="col-md-8">
                             <textarea class="form-control reasonForLOA" id="reason" rows="3" style="resize: none"></textarea>
+                            <span id="chars">0</span> characters counted <span></span> (Min 50words) 
                         </div>
                     </div>
 
@@ -122,6 +123,21 @@
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
     }
+
+    $('.submit').attr("disabled", "disabled")
+
+    let minLength = 0
+    $('textarea').keyup(function() {
+        var length = $(this).val().length;
+        var length = minLength+length;
+        $('#chars').text(length);
+        var inputValue = $(this).val().length;
+        if(inputValue >= 50){
+            $('.submit').removeAttr('disabled')
+        }
+    })
+
+
 
     // CHECK IS FOREIGNER
     let isForeigner = ''

@@ -43,75 +43,53 @@
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <caption><h3>Enrolled Unit</h3></caption>
+                    @if($phase->value == 2 || $phase->value == 3 || $phase->value == 4 || $phase->value == 5)
+                        @if($currentsem->value == 'Semester 1')
+                            <h3>Summer Term {{ $listingyear+1 }}</h3>
+                        @else
+                            <h3>Winter Term {{ $listingyear }}</h3>
+                        @endif
+                    @else
+                        <h3>{{ $currentsem->value }} {{ $currentyear->value }}</h3>
+                    @endif
 
                 </div>
                 <div class="panel-body">
                     @include('student.phaseNotification')
-                    <h4>{{ $listingsemester }} {{ $listingyear }}</h4>
-                    <table class="table">
-                      <thead>
-                          <th>Unit Code</th>
-                          <th>Unit Title</th>
-                          <th>Status</th>
-                      </thead>
-                      @if(empty($enrolled))
-                      <tr><td colspan="3">No Units Enrolled Yet</td></tr>
-                      @else
 
-                      @foreach ($enrolledLong as $unit)
-                          @if($unit->status == 'confirmed' || $unit->status == 'pending')
-                              <tr>
-                                  <td>{{ $unit->unitCode }}</td>
-                                  <td>{{ $unit->unit->unitName }}</td>
-                                  @if($unit->status == 'confirmed')
-                                      <!-- Successfully Enrolled -->
-                                      <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                  @else
-                                      <!-- Waiting to be approved -->
-                                      <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
-                                  @endif
-                              </tr>
-                          @endif
-                      @endforeach
-                      @endif
-                      </table>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th>Unit Code</th>
+                                <th>Unit Title</th>
+                                <th>Status</th>
+                            </thead>
 
-                      @if($listingsemester == 'Semester 1')
-                          <h4>Summer Term {{ $listingyear+1 }}</h4>
-                      @else
-                          <h4>Winter Term {{ $listingyear }}</h4>
-                      @endif
-                      <table class="table">
-                          <thead>
-                              <th>Unit Code</th>
-                              <th>Unit Title</th>
-                              <th>Status</th>
-                          </thead>
-                          @if(empty($enrolled))
-                              <tr><td colspan="3">No Units Enrolled Yet</td></tr>
-                          @else
+                            @if(empty($enrolled))
+                                <tr><td colspan="3">No Units Enrolled Yet</td></tr>
+                            @else
+                                @foreach ($enrolled as $unit)
+                                    @if($unit->status == 'confirmed' || $unit->status == 'pending')
+                                        <tr>
+                                            <td>{{ $unit->unitCode }}</td>
+                                            <td>{{ $unit->unit->unitName }}</td>
+                                            @if($unit->status == 'confirmed')
+                                                <!-- Successfully Enrolled -->
+                                                <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
+                                            @else
+                                                <!-- Waiting to be approved -->
+                                                <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
 
-                              @foreach ($enrolledShort as $unit)
-                                  @if($unit->status == 'confirmed' || $unit->status == 'pending')
-                                      <tr>
-                                          <td>{{ $unit->unitCode }}</td>
-                                          <td>{{ $unit->unit->unitName }}</td>
-                                          @if($unit->status == 'confirmed')
-                                              <!-- Successfully Enrolled -->
-                                              <td><span class="glyphicon glyphicon glyphicon-ok" data-toggle="tooltip" title="Enrolled" aria-hidden="true"></span></td>
-                                          @else
-                                              <!-- Waiting to be approved -->
-                                              <td><span class="glyphicon glyphicon glyphicon-alert" data-toggle="tooltip" title="Pending" aria-hidden="true"></span></td>
-                                          @endif
-                                      </tr>
-                                  @endif
-                              @endforeach
-                          @endif
-                     </table>
-                </div>
-            </div>
-        </div>
+                        </table>
+                    </div> <!-- end .table-responsive -->
+                </div> <!-- end .panel-body -->
+            </div> <!-- end .panel -->
+        </div> <!-- end .col -->
 
         <div class="col-md-12">
             <div class="panel panel-primary">

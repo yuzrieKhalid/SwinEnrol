@@ -35,20 +35,13 @@ class HomeController extends Controller
         // get all enrolled units
         $enrolled = EnrolmentUnits::with('unit')
         ->where('studentID', '=', $user->username)
-        ->where('year', '=', Config::find('year')->value)
-        ->where('semester', '=', Config::find('semester')->value)
+        ->where('year', '=', $data['currentyear']->value)
+        ->where('semester', '=', $data['currentsem']->value)
         ->get();
 
-        // sort enrolled units into long/short semesters
-        $data['enrolledLong'] = [];
-        $data['enrolledShort'] = [];
-        foreach($enrolled as $unit)
-        {
-            if($unit->semesterLength == 'long')
-                array_push($data['enrolledLong'], $unit);
-            if($unit->semesterLength == 'short')
-                array_push($data['enrolledShort'], $unit);
-        }
+        $data['enrolled'] = $enrolled;
+
+        // return $enrolled;
 
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
         ->where('studentID', '=',$student->studentID)

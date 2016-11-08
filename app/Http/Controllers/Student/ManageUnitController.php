@@ -62,6 +62,20 @@ class ManageUnitController extends Controller
         $student = Student::find($user->username);
         $course = Course::find($student->courseCode);
 
+        $listingsemester = Config::find('semester')->value + 1;
+        $listingyear = Config::find('year')->value;
+        // because the config contains the value for current semester so we need to change it accordingly
+        // because a unit listing shows the list for next semester
+        if (Config::find('semester')->value == 'Semester 1') {
+            $listingsemester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $listingyear += 1; // +1 year
+            $listingsemester = 'Semester 1';
+        }
+        $data['listingyear'] = $listingyear;
+        $data['listingsemester'] = $listingsemester;
+
         // check if foundation student
         if($course->studyLevel == 'Foundation')
         {
@@ -101,11 +115,11 @@ class ManageUnitController extends Controller
                 return view('student.selectcourse', $data);
         }
 
-        // get all enrolled units
+        // get all enrolled units for the upcoming semester
         $enrolled = EnrolmentUnits::with('unit')
         ->where('studentID', '=', $user->username)
-        ->where('year', '=', Config::find('year')->value)
-        ->where('semester', '=', Config::find('semester')->value)
+        ->where('year', '=', $listingyear)
+        ->where('semester', '=', $listingsemester)
         ->get();
 
         // sort enrolled units into long/short semesters
@@ -118,20 +132,6 @@ class ManageUnitController extends Controller
             if($unit->semesterLength == 'short')
                 array_push($data['enrolledShort'], $unit);
         }
-
-        $listingsemester = Config::find('semester')->value + 1;
-        $listingyear = Config::find('year')->value;
-        // because the config contains the value for current semester so we need to change it accordingly
-        // because a unit listing shows the list for next semester
-        if (Config::find('semester')->value == 'Semester 1') {
-            $listingsemester = 'Semester 2';
-        } else {
-            // if semester 2 in 2016
-            $listingyear += 1; // +1 year
-            $listingsemester = 'Semester 1';
-        }
-        $data['listingyear'] = $listingyear;
-        $data['listingsemester'] = $listingsemester;
 
         // get all current units - according to UnitListing
         $allUnits = UnitListing::with('unit')
@@ -271,6 +271,17 @@ class ManageUnitController extends Controller
 
         $user = Auth::user();
 
+        // get the semester and year for the enrolled from Manage Unit page
+        $listingsemester = Config::find('semester')->value + 1;
+        $listingyear = Config::find('year')->value;
+        if (Config::find('semester')->value == 'Semester 1') {
+            $listingsemester = 'Semester 2';
+        } else {
+            // if semester 2 in 2016
+            $listingyear += 1; // +1 year
+            $listingsemester = 'Semester 1';
+        }
+
         $unitCount = EnrolmentUnits::where('studentID', '=', $user->username)
         ->where('year', '=', Config::find('year')->value)
         ->where('semester', '=', Config::find('semester')->value)
@@ -283,8 +294,8 @@ class ManageUnitController extends Controller
             $unit = new EnrolmentUnits;
             $unit->studentID = Auth::user()->username;
             $unit->unitCode = $input['unitCode'];
-            $unit->year = Config::find('year')->value;
-            $unit->semester = Config::find('semester')->value;
+            $unit->year = $listingyear;
+            $unit->semester = $listingsemester;
             $unit->semesterLength = $input['semesterLength'];
             $unit->status = 'pending';
             $unit->result = 0.00;

@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="from-group panel-heading">
-                    <h3>Current Enrolment</h3>
+                    <h3>Upcoming Enrolment</h3>
                 </div>
 
                 <div class="panel-body">

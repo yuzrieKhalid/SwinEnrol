@@ -98,6 +98,7 @@ Route::group([
     ]);
     Route::resource('enrolmentamendment', 'Coordinator\EnrolmentAmendmentController');
     Route::resource('graduationrequirements', 'Coordinator\GraduationRequirementsController');
+    Route::resource('managerequisites', 'Coordinator\ManageRequisiteController');
 });
 
 // Student

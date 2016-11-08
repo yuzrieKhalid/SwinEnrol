@@ -82,7 +82,7 @@
                                 <li><a href="{{ url('/coordinator') }}">Home</a></li>
                                 <li><a href="{{ url('/coordinator/managestudyplanner/create') }}">Manage Study Planner</a></li>
                                 <li><a href="{{ url('/coordinator/manageunitlisting/create') }}">Manage Unit Listings</a></li>
-                                <li><a href="{{ url('/coordinator/manageunits/create') }}">Manage Units</a></li>
+                                <li><a href="{{ url('/coordinator/manageunits') }}">Manage Units</a></li>
                                 <li><a href="{{ url('/coordinator/enrolmentamendment/create') }}">Resolve Enrolment Amendement</a></li>
                                 <li><a href="{{ url('/coordinator/resolveenrolmentissues/create') }}">Resolve Enrolment Issues</a></li>
                                 <li><a href="{{ url('/coordinator/graduationrequirements/create') }}">Graduation Requirements</a></li>

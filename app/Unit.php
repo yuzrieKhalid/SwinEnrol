@@ -8,6 +8,13 @@ class Unit extends Model
 {
     protected $table = 'unit';
 
+    protected $fillable = [
+        'unitCode',
+        'unitName',
+        'creditPoints',
+        'studyLevel'
+    ];
+
     // primary key
     protected $primaryKey = 'unitCode';
     public $incrementing = false;

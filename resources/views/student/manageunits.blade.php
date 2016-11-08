@@ -209,7 +209,7 @@
                                                             <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                             <div class="form-group">
                                                                 <label class="control-label">Reason: </label>
-                                                                <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
+                                                                <textarea class="form-control custom-control reason" id="inputlink2" rows="3" style="resize:none"></textarea>
                                                             </div>
                                                             <p>IMPORTANT INFORMATION</p>
                                                             <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -268,8 +268,8 @@
                                                         <div class="modal-body">
                                                             <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                             <div class="form-group">
-                                                                <label class="control-label">Reason: </label>
-                                                                <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
+                                                                <label class="control-label">Reason: </label> 
+                                                                <textarea id="inputLink" class="form-control custom-control reason" rows="3" placeholder="At least One Sentence" style="resize:none"></textarea>
                                                             </div>
                                                             <p>IMPORTANT INFORMATION</p>
                                                             <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -354,14 +354,14 @@
     // tooltip
     $('[data-toggle="collapse"]').tooltip();
 
-    // $('.adjustment_submit').attr("disabled", "disabled")
+    $('.adjustment_submit').attr("disabled", "disabled")
 
-    // $('#inputLink').keyup(function(){
-    //     let inputValue = $(this).val()
-    //     if (inputValue.toLowerCase().indexOf(".") >= 0) {
-    //         $('.adjustment_submit').removeAttr('disabled');
-    //     }
-    // })
+    $('#inputlink2').keyup(function(){
+        let inputValue = $(this).val()
+        if (inputValue.indexOf(".") >= 0) {
+            $('.adjustment_submit').removeAttr("disabled")
+        }
+    })
 
     // Search
     $("#search-criteria").keyup(function() {

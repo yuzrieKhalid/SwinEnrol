@@ -121,10 +121,9 @@
       $('#chars').text(length);
 
         var inputValue = $(this).val().length;
-        if(inputValue >= 10){
+        if(inputValue >= 50){
             $('.submit').removeAttr('disabled')
         }
-
     })
 
     // CREATE ISSUE SCRIPT

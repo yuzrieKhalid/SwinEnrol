@@ -122,7 +122,7 @@ class ManagCourseController extends Controller
       $course->studyLevel = $input['studyLevel'];
       $course->save();
 
-      return response()->json($course);
+      return redirect()->action('Super\ManagCourseController@create');
     }
 
     /**

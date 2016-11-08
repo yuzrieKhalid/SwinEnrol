@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('extra_head')
-    <!-- remember csrf token needs middleware -->
-    <meta name="_token" content="{{ csrf_token() }}"/>
-@stop
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,83 +10,56 @@
                         <small>[ {{ $courses->courseCode }} {{ $courses->courseName }} ]</small>
                     </h3>
                 </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group"> <!-- course code -->
-                                <label class="control-label">Course Code</label>
-                                <input type="text" class="form-control" id="courseCode" value="{{ $courses->courseCode }}">
-                            </div>
+                <form class="form-horizontal" role="form" method="POST" action="/super/managecourse/{{ $courses->courseCode }}">
 
-                            <div class="form-group"> <!-- course name -->
-                                <label class="control-label">Course Name:</label>
-                                <input type="text" class="form-control" id="courseName" value="{{ $courses->courseName }}">
-                            </div>
+                    {{-- Editting with PUT Method with CSRF Token --}}
+                    <input type="hidden" name="_method" value="PUT">
+                    {!! csrf_field() !!}
 
-                            <div class="form-group"> <!-- semesters per year -->
-                                <label class="control-label">Semester (Per Year):</label>
-                                <input type="text" class="form-control" id="semestersPerYear" value="{{ $courses->semestersPerYear }}">
-                            </div>
-
-                            <div class="form-group"> <!-- semester count in total -->
-                                <label class="control-label">Semester (Total):</label>
-                                <input type="text" class="form-control" id="semesterCount" value="{{ $courses->semesterCount }}">
-                            </div>
-
-                            <div class="form-group"> <!-- study level -->
-                                <label class="control-label">Study Level:</label>
-                                <input type="text" class="form-control" id="studyLevel" value="{{ $courses->studyLevel }}">
+                    <div class="panel-body">
+                        <div class="form-group"> <!-- course code -->
+                            <label class="col-md-2 control-label">Course Code</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="courseCode" value="{{ $courses->courseCode }}">
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <button type="submit" class="submit btn btn-warning" id="submit" data-method="PUT"
-                        data-url="{{ route('super.managecourse.update', $courses->courseCode) }}">
-                            Edit
-                    </button>
-                    <a id="backToCreate" class="btn btn-info" href="{{ route('super.managecourse.create') }}"
-                        role="button">Back To Previous Page
-                    </a>
-                </div> <!-- end .panel-footer -->
+
+                        <div class="form-group"> <!-- course name -->
+                            <label class="col-md-2 control-label">Course Name:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="courseName" value="{{ $courses->courseName }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group"> <!-- semesters per year -->
+                            <label class="col-md-2 control-label">Semester (Per Year):</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="semestersPerYear" value="{{ $courses->semestersPerYear }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group"> <!-- semester count in total -->
+                            <label class="col-md-2 control-label">Semester (Total):</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="semesterCount" value="{{ $courses->semesterCount }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group"> <!-- study level -->
+                            <label class="col-md-2 control-label">Study Level:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="studyLevel" value="{{ $courses->studyLevel }}">
+                            </div>
+                        </div>
+                    </div> <!-- end .panel-body -->
+
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <a class="btn btn-danger" href="{{ route('super.managecourse.create') }}" role="button">Cancel</a>
+                    </div> <!-- end .panel-footer -->
+                </form>
             </div> <!-- end .panel -->
         </div> <!-- end .col -->
     </div> <!-- end .row -->
 </div> <!-- end .container -->
-@stop
-
-
-@section('extra_js')
-<script>
-
-(function(){
-
-  let getToken = function() {
-      return $('meta[name=_token]').attr('content')
-  }
-
-  $('.submit').click(function(){
-      let method = $(this).data('method')
-      let url = $(this).data('url')
-      data = {
-          _token: getToken(),
-          courseCode: $('#courseCode').val(),
-          courseName: $('#courseName').val(),
-          semestersPerYear: $('#semestersPerYear').val(),
-          semesterCount: $('#semesterCount').val(),
-          studyLevel: $('#studyLevel').val()
-
-      }
-      $.ajax({
-          'url': url,
-          'method': method,
-          'data': data
-      }).done(function(data) {
-          window.location.reload()
-      })
-  })
-
-})()
-
-</script>
 @stop

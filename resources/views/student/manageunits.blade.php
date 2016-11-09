@@ -52,7 +52,6 @@
                                                         <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
                                                     </button>
                                                 </td>
-
                                             @elseif($phase->value == 6 || $phase->value == 7)
                                                 <td>
                                                     <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-remove">
@@ -71,7 +70,7 @@
                                                                 <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                                 <div class="form-group">
                                                                     <label class="control-label">Reason: </label>
-                                                                    <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
+                                                                    <textarea id="inputLink" class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                                 </div>
                                                                 <p>IMPORTANT INFORMATION</p>
                                                                 <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -214,7 +213,7 @@
                                                 <td>{{ $unit->unit->unitName }}</td>
                                                 <td>
                                                     @if($phase->value == 6)
-                                                    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-add">
+                                                    <button type="button" class="adjustment_modal btn btn-sm" data-toggle="modal" data-target="#adjustment-{{ $unit->unitCode }}-add">
                                                         <span class="glyphicon glyphicon-plus text-success" aria-hidden="true"></span>
                                                     </button>
                                                     @else
@@ -235,7 +234,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
-                                                            <div class="form-group">
+                                                            <div class="form-group reason-group">
                                                                 <label class="control-label">Reason: </label>
                                                                 <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                             </div>
@@ -247,7 +246,7 @@
                                                         </div>
 
                                                         <div class="panel-footer">
-                                                            <button type="button" id="{{ $unit->unitCode }}" class="adjustment_submit btn btn-success" data-method="PUT"
+                                                            <button type="button" id="{{ $unit->unitCode }}" class="adjustment_submit btn btn-success" data-method="PUT" disabled
                                                                 data-url="{{ route('student.manageunits.update', $unit->unitCode) }}" data-length="long" data-status="pending_add">
                                                                 Submit
                                                             </button>
@@ -298,7 +297,7 @@
                                                                 <h4>{{ $unit->unitCode }} {{ $unit->unit->unitName }}</h4>
                                                                 <div class="form-group">
                                                                     <label class="control-label">Reason: </label>
-                                                                    <textarea class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
+                                                                    <textarea id="inputLink" class="form-control custom-control reason" rows="3" style="resize:none"></textarea>
                                                                 </div>
                                                                 <p>IMPORTANT INFORMATION</p>
                                                                 <p>1.  It is the student's responsibility to check pre-requisite and mandatory requirements when changing their course components.</p>
@@ -432,16 +431,32 @@
         })
     })
 
+    // do a checking on the reason in phase 6
+    $('.adjustment_modal').click(function() {
+        // get the id of the modal - to only affect the specific modal
+        let target = $(this).data('target')
+
+        // find the modal itself throughout the generated modals in #core-table
+        let findmodal = $('#core-table').find(target).find('.modal-content')
+
+        // check on keyup the reason textarea
+        let adjustmentreason = findmodal.find('.reason-group').find('.reason').keyup(function() {
+            let length = adjustmentreason.val().length  // get the length of the words typed
+            let inputValue = adjustmentreason.val()     // get the text of the reason itself
+
+            // if the length of the words typed is more than 10 and has at least one fullstop
+            if (inputValue.indexOf(".") >= 0 && length >= 10) {
+                // console.log('ok, passed') // check to remove the 'disabled'
+                findmodal.find('.adjustment_submit').removeAttr('disabled')
+            }
+        })
+    })
+
     // when clicking the 'Submit' button on phase 3 or phase 6
     $('.adjustment_submit').click(function() {
         let method = $(this).data('method')
         let url = $(this).data('url')
-
         let pendingstatus = $(this).data('status')
-        let adjustmentreason = $(this).parent().parent().find('.modal-body').find('.form-group').find('.reason').val()
-        if (adjustmentreason == 'undefined' || adjustmentreason == '') {
-            adjustmentreason = 'No reason was given'
-        }
 
         data = {
             _token: getToken(),

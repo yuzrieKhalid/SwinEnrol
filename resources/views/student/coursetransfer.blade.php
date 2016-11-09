@@ -87,7 +87,8 @@
                             <h5>REASON FOR TRANSFER</h5>
                         </div>
                         <div class="col-md-8">
-                            <textarea id="reason" class="form-control toReasons" rows="3" style="resize:none"></textarea>
+                            <textarea id="reason" maxlength="1000" class="form-control toReasons" rows="3" style="resize:none"></textarea>
+                            <span id="chars">0</span> characters counted <span></span> (Min 50words) 
                         </div>
                     </div> <!-- end .row -->
                 </div> <!-- end .panel-body -->
@@ -110,6 +111,19 @@
     let getToken = function() {
         return $('meta[name=_token]').attr('content')
     }
+
+    $('.submit').attr("disabled", "disabled")
+
+    let minLength = 0
+    $('textarea').keyup(function() {
+        var length = $(this).val().length;
+        var length = minLength+length;
+        $('#chars').text(length);
+        var inputValue = $(this).val().length;
+        if(inputValue >= 50){
+            $('.submit').removeAttr('disabled')
+        }
+    })
 
     // CREATE ISSUE SCRIPT
     let createIssue = $('.submit').click(function() {

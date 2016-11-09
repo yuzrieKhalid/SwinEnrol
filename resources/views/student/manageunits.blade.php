@@ -457,6 +457,7 @@
         let method = $(this).data('method')
         let url = $(this).data('url')
         let pendingstatus = $(this).data('status')
+        let adjustmentreason = $(this).parent().parent().find('.modal-body').find('.form-group').find('.reason').val()
 
         data = {
             _token: getToken(),

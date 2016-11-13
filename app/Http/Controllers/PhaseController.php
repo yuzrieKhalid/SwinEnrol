@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Carbon\Carbon;
+
 use App\Config;
+use App\EnrolmentDates;
 use App\EnrolmentUnits;
 use App\Requisite;
+use App\Student;
 use App\Unit;
-use App\Student; // for testing
 
 class PhaseController extends Controller
 {
@@ -402,7 +405,7 @@ class PhaseController extends Controller
         }
         else if($phase->value == '2')
         {
-            $approval = Self::unitApprove();
+            // $approval = Self::unitApprove();
             $phase->value = '3';
         }
         else if($phase->value == '3')
@@ -415,7 +418,7 @@ class PhaseController extends Controller
         }
         else if($phase->value == '5')
         {
-            $approval = Self::unitApprove();
+            // $approval = Self::unitApprove();
             $phase->value = '6';
         }
         else if($phase->value == '6')
@@ -455,5 +458,123 @@ class PhaseController extends Controller
         $data['approval'] = $approval;
 
     return response()->json($data);
+    }
+
+    /**
+     * returns phase information based on enrolment dates
+     *
+     * @return json array with phase, year, semester
+     */
+    public static function getPhaseInformation($studyLevel)
+    {
+        // get config information
+        $dropCloseLong = Config::find('dropCloseLong')->value;
+        $addCloseLong = Config::find('addCloseLong')->value;
+        $dropCloseShort = Config::find('dropCloseShort')->value;
+        $addCloseShort = Config::find('addCloseShort')->value;
+
+        // get current date
+        $currentDate = Carbon::now();
+
+        // get current year
+        $data['year'] = Carbon::now()->year;
+
+        $data['phase'] = 0; // phase
+
+        // get semester 2 date information
+        $semester2 = EnrolmentDates::where('year', '=', $data['year'])
+        ->where('level', '=', $studyLevel)
+        ->where('term', '=', 'Semester 2')
+        ->first();
+
+        if(isset($semester2))
+        {
+            // create enrolment date instances
+            $phase1 = new Carbon($semester2->reenrolmentOpenDate); // phase 1
+            $phase2 = new Carbon($semester2->reenrolmentCloseDate); // phase 2
+            $phase3 = new Carbon($semester2->shortCommence); // phase 3
+            $phase4 = new Carbon($semester2->shortCommence);
+            $phase4->addDays($addCloseShort); // phase 4
+            $phase5 = new Carbon($semester2->shortCommence);
+            $phase5->addDays($dropCloseShort); // phase 5
+            $phase6 = new Carbon($semester2->longCommence); // phase 6
+            $phase7 = new Carbon($semester2->longCommence);
+            $phase7->addDays($addCloseLong); // phase 7
+            $phase8 = new Carbon($semester2->longCommence);
+            $phase8->addDays($dropCloseLong); // phase 8
+
+            // check semester 2
+            if($currentDate->gt($phase8))
+                $data['phase'] = 8;
+            else if($currentDate->gt($phase7))
+                $data['phase'] = 7;
+            else if($currentDate->gt($phase6))
+                $data['phase'] = 6;
+            else if($currentDate->gt($phase5))
+                $data['phase'] = 5;
+            else if($currentDate->gt($phase4))
+                $data['phase'] = 4;
+            else if($currentDate->gt($phase3))
+                $data['phase'] = 3;
+            else if($currentDate->gt($phase2))
+                $data['phase'] = 2;
+            else if($currentDate->gt($phase1))
+                $data['phase'] = 1;
+
+            $data['semester'] = 'Semester 2'; // set semester to Semester 2
+        }
+
+        // check semester 1
+        if($data['phase'] == 0)
+        {
+            // get semester 1 date information
+            $semester2 = EnrolmentDates::where('year', '=', $data['year'])
+            ->where('level', '=', $studyLevel)
+            ->where('term', '=', 'Semester 1')
+            ->first();
+
+            if(isset($semester2))
+            {
+                // create enrolment date instances
+                $phase1 = new Carbon($semester2->reenrolmentOpenDate); // phase 1
+                $phase2 = new Carbon($semester2->reenrolmentCloseDate); // phase 2
+                $phase3 = new Carbon($semester2->shortCommence); // phase 3
+                $phase4 = new Carbon($semester2->shortCommence);
+                $phase4->addDays($addCloseShort); // phase 4
+                $phase5 = new Carbon($semester2->shortCommence);
+                $phase5->addDays($dropCloseShort); // phase 5
+                $phase6 = new Carbon($semester2->longCommence); // phase 6
+                $phase7 = new Carbon($semester2->longCommence);
+                $phase7->addDays($addCloseLong); // phase 7
+                $phase8 = new Carbon($semester2->longCommence);
+                $phase8->addDays($dropCloseLong); // phase 8
+
+                // check semester 1
+                if($currentDate->gt($phase8))
+                    $data['phase'] = 8;
+                else if($currentDate->gt($phase7))
+                    $data['phase'] = 7;
+                else if($currentDate->gt($phase6))
+                    $data['phase'] = 6;
+                else if($currentDate->gt($phase5))
+                    $data['phase'] = 5;
+                else if($currentDate->gt($phase4))
+                    $data['phase'] = 4;
+                else if($currentDate->gt($phase3))
+                    $data['phase'] = 3;
+                else if($currentDate->gt($phase2))
+                    $data['phase'] = 2;
+                else if($currentDate->gt($phase1))
+                    $data['phase'] = 1;
+            }
+
+            $data['semester'] = 'Semester 1'; // set semester to Semester 1
+
+            // if no dates set default to semester 1 phase 8
+            if($data['phase'] == 0)
+                $data['phase'] = 8;
+        }
+
+        return $data;
     }
 }

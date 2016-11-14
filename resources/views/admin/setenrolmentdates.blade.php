@@ -119,7 +119,7 @@
                               <div class="input-daterange input-group" data-provide="datepicker" data-date-format="yyyy-mm-dd" required>
                                   <input type="text" class="input-sm form-control" id="enrolStart" name="reenrolmentCloseDate"/>
                                   <span class="input-group-addon">to</span>
-                                  <input type="text" class="input-sm form-control" id="enrolEnd" name="reenrolmentOpenDate"/>                        
+                                  <input type="text" class="input-sm form-control" id="enrolEnd" name="reenrolmentOpenDate"/>
                               </div>
 
                               <label>Short Semester Commencement</label>
@@ -252,8 +252,8 @@
             year: $('#year').val(),
             term: $('select[name=term]').val(),
             level: $('select[name=level]').val(),
-            reenrolmentCloseDate: $('#reenrolmentCloseDate').val(),
-            reenrolmentOpenDate: $('#reenrolmentOpenDate').val(),
+            reenrolmentCloseDate: $('#enrolStart').val(),
+            reenrolmentOpenDate: $('#enrolEnd').val(),
             shortCommence: $('#shortCommence').val(),
             longCommence: $('#longCommence').val(),
             examResultsRelease: $('#examResultsRelease').val(),

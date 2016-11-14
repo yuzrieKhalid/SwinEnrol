@@ -7,15 +7,38 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Config;
+use App\EnrolmentUnits;
 use App\Student;
 
 class HomeController extends Controller
 {
     public function index() {
 
-      $data = [];
-      $studentID = Student::all();
-      $data['studentID']= $studentID;
+        $data = [];
+
+        // get phase information
+        $data['phase'] = Config::find('enrolmentPhase')->value;
+        $data['year'] = Config::find('year')->value;
+        $data['semester'] = Config::find('semester')->value;
+
+        // get unit approval information
+        $data['studentCount'] = EnrolmentUnits::distinct()
+            ->select('studentID')
+            ->where('year', '=', $data['year'])
+            ->where('semester', '=', $data['semester'])
+            ->where('status', '=', 'pending')
+            ->get();
+
+        // get all student's current pending units
+        $data['unitCount'] = EnrolmentUnits::where('year', '=', $data['year'])
+        ->where('semester', '=', $data['semester'])
+        ->where('status', '=', 'pending')
+        ->count();
+
+
+        $studentID = Student::all();
+        $data['studentID'] = $studentID;
 
         //$data = count($studentAll);
         $n = 0;
@@ -39,8 +62,8 @@ class HomeController extends Controller
         // second pass: compute summary statistics
         $xxbar = 0;
         $yybar = 0;
-        $xybar = 0
-          ;
+        $xybar = 0;
+
         for ($i = 0; $i < $n; $i++) {
             $xxbar += ($x[$i] - $xbar) * ($x[$i] - $xbar);
             $yybar += ($y[$i] - $ybar) * ($y[$i] - $ybar);

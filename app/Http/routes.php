@@ -24,6 +24,14 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function() {
     Route::get('/', 'Admin\HomeController@index');
+    Route::post('/phaseTrigger', [
+        'as' => 'admin.phaseTrigger',
+        'uses' => 'PhaseController@phaseTrigger'
+    ]);
+    Route::post('/unitApprove', [
+        'as' => 'admin.unitApprove',
+        'uses' => 'PhaseController@unitApprove'
+    ]);
     Route::resource('managestudents', 'Admin\ManageStudentController');
     Route::get('managestudents/downloadExcel/{type}', 'Admin\ManageStudentController@downloadExcel');
     Route::get('managestudents/import/studentrecords', 'Admin\ManageStudentController@importStudentRecords');
@@ -144,10 +152,10 @@ Route::group([
     Route::resource('manageunitinfo', 'AdminOfficer\ManageUnitInfoController');
 });
 
-Route::get('/phase', 'PhaseController@phaseTrigger');
-Route::get('/unit', 'PhaseController@unitApprove');
-Route::get('/unitCheck', 'PhaseController@unitCheck');
-Route::get('/test', 'Test@test');
+Route::get('/phase', 'PhaseController@phaseTrigger'); // remove when in production
+Route::get('/unit', 'PhaseController@unitApprove'); // remove when in production
+Route::get('/unitCheck', 'PhaseController@unitCheck'); // remove when in production
+Route::get('/test', 'Test@test'); // remove when in production
 Route::get('/recordexist', 'ErrorRedirectController@recordexist');
 Route::get('/modelnotfound', 'ErrorRedirectController@modelnotfound');
 Route::get('/403', 'ErrorRedirectController@error403');

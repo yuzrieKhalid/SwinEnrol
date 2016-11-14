@@ -231,7 +231,6 @@
         <div class="panel-footer">
             <button type="submit" class="submit btn btn-warning" id="submit" data-method="PUT" data-url="{{ route('coordinator.managerequisites.update', $unit->unitCode) }}">Edit</button>
             <a id="backToCreate" class="btn btn-info" href="{{ route('coordinator.manageunits.index') }}" role="button">Back To Previous Page</a>
-            <button class="test btn btn-default">Test</button>
         </div>
     </div>
 </div>
@@ -509,19 +508,6 @@
                 window.location.reload()
             })
         }
-    })
-
-    $('.test').click(function(){
-        // let i = 0;
-        // console.log($('.prerequisite_group'+'0').length)
-        // console.log(JSON.stringify($('.prerequisite').length))
-        // $('.prerequisite_group').each(function(id, element) {
-        //     console.log($(this).find('.prerequisite').length)
-        // })
-        // $('.debug').append($('.prerequisite_group').each(function(id, element) {
-        //     console.log($(this).find('.prerequisite').length)
-        // }))
-        console.log(getMinimumUnitCount())
     })
 })()
 </script>

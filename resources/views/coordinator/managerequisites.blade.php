@@ -109,11 +109,11 @@
                 </div>
                 <div class="row prerequisite_template">
                     <div class="col-md-11">
-                        <div class="form-group prerequisite_form_template">
+                        <div class="form-group prerequisite">
                             <select class="form-control" name="prerequisite[]">
                                 <option value="None">Select one</option>
                                 @foreach($units as $requisiteUnit)
-                                <option value="{{ $unit->unitCode }}">{{ $requisiteUnit->unitCode }} {{ $requisiteUnit->unitName }}</option>
+                                <option value="{{ $requisiteUnit->unitCode }}">{{ $requisiteUnit->unitCode }} {{ $requisiteUnit->unitName }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -248,6 +248,7 @@
         let requisite_count = []
         $('.prerequisite_group').each(function(id, element) {
             requisite_count.push($(this).find('.prerequisite').length)
+            // console.log(requisite_count)
         })
 
         // get the values in each selection
@@ -499,6 +500,7 @@
             alert(inputCheck)
         else
         {
+            // console.log(data)
             $.ajax({
                 'url': url,
                 'method': method,

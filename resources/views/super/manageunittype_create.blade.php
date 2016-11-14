@@ -6,7 +6,11 @@
             <div class="col-md-9">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
-                        <h3>Manage Unit Types</h3>
+                        @if(isset($type))
+                        <h3>Edit Unit Type</h3>
+                        @else
+                        <h3>Add Unit Type</h3>
+                        @endif
                     </div>
                     <div class="panel-body">
                         {{-- start form --}}
@@ -30,9 +34,9 @@
 
                             <div class="col-md-6">
                                 @if(isset($type))
-                                    <input type="text" class="form-control" name="unitType" value="{{ $type->unitType }}">
+                                    <input type="text" class="form-control" id="unitType" name="unitType" value="{{ $type->unitType }}">
                                 @else
-                                    <input type="text" class="form-control" name="unitType" value="">
+                                    <input type="text" class="form-control" id="unitType" name="unitType" value="">
                                 @endif
 
                                 @if ($errors->has('unitType'))
@@ -46,7 +50,7 @@
                         {{-- save button  --}}
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary submit @if(!isset($type)) disabled @endif">
                                     Save
                                 </button>
                                 <a class="btn btn-danger" href="{{ url('/super/manageunittype') }}" role="button">Cancel</a>
@@ -59,4 +63,27 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('extra_js')
+<script>
+(function(){
+    let inputValidate = function() {
+        if($('#unitType').val() != '')
+            return true
+        else {
+            return false
+        }
+    }
+
+    $('#unitType').on('input', function() {
+        if(inputValidate()) {
+            $('.submit').removeClass('disabled')
+        }
+        else {
+            $('.submit').addClass('disabled')
+        }
+    })
+})()
+</script>
 @stop

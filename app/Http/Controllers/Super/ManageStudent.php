@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\User;
-use App\Student;
+use Carbon\Carbon;
+
 use App\Config;
+use App\Course;
+use App\Student;
+use App\User;
 
 class ManageStudent extends Controller
 {
@@ -35,6 +38,8 @@ class ManageStudent extends Controller
     public function create()
     {
         $data = [];
+
+        $data['courses'] = Course::all();
         $data['year'] = Config::find('year')->value;
         $data['semester'] = Config::find('semester')->value;
 
@@ -99,10 +104,12 @@ class ManageStudent extends Controller
     public function edit($id)
     {
         $data = [];
+        $data['courses'] = Course::all();
         $data['user'] = User::where('username', $id)->first();
         $data['student'] = Student::where('studentID', $id)->first();
+        $data['year'] = Carbon::now()->year;
 
-        return view('super.managestudent_edit', $data);
+        return view('super.managestudent_create', $data);
     }
 
     /**

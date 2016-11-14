@@ -21,7 +21,7 @@ class ManageCoordinator extends Controller
     {
         $data = [];
         $course = Course::all();
-        $data ['course'] = $course;
+        $data['course'] = $course;
         $data['users'] = User::where('permissionLevel', '=', 2)->get();
         return view('super.managecoordinator', $data);
     }
@@ -33,8 +33,8 @@ class ManageCoordinator extends Controller
     public function create()
     {
         $data = [];
-        $courses = Course::all();
-        $data ['courses'] = $courses;
+        $data['courses'] = Course::all();
+
         return view('super.managecoordinator_create', $data);
     }
     /**

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Unit;
 use App\Course;
+use App\StudyLevel;
+use App\Unit;
 
 
 class ManagCourseController extends Controller
@@ -32,9 +33,10 @@ class ManagCourseController extends Controller
     public function create()
     {
           $data = [];
-          $courses = Course::all();
 
-          $data['courses'] = $courses;
+          $data['courses'] = Course::all();
+          $data['studyLevel'] = StudyLevel::all();
+
           return view ('super.managecourse', $data);
     }
 
@@ -90,11 +92,11 @@ class ManagCourseController extends Controller
     public function edit($id)
     {
       $data = [];
-      $course = Course::findOrFail($id);
-      //$course = Course::all();
-      $data['courses'] = $course;
-      return view ('super.managecourse_edit', $data);
 
+      $data['courses'] = Course::findOrFail($id);
+      $data['studyLevel'] = StudyLevel::all();
+
+      return view ('super.managecourse_edit', $data);
     }
 
     /**

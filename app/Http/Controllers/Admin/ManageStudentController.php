@@ -114,6 +114,8 @@ class ManageStudentController extends Controller
 
         $data['student'] = Student::findOrFail($id);
 
+        $data['courses'] = Course::all();
+
         return view ('admin.managestudent_edit', $data);
     }
 
@@ -142,11 +144,14 @@ class ManageStudentController extends Controller
             'courseCode' => $input['courseCode']
         ]);
 
-        $user = User::where('username', '=', $id)->update([
-            'username' => $input['studentID'],
-            'password' => bcrypt($input['password']),
-            'permissionLevel' => '1'
-        ]);
+        if($input['password'] != '')
+        {
+            $user = User::where('username', '=', $id)->update([
+                'username' => $input['studentID'],
+                'password' => bcrypt($input['password']),
+                'permissionLevel' => '1'
+            ]);
+        }
 
         return 'updated';
     }

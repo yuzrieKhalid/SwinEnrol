@@ -53,16 +53,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('courseCode') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Course Code</label>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Course Code:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="courseCode" value="{{ $student->courseCode }}">
-                                    @if ($errors->has('courseCode'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('courseCode') }}</strong>
-                                        </span>
-                                    @endif
+                                    <select class="form-control" name="courseCode" id="courseCode">
+                                        @foreach($courses as $course)
+                                            <option value="{{ $course->courseCode }}" @if($course->courseCode == $student->courseCode) selected @endif>{{ $course->courseCode }} {{ $course->courseName }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -131,13 +130,40 @@
             'password' : $('#password').val()
         }
 
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data
-        }).done(function() {
-            window.location.reload()
-        })
+        let message = ''
+
+        if(data['studentID'] == '') {
+            message = message + 'Please enter the student\'s Student ID.'
+        }
+
+        if(data['surname'] == '') {
+            message = message + '\nPlease enter the student\'s Surname.'
+        }
+
+        if(data['givenName'] == '') {
+            message = message + '\nPlease enter the student\'s Given Name.'
+        }
+
+        if(data['dateOfBirth'] == '') {
+            message = message + '\nPlease enter the student\'s Date of Birth.'
+        }
+
+        if(data['password'] != $('#password_confirmation').val()) {
+            message = message + '\nPassword does not match.'
+        }
+
+        if(message != '') {
+            alert(message)
+        }
+        else {
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data
+            }).done(function(data) {
+                window.location.reload()
+            })
+        }
     })
 })()
 </script>

@@ -45,7 +45,7 @@
                             <td>{{ $student->studentID }}</td>
                             <td>{{ $student->givenName }} {{ $student->surname }}</td>
                             <td>
-                                <a class="btn btn-default submit" name="Edit"  href="{{ route('admin.managestudents.edit', $student->studentID) }}">
+                                <a class="btn btn-default" name="Edit"  href="{{ route('admin.managestudents.edit', $student->studentID) }}">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Edit
                                 </a>
@@ -255,14 +255,38 @@
             givenName: $('#givenName').val(),
             courseCode: $('#courseCode').val(),
             dateOfBirth: $('#dateOfBirth').val()
-          }
-        $.ajax({
-            'url': url,
-            'method': method,
-            'data': data
-        }).done(function(data) {
-            window.location.reload()
-        })
+        }
+
+        let message = ''
+
+        if(data['studentID'] == '') {
+            message = message + 'Please enter the student\'s Student ID.'
+        }
+
+        if(data['surname'] == '') {
+            message = message + '\nPlease enter the student\'s Surname.'
+        }
+
+        if(data['givenName'] == '') {
+            message = message + '\nPlease enter the student\'s Given Name.'
+        }
+
+        if(data['dateOfBirth'] == '') {
+            message = message + '\nPlease enter the student\'s Date of Birth.'
+        }
+
+        if(message != '') {
+            alert(message)
+        }
+        else {
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data
+            }).done(function(data) {
+                window.location.reload()
+            })
+        }
     })
 
     // Uploading Section

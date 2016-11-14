@@ -89,12 +89,16 @@
                                   <input class="form-control" id="semestersPerYear">
                               </div>
                               <div class="form-group">
-                                  <label class="control-label">Semester Per Count:</label>
+                                  <label class="control-label">Study Period Semester Count:</label>
                                   <input class="form-control" id="semesterCount">
                               </div>
                               <div class="form-group">
                                   <label class="control-label">Study Level:</label>
-                                  <input class="form-control" id="studyLevel">
+                                  <select class="form-control" id="studyLevel">
+                                      @foreach($studyLevel as $level)
+                                      <option value="{{ $level->studyLevel }}">{{ $level->studyLevel }}</option>
+                                      @endforeach
+                                  </select>
                               </div>
                             </div>
                             <div class="modal-footer">
@@ -112,29 +116,57 @@
 @section('extra_js')
 <script>
 (function(){
-  let getToken = function() {
-      return $('meta[name=_token]').attr('content')
-  }
+    $("#semesterCount").TouchSpin({
+        verticalbuttons: true,          // type of up and down buttons
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999                       // maximum number can be added
+    })
 
-  $('.submit').click(function(){
-      let method = $(this).data('method')
-      let url = $(this).data('url')
-      data = {
-          _token: getToken(),
-          courseCode: $('#courseCode').val(),
-          courseName: $('#courseName').val(),
-          semestersPerYear: $('#semestersPerYear').val(),
-          semesterCount: $('#semesterCount').val(),
-          studyLevel: $('#studyLevel').val()
-      }
-      $.ajax({
-          'url': url,
-          'method': method,
-          'data': data
-      }).done(function(data) {
-          window.location.reload()
-      })
-  })
+    $("#semestersPerYear").TouchSpin({
+        verticalbuttons: true,          // type of up and down buttons
+        mousewheel: true,               // allow scrolling to increase/decrease value
+        max: 9999                       // maximum number can be added
+    })
+
+    let getToken = function() {
+        return $('meta[name=_token]').attr('content')
+    }
+
+    $('.submit').click(function(){
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        data = {
+            _token: getToken(),
+            courseCode: $('#courseCode').val(),
+            courseName: $('#courseName').val(),
+            semestersPerYear: $('#semestersPerYear').val(),
+            semesterCount: $('#semesterCount').val(),
+            studyLevel: $('#studyLevel').val()
+        }
+
+        let message = ''
+
+        if(data['courseCode'] == '') {
+            message = message + 'Please enter the Course Code.'
+        }
+
+        if(data['courseName'] == '') {
+            message = message + '\nPlease enter the Course Name.'
+        }
+
+        if(message != '') {
+            alert(message)
+        }
+        else {
+            $.ajax({
+                'url': url,
+                'method': method,
+                'data': data
+            }).done(function(data) {
+                window.location.reload()
+            })
+        }
+    })
 })()
 </script>
 

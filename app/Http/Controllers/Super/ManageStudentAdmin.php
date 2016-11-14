@@ -98,10 +98,14 @@ class ManageStudentAdmin extends Controller
 
         $user = User::where('permissionLevel', '=', 3)
         ->where('username', '=', $id)
-        ->update([
-            'username' => $input['username'],
-            'password' => bcrypt($input['password'])
-        ]);
+        ->update(['username' => $input['username']]);
+
+        if($input['password'] != '')
+        {
+            $user = User::where('permissionLevel', '=', 3)
+            ->where('username', '=', $id)
+            ->update(['password' => bcrypt($input['password'])]);
+        }
 
         return redirect('super/managestudentadmin');
     }

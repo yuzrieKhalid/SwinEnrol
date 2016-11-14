@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -77,7 +78,7 @@ class ManageStudentController extends Controller
         $student->courseCode = $input['courseCode'];
 
         $student->year = Carbon::now()->year;
-        $student->term = Config::findOrFail('semester')->value;;
+        $student->term = Config::findOrFail('semester')->value;
         $student->save();
 
         // adds the student to the User table too
@@ -275,15 +276,29 @@ class ManageStudentController extends Controller
 
         foreach ($jsonArray as $data) {
             foreach ($data as $value) {
-                $student = new Student;
-                $student->studentID = $value['stdID'];
-                $student->surname = $value['surname'];
-                $student->givenName = $value['firstname'];
-                $student->courseCode = $value['coursecode'];
-                $student->save();
+                // check if student exist or not
+                $user = User::where('username', $value['stdid'])->first();
+
+                // add student if not exist
+                if ($user == null) {
+                    $user = new User;
+                    $user->username = $value['stdid'];
+                    $user->password = bcrypt($value['dateofbirth']);
+                    $user->permissionLevel = 1;
+                    $user->save();
+
+                    $student = new Student;
+                    $student->studentID = $value['stdid'];
+                    $student->surname = $value['surname'];
+                    $student->givenName = $value['firstname'];
+                    $student->courseCode = $value['coursecode'];
+                    $student->year = Carbon::now()->year;
+                    $student->term = Config::findOrFail('semester')->value;
+                    $student->save();
+                }
             }
         }
 
-        return response()->json($jsonArray);
+        return 'true';
     }
 }

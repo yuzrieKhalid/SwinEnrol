@@ -36,17 +36,21 @@ Route::group([
     Route::get('managestudents/downloadExcel/{type}', 'Admin\ManageStudentController@downloadExcel');
     Route::get('managestudents/import/studentrecords', 'Admin\ManageStudentController@importStudentRecords');
     Route::get('managestudents/import/examunits', 'Admin\ManageStudentController@importExamUnits');
+    Route::post('managestudents/import/excel', [
+         'as' => 'admin.managestudents.fileUpload',
+         'uses' => 'Admin\ManageStudentController@fileUpload'
+       ]);
     Route::resource('setenrolmentdates', 'Admin\SetEnrolmentDateController');
     Route::resource('resolveissue', 'Admin\ResolveIssueController');
     Route::get('resolveenrolmentissues/{studentID}/issue/{issueID}', [
          'as' => 'admin.resolveissue.approve',
          'uses' => 'Admin\ResolveIssueController@update'
        ]);
-     Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+    Route::put('resolveenrolmentissues/{studentID}/issue/{issueID}', [
          'as' => 'admin.resolveissue.approve',
          'uses' => 'Admin\ResolveIssueController@update'
        ]);
-     Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
+    Route::delete('resolveenrolmentissues/{studentID}/issue/{issueID}', [
          'as' => 'admin.resolveissue.disapprove',
          'uses' => 'Admin\ResolveIssueController@destroy'
        ]);

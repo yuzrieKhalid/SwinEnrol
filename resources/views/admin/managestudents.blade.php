@@ -82,17 +82,43 @@
                     </table>
                 </div> <!-- end .panel-body -->
                 <div class="panel-footer">
-                    <a href="{{ url('/admin/managestudents/downloadExcel/XLSX') }}">
-                        <button class="btn btn-success">Export Student List</button>
-                    </a>
-                    <a href="{{ url('/admin/managestudents/import/studentrecords') }}">
-                        <button class="btn btn-primary">Import Student Records</button>
-                    </a>
-                    <a href="{{ url('/admin/managestudents/import/examunits') }}">
-                        <button class="btn btn-primary">Import Exam Units</button>
-                    </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Import from Eduversal</h4>
+                            {{-- Import from Eduversal --}}
+                            <a href="{{ url('/admin/managestudents/import/studentrecords') }}">
+                                <button class="btn btn-primary">Import Student Records</button>
+                            </a>
+                            <a href="{{ url('/admin/managestudents/import/examunits') }}">
+                                <button class="btn btn-primary">Import Exam Units</button>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Download</h4>
+                            {{-- Export into Excel --}}
+                            <a href="{{ url('/admin/managestudents/downloadExcel/XLSX') }}">
+                                <button class="btn btn-success">Export Student List</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div> <!-- end .panel -->
+
+            <div class="panel panel-success">
+                <div class="panel-heading text-center">
+                    Bulk Import from Excel file
+                </div>
+                <div class="panel-body">
+                    <form class="upload" action="{{ route('admin.managestudents.fileUpload') }}" method="POST" enctype="multipart/form-data">
+                        <input id="upload" type="file">
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success" id="processButton" role="button" data-toggle="modal" data-target="#processData" disabled>
+                        Process Data
+                    </button>
+                </div>
+            </div>
 
             <!-- Modal: Add Student -->
             <div class="modal fade" id="adminAddStudent" role="dialog">
@@ -147,6 +173,49 @@
                     </div> <!-- end. modal-content-->
                 </div> <!-- end .modal-dialog -->
             </div> <!-- end .modal fade -->
+
+            <!-- Modal: Bulk Import Data Processing -->
+            <div class="modal fade" id="processData" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Bulk Import Student</h3>
+                        </div>
+
+                        <form class="form" method="POST">
+                            <div class="modal-body">
+                                <table class="table table-striped" id="students_table">
+                                    <thead>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Firstname</th>
+                                        <th>Email</th>
+                                        <th>Course Code</th>
+                                    </thead>
+                                    <!-- template row to be populated based on the input from the file -->
+                                    <tr class="tr_template hidden">
+                                        <td class="id">Student ID</td>
+                                        <td class="surname">Surname</td>
+                                        <td class="firstname">Firstname</td>
+                                        <td class="dateOfBirth">Email</td>
+                                        <td class="coursecode">Course Code</td>
+                                    </tr>
+                                </table>
+                            </div> <!-- end modal-body -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success pull-right" id="import"
+                                    data-method="POST" data-url="{{ route('admin.managestudents.fileUpload') }}">
+                                    Import
+                                </button>
+                            </div>
+                        </form>
+
+                    </div> <!-- end. modal-content-->
+                </div> <!-- end .modal-dialog -->
+            </div> <!-- end .modal fade -->
+            {{-- end .bulkimport --}}
+
       </div> <!-- end .col-md-12 -->
 </div> <!-- end .row -->
 @stop
@@ -195,6 +264,7 @@
             window.location.reload()
         })
     })
+
     // Uploading Section
     // -------------------
     // 3. Populate the template table with data from Workbook
@@ -203,14 +273,73 @@
         clone_tr.removeClass('hidden')
         clone_tr.removeClass('tr_template')
         // populate column by column [only get the respective column]
-        clone_tr.children('td.id').html(student.stdID)
+        clone_tr.children('td.id').html(student.stdid)
         clone_tr.children('td.surname').html(student.surname)
         clone_tr.children('td.firstname').html(student.firstname)
+        clone_tr.children('td.dateOfBirth').html(student.dateofbirth)
         clone_tr.children('td.coursecode').html(student.coursecode)
-        //clone_tr.children('td.paymentstatus').html(student.coursecode)
-        //$('#students_table_status').append(clone_tr)
         $('#students_table').append(clone_tr)
     }
+    // 2(a) to JSON Array
+    let to_json = function(workbook) {
+        let result = {}
+        // for (Type SheetNames as SheetName) : in most cases only one but they may separate the data in few sheets
+        workbook.SheetNames.forEach(function(sheetName) {
+            // get the row object array - data in every row (1 row = 1 student)
+            let students = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName])
+            if (students.length > 0) { result[sheetName] = students }
+            students.forEach(function(student) {
+                populateTable(student)
+            })
+        })
+        return result
+    }
+    // 2. Process the workbook into JSON format
+    let students = []
+    let output = ""
+    let process_workbook = function(workbook) {
+        output = JSON.stringify(to_json(workbook), 2, 2)
+        // store the output in JSON Object (Array) - students is an array
+        students = $.parseJSON('[' + output + ']')
+        // console.log(students[0].sheet1.length);
+        $('#out').text(output)
+    }
+    // 1. read file
+    let upload = $('#upload').change(function() {
+        // get the file details (.files[0] since only one file)
+        let file = document.querySelector('input[type=file]').files[0]
+        // utility to read file
+        let reader = new FileReader()
+        reader.onload = function(event) {
+            // 1. read file content
+            let data = event.target.result
+            // 2. Parsing the workbook in XLSX format. NOT for CSV or ODS
+            let workbook = XLSX.read(data, {type: 'binary'})
+            // 3. Handle the processing
+            process_workbook(workbook)
+        }
+        reader.readAsBinaryString(file)
+        // enable the button only if a file has been chosen
+        $('#processButton').prop('disabled', false)
+    })
+    // Transferring the array into the database through AJAX
+    let importData = $('#import').click(function() {
+        let method = $(this).data('method')
+        let url = $(this).data('url')
+        let data = {
+            '_token': getToken(),
+            'jsondata': output,
+            'arrlength': students[0].data[0].length
+        }
+        $.ajax({
+            'url': url,
+            'method': method,
+            'data': data,
+            enctype: 'multipart/form-data'
+        }).done(function(data) {
+            window.location.reload()
+        })
+    })
 }) ()
 </script>
 @stop

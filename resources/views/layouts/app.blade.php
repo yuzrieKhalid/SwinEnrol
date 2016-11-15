@@ -47,15 +47,15 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" title="Menu" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->username }} <span class="caret"></span>
+                                <span class="glyphicon glyphicon-menu-hamburger"></span> MENU
                             </a>
 
 
                             <ul class="dropdown-menu" role="menu">
+                              <li class="dropdown-header">{{ Auth::user()->username }}</li>
                               <li><a title="Log Out" href="{{ url('/logout') }}">Log Out</a></li>
                               <li class="divider"></li>
                                 @if(Auth::user()->permissionLevel == '3')
-                                <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/admin') }}">Home</a></li>
                                 <li><a href="{{ url('/admin/managestudents') }}">Manage Students</a></li>
                                 <li><a href="{{ url('/admin/setenrolmentdates/create') }}">Set Enrolment Dates</a></li>
@@ -65,7 +65,6 @@
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '1')
-                                <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/student') }}">Home</a></li>
                                 <li><a href="{{ url('/student/manageunits/create') }}">Manage Units</a></li>
                                 <li><a href="{{ url('/student/viewstudyplanner') }}">View Study Planner</a></li>
@@ -78,7 +77,6 @@
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '2')
-                                <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/coordinator') }}">Home</a></li>
                                 <li><a href="{{ url('/coordinator/managestudyplanner/create') }}">Manage Study Planner</a></li>
                                 <li><a href="{{ url('/coordinator/manageunitlisting/create') }}">Manage Unit Listings</a></li>
@@ -89,7 +87,6 @@
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '4')
-                                <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/super') }}">Home</a></li>
                                 <li><a href="{{ url('/super/config') }}">Configuration</a>
                                 <li><a href="{{ url('/super/managecourse/create') }}">Manage Course</a></li>
@@ -100,7 +97,6 @@
                                 @endif
 
                                 @if(Auth::user()->permissionLevel == '5')
-                                <li class="dropdown-header">MENU</li>
                                 <li><a href="{{ url('/adminofficer') }}">Home</a></li>
                                 <li><a href="{{ url('/adminofficer/manageunitinfo') }}">Manage Unit Info</a></li>
                                 @endif

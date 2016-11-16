@@ -26,9 +26,11 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
+        // get all enrolment issues except for leave of absence
         $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
         ->where('status', '=', 'pending')
         ->where('issueID', '!=', '3')->get();
+
         return response()->json($data);
     }
 
@@ -61,19 +63,18 @@ class ResolveIssueController extends Controller
      */
     public function show($id)
     {
-        $history = EnrolmentUnits::with('unit')
+        // get student's completed enrolment units
+        $data['history'] = EnrolmentUnits::with('unit')
         ->where('studentID', '=', $id)
         ->where('grade', '=', 'pass')->get();
 
-        $data['history'] = $history;
-
-        $current = EnrolmentUnits::with('unit')
+        // get current enrolment units
+        $data['current'] = EnrolmentUnits::with('unit')
         ->where([
             ['studentID', '=', $id],
             ['year', '=', Config::find('year')->value],
             ['semester', '=', Config::find('semester')->value],
         ])->get();
-        $data['current'] = $current;
 
         return response()->json($data);
     }
@@ -101,6 +102,7 @@ class ResolveIssueController extends Controller
     {
         if ($issueID == '1')
         {
+            // course transfer
             $input = $request->only([
                 'proposedProgramCode',
                 'proposedIntakeYear'
@@ -120,7 +122,7 @@ class ResolveIssueController extends Controller
             ->update(['status' => 'approved']);
 
         } else if ($issueID == '2') {
-
+            // exemption
             $input = $request->only([
                 'exemptionUnitCode',
                 'exemptionYear',
@@ -143,7 +145,7 @@ class ResolveIssueController extends Controller
             ->update(['status' => 'approved']);
 
         } else if ($issueID == '5') {
-
+            // preclusion
             $input = $request->only([
                 'preclusionUnit',
                 'prerequisiteUnit'
@@ -191,6 +193,7 @@ class ResolveIssueController extends Controller
      */
     public function destroy($studentID, $issueID)
     {
+        // disapprove selected issue
         $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
         ->where('issueID', '=', $issueID)
         ->where('status', '=', 'pending')

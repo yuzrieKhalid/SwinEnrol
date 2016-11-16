@@ -39,15 +39,16 @@ class GraduationRequirementsController extends Controller
         $courseCode = CourseCoordinator::where('username', '=', $user->username)->first()->courseCode;
         $data['courseCode'] = $courseCode;
 
+        // get course's graduation requirements
         $gradreqs = GraduationRequirements::where('courseCode', '=', $courseCode)->get();
         $data['gradreqs'] = $gradreqs;
 
         $availablereqs = [];
-        $allreqs = UnitType::all();
+        $allreqs = UnitType::all(); // get all unit types
 
         foreach ($allreqs as $arequirement) {
             if (!Self::checkifExist($arequirement, $gradreqs))
-                $availablereqs[] = $arequirement->unitType;
+                $availablereqs[] = $arequirement->unitType; // push to array if existing
         }
         // test
         // return response()->json(Self::checkifExist('Minor', $gradreqs));

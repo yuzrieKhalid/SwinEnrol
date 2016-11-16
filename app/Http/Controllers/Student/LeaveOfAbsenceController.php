@@ -29,24 +29,17 @@ class LeaveOfAbsenceController extends Controller
     {
         $data = [];
 
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
 
         // get user student and coordinator
-        $student = Student::where('studentID', '=', $user->username)->first();
-        $studentcourse = Course::where('courseCode', '=', $student->courseCode)->first();
-        $coursecoordinator = CourseCoordinator::where('courseCode', '=', $student->courseCode)->first();
-
-        $data['student'] = $student;
-        $data['studentcourse'] = $studentcourse;
-        $data['coursecoordinator'] = $coursecoordinator;
+        $data['student'] = Student::where('studentID', '=', $user->username)->first();
+        $data['studentcourse'] = Course::where('courseCode', '=', $student->courseCode)->first();
+        $data['coursecoordinator'] = CourseCoordinator::where('courseCode', '=', $student->courseCode)->first();
 
         // get previous, current and next year
-        $currentyear = Carbon::now()->year;
-        $nextyear = Carbon::now()->addYears(1)->year;
-        $next2year = Carbon::now()->addYears(2)->year;
-        $data['currentyear'] = $currentyear;
-        $data['nextyear'] = $nextyear;
-        $data['next2year'] = $next2year;
+        $data['currentyear'] = Carbon::now()->year;
+        $data['nextyear'] = Carbon::now()->addYears(1)->year;
+        $data['next2year'] = Carbon::now()->addYears(2)->year;
 
         return view('student.leaveofabsence', $data);
     }
@@ -75,6 +68,7 @@ class LeaveOfAbsenceController extends Controller
             'attachmentData'
         ]);
 
+        // create and store enrolment issue
         $issue = new StudentEnrolmentIssues;
         $issue->studentID = Auth::user()->username;
         $issue->issueID = $input['issueID'];

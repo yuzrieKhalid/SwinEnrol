@@ -23,7 +23,9 @@ class EnrolmentStatusStudent extends Controller
      */
     public function index()
     {
+        // get all student information
         $students = Student::with('enrolment_units', 'course')->get();
+
         return response()->json($students);
     }
 

@@ -29,8 +29,10 @@ class ApprovedIssuesController extends Controller
     public function create()
     {
         $data = [];
+
+        // get issues
         $issues = StudentEnrolmentIssues::with('student', 'enrolment_issues')
-                                        ->where('status', '=', 'approved')->get();
+            ->where('status', '=', 'approved')->get();
 
         $data['issues'] = $issues;
         return view('admin.approvedissues', $data);

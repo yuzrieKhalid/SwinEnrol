@@ -36,7 +36,7 @@ class HomeController extends Controller
         ->where('status', '=', 'pending')
         ->count();
 
-
+        // get all student information
         $studentID = Student::all();
         $data['studentID'] = $studentID;
 

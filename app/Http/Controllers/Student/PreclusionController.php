@@ -101,6 +101,7 @@ class PreclusionController extends Controller
             'attachmentData'
         ]);
 
+        // create and store preclusion issue
         $issue = new StudentEnrolmentIssues;
         $issue->studentID = Auth::user()->username;
         $issue->issueID = $input['issueID'];

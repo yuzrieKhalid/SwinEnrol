@@ -28,7 +28,7 @@ class CourseTransferController extends Controller
     public function index()
     {
         $data = [];
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
 
         // get user student and coordinator
         $student = Student::where('studentID', '=', $user->username)->first();
@@ -78,6 +78,7 @@ class CourseTransferController extends Controller
             'attachmentData'
         ]);
 
+        // create and store enrolment issue
         $issue = new StudentEnrolmentIssues;
         $issue->studentID = Auth::user()->username;
         $issue->issueID = $input['issueID'];
@@ -120,19 +121,7 @@ class CourseTransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->only([
-            'studentID',
-            'comment',
-            'courseCode',
-        ]);
-
-        $transfer = InternalCourseTransfer::findOrFail($id);
-        $transfer->studentID = $input['studentID'];
-        $transfer->comment = $input['comment'];
-        $transfer->courseCode = $input['courseCode'];
-
-        $transfer->save();
-        return response()->json($transfer);
+        //
     }
 
     /**
@@ -143,9 +132,6 @@ class CourseTransferController extends Controller
      */
     public function destroy($id)
     {
-        $transfer = InternalCourseTransfer::findOrFail($id);
-        $transfer->delete();
-
-        return response()->json($transfer);
+        //
     }
 }

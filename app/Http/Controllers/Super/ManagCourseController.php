@@ -34,8 +34,8 @@ class ManagCourseController extends Controller
     {
           $data = [];
 
-          $data['courses'] = Course::all();
-          $data['studyLevel'] = StudyLevel::all();
+          $data['courses'] = Course::all(); // get course information
+          $data['studyLevel'] = StudyLevel::all(); // get study levels
 
           return view ('super.managecourse', $data);
     }
@@ -57,6 +57,7 @@ class ManagCourseController extends Controller
 
       ]);
 
+      // create and store new course
       if (!Course::find($input['courseCode'])) {
           $course = new Course;
           $course->courseCode = $input['courseCode'];
@@ -93,8 +94,8 @@ class ManagCourseController extends Controller
     {
       $data = [];
 
-      $data['courses'] = Course::findOrFail($id);
-      $data['studyLevel'] = StudyLevel::all();
+      $data['courses'] = Course::findOrFail($id); // get course information
+      $data['studyLevel'] = StudyLevel::all(); // get all study levels
 
       return view ('super.managecourse_edit', $data);
     }
@@ -116,6 +117,7 @@ class ManagCourseController extends Controller
           'studyLevel'
       ]);
 
+      // find and update course
       $course = Course::findOrFail($id);
       $course->courseCode = $input['courseCode'];
       $course->courseName = $input['courseName'];
@@ -135,9 +137,10 @@ class ManagCourseController extends Controller
      */
     public function destroy($id)
     {
-      $course = Course::findOrFail($id);
-      $course->delete();
+        // delete course
+        $course = Course::findOrFail($id);
+        $course->delete();
 
-      return response()->json($course);
+        return response()->json($course);
     }
 }

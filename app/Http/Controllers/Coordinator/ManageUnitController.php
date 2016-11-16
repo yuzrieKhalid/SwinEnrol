@@ -30,10 +30,11 @@ class ManageUnitController extends Controller
         $data = [];
         $units = [];
 
+        // search for matching units according to query
         if ($input['search'] != "") {
             $units = Unit::where('unitCode', 'LIKE', '%'.$input['search'].'%')->get();
         } else {
-            $units = Unit::get();
+            $units = Unit::get(); // get all units
         }
 
         $data['units'] = $units;
@@ -53,10 +54,9 @@ class ManageUnitController extends Controller
         $input = $request->only(['search']);
 
         $data = [];
-        $units = [];
 
-        $data['units'] = Unit::all();
-        $data['studyLevels'] = StudyLevel::all();
+        $data['units'] = Unit::all(); // get all units
+        $data['studyLevels'] = StudyLevel::all(); // get all study levels
 
         return view ('coordinator.manageunits_edit', $data);
     }
@@ -107,11 +107,9 @@ class ManageUnitController extends Controller
     public function edit($id)
     {
         $data = [];
-        $unit = Unit::findOrFail($id);
+        $data['unit'] = Unit::findOrFail($id); // get unit
 
-        $data['unit'] = $unit;
-
-        $data['studyLevels'] = StudyLevel::all();
+        $data['studyLevels'] = StudyLevel::all(); // get all study levels
 
         return view ('coordinator.manageunits_edit', $data);
         // return response()->json($unitInfo);
@@ -133,6 +131,7 @@ class ManageUnitController extends Controller
             'studyLevel'
         ]);
 
+        // get and update unit information
         $unit = Unit::findOrFail($id);
         $unit->unitCode = $input['unitCode'];
         $unit->unitName = $input['unitName'];
@@ -151,6 +150,7 @@ class ManageUnitController extends Controller
      */
     public function destroy($id)
     {
+        // find and delete unit
         $unit = Unit::findOrFail($id);
         $unit->delete();
 

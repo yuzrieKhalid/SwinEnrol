@@ -31,11 +31,11 @@ class SetEnrolmentDateController extends Controller
     {
         // return view ('admin.setenrolmentdates');
         $data = [];
-        $dates  = EnrolmentDates::all();
+        $data['dates'] = EnrolmentDates::all(); // get all enrolment dates
 
-        $data['dates'] = $dates;
-        $data['semester'] = Config::find('semester')->value;
+        $data['semester'] = Config::find('semester')->value; // get semester
 
+        // get year of next semester
         if($data['semester'] == 'Semester 2')
             $data['year'] = Config::find('year')->value + 1;
         else
@@ -63,6 +63,7 @@ class SetEnrolmentDateController extends Controller
             'examResultsRelease'
         ]);
 
+        // create and ave new enrolment date
         $enrolment = new EnrolmentDates;
         $enrolment->year = $input['year'];
         $enrolment->level = $input['level'];
@@ -121,6 +122,7 @@ class SetEnrolmentDateController extends Controller
             'examResultsRelease'
         ]);
 
+        // find and update enrolment date
         $enrolment = EnrolmentDates::findOrFail($id);
         $enrolment->year = $input['year'];
         $enrolment->level = $input['level'];
@@ -143,6 +145,7 @@ class SetEnrolmentDateController extends Controller
      */
     public function destroy($id)
     {
+        // find and delete enrolment date
         $enrolment = EnrolmentDates::findOrFail($id);
         $enrolment->delete();
 

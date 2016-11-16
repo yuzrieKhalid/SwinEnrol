@@ -28,7 +28,7 @@ class EnrolmentIssuesController extends Controller
     {
         $data = [];
 
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
 
         // get User Student
         $student = Student::where('studentID', '=', $user->username)->first();
@@ -55,9 +55,9 @@ class EnrolmentIssuesController extends Controller
         ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
-        $data['units'] = Unit::with('requisite')->get();
+        $data['units'] = Unit::with('requisite')->get(); // get units with requisites
 
-        $data['allunits'] = Unit::all();
+        $data['allunits'] = Unit::all(); // get all units
 
         return view ('student.enrolmentissues', $data);
     }
@@ -86,6 +86,7 @@ class EnrolmentIssuesController extends Controller
             'attachmentData'
         ]);
 
+        // create and store enrolment issue
         $issue = new StudentEnrolmentIssues;
         $issue->studentID = Auth::user()->username;
         $issue->issueID = $input['issueID'];

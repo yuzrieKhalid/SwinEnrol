@@ -18,7 +18,7 @@ class ManageStudentAdmin extends Controller
      */
     public function index()
     {
-        $data['users'] = User::where('permissionLevel', '=', 3)->get();
+        $data['users'] = User::where('permissionLevel', '=', 3)->get(); // get all student admin
 
         return view ('super.managestudentadmin', $data);
     }
@@ -46,6 +46,7 @@ class ManageStudentAdmin extends Controller
             'password'
         ]);
 
+        // create and store student admin
         $user = new User;
         $user->username = $input['username'];
         $user->password = bcrypt($input['password']);
@@ -74,6 +75,7 @@ class ManageStudentAdmin extends Controller
      */
     public function edit($id)
     {
+        // get and edit student admin
         $data['user'] = User::where('permissionLevel', '=', 3)
         ->where('username', '=', $id)
         ->get();
@@ -96,10 +98,12 @@ class ManageStudentAdmin extends Controller
             'password'
         ]);
 
+        // get nd update student admin
         $user = User::where('permissionLevel', '=', 3)
         ->where('username', '=', $id)
         ->update(['username' => $input['username']]);
 
+        // update password if set
         if($input['password'] != '')
         {
             $user = User::where('permissionLevel', '=', 3)
@@ -118,6 +122,7 @@ class ManageStudentAdmin extends Controller
      */
     public function destroy($id)
     {
+        // delete student admin
         User::where('permissionLevel', '=', 3)
         ->where('username', '=', $id)
         ->delete();

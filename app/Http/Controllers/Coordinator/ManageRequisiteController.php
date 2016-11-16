@@ -76,13 +76,13 @@ class ManageRequisiteController extends Controller
         foreach($requisites as $requisite)
         {
             if($requisite->type == 'corequisite')
-                $data['corequisites'][] = $requisite;
+                $data['corequisites'][] = $requisite; // push to corequisite
             if($requisite->type == 'antirequisite')
-                $data['antirequisites'][] = $requisite;
+                $data['antirequisites'][] = $requisite; // push to antirequisite
             else
             {
                 $requisite->type = explode(' ', $requisite->type); // split type into array
-                $data['prerequisites'][$requisite->index][] = $requisite;
+                $data['prerequisites'][$requisite->index][] = $requisite; // push to prerequisite
             }
         }
 

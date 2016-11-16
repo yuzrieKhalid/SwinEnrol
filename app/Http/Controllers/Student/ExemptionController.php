@@ -29,7 +29,7 @@ class ExemptionController extends Controller
     {
         $data = [];
 
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
 
         // get user student and coordinator
         $student = Student::where('studentID', '=', $user->username)->first();
@@ -54,9 +54,9 @@ class ExemptionController extends Controller
         ->where('semester', '=', Config::find('semester')->value)
         ->get();
 
-        $data['units'] = Unit::with('requisite')->get();
+        $data['units'] = Unit::with('requisite')->get(); // get units with requisites
 
-        $data['allunits'] = Unit::all();
+        $data['allunits'] = Unit::all(); // get all units
 
         return view('student.exemption', $data);
     }

@@ -49,16 +49,6 @@ class ManageUnitController extends Controller
      */
     public function create(Request $request)
     {
-        // Search
-        $input = $request->only(['search']);
-
-        $data = [];
-        $units = [];
-
-        $data['units'] = Unit::all();
-        $data['studyLevels'] = StudyLevel::all();
-
-        return view ('coordinator.manageunits_edit', $data);
     }
 
     /**

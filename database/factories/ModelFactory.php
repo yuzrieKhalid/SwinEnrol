@@ -161,13 +161,7 @@ $factory->define(App\Unit::class, function (Faker\Generator $faker) {
         'unitCode' => $faker->firstNameMale,
         'unitName' => $faker->name,
         'creditPoints' => '0',
-        'maxStudentCount' => 100,
-        'lectureGroupCount' => 10,
-        'lectureDuration' => '2h',
-        'tutorialGroupCount' => 10,
-        'tutorialDuration' => '2h',
-        'studyLevel' => 'Degree',
-        'unitInfo' => '[{"convenor":"Convenor"},{"lecturers":["Lecturer"],"lecturers_count":1},{"tutors":["Tutor"],"tutors_count":1}]'
+        'studyLevel' => 'Degree'
     ];
 });
 

@@ -125,4 +125,31 @@ class HomepageTest extends TestCase
              ->press('Login')
              ->seePageIs('admin');
     }
+
+    /**
+     * PAGE TEST
+     * Test if a Coordinator user is authenticated as a Coordinator
+     * 1. visits the login page
+     * 2. types in username and password
+     * 3. press Login button
+     * 4. See Coordinator Hompage
+     */
+    public function testAuthenticatedAsCoordinator()
+    {
+        $course = factory(App\Course::class)->create();
+        $user = factory(App\User::class)->create([
+            'permissionLevel' => '2',
+            'password' => bcrypt('123456'),
+        ]);
+        $coordinator = factory(App\CourseCoordinator::class)->create([
+            'username' => $user->username,
+            'courseCode' => $course->courseCode
+        ]);
+
+        $this->visit('/login')
+             ->type($user->username, 'username')
+             ->type('123456', 'password')
+             ->press('Login')
+             ->seePageIs('coordinator');
+    }
 }

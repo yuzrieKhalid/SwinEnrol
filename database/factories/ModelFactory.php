@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\CoordinatorUnit::class, function (Faker\Generator $faker) {
+$factory->define(App\CoordinatorUnits::class, function (Faker\Generator $faker) {
     return [
         'username' => 'coordinator_cs',
         'unitCode' => 'HIT3315'

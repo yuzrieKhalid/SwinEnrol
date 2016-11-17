@@ -34,15 +34,10 @@ class ManageUnitController extends Controller
         // return response()->json();
         $data = [];
 
-        $user = Auth::user();
-        $student = Student::where('studentID', '=', '$user->username')->get();
-        $data['student'] = $student;
-
-        $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
-        $data['enrolled'] = $enrolled;
-
-        $units = Unit::all();
-        $data['units'] = $units;
+        $user = Auth::user(); // get username
+        $data['student'] = Student::where('studentID', '=', $user->username)->get(); // get student information
+        $data['enrolled'] = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get(); // get enrolled units
+        $data['units'] = Unit::all(); // get all units
 
         return response()->json($data);
     }
@@ -54,14 +49,17 @@ class ManageUnitController extends Controller
      */
     public function create()
     {
+        // get config information
         $data['phase'] = Config::find('enrolmentPhase');
         $data['year'] = Config::find('year');
         $data['semester'] = Config::find('semester');
 
+        // get student information
         $user = Auth::user();
         $student = Student::find($user->username);
         $course = Course::find($student->courseCode);
 
+        // get semester for unit listing
         $listingsemester = Config::find('semester')->value + 1;
         $listingyear = Config::find('year')->value;
         // because the config contains the value for current semester so we need to change it accordingly
@@ -79,6 +77,7 @@ class ManageUnitController extends Controller
         // check if foundation student
         if($course->studyLevel == 'Foundation')
         {
+            // get courses from degree
             $data['courses'] = Course::where('studyLevel', '=', 'degree')->get();
 
             // get all units in current course - according to study planner
@@ -101,6 +100,7 @@ class ManageUnitController extends Controller
                 {
                     if($courseUnit->unitCode == $completedUnit->unitCode)
                     {
+                        // set status to true and exit loop
                         $status = true;
                         break;
                     }
@@ -128,9 +128,9 @@ class ManageUnitController extends Controller
         foreach($enrolled as $unit)
         {
             if($unit->semesterLength == 'long')
-                array_push($data['enrolledLong'], $unit);
+                array_push($data['enrolledLong'], $unit); // add to long semester
             if($unit->semesterLength == 'short')
-                array_push($data['enrolledShort'], $unit);
+                array_push($data['enrolledShort'], $unit); // add to short semester
         }
 
         // get all current units - according to UnitListing
@@ -144,7 +144,7 @@ class ManageUnitController extends Controller
         foreach($allUnits as $unit)
         {
             if($unit['unit']->studyLevel == $course->studyLevel)
-                array_push($units, $unit);
+                array_push($units, $unit); // push to units if study level matches
         }
         $data['units'] = $units;
 
@@ -159,10 +159,10 @@ class ManageUnitController extends Controller
                 foreach($data['enrolledLong'] as $enrolledUnit)
                 {
                     if($unit->unitCode == $enrolledUnit->unitCode)
-                        $exists = true;
+                        $exists = true; // if unit exists in long semester set to true
                 }
                 if($exists == false)
-                    array_push($data['longSemester'], $unit);
+                    array_push($data['longSemester'], $unit); // push to long semester if not existing
                 $exists = false;
             }
 
@@ -171,14 +171,15 @@ class ManageUnitController extends Controller
                 foreach($data['enrolledShort'] as $enrolledUnit)
                 {
                     if($unit->unitCode == $enrolledUnit->unitCode)
-                        $exists = true;
+                        $exists = true; // if unit exists in short semester set to true
                 }
                 if($exists == false)
-                    array_push($data['shortSemester'], $unit);
+                    array_push($data['shortSemester'], $unit); // push to short semester if not existing
                 $exists = false;
             }
         }
 
+        // get all enrolment amendments
         $amendments = StudentEnrolmentIssues::where('studentID', '=', $user->username)
                                             ->where('issueID', '=', 4)->get();
 
@@ -248,6 +249,7 @@ class ManageUnitController extends Controller
             'courseCode'
         ]);
 
+        // update student's course when articulating
         $student = Student::find(Auth::user()->username);
         $student->courseCode = $input['courseCode'];
         $student->save();
@@ -269,6 +271,7 @@ class ManageUnitController extends Controller
             'semesterLength'
         ]);
 
+        // get user information
         $user = Auth::user();
 
         // get the semester and year for the enrolled from Manage Unit page
@@ -282,6 +285,7 @@ class ManageUnitController extends Controller
             $listingsemester = 'Semester 1';
         }
 
+        // count pending units
         $unitCount = EnrolmentUnits::where('studentID', '=', $user->username)
         ->where('year', '=', Config::find('year')->value)
         ->where('semester', '=', Config::find('semester')->value)
@@ -360,6 +364,7 @@ class ManageUnitController extends Controller
             'status'
         ]);
 
+        // count pending units
         $unitCount = EnrolmentUnits::where('studentID', '=', Auth::user()->username)
         ->where('year', '=', Config::find('year')->value)
         ->where('semester', '=', Config::find('semester')->value)
@@ -418,7 +423,9 @@ class ManageUnitController extends Controller
             'semesterLength'
         ]);
 
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
+
+        // delete unit
         $unit = EnrolmentUnits::where('unitCode', '=', $input['unitCode'])
         ->where('studentID', '=', Auth::user()->username)
         ->where('year', '=', Config::find('year')->value)

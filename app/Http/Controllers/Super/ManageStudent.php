@@ -24,7 +24,7 @@ class ManageStudent extends Controller
     public function index()
     {
         $data = [];
-        $username = User::where('permissionLevel', '=', 1)->get();
+        $username = User::where('permissionLevel', '=', 1)->get(); // get all students
         $data['users'] = $username;
 
         return view ('super.managestudent', $data);
@@ -39,7 +39,10 @@ class ManageStudent extends Controller
     {
         $data = [];
 
+        // get all courses
         $data['courses'] = Course::all();
+
+        // get config information
         $data['year'] = Config::find('year')->value;
         $data['semester'] = Config::find('semester')->value;
 
@@ -64,6 +67,7 @@ class ManageStudent extends Controller
             'semester'
         ]);
 
+        // create and store new student
         $student = new Student;
         $student->create([
             'studentID' => $input['studentID'],
@@ -74,6 +78,7 @@ class ManageStudent extends Controller
             'term' => $input['semester']
         ]);
 
+        // create and store user information
         $user = new User;
         $user->create([
             'username' => $input['studentID'],
@@ -104,7 +109,9 @@ class ManageStudent extends Controller
     public function edit($id)
     {
         $data = [];
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::all(); // get all courses
+
+        // get student information
         $data['user'] = User::where('username', $id)->first();
         $data['student'] = Student::where('studentID', $id)->first();
         $data['year'] = Carbon::now()->year;
@@ -129,6 +136,7 @@ class ManageStudent extends Controller
             'password'
         ]);
 
+        // find and update student information
         $student = Student::where('studentID', '=', $id)
         ->update([
             'studentID' => $input['studentID'],
@@ -137,6 +145,7 @@ class ManageStudent extends Controller
             'courseCode' => $input['courseCode']
         ]);
 
+        // find and update student information
         $user = User::where('permissionLevel', '=', 1)
         ->where('username', '=', $id)
         ->update([
@@ -155,6 +164,7 @@ class ManageStudent extends Controller
      */
     public function destroy($id)
     {
+        // delete user and student information
         User::where('permissionLevel', '=', 1)
         ->where('username', '=', $id)
         ->delete();

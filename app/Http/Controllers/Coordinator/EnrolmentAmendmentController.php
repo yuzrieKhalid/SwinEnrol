@@ -22,6 +22,7 @@ class EnrolmentAmendmentController extends Controller
      */
     public function index()
     {
+        // get all amendment issues
         $amendment = StudentEnrolmentIssues::where('issueID', '=', 4)->get();
 
         return response()->json($amendment);
@@ -36,13 +37,14 @@ class EnrolmentAmendmentController extends Controller
     {
         $data = [];
 
+        // get all amendment issues
         $amendments = StudentEnrolmentIssues::with('student')
                     ->where('issueID', '=', 4)
                     ->where('status', '=', 'pending_add')
                     ->orwhere('status', '=', 'pending_drop')
                     ->get();
-        $units = Unit::all();
-        $requisites = Requisite::all();
+        $units = Unit::all(); // get all units
+        $requisites = Requisite::all(); // get all requisites
 
         $data['amendments'] = $amendments;
         $data['units'] = $units;
@@ -107,6 +109,7 @@ class EnrolmentAmendmentController extends Controller
             ->where('attachmentData', '=', $unitCode)
             ->update(['status' => 'approved']);
 
+            // confirm enrolment unit status
             $enrolmentunit = EnrolmentUnits::where('studentID', $studentID)
             ->where('unitCode', $unitCode)
             ->where('status', 'pending_add')
@@ -121,6 +124,7 @@ class EnrolmentAmendmentController extends Controller
             ->where('attachmentData', '=', $unitCode)
             ->update(['status' => 'approved']);
 
+            // drop enrolment unit status
             $enrolmentunit = EnrolmentUnits::where('studentID', '=', $studentID)
             ->where('unitCode', '=', $unitCode)
             ->where('status', 'pending_drop')

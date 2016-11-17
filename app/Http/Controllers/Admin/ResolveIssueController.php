@@ -18,6 +18,7 @@ class ResolveIssueController extends Controller
      */
     public function index()
     {
+        // get all leave of absence issues
         $data = StudentEnrolmentIssues::with('student', 'enrolment_issues')
                                 ->where('status', '=', 'pending')
                                 ->where('issueID', '=', '3')->get();
@@ -78,12 +79,13 @@ class ResolveIssueController extends Controller
      */
     public function update(Request $request, $studentID, $issueID)
     {
-
+        // update issues status to approved
         $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                     ->where('issueID', '=', $issueID)
                     ->where('status', '=', 'pending')
                     ->update(['status' => 'approved']);
 
+        // get and return updated issue
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                                         ->where('issueID', '=', $issueID)->get();
 
@@ -98,11 +100,13 @@ class ResolveIssueController extends Controller
      */
     public function destroy($studentID, $issueID)
     {
+        // update issue status to disapproved
         $updateissue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                     ->where('issueID', '=', $issueID)
                     ->where('status', '=', 'pending')
                     ->update(['status' => 'disapproved']);
 
+        // get and return updated issue
         $issue = StudentEnrolmentIssues::where('studentID', '=', $studentID)
                                         ->where('issueID', '=', $issueID)->get();
 

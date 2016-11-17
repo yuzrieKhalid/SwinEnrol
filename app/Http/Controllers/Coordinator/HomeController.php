@@ -27,11 +27,9 @@ class HomeController extends Controller
     {
         $data = [];
 
-        $semester = Config::find('semester')->value;
-        $data['semester'] = $semester;
-
-        $year = Config::find('year')->value;
-        $data['year'] = $year;
+        // get config information
+        $data['semester'] = Config::find('semester')->value;
+        $data['year'] = Config::find('year')->value;
 
         // get coordinator's course from the username
         // get coordinator's course from the course_coordinator table

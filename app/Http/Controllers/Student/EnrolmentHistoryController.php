@@ -27,6 +27,7 @@ class EnrolmentHistoryController extends Controller
         $enrolled = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->get();
         $data['enrolled'] = $enrolled;
 
+        // get exempted units
         $exempted = EnrolmentUnits::with('unit')->where('studentID', '=', $user->username)->where('status', '=', 'exempted')->get();
         $data['exempted'] = $exempted;
 
@@ -35,11 +36,13 @@ class EnrolmentHistoryController extends Controller
 
     public function downloadExcel()
     {
-        $data = EnrolmentUnits::get()->toArray();
-          Excel::create('unit_list_student', function($excel) use ($data) {
-          $excel->sheet('mySheet', function($sheet) use ($data){
-            $sheet->fromArray($data);
-          });
+        $data = EnrolmentUnits::get()->toArray(); // get enrolment units
+
+        // create excel file
+        Excel::create('unit_list_student', function($excel) use ($data) {
+              $excel->sheet('mySheet', function($sheet) use ($data){
+                  $sheet->fromArray($data);
+              });
         })->export('xls');
     }
 

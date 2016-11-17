@@ -166,6 +166,7 @@ class ManagePlannerController extends Controller
             'enrolmentTerm',
         ]);
 
+        // create and store new study planner
         $unit = new StudyPlanner;
         $unit->unitCode = $input['unitCode'];
         $unit->courseCode = $input['courseCode'];
@@ -219,6 +220,7 @@ class ManagePlannerController extends Controller
             'semester',
         ]);
 
+        // get and update study planner
         $planner = StudyPlanner::findOrFail($id);
         $planner->courseCode = $input['courseCode'];
         $planner->unitCode = $input['unitCode'];
@@ -247,6 +249,7 @@ class ManagePlannerController extends Controller
             'enrolmentTerm'
         ]);
 
+        // delete unit
         $planner = StudyPlanner::where('unitCode', '=', $input['unitCode'])
             ->where('courseCode', '=', $input['courseCode'])
             ->where('year', '=', $input['year'])

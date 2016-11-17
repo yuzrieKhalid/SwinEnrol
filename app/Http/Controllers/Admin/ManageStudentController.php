@@ -30,13 +30,13 @@ class ManageStudentController extends Controller
     {
         $data = [];
 
-        $students = Student::all();
-        $data['students'] = $students;
+        // get all students
+        $data['students'] = Student::all();
 
         // get today
-        $now = Carbon::now()->format('d/m/Y');
-        $data['now'] = $now;
+        $data['now'] = Carbon::now()->format('d/m/Y');
 
+        // get all courses
         $data['courses'] = Course::all();
 
         return view ('admin.managestudents', $data);
@@ -76,7 +76,6 @@ class ManageStudentController extends Controller
         $student->surname = $input['surname'];
         $student->givenName = $input['givenName'];
         $student->courseCode = $input['courseCode'];
-
         $student->year = Carbon::now()->year;
         $student->term = Config::findOrFail('semester')->value;
         $student->save();
@@ -112,8 +111,10 @@ class ManageStudentController extends Controller
     {
         $data = [];
 
+        // get student
         $data['student'] = Student::findOrFail($id);
 
+        // get all courses
         $data['courses'] = Course::all();
 
         return view ('admin.managestudent_edit', $data);
@@ -144,6 +145,7 @@ class ManageStudentController extends Controller
             'courseCode' => $input['courseCode']
         ]);
 
+        // update password if submitted
         if($input['password'] != '')
         {
             $user = User::where('username', '=', $id)->update([
@@ -164,9 +166,11 @@ class ManageStudentController extends Controller
      */
     public function destroy($id)
     {
+        // find and delete student from student table
         $student = Student::where('studentID', '=', $id);
         $student->delete();
 
+        // find and delete student from user table
         $user = User::where('username', '=', $id);
         $user->delete();
 

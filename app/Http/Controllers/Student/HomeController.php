@@ -21,8 +21,9 @@ class HomeController extends Controller
     {
         $data = [];
 
-        $user = Auth::user();
+        $user = Auth::user(); // get user information
 
+        // get studnet information
         $student = Student::findOrFail($user->username);
         $data['student'] = $student;
         $course = Course::where('courseCode', '=', $student->courseCode)->first();
@@ -111,6 +112,7 @@ class HomeController extends Controller
         //
         $data = [];
 
+        // get student information
         $studentIn = Student::findOrFail($id);
         $data['studentIn'] = $studentIn;
 
@@ -137,7 +139,7 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // get enrolment unit information
         $enrolled = EnrolmentUnits::with('unit')
             ->where([
                 ['studentID', '=', $user->username],

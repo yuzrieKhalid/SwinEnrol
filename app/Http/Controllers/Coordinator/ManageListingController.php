@@ -22,6 +22,7 @@ class ManageListingController extends Controller
      */
     public function index()
     {
+        // get config information
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
@@ -58,18 +59,21 @@ class ManageListingController extends Controller
         $data['year'] = $year;
         $data['semester'] = $semester;
 
+        // get long semester units
         $data['semesterUnits'] = UnitListing::with('unit')
             ->where('year', '=', $year)
             ->where('semester', '=', $semester)
             ->where('semesterLength', '=', 'long')
             ->get();
 
+        // get short semester units
         $data['semesterUnitsShort'] = UnitListing::with('unit')
             ->where('year', '=', $year)
             ->where('semester', '=', $semester)
             ->where('semesterLength', '=', 'short')
             ->get();
 
+        // get all units
         $data['units'] = Unit::all();
 
         return view ('coordinator.manageunitlisting', $data);
@@ -101,6 +105,7 @@ class ManageListingController extends Controller
             $semester = 'Semester 1';
         }
 
+        // create and store new unit
         $unit = new UnitListing;
         $unit->unitCode = $input['unitCode'];
         $unit->year = $year;
@@ -142,17 +147,7 @@ class ManageListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->only([
-            'unitCode',
-            'semesterLength'
-        ]);
-
-        // not working (because it's not necessary)
-        $unitlisting = UnitListing::findOrFail($id);
-        $unitlisting->unitCode = $input['unitCode'];
-
-        $unitlisting->save();
-        return response()->json($unitlisting);
+        //
     }
 
     /**
@@ -168,6 +163,7 @@ class ManageListingController extends Controller
             'semesterLength'
         ]);
 
+        // get config information
         $semester = Config::find('semester')->value;
         $year = Config::find('year')->value;
 
@@ -181,6 +177,7 @@ class ManageListingController extends Controller
             $semester = 'Semester 1';
         }
 
+        // delete unit listing entry
         $unitlisting = UnitListing::where('unitCode', '=', $input['unitCode'])->delete()
         ->where('year', '=', $year)
         ->where('semester', '=', $semester)

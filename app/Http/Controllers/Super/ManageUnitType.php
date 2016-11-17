@@ -21,8 +21,7 @@ class ManageUnitType extends Controller
     {
         $data = [];
 
-        $types = UnitType::all();
-        $data['types'] = $types;
+        $data['types'] = UnitType::all(); // get all unit types
 
         return view('super.manageunittype', $data);
     }
@@ -36,8 +35,7 @@ class ManageUnitType extends Controller
     {
         $data = [];
 
-        $types = UnitType::all();
-        $data['types'] = $types;
+        $data['types'] = UnitType::all();
 
         return view('super.manageunittype_create', $data);
     }
@@ -54,6 +52,7 @@ class ManageUnitType extends Controller
             'unitType'
         ]);
 
+        // create and store new unit type
         $type = new unitType;
         $type->unitType = $input['unitType'];
         $type->save();
@@ -80,6 +79,7 @@ class ManageUnitType extends Controller
      */
     public function edit($id)
     {
+        // get unit type
         $data['type'] = UnitType::findOrFail($id);
 
         return view('super.manageunittype_create', $data);
@@ -98,6 +98,7 @@ class ManageUnitType extends Controller
             'unitType'
         ]);
 
+        // get and update unit type
         $type = UnitType::findOrFail($id);
         $type->unitType = $input['unitType'];
         $type->save();
@@ -113,6 +114,7 @@ class ManageUnitType extends Controller
      */
     public function destroy($id)
     {
+        // find and delete unit type
         $type = UnitType::findOrFail($id);
         $type->delete();
 

@@ -20,9 +20,9 @@ class ManageCoordinator extends Controller
     public function index()
     {
         $data = [];
-        $course = Course::all();
-        $data['course'] = $course;
-        $data['users'] = User::where('permissionLevel', '=', 2)->get();
+        $data['course'] = Course::all(); // get all courses
+        $data['users'] = User::where('permissionLevel', '=', 2)->get(); // get all coordinators
+
         return view('super.managecoordinator', $data);
     }
     /**
@@ -33,7 +33,7 @@ class ManageCoordinator extends Controller
     public function create()
     {
         $data = [];
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::all(); // get all courses
 
         return view('super.managecoordinator_create', $data);
     }
@@ -54,11 +54,13 @@ class ManageCoordinator extends Controller
         $user = new User;
         $cor = new CourseCoordinator;
 
+        // create and store user information
         $user->username = $input['username'];
         $user->password = bcrypt($input['password']);
         $user->permissionLevel = 2;
         $user->save();
 
+        // create and store coordinator information
         $cor->username = $input['username'];
         $cor->name = $input['name'];
         $cor->courseCode = $input['courseCode'];
@@ -86,10 +88,10 @@ class ManageCoordinator extends Controller
     public function edit($id)
     {
 
-        $data['user'] = User::where('username', '=', $id)->first()->username;
-        $data['name'] = CourseCoordinator::where('username', '=', $id)->first()->name;
-        $data['courseCode'] = CourseCoordinator::where('username', '=', $id)->first()->courseCode;
-        $courses = Course::all();
+        $data['user'] = User::where('username', '=', $id)->first()->username; // get user information
+        $data['name'] = CourseCoordinator::where('username', '=', $id)->first()->name; // get coordinator information
+        $data['courseCode'] = CourseCoordinator::where('username', '=', $id)->first()->courseCode; // get course code
+        $courses = Course::all(); // get all courses
         $data ['courses'] = $courses;
 
         return view('super.managecoordinator_create', $data);
@@ -111,12 +113,14 @@ class ManageCoordinator extends Controller
             'name'
         ]);
 
+        // get and update user information
         $user = User::where('username', '=', $id)
         ->update([
             'username' => $input['username'],
             'password' => bcrypt($input['password'])
         ]);
 
+        // get and update coorindator information
         $coordinator = CourseCoordinator::where('username', '=', $input['username'])
         ->update([
             'username' => $input['username'],
@@ -134,6 +138,7 @@ class ManageCoordinator extends Controller
      */
     public function destroy($id)
     {
+        // find and delete coordinator
         User::where('permissionLevel', '=', 2)
         ->where('username', '=', $id)
         ->delete();

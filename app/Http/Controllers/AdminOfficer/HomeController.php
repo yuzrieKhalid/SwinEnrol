@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         $data = [];
 
+        // return view
         return view('adminofficer.adminofficer', $data);
     }
 }

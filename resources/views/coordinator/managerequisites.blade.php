@@ -13,10 +13,6 @@
             </h3>
         </div>
         <div class="panel-body">
-            <div class="debug">
-                <p>Debug:</p>
-            </div>
-            <hr>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group"> <!-- unitCode -->

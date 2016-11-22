@@ -77,7 +77,7 @@ class ManageRequisiteController extends Controller
         {
             if($requisite->type == 'corequisite')
                 $data['corequisites'][] = $requisite; // push to corequisite
-            if($requisite->type == 'antirequisite')
+            else if($requisite->type == 'antirequisite')
                 $data['antirequisites'][] = $requisite; // push to antirequisite
             else
             {
